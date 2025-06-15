@@ -1,0 +1,76 @@
+form {
+  margin: 20px;
+  width: 60%;
+  gap: 20px;
+}
+
+.form-control {
+  position: relative;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.form-control input,
+.form-control textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--secondary-border-color);
+  color: var(--primary-color);
+  width: 100%;
+  font-size: 18px;
+  padding: 10px 0;
+  resize: none;
+  transition: border-color 0.3s ease;
+  z-index: 1;
+  position: relative;
+}
+
+.form-control input:focus,
+.form-control textarea:focus,
+.form-control input:valid,
+.form-control textarea:valid {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.form-control label {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  pointer-events: none;
+  display: flex;
+  gap: 2px;
+  color: var(--text-color);
+}
+
+.form-control label span {
+  font-size: 18px;
+  display: inline-block;
+  min-width: 5px;
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-control input:focus ~ label span,
+.form-control input:valid ~ label span,
+.form-control textarea:focus ~ label span,
+.form-control textarea:valid ~ label span {
+  transform: translateY(-28px);
+  color: var(--primary-color);
+  -webkit-transform: translateY(-28px);
+  -moz-transform: translateY(-28px);
+  -ms-transform: translateY(-28px);
+  -o-transform: translateY(-28px);
+}
+
+form .btn {
+  background: var(--primary-color);
+  color: var(--primary-bg-color);
+  border: none;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  display: block;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}

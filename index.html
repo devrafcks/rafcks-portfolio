@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafael Blanco | Portfolio</title>
+  <meta name="description" content="Portfólio profissional de Rafael Blanco, desenvolvedor front-end especializado em React, Node.js e interfaces mobile. Explore projetos fullstack, aplicações mobile e soluções web modernas.">
+  <meta name="keywords" content="Rafael Blanco, portfólio, desenvolvedor front-end, React, Node.js, aplicações mobile, projetos fullstack, soluções web">
+  <meta name="author" content="Rafael Blanco">
+
+  <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+<body>
+
+    <div id="fullscreen-loader">
+        <div class="kinetic"></div>
+    </div>
+
+  <header class="header">
+    <nav class="header__nav">
+      <ul class="menu menu--principal">
+        <li class="menu__item">
+          <a class="menu__link active" href="#home">
+            <span class="menu__text">Home</span>
+          </a>
+        </li>
+        <li class="menu__item">
+          <a class="menu__link" href="#sobre">
+            <span class="menu__text">Sobre</span>
+          </a>
+        </li>
+        <li class="menu__item">
+          <a class="menu__link" href="#projetos">
+            <span class="menu__text">Projetos</span>
+          </a>
+        </li>
+        <li class="menu__item">
+          <a class="menu__link" href="#contato">
+            <span class="menu__text">Contato</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="header__brand">
+      <a href="#home">
+        <img class="brand__logo" src="assets/images/logo-ea.png" alt="Logo EA">
+      </a>
+    </div>
+    <div class="header__toggle">
+      <i id="toggleTheme" class="bi bi-sun"></i>
+    </div>
+  </header>
+  <nav class="nav--mobile">
+    <ul class="menu menu--mobile">
+      <li class="menu__item">
+        <a class="menu__link active" href="#home">
+          <i class="menu__icon bi bi-house-door"></i>
+          <span class="menu__text">Home</span>
+        </a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="#sobre">
+          <i class="menu__icon bi bi-person"></i>
+          <span class="menu__text">Sobre</span>
+        </a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="#projetos">
+          <i class="menu__icon bi bi-window-stack"></i>
+          <span class="menu__text">Projetos</span>
+        </a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="#contato">
+          <i class="menu__icon bi bi-envelope"></i>
+          <span class="menu__text">Contato</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <main id="home">
+    <div class="main__content1">
+      <h1><b>Desenvolvimento Fullstack</b> pensado para todos</h1>
+      <p>Rafael | Criando soluções digitais que unem tecnologia, design e acessibilidade para alcançar todo tipo de usuário.</p>
+
+      <ul class="menu menu--social">
+        <li>
+          <a class="menu__link" href="https://github.com/devrafcks" target="_blank" aria-label="GitHub de Rafcks">
+            <i class="menu__icon bi bi-github"></i>
+          </a>
+        </li>
+        <li>
+          <a class="menu__link" href="https://www.linkedin.com/in/rafael-henrique-blanco-0455b12a6/" target="_blank" aria-label="LinkedIn de rafael">
+            <i class="menu__icon bi bi-linkedin"></i>
+          </a>
+        </li>
+      </ul>
+      <a href="#projetos">
+        <button class="btn btn--primary">
+          <span>Ver Projetos</span>
+          <i class="bi bi-arrow-down-right"></i>
+        </button>
+      </a>
+    </div>
+
+    <div class="main__content2">
+      <div class="testimonial-container">
+        <div class="progress-bar"></div>
+
+        <i class="fas fa-quote-right fa-quote"></i>
+        <i class="fas fa-quote-left fa-quote"></i>
+
+        <p class="testimonial">
+          Durante todo o curso técnico, tive a oportunidade de trabalhar com várias pessoas, mas ninguém me impressionou tanto quanto ele. No nosso TCC, vi de perto o quanto ele é dedicado, criativo e comprometido com o que faz. Sempre disposto a ajudar, com uma facilidade incrível pra aprender coisas novas e encontrar soluções quando a gente mais precisava. Além de ser muito bom tecnicamente, ele tem um jeito leve de trabalhar em equipe, o que torna tudo mais fácil. Sem dúvida, é alguém que eu recomendo de olhos fechados.
+        </p>
+
+        <div class="user">
+          <img
+            src="https://api.dicebear.com/9.x/micah/svg?seed=Liam"
+            alt="Foto do usuário"
+            class="user-image"
+          />
+          <div class="user-details">
+            <h4 class="username">Massiel Condori</h4>
+            <p class="role">Coautora de TCC e colega de curso técnico</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section class="technologies">
+    <div class="technologies-scroller">
+      <ul class="technologies__list">
+        <li class="technologies__item"><i class="fab fa-html5"></i> <span>HTML5</span></li>
+        <li class="technologies__item"><i class="fab fa-css3-alt"></i> <span>CSS3</span></li>
+        <li class="technologies__item"><i class="fab fa-js"></i> <span>JavaScript</span></li>
+        <li class="technologies__item"><i class="fas fa-code"></i> <span>TypeScript</span></li>
+        <li class="technologies__item"><i class="fab fa-react"></i> <span>React.js</span></li>
+        <li class="technologies__item"><i class="fab fa-react"></i> <span>React Native</span></li>
+        <li class="technologies__item"><i class="fas fa-layer-group"></i> <span>Next.js</span></li>
+        <li class="technologies__item"><i class="fab fa-node-js"></i> <span>Node.js</span></li>
+        <li class="technologies__item"><i class="fas fa-server"></i> <span>Express.js</span></li>
+        <li class="technologies__item"><i class="fas fa-cube"></i> <span>NestJS</span></li>
+        <li class="technologies__item"><i class="fab fa-python"></i> <span>Python</span></li>
+        <li class="technologies__item"><i class="fas fa-database"></i> <span>MySQL</span></li>
+        <li class="technologies__item"><i class="fas fa-database"></i> <span>PostgreSQL</span></li>
+        <li class="technologies__item"><i class="fas fa-database"></i> <span>MongoDB</span></li>
+        <li class="technologies__item"><i class="fab fa-sass"></i> <span>Sass</span></li>
+        <li class="technologies__item"><i class="fab fa-bootstrap"></i> <span>Bootstrap</span></li>
+        <li class="technologies__item"><i class="fas fa-wind"></i> <span>Tailwind CSS</span></li>
+        <li class="technologies__item"><i class="fab fa-git-alt"></i> <span>Git</span></li>
+        <li class="technologies__item"><i class="fab fa-docker"></i> <span>Docker</span></li>
+        <li class="technologies__item"><i class="fas fa-fire"></i> <span>Firebase</span></li>
+        <li class="technologies__item"><i class="fas fa-cloud-upload-alt"></i> <span>Vercel</span></li>
+        <li class="technologies__item"><i class="fas fa-cloud"></i> <span>Render</span></li>
+        <li class="technologies__item"><i class="fab fa-figma"></i> <span>Figma</span></li>
+        <li class="technologies__item"><i class="fas fa-paint-brush"></i> <span>Photoshop</span></li>
+      </ul>
+
+      <ul class="technologies__list" aria-hidden="true">
+        <li class="technologies__item"><i class="fab fa-html5"></i> <span>HTML5</span></li>
+        <li class="technologies__item"><i class="fab fa-css3-alt"></i> <span>CSS3</span></li>
+        <li class="technologies__item"><i class="fab fa-js"></i> <span>JavaScript</span></li>
+        <li class="technologies__item"><i class="fas fa-code"></i> <span>TypeScript</span></li>
+        <li class="technologies__item"><i class="fab fa-react"></i> <span>React.js</span></li>
+        <li class="technologies__item"><i class="fab fa-react"></i> <span>React Native</span></li>
+        <li class="technologies__item"><i class="fas fa-layer-group"></i> <span>Next.js</span></li>
+        <li class="technologies__item"><i class="fab fa-node-js"></i> <span>Node.js</span></li>
+        <li class="technologies__item"><i class="fas fa-server"></i> <span>Express.js</span></li>
+        <li class="technologies__item"><i class="fas fa-cube"></i> <span>NestJS</span></li>
+        <li class="technologies__item"><i class="fab fa-python"></i> <span>Python</span></li>
+        <li class="technologies__item"><i class="fas fa-database"></i> <span>MySQL</span></li>
+        <li class="technologies__item"><i class="fas fa-database"></i> <span>PostgreSQL</span></li>
+        <li class="technologies__item"><i class="fas fa-database"></i> <span>MongoDB</span></li>
+        <li class="technologies__item"><i class="fab fa-sass"></i> <span>Sass</span></li>
+        <li class="technologies__item"><i class="fab fa-bootstrap"></i> <span>Bootstrap</span></li>
+        <li class="technologies__item"><i class="fas fa-wind"></i> <span>Tailwind CSS</span></li>
+        <li class="technologies__item"><i class="fab fa-git-alt"></i> <span>Git</span></li>
+        <li class="technologies__item"><i class="fab fa-docker"></i> <span>Docker</span></li>
+        <li class="technologies__item"><i class="fas fa-fire"></i> <span>Firebase</span></li>
+        <li class="technologies__item"><i class="fas fa-cloud-upload-alt"></i> <span>Vercel</span></li>
+        <li class="technologies__item"><i class="fas fa-cloud"></i> <span>Render</span></li>
+        <li class="technologies__item"><i class="fab fa-figma"></i> <span>Figma</span></li>
+        <li class="technologies__item"><i class="fas fa-paint-brush"></i> <span>Photoshop</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="sobre" class="about">
+    <div class="about__content1">
+      <img class="about__photo" src="assets/images/avatar.jpg" alt="">
+      <div class="about__description">
+        <h2>Sobre mim</h2>
+        <p>Meu nome é Rafael. Desde a infância, a curiosidade por entender como os jogos funcionavam me levou à tecnologia. Iniciei no curso técnico de Informática para Internet na ETEC Parque Belém, onde descobri minha paixão pelo desenvolvimento. Hoje, busco me tornar Full Stack, com um foco especial em Back-End, mas com boa desenvoltura no Front.</p>
+        <div class="about__icons">
+          <i class="bi bi-translate"></i>
+          <span>Inglês: Intermediário </span>
+        </div>
+        <div class="description__buttons">
+          <a href="https://www.linkedin.com/in/rafael-henrique-blanco-0455b12a6/" target="_blank">
+            <button class="btn btn--primary">
+              <span>Conecte-se Comigo</span>
+              <i class="bi bi-arrow-up-right"></i>
+            </button>
+          </a>
+          <a href="">
+            <button class="btn">
+              <span>Currículo</span>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="about__content2">
+      <div class="col1">
+        <div class="row1">
+          <h3>Formação</h3>
+
+          <h4 style="margin-top: 24px;">Informática para Internet</h4>
+          <span>Jan 2023 - Dez 2025</span>
+          <div class="about__icons">
+            <i class="bi bi-bank"></i>
+            <span>ETEC Parque Belém</span>
+          </div>
+          <div class="about__icons">
+            <i class="bi bi-mortarboard"></i>
+            <span>Ensino Médio Integrado ao Técnico</span>
+          </div>
+
+          <h4 style="margin-top: 24px;">Engenheiro Front-End</h4>
+          <span>Jul 2024 - Dez 2025</span>
+          <div class="about__icons">
+            <i class="bi bi-bank"></i>
+            <span>EBAC - Escola Britânica de Artes Criativas e Tecnologia</span>
+          </div>
+          <div class="about__icons">
+            <i class="bi bi-mortarboard"></i>
+            <span>Curso de Formação Profissional</span>
+          </div>
+        </div>
+        <div class="row2">
+          <h3>Experiências</h3>
+          <h4>Estagiário de Marketing</h4>
+          <span>Digital LZ · Ago 2024 - Dez 2024</span>
+          <ul class="about__list">
+            <li class="about__item"><strong>Gestão de Redes Sociais:</strong> Administração de contas no LinkedIn e Instagram.</li>
+            <li class="about__item"><strong>Campanhas:</strong> Criação e execução de ações digitais focadas em engajamento.</li>
+            <li class="about__item"><strong>Design Gráfico:</strong> Desenvolvimento de peças para campanhas e e-mails com Photoshop.</li>
+            <li class="about__item"><strong>Atendimento:</strong> Gerenciamento do WhatsApp da ouvidoria com foco em solução rápida.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col2">
+        <h3>Cursos</h3>
+        <div id="accordion">
+
+          <div class="accordion__item active">
+            <button class="accordion__header">
+              <span>Banco de Dados SQL do Zero ao Avançado - Udemy</span>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <div class="accordion__body">
+              <p>Curso completo sobre bancos de dados relacionais, abordando desde os conceitos básicos até consultas avançadas em SQL.</p>
+              <p>Inclui tópicos como modelagem de dados, normalização, índices, stored procedures e otimização de desempenho.</p>
+              <p><strong>Competências:</strong> SQL, modelagem de dados, otimização de consultas, bancos de dados relacionais.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header">
+              <span>Bootcamp NTT DATA | Diversidade em Tech (DIO)</span>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <div class="accordion__body">
+              <p>Trilha de formação em desenvolvimento front-end com foco em HTML, CSS, JavaScript e introdução à computação em nuvem com AWS.</p>
+              <p><strong>Competências:</strong> Angular, front-end, computação em nuvem.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header">
+              <span>Bootcamp Ri Happy – Front-End do Zero (DIO)</span>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <div class="accordion__body">
+              <p>Bootcamp com 75 horas de conteúdo prático em HTML, CSS, JavaScript e desenvolvimento de projetos reais.</p>
+              <p><strong>Competências:</strong> Front-end, JavaScript, desenvolvimento responsivo.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header">
+              <span>Bootcamp Santander DIO 2025 - Front-End</span>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <div class="accordion__body">
+              <p>Formação intensiva em desenvolvimento front-end com foco em HTML, CSS e JavaScript.</p>
+              <p>Ênfase na construção de interfaces responsivas, interativas e integradas a APIs.</p>
+              <p><strong>Competências:</strong> HTML, CSS, JavaScript, desenvolvimento web responsivo.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header">
+              <span>Criando APIs com Node (Balta.io)</span>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <div class="accordion__body">
+              <p>Curso prático voltado para criação de APIs com Node.js e Express, com foco em produção e deploy.</p>
+              <p><strong>Competências:</strong> Node.js, Express, APIs RESTful.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header">
+              <span>Figma Aplicado - EBAC</span>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <div class="accordion__body">
+              <p>Curso focado em design de interfaces utilizando Figma, com ênfase em prototipação, design system e colaboração em equipe.</p>
+              <p>Inclui criação de wireframes, layouts responsivos e documentação de projetos de UI/UX.</p>
+              <p><strong>Competências:</strong> Figma, prototipação, design system, UX/UI design, colaboração.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item end">
+            <button class="accordion__header end">
+              <span>Jornada Full Stack - Hashtag Treinamentos</span>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <div class="accordion__body end">
+              <p>Formação completa em desenvolvimento full stack com foco prático em React.js, Node.js e banco de dados.</p>
+              <p>Projetos integram front-end, back-end e persistência de dados.</p>
+              <p><strong>Competências:</strong> React.js, JavaScript, Node.js, bancos de dados, desenvolvimento web.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item start">
+            <button class="accordion__header start">
+              <span>NLW Connect - Node.js (Rocketseat)</span>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <div class="accordion__body">
+              <p>Projeto prático desenvolvido durante o NLW Connect da Rocketseat, com foco em criação de APIs modernas usando Node.js e TypeScript.</p>
+              <p><strong>Competências:</strong> Node.js, TypeScript, REST APIs, bancos de dados SQL/NoSQL.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header start">
+              <span>Node.js - EBAC</span>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <div class="accordion__body">
+              <p>Curso dedicado ao desenvolvimento back-end com Node.js, abordando criação de APIs RESTful, manipulação de bancos de dados, autenticação, middleware e integração com front-end.</p>
+              <p><strong>Competências:</strong> Node.js, Express, MongoDB, REST APIs, JavaScript.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header">
+              <span>Python: Avançando na Linguagem (Alura)</span>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <div class="accordion__body">
+              <p>Curso intermediário/avançado abordando recursos avançados da linguagem Python, com foco em boas práticas de programação.</p>
+              <p><strong>Competências:</strong> Python, programação avançada.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header">
+              <span>Fullstack Pro - Sujeito Programador</span>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <div class="accordion__body">
+              <p>Formação full stack com foco prático em React.js, Node.js e bancos de dados.</p>
+              <p>Inclui criação de aplicações web, integração front-end/back-end, deploy e aplicação de boas práticas de desenvolvimento.</p>
+              <p><strong>Competências:</strong> React.js, Next.js, Node.js, JavaScript, APIs, MongoDB, Git.</p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <button class="accordion__header">
+              <span>Universo Photoshop - Brainstorm Academy</span>
+              <i class="bi bi-caret-down-fill"></i>
+            </button>
+            <div class="accordion__body">
+              <p>Curso avançado de design gráfico com foco em Adobe Photoshop.</p>
+              <p>Conteúdo inclui técnicas de edição, composição visual, manipulação de imagens e criação de arte digital para projetos profissionais.</p>
+              <p><strong>Competências:</strong> Adobe Photoshop, edição de imagens, design gráfico, composição visual.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos" class="projects">
+    <h2>Projetos</h2>
+    <div class="projects__container">
+
+      <div class="projects__card">
+        <img class="card__cover" src="assets/images/projects/mapinion.png" alt="Capa Mapinion">
+        <div class="card__body">
+          <h3 class="card__title">Mapinion</h3>
+          <p class="card__description">App mobile para avaliação de locais com backend em Node.js, Express, MongoDB e autenticação JWT.</p>
+          <ul class="card__list">
+            <li class="card__item">Cadastro e login com autenticação segura (JWT);</li>
+            <li class="card__item">Listagem e busca de locais por filtros;</li>
+            <li class="card__item">Avaliação e comentários em locais;</li>
+            <li class="card__item">CRUD de locais e avaliações.</li>
+          </ul>
+
+          <ul class="technologies__list">
+            <li class="technologies__item"><i class="fab fa-react"></i> <span>React Native</span></li>
+            <li class="technologies__item"><i class="fab fa-node-js"></i> <span>Node.js</span></li>
+            <li class="technologies__item"><i class="fas fa-server"></i> <span>Express.js</span></li>
+            <li class="technologies__item"><i class="fas fa-database"></i> <span>MongoDB</span></li>
+            <li class="technologies__item"><i class="fas fa-lock"></i> <span>JWT</span></li>
+          </ul>
+          <div class="card__buttons">
+            <button class="btn btn--primary">
+                <a href="https://github.com/devrafcks/React-native_mapinion-app" target="_blank">
+                  <span>Repositório</span>
+                  <i class="bi bi-arrow-up-right"></i>
+                </a>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="projects__card card--reverse">
+        <img class="card__cover" src="assets/images/projects/fs-spotify.png" alt="Capa FS Spotify">
+        <div class="card__body">
+          <h3 class="card__title">Fullstack Spotify</h3>
+          <p class="card__description">Clone funcional do Spotify com streaming básico e controle de músicas.</p>
+          <ul class="card__list">
+            <li class="card__item">Listagem de artistas e músicas;</li>
+            <li class="card__item">Player de música simulado com controle básico;</li>
+            <li class="card__item">API backend integrada com banco MongoDB;</li>
+            <li class="card__item">Interface responsiva e dinâmica.</li>
+          </ul>
+
+          <ul class="technologies__list">
+            <li class="technologies__item"><i class="fab fa-react"></i> <span>React.js</span></li>
+            <li class="technologies__item"><i class="fab fa-node-js"></i> <span>Node.js</span></li>
+            <li class="technologies__item"><i class="fas fa-server"></i> <span>Express.js</span></li>
+            <li class="technologies__item"><i class="fas fa-database"></i> <span>MongoDB</span></li>
+          </ul>
+          <div class="card__buttons">
+            <a href="https://deploy-fullstack-spotify.onrender.com/songs" target="_blank" rel="noopener" class="btn btn--primary">
+              <span>Prévia</span>
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+            <a href="https://github.com/devrafcks/Deploy-Fullstack-Spotify" target="_blank" rel="noopener" class="btn">
+              <span>Repositório</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://github.com/devrafcks" target="_blank">
+        <button class="btn btn--primary">
+          <span>Ver Todos os Projetos</span>
+          <i class="bi bi-arrow-up-right"></i>
+        </button>
+      </a>
+    </div>
+  </section>
+
+  <section id="contato" class="contact">
+    <h2>Entre em Contato</h2>
+    <p>
+      Quer conversar sobre projetos, colaborações ou ideias inovadoras? <br />
+      Envie sua mensagem abaixo estarei pronto para responder o quanto antes.
+    </p>
+
+    <form action="https://formsubmit.co/rafcksps@gmail.com" method="POST" id="contact-form">
+
+      <div class="form-control">
+        <input type="text" id="nome" name="from_name" required autocomplete="name" />
+        <label for="nome">Nome</label>
+      </div>
+
+      <div class="form-control">
+        <input type="text" id="email" name="reply_email" required autocomplete="email" />
+        <label for="email">E‑mail</label>
+      </div>
+
+      <div class="form-control">
+        <input type="text" id="assunto" name="subject" required />
+        <label for="assunto">Assunto</label>
+      </div>
+
+      <div class="form-control">
+        <textarea id="mensagem" name="message" rows="4" required></textarea>
+        <label for="mensagem">Mensagem</label>
+      </div>
+
+      <button class="btn" type="submit">Enviar Mensagem</button>
+
+    </form>
+
+    <ul class="menu menu--social">
+      <li>
+        <a class="menu__link" href="https://github.com/devrafcks" target="_blank">
+          <i class="menu__icon bi bi-github"></i>
+          <span>GitHub</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu__link" href="https://www.linkedin.com/in/rafael-henrique-blanco-0455b12a6/" target="_blank">
+          <i class="menu__icon bi bi-linkedin"></i>
+          <span>LinkedIn</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>
+      © Todos os direitos reservados. Criado por
+      <a href="https://github.com/devrafcks" target="_blank" rel="noopener">devrafcks</a>.
+    </p>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script defer src="assets/js/scripts.js"></script>
+</body>
+</html>

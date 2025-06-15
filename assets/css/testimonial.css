@@ -1,0 +1,129 @@
+.main__content2 {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    box-sizing: border-box;
+    overflow-x: hidden; 
+}
+
+.testimonial-container {
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
+    border-radius: 15px;
+    margin: 20px 0; 
+    padding: 50px 80px; 
+    width: 100%; 
+    min-height: 400px; 
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.fa-quote {
+    color: var(--icon-color);
+    opacity: 0.5;
+    font-size: 28px;
+    position: absolute;
+    top: 70px;
+}
+
+.fa-quote-right {
+    left: 40px;
+}
+
+.fa-quote-left {
+    right: 40px;
+}
+
+.testimonial {
+    line-height: 28px;
+    text-align: center;
+    color: var(--text-color);
+    flex-grow: 1;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.user .user-image {
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    object-fit: cover;
+    border: 2px solid var(--primary-border-color);
+}
+
+.user .user-details {
+    margin-left: 15px;
+    text-align: left; 
+}
+
+.user .username {
+    margin: 0;
+    color: var(--title-color);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.user .role {
+    font-weight: normal;
+    margin: 0;
+    color: var(--link-color);
+    font-size: 0.85em;
+}
+
+.progress-bar {
+    background-color: var(--primary-color);
+    height: 4px;
+    width: 100%;
+    animation: grow 10s linear infinite;
+    transform-origin: left;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+@keyframes grow {
+    0% {
+        transform: scaleX(0);
+        -webkit-transform: scaleX(0);
+        -moz-transform: scaleX(0);
+        -ms-transform: scaleX(0);
+        -o-transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+        -webkit-transform: scaleX(1);
+        -moz-transform: scaleX(1);
+        -ms-transform: scaleX(1);
+        -o-transform: scaleX(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonial-container {
+        padding: 30px 20px; 
+        margin: 20px;
+        min-height: auto;
+    }
+
+    .fa-quote {
+        display: none;
+    }
+
+    .testimonial {
+        font-size: 0.95em;
+        line-height: 24px;
+    }
+}
