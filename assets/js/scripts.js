@@ -15,21 +15,22 @@ const testimonials = [
         name: 'Maria Eduarda',
         position: 'Colega do curso técnico',
         photo: 'https://api.dicebear.com/9.x/micah/svg?seed=Amaya',
-        text: 'Durante o curso técnico, o Rafael sempre foi uma referência para mim. Sempre disposto a ajudar, ele nunca se cansou de esclarecer minhas dúvidas e me apoiar nos trabalhos, mesmo quando estava ocupado. Com ele, aprendi não só sobre tecnologia, mas também sobre dedicação e paciência. Ter um colega assim fez toda a diferença na minha jornada acadêmica.',
+        text: 'O Rafael sempre foi uma das pessoas em quem eu mais confiei no curso. Sempre disposto a ajudar, mesmo quando tinha muita coisa pra fazer. Aprendi muito com ele, tanto nas matérias quanto na forma de lidar com as dificuldades.',
     },
     {
         name: "Vitor Alexandre",
         position: "Amigo e colega de curso técnico",
         photo: "https://api.dicebear.com/9.x/lorelei/svg?seed=Sawyer",
-        text: "Estudamos juntos por três anos no curso técnico e, durante todo esse tempo, sempre contei com ele para resolver dúvidas e ajudar nas atividades mais difíceis. Ele tem uma paciência incrível, explica com clareza e domina os conteúdos com profundidade. Mais que isso, é alguém em quem se pode confiar para colaborar de verdade, sempre disposto a dar o seu melhor para ajudar os colegas. Ter ele como amigo e parceiro de estudos fez toda a diferença para meu aprendizado."
+        text: "Estudamos juntos por três anos e o Rafael sempre foi a pessoa que todo mundo procurava quando tinha dúvida. Ele explicava com calma, sem pressa, e fazia questão de ajudar de verdade. Sempre foi muito parceiro.",
     },
     {
         name: "Massiel Condori",
         position: "Coautora de TCC e colega de curso técnico",
         photo: "https://api.dicebear.com/9.x/micah/svg?seed=Liam",
-        text: "Trabalhar com ele no nosso TCC foi uma experiência muito positiva. Ele é um desenvolvedor dedicado, com grande atenção aos detalhes e um senso de responsabilidade admirável. Sempre busca as melhores soluções técnicas e tem uma habilidade incrível de transformar ideias em código funcional e limpo. Durante o projeto, mostrou iniciativa, organização e um cuidado especial com a qualidade do que entrega. É uma pessoa que realmente veste a camisa e faz a diferença na equipe."
-    }
+        text: "Fazer o TCC com o Rafael foi tranquilo porque ele sempre foi muito responsável. Ele se preocupava em entregar tudo certo e dentro do prazo. Sempre dava um jeito de resolver o que aparecia e fazia questão de deixar tudo bem feito.",
+    } 
 ];
+
 
 let testimonialIdx = 1;
 
@@ -503,7 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, loaderDisplayTime);
 });
 
-setInterval(updateTestimonial, 5000);
+setInterval(updateTestimonial, 6500);
 
 createScrollObserver('.technologies', animateTechnologiesIn, animateTechnologiesOut, 0.1);
 createScrollObserver('#sobre', animateAboutIn, animateAboutOut, 0.05);
