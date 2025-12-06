@@ -8,7 +8,6 @@ const testimonial = document.querySelector('.testimonial');
 const userImage = document.querySelector('.user-image');
 const username = document.querySelector('.username');
 const role = document.querySelector('.role');
-const footer = document.querySelector('footer');
 
 const testimonials = [
     {
@@ -21,31 +20,31 @@ const testimonials = [
         name: "Vitor Alexandre",
         position: "Amigo e colega de curso técnico",
         photo: "https://api.dicebear.com/9.x/lorelei/svg?seed=Sawyer",
-        text: "Estudamos juntos por três anos e o Rafael sempre foi a pessoa que todo mundo procurava quando tinha dúvida. Ele explicava com calma, sem pressa, e fazia questão de ajudar de verdade. Sempre foi muito parceiro.",
+        text: "Estudamos juntos por três anos e o Rafael sempre foi a pessoa que todo mundo procurava quando tinha dúvida. Ele explicava com calma e sempre ajudava de verdade. Muito parceiro.",
     },
     {
         name: "Massiel Condori",
         position: "Coautora de TCC e colega de curso técnico",
         photo: "https://api.dicebear.com/9.x/micah/svg?seed=Liam",
-        text: "Fazer o TCC com o Rafael foi tranquilo porque ele sempre foi muito responsável. Ele se preocupava em entregar tudo certo e dentro do prazo. Sempre dava um jeito de resolver o que aparecia e fazia questão de deixar tudo bem feito.",
+        text: "Fazer o TCC com o Rafael foi tranquilo porque ele sempre foi muito responsável. Se preocupava em entregar tudo certo e no prazo. Resolvia o que aparecia e deixava tudo bem feito.",
     } 
 ];
-
 
 let testimonialIdx = 1;
 
 function changeTheme() {
     const currentTheme = rootHtml.getAttribute("data-theme");
-    currentTheme === "dark" ? rootHtml.setAttribute("data-theme", "light") : rootHtml.setAttribute("data-theme", "dark");
+    rootHtml.setAttribute("data-theme", currentTheme === "dark" ? "light" : "dark");
+
     toggleTheme.classList.toggle("bi-sun");
     toggleTheme.classList.toggle("bi-moon-stars");
 
     anime({
         targets: toggleTheme,
         rotate: [0, 360],
-        scale: [0.8, 1.2, 1],
-        duration: 800,
-        easing: 'easeOutElastic(1, .5)',
+        scale: [0.9, 1],
+        duration: 500,
+        easing: 'easeOutQuad'
     });
 }
 
@@ -55,9 +54,9 @@ function updateTestimonial() {
     anime({
         targets: [testimonial, userImage, username, role],
         opacity: [1, 0],
-        translateY: [0, -20],
-        duration: 300,
-        easing: 'easeInQuad',
+        translateY: [0, -10],
+        duration: 180,
+        easing: 'easeInOutQuad',
         complete: () => {
             testimonial.innerHTML = text;
             userImage.src = photo;
@@ -67,34 +66,31 @@ function updateTestimonial() {
             anime({
                 targets: [testimonial, userImage, username, role],
                 opacity: [0, 1],
-                translateY: [20, 0],
-                duration: 500,
+                translateY: [10, 0],
+                duration: 250,
                 easing: 'easeOutQuad'
             });
         }
     });
 
-    testimonialIdx++;
-    if (testimonialIdx > testimonials.length - 1) {
-        testimonialIdx = 0;
-    }
+    testimonialIdx = (testimonialIdx + 1) % testimonials.length;
 }
 
 function animateAccordionItem(item, isActive) {
     const body = item.querySelector('.accordion__body');
     const icon = item.querySelector('.bi-caret-down-fill');
-    const duration = 300;
+    const duration = 200;
 
     if (isActive) {
         anime({
             targets: body,
             height: [body.scrollHeight, 0],
             opacity: [1, 0],
+            duration,
             easing: 'easeOutQuad',
-            duration: duration,
             complete: () => {
-                item.classList.remove('active');
                 body.style.display = 'none';
+                item.classList.remove('active');
                 icon.style.transform = 'rotate(0deg)';
             }
         });
@@ -104,11 +100,11 @@ function animateAccordionItem(item, isActive) {
             targets: body,
             height: [0, body.scrollHeight],
             opacity: [0, 1],
+            duration,
             easing: 'easeOutQuad',
-            duration: duration,
             complete: () => {
-                item.classList.add('active');
                 body.style.height = 'auto';
+                item.classList.add('active');
                 icon.style.transform = 'rotate(180deg)';
             }
         });
@@ -117,333 +113,51 @@ function animateAccordionItem(item, isActive) {
 
 const createScrollObserver = (selector, animateIn, animateOut, threshold = 0.05) => {
     const elements = document.querySelectorAll(selector);
-    if (elements.length === 0) return;
+    if (!elements.length) return;
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateIn(entry.target);
-            } else {
-                animateOut(entry.target);
-            }
+            entry.isIntersecting ? animateIn(entry.target) : animateOut(entry.target);
         });
     }, { threshold });
 
     elements.forEach(el => observer.observe(el));
 };
 
-const animateTechnologiesIn = (target) => {
+const simpleFadeIn = (target) => {
     anime({
-        targets: target.querySelectorAll('.technologies__item'),
+        targets: target,
         opacity: [0, 1],
         translateY: [30, 0],
-        scale: [0.9, 1],
-        easing: 'easeOutElastic(1, .8)',
-        duration: 1200,
-        delay: anime.stagger(80)
+        duration: 350,
+        easing: 'easeOutQuad'
     });
 };
 
-const animateTechnologiesOut = (target) => {
+const simpleFadeOut = (target) => {
     anime({
-        targets: target.querySelectorAll('.technologies__item'),
+        targets: target,
         opacity: [1, 0],
         translateY: [0, 30],
-        scale: [1, 0.9],
-        easing: 'easeInQuad',
-        duration: 400,
-        delay: anime.stagger(40, {direction: 'reverse'})
+        duration: 250,
+        easing: 'easeInQuad'
     });
 };
 
-const animateAboutIn = (target) => {
-    anime.timeline({
-        easing: 'easeOutExpo',
-        duration: 1000
-    })
-    .add({
-        targets: target.querySelector('.about__content1'),
-        translateX: [-80, 0],
-        opacity: [0, 1],
-        easing: 'easeOutQuint',
-        duration: 800
-    })
-    .add({
-        targets: target.querySelector('.about__content2'),
-        translateX: [80, 0],
-        opacity: [0, 1],
-        easing: 'easeOutQuint',
-        duration: 800
-    }, '-=700')
-    .add({
-        targets: target.querySelectorAll('.about__content1 .about__photo, .about__content1 .about__description h2, .about__content1 .about__description p, .about__content1 .about__icons, .about__content1 .description__buttons'),
-        translateY: [30, 0],
-        opacity: [0, 1],
-        easing: 'easeOutSine',
-        duration: 600,
-        delay: anime.stagger(70)
-    }, '-=500')
-    .add({
-        targets: target.querySelectorAll('.about__content2 .col1 > div, .about__content2 .col2 h3, #accordion .accordion__item'),
-        translateY: [30, 0],
-        opacity: [0, 1],
-        easing: 'easeOutSine',
-        duration: 600,
-        delay: anime.stagger(70)
-    }, '-=500');
-};
+const animateAboutIn = simpleFadeIn;
+const animateAboutOut = simpleFadeOut;
 
-const animateAboutOut = (target) => {
-    anime.timeline({
-        easing: 'easeInQuad',
-        duration: 500
-    })
-    .add({
-        targets: target.querySelectorAll('.about__content1 .about__photo, .about__content1 .about__description h2, .about__content1 .about__description p, .about__content1 .about__icons, .about__content1 .description__buttons, .about__content2 .col1 > div, .about__content2 .col2 h3, #accordion .accordion__item'),
-        translateY: [0, 30],
-        opacity: [1, 0],
-        delay: anime.stagger(40, {direction: 'reverse'})
-    })
-    .add({
-        targets: target.querySelector('.about__content1'),
-        translateX: [0, -80],
-        opacity: [1, 0],
-        easing: 'easeInQuad',
-        duration: 400
-    }, '-=300')
-    .add({
-        targets: target.querySelector('.about__content2'),
-        translateX: [0, 80],
-        opacity: [1, 0],
-        easing: 'easeInQuad',
-        duration: 400
-    }, '-=400');
-};
+const animateProjectsIn = simpleFadeIn;
+const animateProjectsOut = simpleFadeOut;
 
-const animateProjectsIn = (target) => {
-    anime.timeline({
-        easing: 'easeOutCubic',
-        duration: 1000
-    })
-    .add({
-        targets: target.querySelector('h2'),
-        opacity: [0, 1],
-        translateY: [30, 0],
-        easing: 'easeOutQuad',
-        duration: 600,
-    })
-    .add({
-        targets: target.querySelectorAll('.projects__card'),
-        opacity: [0, 1],
-        translateY: [50, 0],
-        scale: [0.95, 1],
-        easing: 'easeOutBack(1.2)',
-        duration: 800,
-        delay: anime.stagger(150)
-    }, '-=500')
-    .add({
-        targets: target.querySelector('.projects .btn--primary'),
-        opacity: [0, 1],
-        translateY: [20, 0],
-        easing: 'easeOutQuad',
-        duration: 400,
-    }, '-=400');
-};
+const animateContactIn = simpleFadeIn;
+const animateContactOut = simpleFadeOut;
 
-const animateProjectsOut = (target) => {
-    anime.timeline({
-        easing: 'easeInQuad',
-        duration: 600
-    })
-    .add({
-        targets: target.querySelector('.projects .btn--primary'),
-        opacity: [1, 0],
-        translateY: [0, 20],
-        duration: 300
-    })
-    .add({
-        targets: target.querySelectorAll('.projects__card'),
-        opacity: [1, 0],
-        scale: [1, 0.95],
-        translateY: [0, 50],
-        easing: 'easeInQuad',
-        duration: 400,
-        delay: anime.stagger(100, {direction: 'reverse'})
-    }, '-=200')
-    .add({
-        targets: target.querySelector('h2'),
-        opacity: [1, 0],
-        translateY: [0, 30],
-        duration: 300,
-    }, '-=300');
-};
+const animateTestimonialIn = simpleFadeIn;
+const animateTestimonialOut = simpleFadeOut;
 
-const animateContactIn = (target) => {
-    anime.timeline({
-        easing: 'easeOutQuad',
-        duration: 800
-    })
-    .add({
-        targets: target.querySelector('h2'),
-        opacity: [0, 1],
-        translateY: [50, 0],
-        easing: 'easeOutElastic(1, .8)',
-        duration: 800,
-    })
-    .add({
-        targets: target.querySelector('p'),
-        opacity: [0, 1],
-        translateY: [30, 0],
-        duration: 500,
-    }, '-=600')
-    .add({
-        targets: target.querySelectorAll('.form-control input, .form-control textarea'),
-        opacity: [0, 1],
-        translateY: [20, 0],
-        easing: 'easeOutQuad',
-        duration: 300,
-        delay: anime.stagger(100)
-    }, '-=500')
-    .add({
-        targets: target.querySelector('#contact-form button'),
-        opacity: [0, 1],
-        scale: [0.8, 1],
-        translateY: [30, 0],
-        easing: 'easeOutBack',
-        duration: 500,
-    }, '-=300')
-    .add({
-        targets: target.querySelectorAll('.contact .menu--social li'),
-        opacity: [0, 1],
-        translateX: [-50, 0],
-        easing: 'easeOutElastic(1, .8)',
-        duration: 600,
-        delay: anime.stagger(100)
-    }, '-=400');
-};
-
-const animateContactOut = (target) => {
-    anime.timeline({
-        easing: 'easeInQuad',
-        duration: 600
-    })
-    .add({
-        targets: target.querySelectorAll('.contact .menu--social li'),
-        opacity: [1, 0],
-        translateX: [0, -50],
-        duration: 300,
-        delay: anime.stagger(50, {direction: 'reverse'})
-    })
-    .add({
-        targets: target.querySelector('#contact-form button'),
-        opacity: [1, 0],
-        scale: [1, 0.8],
-        translateY: [0, 30],
-        duration: 300,
-    }, '-=200')
-    .add({
-        targets: target.querySelectorAll('.form-control input, .form-control textarea'),
-        opacity: [1, 0],
-        translateY: [0, 20],
-        duration: 200,
-        delay: anime.stagger(50, {direction: 'reverse'})
-    }, '-=200')
-    .add({
-        targets: target.querySelector('p'),
-        opacity: [1, 0],
-        translateY: [0, 30],
-        duration: 300,
-    }, '-=200')
-    .add({
-        targets: target.querySelector('h2'),
-        opacity: [1, 0],
-        translateY: [0, 50],
-        duration: 300,
-    }, '-=100');
-};
-
-const animateTestimonialIn = (target) => {
-    anime.timeline({
-        easing: 'easeOutBack',
-        duration: 800
-    })
-    .add({
-        targets: target,
-        scale: [0.9, 1],
-        opacity: [0, 1],
-        translateY: [30, 0],
-    })
-    .add({
-        targets: target.querySelector('.fa-quote'),
-        opacity: [0, 1],
-        scale: [0.7, 1],
-        easing: 'easeOutBounce',
-        duration: 500
-    }, '-=400')
-    .add({
-        targets: target.querySelector('p.testimonial'),
-        opacity: [0, 1],
-        translateY: [15, 0],
-        duration: 400
-    }, '-=300')
-    .add({
-        targets: target.querySelector('.user'),
-        opacity: [0, 1],
-        translateX: [-20, 0],
-        duration: 400
-    }, '-=200');
-};
-
-const animateTestimonialOut = (target) => {
-    anime.timeline({
-        easing: 'easeInQuad',
-        duration: 400
-    })
-    .add({
-        targets: target.querySelector('.user'),
-        opacity: [1, 0],
-        translateX: [0, -20],
-        duration: 200
-    })
-    .add({
-        targets: target.querySelector('p.testimonial'),
-        opacity: [1, 0],
-        translateY: [0, 15],
-        duration: 200
-    }, '-=150')
-    .add({
-        targets: target.querySelector('.fa-quote'),
-        opacity: [1, 0],
-        scale: [1, 0.7],
-        duration: 200
-    }, '-=150')
-    .add({
-        targets: target,
-        scale: [1, 0.9],
-        opacity: [1, 0],
-        translateY: [0, 30],
-    }, '-=100');
-};
-
-const animateFooterIn = (target) => {
-    anime({
-        targets: target,
-        translateY: ['-10%', '0%'], 
-        opacity: [0, 1],
-        easing: 'easeOutCubic',
-        duration: 700,
-    });
-};
-
-const animateFooterOut = (target) => {
-    anime({
-        targets: target,
-        translateY: ['0%', '10%'],
-        opacity: [1, 0],
-        easing: 'easeInQuad',
-        duration: 400,
-    });
-};
+const animateFooterIn = simpleFadeIn;
+const animateFooterOut = simpleFadeOut;
 
 toggleTheme.addEventListener("click", changeTheme);
 
@@ -453,10 +167,9 @@ accordionHeaders.forEach(header => {
         const accordionActive = accordionItem.classList.contains("active");
 
         document.querySelectorAll('.accordion__item.active').forEach(openItem => {
-            if (openItem !== accordionItem) {
-                animateAccordionItem(openItem, true);
-            }
+            if (openItem !== accordionItem) animateAccordionItem(openItem, true);
         });
+
         animateAccordionItem(accordionItem, accordionActive);
     });
 });
@@ -471,16 +184,16 @@ menuLinks.forEach(item => {
 labels.forEach(label => {
     label.innerHTML = label.innerText
         .split('')
-        .map((letter, idx) => `<span style="transition-delay:${idx * 50}ms">${letter}</span>`)
+        .map((letter, idx) => `<span style="transition-delay:${idx * 30}ms">${letter}</span>`)
         .join('');
 });
 
 document.addEventListener('DOMContentLoaded', () => {
     const fullscreenLoader = document.getElementById('fullscreen-loader');
     const mainContent = document.querySelector('main');
+
     document.body.style.overflow = 'hidden';
 
-    const loaderDisplayTime = 2300;
     setTimeout(() => {
         if (fullscreenLoader) {
             fullscreenLoader.classList.add('hidden');
@@ -492,23 +205,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 anime({
                     targets: mainContent,
                     opacity: [0, 1],
-                    translateY: [50, 0],
-                    duration: 800,
+                    translateY: [20, 0],
+                    duration: 400,
                     easing: 'easeOutQuad'
                 });
             }, { once: true });
-        } else {
-            document.body.style.overflow = 'auto';
-            if (mainContent) mainContent.style.display = 'block';
         }
-    }, loaderDisplayTime);
+    }, 1800);
 });
 
 setInterval(updateTestimonial, 6500);
 
-createScrollObserver('.technologies', animateTechnologiesIn, animateTechnologiesOut, 0.1);
-createScrollObserver('#sobre', animateAboutIn, animateAboutOut, 0.05);
-createScrollObserver('#projetos', animateProjectsIn, animateProjectsOut, 0.05);
-createScrollObserver('#contato', animateContactIn, animateContactOut, 0.03);
-createScrollObserver('.testimonials-container', animateTestimonialIn, animateTestimonialOut, 0.1);
+createScrollObserver('#sobre', animateAboutIn, animateAboutOut, 0.1);
+createScrollObserver('#projetos', animateProjectsIn, animateProjectsOut, 0.1);
+createScrollObserver('#contato', animateContactIn, animateContactOut, 0.1);
+createScrollObserver('.testimonials-container', animateTestimonialIn, animateTestimonialOut, 0.15);
 createScrollObserver('footer', animateFooterIn, animateFooterOut, 0.05);

@@ -186,6 +186,24 @@ main {
     object-position: center; 
     border-radius: 1rem;
 }
+
+.card__video-wrapper {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    overflow: hidden; 
+    background: #000; 
+}
+
+.card__video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+}
+
+
 .card__body {
     display: flex;
     flex-direction: column;
@@ -242,7 +260,7 @@ main {
 }
 
 .card__body .technologies__item i {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--primary-color);
 }
 
