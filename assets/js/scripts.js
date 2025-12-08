@@ -144,18 +144,23 @@ const simpleFadeOut = (target) => {
     });
 };
 
+// SOBRE
 const animateAboutIn = simpleFadeIn;
 const animateAboutOut = simpleFadeOut;
 
-const animateProjectsIn = simpleFadeIn;
-const animateProjectsOut = simpleFadeOut;
+// PROJETOS → sem animações
+const animateProjectsIn = () => {};
+const animateProjectsOut = () => {};
 
+// CONTATO
 const animateContactIn = simpleFadeIn;
 const animateContactOut = simpleFadeOut;
 
+// TESTEMUNHOS
 const animateTestimonialIn = simpleFadeIn;
 const animateTestimonialOut = simpleFadeOut;
 
+// FOOTER
 const animateFooterIn = simpleFadeIn;
 const animateFooterOut = simpleFadeOut;
 
@@ -217,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
 setInterval(updateTestimonial, 6500);
 
 createScrollObserver('#sobre', animateAboutIn, animateAboutOut, 0.1);
-createScrollObserver('#projetos', animateProjectsIn, animateProjectsOut, 0.1);
+createScrollObserver('#projetos', animateProjectsIn, animateProjectsOut, 0.1); // sem animação
 createScrollObserver('#contato', animateContactIn, animateContactOut, 0.1);
 createScrollObserver('.testimonials-container', animateTestimonialIn, animateTestimonialOut, 0.15);
 createScrollObserver('footer', animateFooterIn, animateFooterOut, 0.05);
