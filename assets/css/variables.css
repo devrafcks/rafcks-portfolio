@@ -16,15 +16,16 @@
 :root[data-theme='light'] {
   --primary-color: #0B0B0F;
 
-  --primary-bg-color: #E9E9E9;
-  --secondary-bg-color: #C7C8C9;
-  --primary-border-color: #C7C8C9;
-  --secondary-border-color: #9A9A9C;
+  --primary-bg-color: #FAFAFB;
+  --secondary-bg-color: #f3f3f4;
+
+  --primary-border-color: #E1E2E5;
+  --secondary-border-color: #C9CBD1;
 
   --title-color: #0B0B0F;
-  --text-color: #28292E;
-  --link-color: #28292E;
-  --icon-color: #56575A;
+  --text-color: #1F2933;
+  --link-color: #1F2933;
+  --icon-color: #4B5563;
 }
 
 html[data-theme='light'] .brand__logo {
