@@ -1,37 +1,23 @@
-# Rafael Blanco – Portfólio
+# Rafael Blanco, portfólio
 
-![image](https://github.com/user-attachments/assets/ddb6442c-419a-49dc-9115-f1a044fb1529)
 Acesse a versão ao vivo: [rafaelblanco.vercel.app](https://rafaelblanco.vercel.app)
 
-## Visão Geral
+Portfólio pessoal de Rafael Blanco, desenvolvedor full stack. O site apresenta trajetória, projetos e um canal de contato.
 
-Este repositório contém o código-fonte do meu portfólio pessoal como Desenvolvedor Full-stack. O projeto foi desenvolvido para apresentar minhas habilidades técnicas, trajetória profissional e principais projetos de forma objetiva e interativa.
+## Tecnologias
 
-O site conta com um design limpo, moderno e responsivo, com foco na experiência do usuário por meio de animações suaves e recursos dinâmicos.
+- HTML5
+- CSS3
+- JavaScript
+- Anime.js
+- SeeB Widget
+- Vercel
 
-## Tecnologias Utilizadas
+## O que o site faz
 
-**Frontend:**
-
-- **HTML5** – Estrutura semântica e acessível.
-- **CSS3 (Sass)** – Estilização modular e escalável.
-- **JavaScript (ES6+)** – Funcionalidades interativas e dinâmicas.
-- **Anime.js** – Biblioteca de animações para efeitos suaves e personalizados.
-- **Intersection Observer API** – Para carregamento eficiente de conteúdo com base na rolagem.
-
-**Deploy e Versionamento:**
-
-- **Git & GitHub** – Controle de versão.
-- **Vercel** – Deploy e hospedagem com integração contínua.
-
-##  Principais Funcionalidades
-
-- **Design Responsivo:** Adaptação para diferentes dispositivos (desktop, tablet e mobile).
-- **Alternância de Tema:** Modo claro e escuro com transições animadas.
-- **Depoimentos Dinâmicos:** Rotação automática de feedbacks recebidos.
-- **Acordeão Interativo:** Organização de informações na seção "Sobre".
-- **Animações de Rolagem:** Elementos que ganham vida conforme o usuário navega.
-- **Animação em Labels de Formulário:** Interação aprimorada nos campos de contato.
-- **Pré-carregador:** Tela de carregamento suave para melhor experiência inicial.
-- **Exposição de Projetos:** Destaque para os principais trabalhos desenvolvidos.
-- **Formulário de Contato:** Canal direto para contato profissional.
+- Modo claro por padrão e modo escuro, com a escolha salva no navegador
+- Depoimentos reais recebidos no LinkedIn
+- Acordeão de cursos
+- Animações com Anime.js, desligadas quando o sistema pede menos movimento
+- Formulário de contato via FormSubmit
+- Lista dos projetos em produção

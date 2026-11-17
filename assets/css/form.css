@@ -1,12 +1,12 @@
 form {
-  margin: 20px;
-  width: 60%;
+  margin: 0;
+  width: min(100%, 40rem);
   gap: 20px;
 }
 
 .form-control {
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 2.75rem;
   width: 100%;
 }
 
@@ -15,9 +15,10 @@ form {
   background: transparent;
   border: none;
   border-bottom: 2px solid var(--secondary-border-color);
-  color: var(--primary-color);
+  color: var(--title-color);
+  font-family: inherit;
   width: 100%;
-  font-size: 18px;
+  font-size: 1rem;
   padding: 10px 0;
   resize: none;
   transition: border-color 0.3s ease;
@@ -30,7 +31,13 @@ form {
 .form-control input:valid,
 .form-control textarea:valid {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: var(--accent-2);
+}
+
+.form-control input:focus-visible,
+.form-control textarea:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
 }
 
 .form-control label {
@@ -44,7 +51,7 @@ form {
 }
 
 .form-control label span {
-  font-size: 18px;
+  font-size: 1rem;
   display: inline-block;
   min-width: 5px;
   transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -55,22 +62,22 @@ form {
 .form-control textarea:focus ~ label span,
 .form-control textarea:valid ~ label span {
   transform: translateY(-28px);
-  color: var(--primary-color);
-  -webkit-transform: translateY(-28px);
-  -moz-transform: translateY(-28px);
-  -ms-transform: translateY(-28px);
-  -o-transform: translateY(-28px);
+  color: var(--title-color);
 }
 
 form .btn {
-  background: var(--primary-color);
-  color: var(--primary-bg-color);
+  background: var(--accent);
+  color: var(--on-accent);
   border: none;
   width: 100%;
   padding: 14px;
   font-size: 16px;
-  display: block;
+  display: flex;
   border-radius: 6px;
   cursor: pointer;
-  transition: 0.3s ease;
+}
+
+form .btn:hover {
+  background: var(--accent-2);
+  color: var(--on-accent);
 }

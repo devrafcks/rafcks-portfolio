@@ -1,20 +1,19 @@
-body {
-  margin: 0;
-  overflow: hidden; 
-}
-
 #fullscreen-loader {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw; 
-  height: 100vh; 
-  background-color: rgb(0, 0, 0); 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--primary-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 9999;
-  transition: opacity 1s ease-out, visibility 1s ease-out;
+  transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+}
+
+html:has(#fullscreen-loader:not(.hidden)) body {
+  overflow: hidden;
 }
 
 #fullscreen-loader.hidden {
@@ -37,12 +36,13 @@ body {
   width: 0;
   height: 0;
   border: 50px solid transparent;
-  border-bottom-color: #fff;
+  border-bottom-color: #FFBC00;
   animation: rotateA 2s linear infinite 0.5s;
 }
 
 .kinetic::before {
   transform: rotate(90deg);
+  border-bottom-color: #FF7F1A;
   animation: rotateB 2s linear infinite;
 }
 
@@ -75,5 +75,12 @@ body {
 
   100% {
     transform: rotate(450deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kinetic::after,
+  .kinetic::before {
+    animation: none;
   }
 }

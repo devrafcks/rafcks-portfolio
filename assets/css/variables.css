@@ -1,37 +1,43 @@
-
-:root, :root[data-theme='dark'] {
-  --primary-color: #F0F0F0;
-
-  --primary-bg-color: #111217;
-  --secondary-bg-color: #28292E;
-  --primary-border-color: #28292E;
-  --secondary-border-color: #56575A;
-
-  --title-color: #F0F0F0;
-  --text-color: #9A9A9C;
-  --link-color: #9A9A9C;
-  --icon-color: #C7C8C9;
-}
-
+:root,
 :root[data-theme='light'] {
-  --primary-color: #0B0B0F;
-
-  --primary-bg-color: #FAFAFB;
-  --secondary-bg-color: #f3f3f4;
-
-  --primary-border-color: #E1E2E5;
-  --secondary-border-color: #C9CBD1;
-
-  --title-color: #0B0B0F;
-  --text-color: #1F2933;
-  --link-color: #1F2933;
-  --icon-color: #4B5563;
+  color-scheme: light;
+  --primary-color: #2B1E20;
+  --primary-bg-color: #FFFBF2;
+  --secondary-bg-color: #FFF6E0;
+  --primary-border-color: #E6D3AE;
+  --secondary-border-color: #CDB892;
+  --title-color: #2B1E20;
+  --text-color: #3A2926;
+  --link-color: #3A2926;
+  --icon-color: #2B1E20;
+  --accent: #FFBC00;
+  --accent-2: #FF7F1A;
+  --on-accent: #2B1E20;
+  --stroke: #2B1E20;
+  --focus: #2B1E20;
+  --shadow: 0 16px 40px rgba(43, 30, 32, 0.08);
 }
 
-html[data-theme='light'] .brand__logo {
-  filter: invert(1);
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --primary-color: #FFFFFF;
+  --primary-bg-color: #1E1416;
+  --secondary-bg-color: #2B1E20;
+  --primary-border-color: #4D2D27;
+  --secondary-border-color: #6B4538;
+  --title-color: #FFFFFF;
+  --text-color: #F6EFE6;
+  --link-color: #F6EFE6;
+  --icon-color: #FFBC00;
+  --accent: #FFBC00;
+  --accent-2: #FF7F1A;
+  --on-accent: #2B1E20;
+  --stroke: #FFFFFF;
+  --focus: #FFBC00;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
-html[data-theme='light'] .technologies__logo {
-  filter: invert(80%);
+::selection {
+  background: #FFBC00;
+  color: #2B1E20;
 }
