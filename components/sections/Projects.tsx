@@ -122,7 +122,7 @@ export function Projects() {
             >
               <Tilt max={large ? 3 : 5}>
                 <div className="rounded-2xl transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5 group-hover:shadow-[0_28px_50px_-12px_rgba(43,30,32,0.28)]">
-                  <DeviceMockup {...(project.cover ?? project.images[0])} hover wide={large} priority={cardIndex === 0} />
+                  <DeviceMockup {...(project.cover ?? project.images[0])} hover wide={large} />
                 </div>
               </Tilt>
               <h3 className="mt-4 font-display text-2xl font-semibold tracking-[-0.03em]">{project.title}</h3>

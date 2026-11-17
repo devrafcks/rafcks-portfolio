@@ -34,6 +34,8 @@ export type HatScene = {
   spin: () => void;
   /** fly: 0 parado na Hero, 1 voando pela página. land: 0 no ar, 1 pousado no B do footer. */
   setPhase: (fly: number, land: number) => void;
+  /** Tamanho na tela em relação ao canvas: ajusta a resolução interna. */
+  setScale: (scale: number) => void;
 };
 
 /**
@@ -249,6 +251,18 @@ export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMoti
   const ro = new ResizeObserver(resize);
   ro.observe(host);
 
+  // resolução interna segue o tamanho visível do chapéu (em degraus, para não recriar o buffer toda hora)
+  const baseRatio = Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.5 : 2);
+  let currentRatio = renderer.getPixelRatio();
+  const setScale = (scale: number) => {
+    const wanted = Math.min(3.5, Math.max(0.6, baseRatio * scale));
+    const stepped = Math.round(wanted * 4) / 4;
+    if (Math.abs(stepped - currentRatio) < 0.24) return;
+    currentRatio = stepped;
+    renderer.setPixelRatio(stepped);
+    resize();
+  };
+
   // mouse: inclinação suave; clique: um giro
   let targetX = 0;
   let targetY = 0;
@@ -331,6 +345,7 @@ export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMoti
     spin: () => {
       if (!reduceMotion) spinBoost = 1;
     },
+    setScale,
     setPhase: (nextFly, nextLand) => {
       fly = nextFly;
       land = nextLand;

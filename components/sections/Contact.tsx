@@ -6,7 +6,10 @@ import { projects } from "@/data/projects";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitText } from "@/components/motion/SplitText";
 import { Button } from "@/components/ui/Button";
-import { TiltedGridHero } from "@/components/ui/tilted-grid-hero";
+import dynamic from "next/dynamic";
+import { NearView } from "@/components/motion/NearView";
+
+const TiltedGridHero = dynamic(() => import("@/components/ui/tilted-grid-hero").then((mod) => mod.TiltedGridHero), { ssr: false });
 
 const bandImages = projects
   .filter((project) => !["mirante", "t2", "carretel", "cresce"].includes(project.id))
@@ -14,7 +17,7 @@ const bandImages = projects
   .filter((shot): shot is NonNullable<typeof shot> => Boolean(shot) && shot!.device === "laptop")
   .slice(0, 12)
   // versões de 640px pelo otimizador do Next: a faixa nunca mostra o print maior que isso
-  .map((shot) => ({ src: `/_next/image?url=${encodeURIComponent(shot.src)}&w=640&q=70` }));
+  .map((shot) => ({ src: `/_next/image?url=${encodeURIComponent(shot.src)}&w=640&q=75` }));
 
 const fields = [
   { id: "nome", name: "name", label: "Nome", type: "text", auto: "name", maxLength: 80 },
@@ -71,13 +74,17 @@ export function Contact() {
 
   return (
     <section id="contato" className="relative isolate pb-24">
-      <TiltedGridHero images={bandImages} className="h-[clamp(22rem,52vw,34rem)] w-full" axis={62} tileHeight={28} gap={10} curve={70} speed={5} fade={14}>
+      {/* o título fica no HTML; a faixa curva de telas por trás só baixa quando o contato está chegando */}
+      <div className="relative h-[clamp(22rem,52vw,34rem)] w-full">
+        <NearView className="absolute inset-0" fallback={null}>
+          <TiltedGridHero images={bandImages} className="h-full w-full" axis={62} tileHeight={28} gap={10} curve={70} speed={5} fade={14} />
+        </NearView>
         <div className="relative z-10 mx-auto max-w-xl px-5 pt-10 sm:px-10">
           <h2 className="text-center font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
             <SplitText text="Vamos construir alguma coisa?" />
           </h2>
         </div>
-      </TiltedGridHero>
+      </div>
       <div className="mx-auto max-w-xl px-5 sm:px-10">
       <Reveal delay={0.2}>
         <p className="mx-auto mt-4 max-w-md text-center leading-relaxed text-ink/80 dark:text-white/75">

@@ -27,31 +27,51 @@ export function TravelingHat() {
     let cancelled = false;
     let size = 0;
 
-    const anchor = () => document.getElementById("hat-anchor");
-    // a primeira letra da palavra carimbada no footer
-    const letterB = () => document.querySelector<SVGGElement>(".dcf .dcf-letter .dcf-glyph");
+    // posições no documento, guardadas para não ler layout a cada frame
+    type Box = { left: number; top: number; width: number; height: number };
+    const read = (node: Element | null): Box | null => {
+      if (!node) return null;
+      const r = node.getBoundingClientRect();
+      return { left: r.left, top: r.top + window.scrollY, width: r.width, height: r.height };
+    };
+    let anchorBox: Box | null = null;
+    let letterBox: Box | null = null;
+    let bandBox: Box | null = null;
+    let frames = 0;
+    const measure = () => {
+      anchorBox = read(document.getElementById("hat-anchor"));
+      // a primeira letra da palavra carimbada no footer
+      letterBox = read(document.querySelector(".dcf .dcf-letter .dcf-glyph"));
+      // a faixa amarela: é ali que o chapéu passa rente à tela
+      bandBox = read(document.getElementById("faixa"));
+    };
+    const onResize = () => measure();
+    window.addEventListener("resize", onResize);
 
     const place = () => {
       raf = requestAnimationFrame(place);
-      const a = anchor();
+      // nos primeiros segundos a âncora e o footer ainda estão animando; depois, releitura a cada ~half segundo
+      if (frames < 150 || frames % 30 === 0) measure();
+      frames++;
+      const a = anchorBox;
       if (!a) return;
       const vw = window.innerWidth;
       const vh = window.innerHeight;
-      const ar = a.getBoundingClientRect();
-      if (Math.abs(ar.width - size) > 1) {
-        size = ar.width;
+      const y = window.scrollY;
+      if (Math.abs(a.width - size) > 1) {
+        size = a.width;
         el.style.width = el.style.height = `${size}px`;
       }
 
       // ponto 1: a âncora na Hero
-      let cx = ar.left + ar.width / 2;
-      let cy = ar.top + ar.height / 2;
+      let cx = a.left + a.width / 2;
+      let cy = a.top - y + a.height / 2;
       let scale = 1;
       let fly = 0;
       let land = 0;
+      let flyby = 0;
 
       if (!reduce) {
-        const y = window.scrollY;
         const max = document.documentElement.scrollHeight - vh;
         // saída da Hero
         fly = ease(clamp01(y / (vh * 0.6)));
@@ -64,19 +84,39 @@ export function TravelingHat() {
         cy = lerp(cy, flyCy, fly);
         scale = lerp(1, flyScale, fly);
 
+        // passagem: perto da faixa amarela o chapéu vem enorme na direção da tela e se afasta até sumir no fundo
+        if (bandBox) {
+          const top = bandBox.top - y;
+          const q = clamp01((vh * 1.05 - top) / (vh * 1.7));
+          if (q > 0 && q < 1) {
+            flyby = clamp01(q / 0.12) * clamp01((1 - q) / 0.15);
+            const big = (Math.max(vw, vh) * 0.95) / (size * 0.65);
+            const far = flyScale * 0.22;
+            let passScale: number;
+            if (q < 0.32) passScale = lerp(flyScale, big, ease(q / 0.32));
+            else if (q < 0.85) passScale = lerp(big, far, ease((q - 0.32) / 0.53));
+            else passScale = lerp(far, flyScale, ease((q - 0.85) / 0.15));
+            // parte de onde o chapéu já está, cresce vindo pro centro e depois foge pro alto à direita
+            const passCx = q < 0.32 ? lerp(cx, vw * 0.44, ease(q / 0.32)) : lerp(vw * 0.44, vw * 0.86, ease((q - 0.32) / 0.68));
+            const passCy = q < 0.32 ? lerp(cy, vh * 0.56, ease(q / 0.32)) : lerp(vh * 0.56, vh * 0.3, ease((q - 0.32) / 0.68));
+            cx = lerp(cx, passCx, flyby);
+            cy = lerp(cy, passCy, flyby);
+            scale = lerp(scale, passScale, flyby);
+          }
+        }
+
         // pouso: termina exatamente no fim da página, em cima do B
-        const b = letterB();
-        if (b) {
-          const br = b.getBoundingClientRect();
+        const b = letterBox;
+        if (b && b.width > 0) {
           land = ease(clamp01(1 - (max - y) / (vh * 0.9)));
-          if (land > 0 && br.width > 0) {
+          if (land > 0) {
             // o chapéu ocupa ~65% do canvas; no pouso fica só um pouco mais largo que a letra
-            const landScale = (br.width * 1.15) / (size * 0.65);
-            const landCx = br.left + br.width * 0.48;
+            const landScale = (b.width * 1.15) / (size * 0.65);
+            const landCx = b.left + b.width * 0.48;
             // o retângulo do texto inclui o espaço acima das maiúsculas: o topo real do B fica ~20% abaixo
-            const capTop = br.top + br.height * 0.2;
+            const capTop = b.top - y + b.height * 0.2;
             // a base da aba fica ~12,7% do canvas abaixo do centro; ela encosta no topo da letra
-            const landCy = capTop + br.height * 0.03 - 0.127 * size * landScale;
+            const landCy = capTop + b.height * 0.03 - 0.127 * size * landScale;
             cx = lerp(cx, landCx, land);
             cy = lerp(cy, landCy, land);
             scale = lerp(scale, landScale, land);
@@ -86,8 +126,10 @@ export function TravelingHat() {
 
       el.style.transform = `translate3d(${cx - size / 2}px, ${cy - size / 2}px, 0) scale(${scale})`;
       // voando não bloqueia cliques; parado na Hero ou pousado dá para clicar e girar
-      el.style.pointerEvents = fly < 0.1 || land > 0.95 ? "auto" : "none";
-      scene?.setPhase(fly * (1 - land), land);
+      el.style.pointerEvents = (fly < 0.1 || land > 0.95) && flyby < 0.05 ? "auto" : "none";
+      scene?.setPhase(Math.min(1, fly * (1 - land) + flyby), land);
+      // resolução acompanha o tamanho na tela: nítido quando passa grande, barato quando está pequeno
+      scene?.setScale(scale);
     };
 
     const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 600));
@@ -113,6 +155,7 @@ export function TravelingHat() {
       cancelled = true;
       cancelIdle(handle as number);
       cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
       scene?.dispose();
     };
   }, [reduce]);

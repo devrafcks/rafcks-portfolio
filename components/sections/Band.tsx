@@ -9,7 +9,7 @@ const words = ["SaaS", "ERP com NF-e", "Apps nas lojas", "Pagamentos", "Integra√
  */
 export function Band() {
   return (
-    <div aria-hidden="true" className="relative isolate my-10 overflow-x-clip py-20 sm:my-16">
+    <div id="faixa" aria-hidden="true" className="relative isolate my-10 overflow-x-clip py-20 sm:my-16">
       {/* fita de tr√°s */}
       <div className="absolute inset-x-[-5%] top-1/2 -translate-y-1/2 rotate-[3deg] bg-ink py-2.5 dark:bg-cream">
         <VelocityTrack

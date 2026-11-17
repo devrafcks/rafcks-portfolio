@@ -1,6 +1,7 @@
 import { projects } from "@/data/projects";
 import { SplitText } from "@/components/motion/SplitText";
-import { ProjectDeck, type DeckProject } from "@/components/ui/project-deck";
+import type { DeckProject } from "@/components/ui/project-deck";
+import { FeaturedDeck } from "@/components/sections/FeaturedDeck";
 
 const picks = ["mirante", "t2", "carretel", "cresce"];
 const accents = ["#2b1e20", "#b45309"];
@@ -29,7 +30,7 @@ export function Featured() {
           <SplitText text="No ar, em produção" />
         </h2>
       </div>
-      <ProjectDeck projects={deck} label="Sistemas no ar" />
+      <FeaturedDeck projects={deck} />
     </section>
   );
 }
