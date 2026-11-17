@@ -19,10 +19,12 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwindcss": "^4.3.5",
+    "three": "^0.170.0",
     "typescript": "^5.9.3",
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/nodemailer": "^8.0.2"
+    "@types/nodemailer": "^8.0.2",
+    "@types/three": "^0.170.0"
   }
 }
