@@ -189,11 +189,11 @@ export const projects: Project[] = [
     id: "cresce",
     title: "Cresce+ Futuro",
     summary:
-      "SaaS de gestão para micro e pequenos negócios. Reescrevi o produto em Next.js 16 e migrei a infraestrutura para Neon e Vercel, cortando mais de R$ 400 por mês.",
+      "SaaS de gestão para micro e pequenos negócios. Reescrevi o produto em Next.js 16 e migrei a infraestrutura para Neon e Vercel.",
     points: [
       "O SaaS da Cresce+ organiza estoque, vendas, tarefas e equipe de micro e pequenos negócios. A versão anterior estava espalhada entre Azure, Railway e Hostinger, cara de manter e difícil de evoluir.",
       "Reescrevi a aplicação em Next.js 16 full stack com App Router e Tailwind CSS, com autenticação e pagamentos pelo Mercado Pago.",
-      "Levei o banco para o Neon PostgreSQL e a aplicação para a Vercel, e centralizei o domínio. A troca cortou mais de R$ 400 por mês em infraestrutura.",
+      "Levei o banco para o Neon PostgreSQL e a aplicação para a Vercel, e centralizei o domínio.",
       "Também fiz o site institucional da consultoria, que está em outro card.",
     ],
     stack: ["Next.js 16", "React", "TypeScript", "Tailwind CSS", "Mercado Pago", "Neon", "PostgreSQL", "Vercel"],

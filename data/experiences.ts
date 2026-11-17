@@ -80,11 +80,9 @@ export const experiences: Experience[] = [
       "Reestruturei o SaaS da Cresce+ Futuro, que organiza estoque, vendas, tarefas e equipe de micro e pequenos negócios, e tirei a infraestrutura de três provedores para uma base só, mais barata e mais fácil de manter.",
     did: [
       "Reescrevi a aplicação em Next.js 16 full stack com App Router e Tailwind CSS, com autenticação e pagamentos pelo Mercado Pago.",
-      "Migrei a stack, que estava espalhada entre Azure, Railway e Hostinger, para Neon PostgreSQL e Vercel, e centralizei o domínio.",
-      "A troca cortou mais de R$ 400 por mês em infraestrutura e deixou o produto pronto para escalar.",
+      "Migrei a stack, que estava espalhada entre Azure, Railway e Hostinger, para Neon PostgreSQL e Vercel, centralizei o domínio e deixei o produto pronto para escalar.",
       "Também fiz o site institucional da consultoria, com o SeeB, o widget de acessibilidade que eu criei, embutido.",
     ],
-    result: { value: "R$ 400", label: "a menos por mês em infraestrutura" },
     stack: ["Next.js 16", "React", "TypeScript", "Tailwind CSS", "Mercado Pago", "Neon", "PostgreSQL", "Vercel"],
   },
 ];

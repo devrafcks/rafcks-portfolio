@@ -346,7 +346,7 @@ const PROJECTS = {
     summary: 'Plataforma para micro e pequenos negócios organizarem estoque, vendas, tarefas e equipe. Reestruturei o SaaS e a infraestrutura.',
     points: [
       'Next.js 16, Tailwind, Mercado Pago e autenticação.',
-      'Migração de Azure, Railway e Hostinger para Neon e Vercel, com economia de mais de R$ 400 por mês.'
+      'Migração de Azure, Railway e Hostinger para Neon e Vercel.'
     ],
     stack: ['Next.js', 'Tailwind', 'Mercado Pago', 'PostgreSQL'],
     links: [{ href: 'https://crescemaistech.com.br/', label: 'Projeto' }],

@@ -28,7 +28,7 @@ export function About() {
           </span>
         </p>
         <p>
-          Já construí um ERP com PDV, financeiro com conciliação e gateway de pagamento, apps publicados na App Store e na Google Play, marketplaces, sistemas internos com dezenas de integrações e um SaaS próprio que funciona até com sinal fraco. Em uma das reestruturações que conduzi, a troca de infraestrutura cortou mais de R$ 400 por mês em custos.
+          Já construí um ERP com PDV, financeiro com conciliação e gateway de pagamento, apps publicados na App Store e na Google Play, marketplaces, sistemas internos com dezenas de integrações e um SaaS próprio que funciona até com sinal fraco.
         </p>
         <p>
           Gosto de entender a dor antes de abrir o editor. Participo do levantamento de requisitos, escrevo a especificação, desenho a arquitetura e modelo o banco. Depois cuido das integrações com pagamentos e plataformas externas, do deploy e da evolução do produto em produção. Trabalho bem com TypeScript, React, Next.js, Node.js, React Native e PostgreSQL, e me viro com Docker, VPS, Coolify, Cloudflare e CI/CD quando a infraestrutura também é minha.
