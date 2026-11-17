@@ -57,13 +57,11 @@ export const projects: Project[] = [
     id: "t2",
     title: "T2 Educação",
     summary:
-      "Cuido da tecnologia da T2: o Hub interno, as integrações, o site, o blog, a documentação e as landing pages. A plataforma nova do aluno é de outro time e não entra aqui.",
+      "Site institucional da T2 Educação, com cursos preparatórios, páginas de certificações e a área para empresas. A plataforma do aluno é de outro time e não entra aqui.",
     points: [
-      "Hub em Next.js com Pages Router e API Routes, React, TypeScript, Tailwind, Radix e o design system Midas, com NextAuth, Supabase e PostgreSQL.",
-      "Módulos de tarefas, atendimento, financeiro com conciliação, marketing, contatos, afiliados, biblioteca de aulas, B2B, posts, blog, redes e vídeos verticais.",
-      "Site, blog, docs e landing pages em Next.js 16, React 19, Tailwind, GSAP, Three.js e shadcn, com Core Web Vitals, SEO técnico e acessibilidade.",
-      "Infra em Vercel, Supabase, Cloudflare e CI/CD. IA com Crisp AI, agentes via MCP e RAG.",
-      "Integrações: Crisp e Crisp AI, ActiveCampaign, Hotmart, Pagar.me, Granatum, eNotas, Instagram Graph API, YouTube Analytics, WhatsApp, Google Reviews, importação ANBIMA, GitHub, Cloudflare Turnstile e GA4.",
+      "O site público apresenta cursos como CPA, C-Pro e páginas para empresas.",
+      "Também cuido do blog, dos materiais gratuitos e das landing pages ligadas a essa presença.",
+      "O Hub interno, as integrações e o banco não aparecem nestes prints.",
     ],
     stack: ["Next.js", "React", "TypeScript", "Tailwind", "Supabase", "PostgreSQL", "Cloudflare", "Vercel"],
     tags: ["Sites", "Landing pages", "Sistemas"],
@@ -72,27 +70,36 @@ export const projects: Project[] = [
       { href: "https://blog.t2.com.br", label: "Blog", kind: "blog" },
     ],
     images: [
-      laptop("/images/projects/t2-home.webp", "Página inicial do site da T2 Educação"),
-      laptop("/images/projects/t2-baixo.webp", "Trecho interno da página da T2 Educação"),
-      laptop("/images/projects/t2-blog.webp", "Blog da T2 Educação"),
-      phone("/images/projects/t2-mobile.webp", "Site da T2 Educação no celular"),
+      laptop("/images/projects/t2-home-d.webp", "Página inicial do site da T2 Educação"),
+      laptop("/images/projects/t2-home-d-2.webp", "Trecho da página inicial da T2 Educação"),
+      laptop("/images/projects/t2-cpa-d.webp", "Página do curso CPA no site da T2"),
+      laptop("/images/projects/t2-cpa-d-2.webp", "Continuação da página de CPA da T2"),
+      laptop("/images/projects/t2-empresas-d.webp", "Página da T2 para empresas"),
+      laptop("/images/projects/t2-empresas-d-2.webp", "Trecho da página da T2 para empresas"),
+      phone("/images/projects/t2-home-m.webp", "Site da T2 Educação no celular"),
     ],
   },
   {
     id: "t2-blog",
     title: "Blog T2",
     summary:
-      "Blog de artigos, guias e conteúdos sobre carreira, certificações e mercado financeiro. O conteúdo vem do Ghost, em modo headless.",
+      "Blog público de artigos e guias sobre carreira, certificações e mercado financeiro.",
     points: [
-      "Next.js 16 com App Router, React 19, TypeScript e Tailwind CSS 4.",
-      "SEO técnico, Core Web Vitals e GA4.",
+      "A home destaca matérias como a prova C-Pro R e a lista de artigos.",
+      "Há artigos públicos, por exemplo sobre a nova CPA e a C-Pro R, com autoria e data visíveis.",
+      "O conteúdo publicado é editorial. Não há dados de alunos nestes prints.",
     ],
     stack: ["Next.js", "React", "TypeScript", "Tailwind", "Ghost", "GA4"],
     tags: ["Sites"],
     links: [{ href: "https://blog.t2.com.br", label: "Ver site", kind: "blog" }],
     images: [
-      laptop("/images/projects/t2-blog-home.webp", "Página inicial do Blog T2"),
-      laptop("/images/projects/t2-blog-artigo.webp", "Artigo público do Blog T2 sobre a prova C-Pro R"),
+      laptop("/images/projects/blog-home-d.webp", "Página inicial do Blog T2"),
+      laptop("/images/projects/blog-home-d-2.webp", "Trecho da home do Blog T2"),
+      laptop("/images/projects/blog-artigos-d.webp", "Lista de artigos do Blog T2"),
+      laptop("/images/projects/blog-artigos-d-2.webp", "Mais artigos do Blog T2"),
+      laptop("/images/projects/blog-artigo2-d.webp", "Artigo público sobre a nova CPA"),
+      laptop("/images/projects/blog-artigo2-d-2.webp", "Continuação do artigo sobre a nova CPA"),
+      phone("/images/projects/blog-home-m.webp", "Blog T2 no celular"),
     ],
   },
   {
@@ -105,8 +112,10 @@ export const projects: Project[] = [
     tags: ["Sites", "Sistemas"],
     links: [{ href: "https://docs.t2.com.br", label: "Ver site", kind: "site" }],
     images: [
-      laptop("/images/projects/t2-docs-home.webp", "Página inicial dos materiais gratuitos da T2"),
+      laptop("/images/projects/docs-home-d.webp", "Página inicial dos materiais gratuitos da T2"),
+      laptop("/images/projects/docs-home-d-2.webp", "Trecho da página de materiais gratuitos da T2"),
       laptop("/images/projects/t2-docs-materiais.webp", "Lista pública de materiais gratuitos da T2"),
+      phone("/images/projects/docs-home-m.webp", "Materiais gratuitos da T2 no celular"),
     ],
   },
   {
@@ -131,15 +140,26 @@ export const projects: Project[] = [
     id: "carretel",
     title: "Carretel",
     summary:
-      "SaaS próprio, em pré-lançamento. Caderno digital para oficinas de costura: registrar o corte, comprovar a entrega e organizar a cobrança pelo celular, inclusive sem sinal.",
-    points: ["A aplicação publicada é feita em Next.js."],
-    stack: ["Next.js"],
+      "Caderno digital para oficinas de costura: registrar o corte, comprovar a entrega e cobrar pelo celular, inclusive com sinal fraco.",
+    points: [
+      "Registrar corte com foto, quantidade, preço, prazo e aviamentos, e a produção por pessoa e operação.",
+      "Link público para o contratante conferir fotos, grade e valor e confirmar pelo WhatsApp, sem criar conta.",
+      "Cobrança com quem está devendo, mensagem de WhatsApp, Pix Copia e Cola e baixa total ou parcial.",
+      "O repositório público descreve Next.js 16, React 19, TypeScript, Tailwind 4, Neon Postgres, Drizzle, next-intl e PWA.",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind", "PostgreSQL", "Drizzle", "PWA"],
     tags: ["SaaS", "Sites", "PWA"],
-    links: [{ href: "https://carretel.vercel.app", label: "Site", kind: "site" }],
+    links: [
+      { href: "https://carretel.vercel.app", label: "Site", kind: "site" },
+      { href: "https://github.com/devrafcks/Carretel", label: "Repositório", kind: "repo" },
+    ],
     images: [
-      laptop("/images/projects/carretel.webp", "Página inicial do Carretel"),
+      laptop("/images/projects/carretel-d.webp", "Página inicial do Carretel"),
+      laptop("/images/projects/carretel-d-2.webp", "Trecho da página do Carretel"),
+      laptop("/images/projects/carretel.webp", "Outra vista da página do Carretel"),
       laptop("/images/projects/carretel-passos.webp", "Seção de como o Carretel funciona"),
-      phone("/images/projects/carretel-mobile.webp", "Carretel no celular"),
+      phone("/images/projects/carretel-m.webp", "Carretel no celular"),
+      phone("/images/projects/carretel-mobile.webp", "Outra tela do Carretel no celular"),
     ],
   },
   {
@@ -155,38 +175,54 @@ export const projects: Project[] = [
     tags: ["SaaS", "Sistemas"],
     links: [{ href: "https://crescemaistech.com.br/", label: "Site", kind: "site" }],
     images: [
-      laptop("/images/projects/cresce.webp", "Página da Cresce+ Futuro"),
-      phone("/images/projects/cresce-mobile.webp", "Cresce+ Futuro no celular"),
+      laptop("/images/projects/cresce-d.webp", "Página da Cresce+ Futuro"),
+      phone("/images/projects/cresce-m.webp", "Cresce+ Futuro no celular"),
     ],
   },
   {
     id: "xerox",
     title: "Xerox Manager",
     summary:
-      "Sistema para gráfica no lugar do vale-caixa de papel. O funcionário lança cópias, impressões e encadernações. O estoque baixa a cada operação e há relatórios em PDF. O SeeB entra na interface.",
-    points: ["Next.js, Prisma, PostgreSQL, JWT e interface com shadcn e Tailwind."],
-    stack: ["Next.js", "Prisma", "PostgreSQL", "JWT"],
+      "Sistema de produção para gráfica. Substitui o vale-caixa de papel: o funcionário lança o serviço e o administrador acompanha a equipe.",
+    points: [
+      "Dois perfis: administrador, que cuida de funcionários, produtos, estoque e relatórios, e funcionário, que registra o dia.",
+      "Busca de produto por código, com nome e preço preenchidos, e estoque que baixa a cada lançamento.",
+      "Relatórios em Excel e PDF. O repositório cita Next.js 16, TypeScript, Neon, Prisma, JWT, shadcn e Tailwind 4.",
+    ],
+    stack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "JWT", "Tailwind"],
     tags: ["Sistemas"],
     links: [
       { href: "https://sistema-grafica.vercel.app", label: "Site", kind: "site" },
       { href: "https://github.com/devrafcks/sistema-grafica", label: "Repositório", kind: "repo" },
     ],
-    images: [laptop("/images/projects/xerox.webp", "Tela de acesso do Xerox Manager")],
+    images: [
+      laptop("/images/projects/xerox-d.webp", "Tela de acesso do Xerox Manager"),
+      laptop("/images/projects/xerox-d-2.webp", "Trecho da tela de acesso do Xerox Manager"),
+      laptop("/images/projects/xerox.webp", "Outra vista do acesso do Xerox Manager"),
+      phone("/images/projects/xerox-m.webp", "Xerox Manager no celular"),
+    ],
   },
   {
     id: "somnus",
     title: "Somnus",
-    summary: "Aplicação web para registrar o sono e ver padrões, com gráficos e conta por usuário. O SeeB faz parte da interface.",
-    points: ["Next.js, Prisma, PostgreSQL, Clerk e Tailwind."],
-    stack: ["Next.js", "Prisma", "PostgreSQL", "Clerk"],
+    summary:
+      "Aplicação para registrar horas de sono e ver padrões ao longo do tempo, com conta por usuário.",
+    points: [
+      "A página pública apresenta o monitoramento e o acesso ao painel.",
+      "O repositório descreve registro de sono, métricas e gráficos.",
+      "A stack publicada no repositório é Next.js 15, React 19, TypeScript, Prisma, PostgreSQL na Neon, Clerk e Tailwind, na Vercel.",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Prisma", "PostgreSQL", "Clerk", "Tailwind"],
     tags: ["Sites"],
     links: [
       { href: "https://somnus-track.vercel.app/", label: "Site", kind: "site" },
       { href: "https://github.com/devrafcks/somnus-next", label: "Repositório", kind: "repo" },
     ],
     images: [
-      laptop("/images/projects/somnus.webp", "Página inicial do Somnus"),
-      phone("/images/projects/somnus-mobile.webp", "Somnus no celular"),
+      laptop("/images/projects/somnus-d.webp", "Página inicial do Somnus"),
+      laptop("/images/projects/somnus.webp", "Outra vista da página do Somnus"),
+      phone("/images/projects/somnus-m.webp", "Somnus no celular"),
+      phone("/images/projects/somnus-mobile.webp", "Outra tela do Somnus no celular"),
     ],
   },
   {
@@ -226,8 +262,10 @@ export const projects: Project[] = [
       { href: "https://play.google.com/store/apps/details?id=com.apertoucomprou.app&hl=pt_BR", label: "Google Play", kind: "play" },
     ],
     images: [
-      laptop("/images/projects/apertou.webp", "Página do Apertou Comprou"),
-      laptop("/images/projects/apertou-baixo.webp", "Trecho da página do Apertou Comprou"),
+      laptop("/images/projects/apertou-d.webp", "Página do Apertou Comprou"),
+      laptop("/images/projects/apertou-d-2.webp", "Trecho da página do Apertou Comprou"),
+      laptop("/images/projects/apertou.webp", "Outra vista da página do Apertou Comprou"),
+      laptop("/images/projects/apertou-baixo.webp", "Mais um trecho da página do Apertou Comprou"),
       phone("/images/projects/apertou-mobile.webp", "Apertou Comprou no celular"),
       laptop("/images/projects/apertou-appstore.webp", "Página do Apertou Comprou na App Store"),
       laptop("/images/projects/apertou-playpage.webp", "Página do Apertou Comprou na Google Play"),
@@ -260,7 +298,10 @@ export const projects: Project[] = [
     title: "Agência Voxx",
     summary:
       "Site da Agência Voxx, de marketing digital em Itapetininga. A página apresenta planejamento, redes sociais, identidade visual e tráfego pago.",
-    points: ["Next.js 16, React 19, TypeScript, Tailwind CSS e Framer Motion, conferidos no repositório público e no site no ar."],
+    points: [
+      "O repositório público descreve o site da agência com Next.js 16, React 19, TypeScript, Tailwind e Framer Motion.",
+      "A página apresenta planejamento, redes sociais, identidade visual e tráfego pago.",
+    ],
     stack: ["Next.js", "React", "TypeScript", "Tailwind", "Framer Motion"],
     tags: ["Sites"],
     links: [
@@ -282,9 +323,12 @@ export const projects: Project[] = [
     tags: ["E-commerce", "Sites", "PWA"],
     links: [{ href: "https://jotaperelogios.store", label: "Site", kind: "site" }],
     images: [
-      laptop("/images/projects/jotape.webp", "Página da Jotape Relógios"),
+      laptop("/images/projects/jotape-d.webp", "Página da Jotape Relógios"),
+      laptop("/images/projects/jotape-d-2.webp", "Trecho da página da Jotape Relógios"),
+      laptop("/images/projects/jotape.webp", "Outra vista da Jotape Relógios"),
       laptop("/images/projects/jotape-baixo.webp", "Catálogo da Jotape Relógios"),
-      phone("/images/projects/jotape-mobile.webp", "Jotape Relógios no celular"),
+      phone("/images/projects/jotape-m.webp", "Jotape Relógios no celular"),
+      phone("/images/projects/jotape-mobile.webp", "Outra tela da Jotape Relógios no celular"),
     ],
   },
   {
@@ -292,7 +336,11 @@ export const projects: Project[] = [
     title: "SeeB",
     summary:
       "Extensão para Chromium, Manifest V3, e widget de uma linha. Foi o TCC na ETEC Parque Belém. Ajusta fonte e contraste, filtros de daltonismo, guia de leitura, cursor ampliado e pausa de animações. Não coleta dados.",
-    points: ["O widget entra com uma linha de script. A página e a extensão são JavaScript, sem framework."],
+    points: [
+      "O widget entra com uma linha de script e reúne filtros de daltonismo, contraste, régua de leitura, pausa de animações e ajuste de texto.",
+      "A página pública e o repositório do widget estão em JavaScript, sem framework.",
+      "A documentação pública fica em seeb-page.vercel.app/docs.html.",
+    ],
     stack: ["JavaScript", "Manifest V3"],
     tags: ["Extensões"],
     links: [
@@ -302,6 +350,8 @@ export const projects: Project[] = [
     images: [
       laptop("/images/projects/seeb-hero.webp", "Abertura da página do SeeB"),
       laptop("/images/projects/seeb-recursos.webp", "Recursos do SeeB"),
+      laptop("/images/projects/seeb-docs-d.webp", "Documentação pública do SeeB"),
+      laptop("/images/projects/seeb-docs-d-2.webp", "Trecho da documentação do SeeB"),
     ],
   },
 ];
