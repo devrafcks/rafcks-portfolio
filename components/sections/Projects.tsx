@@ -66,7 +66,7 @@ export function Projects() {
   const shown = filter === "Geral" && !showAll ? ordered.slice(0, GERAL_PAGE) : ordered;
 
   return (
-    <section id="projetos" className="mx-auto max-w-6xl px-5 py-20 sm:px-10 lg:px-0">
+    <section id="projetos" className="shell py-20">
       <SectionHeading title="Projetos" />
       <div role="tablist" aria-label="Filtros de projetos" className="mt-8 flex gap-2 overflow-x-auto pb-2">
         {available.map((item) => (

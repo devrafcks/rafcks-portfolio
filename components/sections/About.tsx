@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function About() {
   return (
-    <section id="sobre" className="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-10 lg:grid-cols-[minmax(16rem,0.8fr)_1.2fr] lg:items-start lg:px-0">
+    <section id="sobre" className="shell grid gap-10 py-20 lg:grid-cols-[minmax(16rem,0.8fr)_1.2fr] lg:items-start">
       <div>
         <SectionHeading title="Do problema ao produto no ar." />
         <div className="mt-8 max-w-md">

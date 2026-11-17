@@ -77,7 +77,7 @@ export function ProjectDeck({
       {/* uma tela de scroll por card; o palco fica preso enquanto eles são distribuídos */}
       <section ref={deck} className={cn("relative w-full", className)} style={{ height: `${Math.max(1, count) * 100}svh` }} aria-label={label}>
         {/* no celular o palco desconta o logo em cima e a barra de navegação embaixo */}
-        <div className="sticky top-0 grid h-[100svh] place-items-center overflow-hidden px-5 [perspective:1800px] max-sm:pt-16 max-sm:pb-28 sm:px-10 lg:px-14">
+        <div className="sticky top-0 grid h-[100svh] place-items-center shell overflow-hidden [perspective:1800px] max-sm:pt-16 max-sm:pb-28">
           {projects.map((p, i) => (
             <Card key={p.url} p={p} i={i} count={count} progress={progress} still={reduce} load={near} peek={peek} />
           ))}

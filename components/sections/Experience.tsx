@@ -7,8 +7,8 @@ import { Tag } from "@/components/ui/Tag";
 
 export function Experience() {
   return (
-    <section id="experiencia" className="bg-cream px-5 py-20 sm:px-10 dark:bg-night-2">
-      <div className="mx-auto max-w-6xl">
+    <section id="experiencia" className="shell bg-cream py-20 dark:bg-night-2">
+      <div>
         <SectionHeading title="Experiências" titleClassName="max-w-xl" />
         <TimelineLine className="mt-12 space-y-8">
           {experiences.map((item) => (

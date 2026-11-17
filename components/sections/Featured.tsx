@@ -28,7 +28,7 @@ const deck: DeckProject[] = picks
 export function Featured() {
   return (
     <section id="no-ar" aria-labelledby="no-ar-titulo" className="relative">
-      <div className="mx-auto max-w-6xl px-5 pt-20 sm:px-10 lg:px-0">
+      <div className="shell pt-20">
         <h2 id="no-ar-titulo" className="font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
           <SplitText text="No ar, em produção" />
         </h2>

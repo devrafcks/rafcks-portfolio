@@ -6,8 +6,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Recommendations() {
   return (
-    <section id="recomendacoes" className="bg-cream px-5 py-20 sm:px-10 dark:bg-night-2">
-      <div className="mx-auto max-w-6xl">
+    <section id="recomendacoes" className="shell bg-cream py-20 dark:bg-night-2">
+      <div>
         <SectionHeading title="Quem trabalhou comigo" />
         <RevealGroup className="mt-10 grid items-stretch gap-6 lg:grid-cols-2" stagger={0.15}>
           {recommendations.map((item) => (

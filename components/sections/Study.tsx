@@ -74,7 +74,7 @@ export function Study() {
   const cursos = studies.filter((item) => item.group === "curso");
 
   return (
-    <section id="estudos" className="mx-auto max-w-6xl px-5 py-20 sm:px-10 lg:px-0">
+    <section id="estudos" className="shell py-20">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading title="Formação e cursos" />
         <div role="tablist" aria-label="Formação e cursos" className="relative flex gap-6">
