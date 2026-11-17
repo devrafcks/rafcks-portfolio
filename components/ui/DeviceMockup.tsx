@@ -64,7 +64,7 @@ export function DeviceMockup({
           priority={priority}
           placeholder="blur"
           blurDataURL={BLUR}
-          className={`h-auto w-full ${tall ? "object-contain" : "aspect-video object-contain"} ${zoom}`}
+          className={`h-auto w-full ${tall ? "object-contain" : "aspect-video object-cover object-top"} ${zoom}`}
         />
       </div>
     </figure>

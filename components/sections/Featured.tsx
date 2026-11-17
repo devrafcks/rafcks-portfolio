@@ -5,6 +5,8 @@ import { FeaturedDeck } from "@/components/sections/FeaturedDeck";
 
 const picks = ["mirante", "t2", "carretel", "cresce"];
 const accents = ["#2b1e20", "#b45309"];
+// prints de celular que existem mas não estão na galeria do projeto
+const mobileOnly: Record<string, string> = { cresce: "/images/projects/cresce-m.webp" };
 
 const deck: DeckProject[] = picks
   .map((id) => projects.find((project) => project.id === id))
@@ -17,6 +19,7 @@ const deck: DeckProject[] = picks
       summary: project.summary,
       url: site?.href ?? "#projetos",
       image: shot.src,
+      mobileImage: project.images.find((image) => image.device === "phone")?.src ?? mobileOnly[project.id],
       accent: accents[index % accents.length],
     };
   });

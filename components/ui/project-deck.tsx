@@ -13,7 +13,7 @@
 import { IconArrowUpRight } from "@tabler/icons-react";
 import { MotionConfig, m, useInView, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
 import Image from "next/image";
-import { useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export type DeckProject = {
@@ -25,6 +25,8 @@ export type DeckProject = {
   display?: string;
   /** Print do site, de preferência 16:9. */
   image: string;
+  /** Print do site no celular, usado no lugar do de desktop em telas estreitas. */
+  mobileImage?: string;
   /** Cor da seta. */
   accent: string;
 };
@@ -60,14 +62,24 @@ export function ProjectDeck({
   const progress = useSpring(scrollYProgress, { stiffness: 380, damping: 48, mass: 0.35 });
   // as imagens só entram quando o deck está a uma tela de distância
   const near = useInView(deck, { once: true, margin: "100% 0px" });
+  // no celular os cards de baixo aparecem menos por cima, para não subir até o logo
+  const [peek, setPeek] = useState(5);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const sync = () => setPeek(mq.matches ? 2 : 5);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   return (
     <MotionConfig reducedMotion="user">
       {/* uma tela de scroll por card; o palco fica preso enquanto eles são distribuídos */}
       <section ref={deck} className={cn("relative w-full", className)} style={{ height: `${Math.max(1, count) * 100}svh` }} aria-label={label}>
-        <div className="sticky top-0 grid h-[100svh] place-items-center overflow-hidden px-5 [perspective:1800px] sm:px-10 lg:px-14">
+        {/* no celular o palco desconta o logo em cima e a barra de navegação embaixo */}
+        <div className="sticky top-0 grid h-[100svh] place-items-center overflow-hidden px-5 [perspective:1800px] max-sm:pt-16 max-sm:pb-28 sm:px-10 lg:px-14">
           {projects.map((p, i) => (
-            <Card key={p.url} p={p} i={i} count={count} progress={progress} still={reduce} load={near} />
+            <Card key={p.url} p={p} i={i} count={count} progress={progress} still={reduce} load={near} peek={peek} />
           ))}
         </div>
       </section>
@@ -76,14 +88,14 @@ export function ProjectDeck({
   );
 }
 
-function Card({ p, i, count, progress, still, load }: { p: DeckProject; i: number; count: number; progress: MotionValue<number>; still: boolean; load: boolean }) {
+function Card({ p, i, count, progress, still, load, peek }: { p: DeckProject; i: number; count: number; progress: MotionValue<number>; still: boolean; load: boolean; peek: number }) {
   // quantos cards já estão por cima deste, contados de forma contínua
   const above = (v: number) => {
     let n = 0;
     for (let j = i + 1; j < count; j++) n += arrived(j, v, count);
     return Math.min(3, n);
   };
-  const y = useTransform(progress, (v) => `${(1 - arrived(i, v, count)) * 108 - above(v) * 5}svh`);
+  const y = useTransform(progress, (v) => `${(1 - arrived(i, v, count)) * 108 - above(v) * peek}svh`);
   const rotateX = useTransform(progress, (v) => -(1 - arrived(i, v, count)) * 30 + above(v) * 5);
   const scale = useTransform(progress, (v) => 0.9 + 0.1 * arrived(i, v, count) - above(v) * 0.05);
   // desfoque só enquanto o card chega; pousado ou coberto, sem filtro (filtro custa repintura a cada frame)
@@ -97,20 +109,30 @@ function Card({ p, i, count, progress, still, load }: { p: DeckProject; i: numbe
   return (
     <m.article
       aria-label={`${p.name}: ${p.summary}`}
-      className="col-start-1 row-start-1 mt-[4svh] w-[min(100%,calc(78svh*16/9),1280px)] origin-[50%_25%] will-change-transform max-sm:w-full"
+      className="col-start-1 row-start-1 mt-[4svh] w-[min(100%,calc(78svh*16/9),1280px)] origin-[50%_25%] will-change-transform max-sm:mt-0 max-sm:w-[min(100%,calc((100svh-12rem)*0.6))]"
       style={{ zIndex: i + 1, ...(still ? { y: stillY } : { y, rotateX, scale, filter }) }}
     >
       <div className="relative overflow-hidden rounded-[24px] bg-paper shadow-[0_50px_90px_-35px_rgba(43,30,32,0.5)] dark:bg-night">
-        <div className="relative aspect-[16/9] w-full max-sm:aspect-[4/5]">
+        <div className="relative aspect-[16/9] w-full max-sm:aspect-[3/5]">
           {load && (
-            <Image
-              src={p.image}
-              alt={`Tela inicial de ${host(p.url)}`}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1400px) 90vw, 1280px"
-              loading="eager"
-              className="origin-top-left scale-[1.04] object-cover object-left-top"
-            />
+            <>
+              {/* telas estreitas: o print do celular, que cabe inteiro na largura e fica nítido */}
+              <Image
+                src={p.mobileImage ?? p.image}
+                alt={`Tela inicial de ${host(p.url)}`}
+                fill
+                sizes={p.mobileImage ? "(max-width: 640px) 360px, 1px" : "(max-width: 640px) 1000px, 1px"}
+                className="object-cover object-left-top sm:hidden"
+              />
+              <Image
+                src={p.image}
+                alt=""
+                aria-hidden="true"
+                fill
+                sizes="(max-width: 640px) 1px, (max-width: 1400px) 90vw, 1280px"
+                className="origin-top-left scale-[1.04] object-cover object-left-top max-sm:hidden"
+              />
+            </>
           )}
         </div>
         <Visit p={p} />
