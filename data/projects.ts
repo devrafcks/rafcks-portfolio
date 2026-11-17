@@ -684,4 +684,25 @@ export const projects: Project[] = [
       phone("/images/projects/marina-mobile.webp", "Site institucional da Cresce+ Futuro no celular"),
     ],
   },
+  {
+    id: "portfolio",
+    title: "Portfólio",
+    summary:
+      "Este site. Reúne os projetos com filtros, um diálogo com galeria em cada card, modo escuro, SEO e atenção à performance.",
+    points: [
+      "A grade separa os trabalhos por tipo. Cada projeto abre um diálogo com as imagens, a stack e os links.",
+      "O tema claro ou escuro usa next-themes. Metadados, sitemap e dados estruturados cobrem o SEO.",
+    ],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Tabler", "next-themes", "Motion", "Vercel"],
+    tags: ["Sites", "Landing pages"],
+    links: [
+      { href: "https://rafaelblanco.vercel.app", label: "Site", kind: "site" },
+      { href: "https://github.com/devrafcks/rafcks-portfolio", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/portfolio-hero-desktop.webp", "Hero do portfólio no computador"),
+      phone("/images/projects/portfolio-hero-mobile.webp", "Hero do portfólio no celular"),
+      laptop("/images/projects/portfolio-grid.webp", "Grade de projetos do portfólio"),
+    ],
+  },
 ];

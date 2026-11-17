@@ -8,7 +8,7 @@ export function Hero() {
         Desenvolvedor Full Stack
       </p>
       <div className="relative mt-4">
-        <h1 className="max-w-full font-display text-[clamp(1.75rem,10.5cqw,12.5rem)] leading-[0.92] font-bold text-ink dark:text-white">
+        <h1 className="max-w-full font-display text-[clamp(2.05rem,12.3cqw,14.7rem)] leading-[0.92] font-bold text-ink dark:text-white">
           <span className="block w-fit tracking-[0.005em]">Rafael</span>
           <span className="blanco-outline block w-fit tracking-[-0.04em]">Blanco</span>
         </h1>

@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat, Unbounded } from "next/font/google";
 import Script from "next/script";
-import { PwaInstall } from "@/components/pwa/PwaInstall";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
@@ -142,10 +141,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script id="theme-boot" strategy="beforeInteractive">
           {themeBoot}
         </Script>
-        <ThemeProvider>
-          {children}
-          <PwaInstall />
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <Script src="https://seeb-widget.pages.dev/widget.js" strategy="lazyOnload" />
       </body>

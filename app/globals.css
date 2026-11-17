@@ -66,31 +66,13 @@ textarea:focus-visible {
 
 .blanco-outline {
   color: #fffbf2;
-  -webkit-text-stroke: 1px #2b1e20;
+  -webkit-text-stroke: 2px #2b1e20;
   paint-order: stroke fill;
 }
 
 .dark .blanco-outline {
   color: #1e1416;
   -webkit-text-stroke-color: #fff;
-}
-
-.pwa-dismiss {
-  -webkit-tap-highlight-color: transparent;
-}
-
-.pwa-dismiss:focus,
-.pwa-dismiss:focus-visible {
-  outline: none !important;
-  outline-offset: 0 !important;
-}
-
-.pwa-dismiss:hover {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.pwa-dismiss:focus-visible {
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
 }
 
 h1,
