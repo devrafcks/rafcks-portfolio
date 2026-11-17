@@ -15,7 +15,7 @@ const styles = {
   primary:
     "bg-sun text-ink hover:bg-ember",
   ghost:
-    "bg-transparent text-ink hover:text-ember dark:text-white",
+    "bg-transparent text-ink hover:text-ember-ink dark:text-white",
 };
 
 export function Button({ href, children, variant = "ghost", external, className = "", type = "button", onClick }: Props) {

@@ -127,5 +127,6 @@ export const studies: Study[] = [
     place: "Microsoft",
     period: "em preparação",
     text: "Certificação em preparação. Ainda não foi concluída.",
+    track: "certificacao",
   },
 ];

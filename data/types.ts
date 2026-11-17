@@ -55,6 +55,7 @@ export type Study = {
   period: string;
   text: string;
   href?: string;
+  track?: "livre" | "certificacao";
 };
 
 export type Recommendation = {

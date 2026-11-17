@@ -5,7 +5,7 @@ export function Experience() {
   return (
     <section id="experiencia" className="bg-cream px-5 py-20 sm:px-10 dark:bg-night-2">
       <div className="mx-auto max-w-6xl">
-        <p className="font-label text-xs font-extrabold uppercase tracking-[0.14em] text-ember italic">Trajetória</p>
+        <p className="font-label text-xs font-extrabold uppercase tracking-[0.14em] text-ember-ink italic">Trajetória</p>
         <h2 className="mt-3 max-w-xl font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
           Experiências
         </h2>

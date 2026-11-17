@@ -19,7 +19,7 @@ export function Projects() {
 
   return (
     <section id="projetos" className="mx-auto max-w-6xl px-5 py-20 sm:px-10 lg:px-0">
-      <p className="font-label text-xs font-extrabold uppercase tracking-[0.14em] text-ember italic">Trabalho</p>
+      <p className="font-label text-xs font-extrabold uppercase tracking-[0.14em] text-ember-ink italic">Trabalho</p>
       <h2 className="mt-3 font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
         Projetos
       </h2>
@@ -63,7 +63,7 @@ export function Projects() {
                   <Tag key={tag}>{tag}</Tag>
                 ))}
               </div>
-              <span className="mt-4 inline-flex items-center gap-1 font-label text-xs font-extrabold tracking-[0.08em] text-ember uppercase italic">
+              <span className="mt-4 inline-flex items-center gap-1 font-label text-xs font-extrabold tracking-[0.08em] text-ember-ink uppercase italic">
                 Ver projeto
                 <IconArrowUpRight size={16} stroke={1.75} aria-hidden="true" />
               </span>

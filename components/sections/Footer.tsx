@@ -20,7 +20,7 @@ export function Footer() {
           </li>
         ))}
       </ul>
-      <p className="mt-4 text-sm text-ink/60 dark:text-white/60">© 2026 Rafael Blanco</p>
+      <p className="mt-4 text-sm text-ink/80 dark:text-white/80">© 2026 Rafael Blanco</p>
     </footer>
   );
 }

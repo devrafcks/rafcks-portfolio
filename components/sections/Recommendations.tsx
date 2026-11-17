@@ -6,7 +6,7 @@ export function Recommendations() {
   return (
     <section id="recomendacoes" className="bg-cream px-5 py-20 sm:px-10 dark:bg-night-2">
       <div className="mx-auto max-w-6xl">
-        <p className="font-label text-xs font-extrabold uppercase tracking-[0.14em] text-ember italic">Recomendações</p>
+        <p className="font-label text-xs font-extrabold uppercase tracking-[0.14em] text-ember-ink italic">Recomendações</p>
         <h2 className="mt-3 font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
           Quem trabalhou comigo
         </h2>
@@ -40,7 +40,7 @@ export function Recommendations() {
                     href={item.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-ember"
+                    className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-ember-ink"
                   >
                     <IconBrandLinkedin size={16} stroke={1.75} aria-hidden="true" />
                     LinkedIn

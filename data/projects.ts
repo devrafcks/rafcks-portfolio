@@ -196,7 +196,7 @@ export const projects: Project[] = [
       "Aplicativo de serviços, produtos, aluguéis e lojas da cidade, com mapa e chat. Está na App Store e na Google Play. A versão web usa Expo e React Native.",
     points: ["Na loja, o app descreve busca por proximidade, vendedores verificados e conversa dentro do aplicativo."],
     stack: ["Expo", "React Native"],
-    tags: ["Apps", "PWA"],
+    tags: ["Apps", "PWA", "E-commerce"],
     links: [
       { href: "https://bicus.com.br", label: "Site", kind: "site" },
       { href: "https://apps.apple.com/br/app/bicus/id6802697550", label: "App Store", kind: "apple" },
@@ -219,7 +219,7 @@ export const projects: Project[] = [
       "Marketplace para comprar de lojas da cidade pelo celular, com chat, pedido condicional e pagamento por Pix ou cartão. Tem site, App Store e Google Play.",
     points: ["A página da loja descreve receber em casa ou retirar no local, e pedir peças para provar antes de pagar."],
     stack: [],
-    tags: ["Apps", "Landing pages"],
+    tags: ["Apps", "Landing pages", "E-commerce"],
     links: [
       { href: "https://apertoucomprou.com.br/lp", label: "Site", kind: "site" },
       { href: "https://apps.apple.com/us/app/apertou-comprou/id6774382208", label: "App Store", kind: "apple" },

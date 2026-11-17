@@ -4,7 +4,7 @@ export function About() {
   return (
     <section id="sobre" className="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-10 lg:grid-cols-[minmax(16rem,0.8fr)_1.2fr] lg:items-start lg:px-0">
       <div>
-        <p className="font-label text-xs font-extrabold uppercase tracking-[0.14em] text-ember italic">Sobre</p>
+        <p className="font-label text-xs font-extrabold uppercase tracking-[0.14em] text-ember-ink italic">Sobre</p>
         <h2 className="mt-3 font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
           Trabalho de produto, do requisito ao ar.
         </h2>
