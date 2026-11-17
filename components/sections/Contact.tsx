@@ -10,10 +10,10 @@ export function Contact() {
   return (
     <section id="contato" className="mx-auto max-w-xl px-5 py-20 sm:px-10">
       <h2 className="text-center font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
-        Contato
+        Vamos construir alguma coisa?
       </h2>
       <p className="mx-auto mt-4 max-w-md text-center leading-relaxed text-ink/80 dark:text-white/75">
-        Quer falar sobre um projeto ou uma vaga? Envie uma mensagem por aqui. Se preferir, me chame no LinkedIn.
+        Tem um produto para tirar do papel, um sistema que precisa de alguém de ponta a ponta ou uma vaga em que eu me encaixo? Me manda uma mensagem por aqui. Se preferir, me chama no LinkedIn.
       </p>
       <form action="https://formsubmit.co/rafcksps@gmail.com" method="POST" className="mt-10 space-y-7">
         {fields.map((field) => (

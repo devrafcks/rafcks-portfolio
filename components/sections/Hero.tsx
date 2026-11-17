@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <header id="inicio" className="@container relative overflow-x-clip px-5 pt-24 pb-16 sm:px-8 lg:px-16 lg:pt-28 lg:pb-20">
       <p className="inline-block bg-sun px-3 py-1 font-label text-[0.72rem] font-extrabold uppercase tracking-[0.08em] text-ink italic">
-        Desenvolvedor Full Stack
+        Full stack · SaaS · Produto
       </p>
       <div className="relative mt-4">
         <h1 className="max-w-full font-display text-[clamp(2.05rem,12.3cqw,14.7rem)] leading-[0.92] font-bold text-ink dark:text-white">
@@ -14,7 +14,7 @@ export function Hero() {
         </h1>
         <div className="mt-8 max-w-xl">
             <p className="text-[clamp(1rem,0.95rem+0.2vw,1.15rem)] leading-relaxed text-ink/80 dark:text-white/80">
-              19 anos, São Paulo. Construo produtos web, SaaS e mobile, do requisito à publicação. Acessibilidade e performance entram desde o começo.
+              Desenvolvedor full stack de 19 anos, em São Paulo. Crio SaaS e produtos digitais de ponta a ponta: entendo o problema, desenho a solução, construo, integro pagamentos e notas fiscais e cuido de tudo depois que vai para o ar. Acessibilidade e performance entram no primeiro commit.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Button href="#projetos" variant="primary">

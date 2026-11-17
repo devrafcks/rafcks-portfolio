@@ -27,22 +27,35 @@ const inter = Inter({
 });
 
 const description =
-  "Rafael Blanco, desenvolvedor full stack em São Paulo. Projetos web, SaaS e mobile, do requisito à publicação, com acessibilidade e performance.";
+  "Rafael Blanco, desenvolvedor full stack em São Paulo. Crio SaaS, ERPs, apps e sistemas com Next.js, TypeScript e PostgreSQL, do requisito à produção.";
+
+const ogDescription =
+  "Do requisito à produção: SaaS, ERP com NF-e e pagamentos, apps nas lojas e sistemas internos com dezenas de integrações. Acessibilidade e performance desde o começo.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rafaelblanco.vercel.app"),
   title: {
-    default: "Rafael Blanco | Desenvolvedor Full Stack",
+    default: "Rafael Blanco | Desenvolvedor Full Stack e criador de SaaS",
     template: "%s | Rafael Blanco",
   },
   description,
   keywords: [
     "Rafael Blanco",
     "desenvolvedor full stack",
+    "criador de SaaS",
     "São Paulo",
     "Next.js",
     "React",
     "TypeScript",
+    "Node.js",
+    "React Native",
+    "PostgreSQL",
+    "Supabase",
+    "ERP",
+    "NF-e",
+    "gateway de pagamento",
+    "acessibilidade web",
+    "performance web",
     "portfólio",
   ],
   applicationName: "Rafael Blanco",
@@ -63,8 +76,8 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
   openGraph: {
-    title: "Rafael Blanco | Desenvolvedor Full Stack",
-    description,
+    title: "Rafael Blanco | Desenvolvedor Full Stack e criador de SaaS",
+    description: ogDescription,
     url: "https://rafaelblanco.vercel.app",
     siteName: "Rafael Blanco",
     locale: "pt_BR",
@@ -73,8 +86,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rafael Blanco | Desenvolvedor Full Stack",
-    description,
+    title: "Rafael Blanco | Desenvolvedor Full Stack e criador de SaaS",
+    description: ogDescription,
     images: ["/images/og.png"],
   },
 };

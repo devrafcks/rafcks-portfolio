@@ -10,7 +10,9 @@ export function Footer() {
   return (
     <footer className="px-5 pt-8 pb-28 text-center">
       <p className="font-display text-lg font-semibold">Rafael Henrique Blanco</p>
-      <p className="mt-2 font-label text-sm font-extrabold uppercase tracking-[0.08em] italic">CNPJ 65.605.980/0001-00</p>
+      <p className="mt-2 font-label text-sm font-extrabold uppercase tracking-[0.08em] italic">
+        Desenvolvedor full stack · SaaS e produtos digitais · São Paulo
+      </p>
       <ul className="mt-4 flex justify-center gap-4">
         {links.map((link) => (
           <li key={link.href}>

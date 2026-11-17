@@ -85,7 +85,7 @@ export function Projects() {
         ))}
       </div>
       {visible.length === 0 ? (
-        <p className="mt-10 text-ink/70 dark:text-white/70">Nenhum projeto verificado neste filtro.</p>
+        <p className="mt-10 text-ink/70 dark:text-white/70">Ainda não tem projeto neste filtro.</p>
       ) : (
         <div className="mt-8 grid grid-flow-dense gap-8 sm:grid-cols-2 xl:grid-cols-3">
           {shown.map((project, cardIndex) => {
@@ -138,7 +138,7 @@ export function Projects() {
             onClick={() => setShowAll(true)}
             className="rounded-full bg-sun px-5 py-3 font-label text-xs font-extrabold tracking-[0.08em] text-ink uppercase italic hover:bg-ember"
           >
-            Ver mais
+            Ver mais projetos
           </button>
         </div>
       )}

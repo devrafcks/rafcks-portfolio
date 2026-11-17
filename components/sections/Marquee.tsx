@@ -1,10 +1,15 @@
 import {
+  IconBrandCloudflare,
   IconBrandDocker,
   IconBrandFigma,
   IconBrandNextjs,
+  IconBrandNodejs,
+  IconBrandPrisma,
   IconBrandReact,
+  IconBrandReactNative,
+  IconBrandSupabase,
   IconBrandTypescript,
-  IconCloud,
+  IconBrandVercel,
   IconDatabase,
 } from "@tabler/icons-react";
 
@@ -12,10 +17,15 @@ const items = [
   ["TypeScript", IconBrandTypescript],
   ["React", IconBrandReact],
   ["Next.js", IconBrandNextjs],
-  ["React Native", IconBrandReact],
+  ["Node.js", IconBrandNodejs],
+  ["React Native", IconBrandReactNative],
   ["PostgreSQL", IconDatabase],
+  ["Supabase", IconBrandSupabase],
+  ["Prisma", IconBrandPrisma],
+  ["Drizzle", IconDatabase],
   ["Docker", IconBrandDocker],
-  ["Cloudflare", IconCloud],
+  ["Cloudflare", IconBrandCloudflare],
+  ["Vercel", IconBrandVercel],
   ["Figma", IconBrandFigma],
 ] as const;
 

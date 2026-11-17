@@ -60,13 +60,14 @@ export const projects: Project[] = [
     id: "t2",
     title: "T2 Educação",
     summary:
-      "Site institucional da T2 Educação, com cursos preparatórios, páginas de certificações e a área para empresas. A plataforma do aluno é de outro time e não entra aqui.",
+      "Site institucional da T2 Educação, com cursos preparatórios para certificações financeiras, área para empresas e landing pages. Refeito em Next.js 16 com foco em performance, SEO e conversão.",
     points: [
-      "O site público apresenta cursos como CPA, C-Pro e páginas para empresas.",
-      "Também cuido do blog, dos materiais gratuitos e das landing pages ligadas a essa presença.",
-      "O Hub interno, as integrações e o banco não aparecem nestes prints.",
+      "A T2 prepara profissionais para certificações do mercado financeiro, como CPA e C-Pro. O site precisava carregar rápido, aparecer bem no Google e levar o visitante até a matrícula, e antes dependia de um construtor visual.",
+      "Reconstruí o site em Next.js 16 com App Router, React 19 e Tailwind CSS 4, com páginas de cursos, de certificações e a área para empresas, além das landing pages de campanha.",
+      "Cuidei de Core Web Vitals, SEO técnico, acessibilidade, animações com GSAP e Three.js e do tracking de conversão e checkout no GA4. O site usa Supabase e Resend, e o domínio passa pela Cloudflare.",
+      "Sou o desenvolvedor responsável pela tecnologia da empresa. Os prints mostram só páginas públicas. O Hub interno, as integrações e a plataforma do aluno não aparecem aqui.",
     ],
-    stack: ["Next.js", "React", "TypeScript", "Tailwind", "Supabase", "PostgreSQL", "Cloudflare", "Vercel"],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "GSAP", "Three.js", "Supabase", "PostgreSQL", "Resend", "GA4", "Cloudflare", "Vercel"],
     tags: ["Sites", "Landing pages", "Sistemas"],
     links: [
       { href: "https://t2.com.br", label: "Site", kind: "site" },
@@ -86,13 +87,13 @@ export const projects: Project[] = [
     id: "t2-blog",
     title: "Blog T2",
     summary:
-      "Blog público de artigos e guias sobre carreira, certificações e mercado financeiro.",
+      "Blog público da T2 com artigos e guias sobre certificações financeiras, carreira e mercado, feito para ser lido no celular e encontrado no Google.",
     points: [
-      "A home destaca matérias como a prova C-Pro R e a lista de artigos.",
-      "Há artigos públicos, por exemplo sobre a nova CPA e a C-Pro R, com autoria e data visíveis.",
-      "O conteúdo publicado é editorial. Não há dados de alunos nestes prints.",
+      "O blog é a principal porta de entrada orgânica da T2. Precisava de SEO técnico forte, leitura confortável no celular e um fluxo simples para o time publicar.",
+      "Construí o front em Next.js com o Ghost como CMS headless. A home destaca matérias, como a prova C-Pro R, e cada artigo mostra autoria e data.",
+      "O SEO técnico e o GA4 acompanham cada publicação. Os prints mostram só conteúdo editorial público.",
     ],
-    stack: ["Next.js", "React", "TypeScript", "Tailwind", "Ghost", "GA4"],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Ghost (headless CMS)", "GA4", "Vercel", "Cloudflare"],
     tags: ["Sites"],
     links: [{ href: "https://blog.t2.com.br", label: "Ver site", kind: "blog" }],
     images: [
@@ -109,9 +110,13 @@ export const projects: Project[] = [
     id: "t2-docs",
     title: "T2 Materiais Gratuitos",
     summary:
-      "Portal de apostilas, simulados e resumos gratuitos para certificações financeiras, como CPA, C-Pro, CFP e ANCORD.",
-    points: ["Next.js com Ghost em modo headless. Os materiais publicados são de estudo, sem dados de alunos."],
-    stack: ["Next.js", "Ghost"],
+      "Portal de apostilas, simulados e resumos gratuitos para certificações financeiras como CPA, C-Pro, CFP e ANCORD, com Next.js e Ghost headless.",
+    points: [
+      "A T2 oferece materiais de estudo gratuitos para quem se prepara para certificações. O portal organiza apostilas, simulados e resumos por certificação, de um jeito fácil de navegar e de encontrar pelo Google.",
+      "Fiz o portal em Next.js consumindo o Ghost em modo headless, para que o time publique sem mexer em código.",
+      "Os materiais publicados são de estudo. Nenhum dado de aluno aparece no portal.",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Ghost (headless CMS)", "Vercel", "Cloudflare"],
     tags: ["Sites", "Sistemas"],
     links: [{ href: "https://docs.t2.com.br", label: "Ver site", kind: "site" }],
     images: [
@@ -124,16 +129,17 @@ export const projects: Project[] = [
   {
     id: "mirante",
     title: "Mirante ERP",
-    summary: "ERP completo com PDV, financeiro, estoque, compras e notas fiscais, multiempresa.",
+    summary:
+      "ERP multiempresa com PDV, NF-e integrada à SEFAZ, financeiro com conciliação, estoque, compras e gateway K8 Pay. O maior sistema que já construí.",
     points: [
-      "Os prints são de uma conta de teste, com dados fictícios.",
-      "Dashboard executivo com KPIs, gráficos, faturamento, projeção, categorias e atividade recente.",
-      "PDV com frente de caixa e pagamento, pedidos de venda e orçamentos.",
-      "Financeiro com contas a pagar, contas a receber e caixa. Estoque com alertas de produtos abaixo do mínimo.",
-      "Compras com solicitação, aprovação ou rejeição, e entrada de mercadorias por XML.",
-      "Notas fiscais, multiempresa e filiais, usuários e permissões, log de auditoria, busca global com Ctrl+K e personalização de tema.",
+      "Empresas pequenas e médias costumam controlar venda, estoque, compra e financeiro em ferramentas soltas. O Mirante junta tudo num sistema só, com várias empresas e filiais na mesma conta e um seletor de unidade no topo.",
+      "Vendas: PDV de frente de caixa com pagamento e fechamento, pedidos de venda com vendedores e orçamentos. Estoque com dashboard de produtos abaixo do mínimo ou negativos, catálogo, preços, categorias e serviços.",
+      "Fiscal e compras: emissão e gestão de NF-e integrada à SEFAZ com certificado A1, painel de notas recebidas com manifestação, solicitações de compra com aprovação ou rejeição e entrada de mercadorias por XML, pela chave da NF-e ou manual.",
+      "Financeiro: contas a pagar e a receber, abertura e fechamento de caixa, contas bancárias com extrato e conciliação, adiantamentos, reparcelamento, centro de custo e plano de contas. Também integrei ao ERP os serviços do K8 Pay, o gateway de pagamento da K8 Fintech.",
+      "Gestão: dashboard com KPIs, faturamento ano a ano e projeção de vendas, cadastro unificado de clientes, fornecedores e funcionários, usuários e permissões, log de auditoria exportável, busca global e ações rápidas com Ctrl+K e personalização de tema, densidade e animações.",
+      "Fiz o sistema na ByStartup, em cerca de três meses, cobrindo front-end, back-end, banco, integrações e deploy. Os prints são de uma conta de teste, com dados fictícios.",
     ],
-    stack: ["Next.js"],
+    stack: ["Next.js (App Router)", "React", "TypeScript", "Supabase", "PostgreSQL", "Zod", "K8 Pay", "NF-e / SEFAZ", "Docker", "Coolify", "VPS", "Google Tag Manager"],
     tags: ["Sistemas", "SaaS"],
     links: [{ href: "https://miranteerp.com.br", label: "Site", kind: "site" }],
     images: miranteShots,
@@ -143,14 +149,16 @@ export const projects: Project[] = [
     id: "carretel",
     title: "Carretel",
     summary:
-      "Caderno digital para oficinas de costura: registrar o corte, comprovar a entrega e cobrar pelo celular, inclusive com sinal fraco.",
+      "Meu SaaS próprio para oficinas de costura: registra o corte, comprova a entrega e cobra por Pix pelo celular, mesmo com sinal fraco. Bilíngue, em português e espanhol.",
     points: [
-      "Registrar corte com foto, quantidade, preço, prazo e aviamentos, e a produção por pessoa e operação.",
-      "Link público para o contratante conferir fotos, grade e valor e confirmar pelo WhatsApp, sem criar conta.",
-      "Cobrança com quem está devendo, mensagem de WhatsApp, Pix Copia e Cola e baixa total ou parcial.",
-      "O repositório público descreve Next.js 16, React 19, TypeScript, Tailwind 4, Neon Postgres, Drizzle, next-intl e PWA.",
+      "Donos e donas de oficinas de costura, muitos da comunidade boliviana em São Paulo, controlam cortes, entregas e pagamentos no caderno e no WhatsApp. Quando surge uma divergência de quantidade ou de valor, não existe prova de nada. O Carretel resolve isso com três verbos: registra, comprova e cobra.",
+      "Registrar: o corte recebido entra com foto, quantidade e preço falados por voz, grade, prazo e aviamentos, e a produção é anotada por pessoa, operação e máquina. Comprovar: um link público mostra fotos, grade, valor e código de verificação, e o contratante confirma pelo WhatsApp sem criar conta. O aceite guarda horário, navegador e IP e fica imutável no banco.",
+      "Cobrar: a tela mostra quem deve e há quantos dias, gera a mensagem pronta para o WhatsApp com Pix Copia e Cola e QR Code (BR Code com CRC16 feito no próprio projeto) e aceita baixa total ou parcial. Também tem acerto semanal com recibo bilíngue, calculadora de preço justo por peça, exportação de dados pela LGPD e exclusão de conta.",
+      "O app é offline first: as ações entram numa fila idempotente no IndexedDB e sincronizam quando o sinal volta, com service worker e instalação como PWA. É multi-tenant, com isolamento por oficina testado contra um Postgres real.",
+      "A assinatura roda pela AbacatePay, com webhook validado por HMAC-SHA256. A interface segue WCAG 2.2 AA, com alvos de toque grandes e o SeeB embutido, e o projeto tem testes com Vitest, testes de propriedade com fast-check e testes de acessibilidade com Playwright e axe.",
+      "É um produto meu, da ideia à especificação, ao design e ao código. Está em pré-lançamento.",
     ],
-    stack: ["Next.js", "React", "TypeScript", "Tailwind", "PostgreSQL", "Drizzle", "PWA"],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Radix UI", "shadcn/ui", "Neon Postgres", "Drizzle ORM", "Better Auth (Neon Auth)", "next-intl", "AbacatePay", "Pix BR Code", "IndexedDB", "Service Worker / PWA", "Vercel Blob", "Vercel Cron", "Zod", "ExcelJS", "Vitest", "fast-check", "Playwright", "axe-core", "SeeB"],
     tags: ["SaaS", "Sites", "PWA"],
     links: [
       { href: "https://carretel.vercel.app", label: "Site", kind: "site" },
@@ -169,12 +177,14 @@ export const projects: Project[] = [
     id: "cresce",
     title: "Cresce+ Futuro",
     summary:
-      "SaaS para micro e pequenos negócios organizarem estoque, vendas, tarefas e equipe. Reestruturei o produto e a infraestrutura.",
+      "SaaS de gestão para micro e pequenos negócios. Reescrevi o produto em Next.js 16 e migrei a infraestrutura para Neon e Vercel, cortando mais de R$ 400 por mês.",
     points: [
-      "Next.js 16, Tailwind, Mercado Pago e autenticação.",
-      "Saí de Azure, Railway e Hostinger para Neon e Vercel. A troca reduziu mais de R$ 400 por mês.",
+      "O SaaS da Cresce+ organiza estoque, vendas, tarefas e equipe de micro e pequenos negócios. A versão anterior estava espalhada entre Azure, Railway e Hostinger, cara de manter e difícil de evoluir.",
+      "Reescrevi a aplicação em Next.js 16 full stack com App Router e Tailwind CSS, com autenticação e pagamentos pelo Mercado Pago.",
+      "Levei o banco para o Neon PostgreSQL e a aplicação para a Vercel, e centralizei o domínio. A troca cortou mais de R$ 400 por mês em infraestrutura.",
+      "Também fiz o site institucional da consultoria, que está em outro card.",
     ],
-    stack: ["Next.js", "Tailwind", "Mercado Pago", "PostgreSQL"],
+    stack: ["Next.js 16", "React", "TypeScript", "Tailwind CSS", "Mercado Pago", "Neon", "PostgreSQL", "Vercel"],
     tags: ["SaaS", "Sistemas"],
     links: [{ href: "https://crescemaistech.com.br/", label: "Site", kind: "site" }],
     images: [
@@ -186,13 +196,15 @@ export const projects: Project[] = [
     id: "xerox",
     title: "Xerox Manager",
     summary:
-      "Sistema de produção para gráfica. Substitui o vale-caixa de papel: o funcionário lança o serviço e o administrador acompanha a equipe.",
+      "Sistema de produção para gráficas que substituiu o vale-caixa de papel e as planilhas por lançamentos digitais, estoque automático e relatórios em Excel e PDF.",
     points: [
-      "Dois perfis: administrador, que cuida de funcionários, produtos, estoque e relatórios, e funcionário, que registra o dia.",
-      "Busca de produto por código, com nome e preço preenchidos, e estoque que baixa a cada lançamento.",
-      "Relatórios em Excel e PDF. O repositório cita Next.js 16, TypeScript, Neon, Prisma, JWT, shadcn e Tailwind 4.",
+      "Em muitas gráficas e copiadoras, cada serviço é anotado num vale de papel e somado em planilha no fechamento do dia. Isso gera erro, perda de histórico e nenhum controle de estoque. O Xerox Manager troca esse fluxo por um sistema simples, rastreável e em tempo real.",
+      "O funcionário digita o código do produto, e nome e preço aparecem sozinhos. Ele ajusta quantidade e preço, confirma, e o estoque baixa automaticamente. Edição e exclusão só valem no mesmo dia.",
+      "O administrador cuida de funcionários, produtos e estoque, com alerta de estoque baixo e ajuste manual, e tira relatórios por período com produção por funcionário e consumo de estoque, exportados em Excel com três abas e em PDF.",
+      "A segurança foi tratada com cuidado: senhas com bcrypt, sessões em JWT num cookie httpOnly com tabela de sessões que pode ser invalidada, verificação de permissão em toda Server Action e filtros validados com Zod.",
+      "É uma versão de demonstração que segue a mesma lógica do sistema usado em produção. Fiz tudo, do banco à interface, com o SeeB integrado.",
     ],
-    stack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "JWT", "Tailwind"],
+    stack: ["Next.js 16 (App Router, Server Actions)", "React 19", "TypeScript", "Prisma", "Neon", "PostgreSQL", "JWT (jose)", "bcryptjs", "Zod", "React Hook Form", "shadcn/ui", "Tailwind CSS 4", "TanStack Table", "Recharts", "SheetJS (xlsx)", "React PDF", "date-fns", "SeeB", "Vercel"],
     tags: ["Sistemas"],
     links: [
       { href: "https://sistema-grafica.vercel.app", label: "Site", kind: "site" },
@@ -209,13 +221,14 @@ export const projects: Project[] = [
     id: "somnus",
     title: "Somnus",
     summary:
-      "Aplicação para registrar horas de sono e ver padrões ao longo do tempo, com conta por usuário.",
+      "App para registrar as horas de sono e enxergar padrões: média, melhor e pior noite e gráficos de evolução, com conta por usuário e acessibilidade embutida.",
     points: [
-      "A página pública apresenta o monitoramento e o acesso ao painel.",
-      "O repositório descreve registro de sono, métricas e gráficos.",
-      "A stack publicada no repositório é Next.js 15, React 19, TypeScript, Prisma, PostgreSQL na Neon, Clerk e Tailwind, na Vercel.",
+      "Quem quer melhorar o sono precisa de dados simples e consistentes, sem apps cheios de recursos que ninguém usa. O Somnus faz uma coisa bem: registrar e analisar as horas dormidas.",
+      "O fluxo é direto: entra, registra a noite e vê a análise. O painel mostra média de sono, melhor e pior noite, histórico completo e gráficos de evolução.",
+      "A autenticação usa Clerk, e cada pessoa só vê os próprios dados. O back-end roda em Server Actions do Next.js, tipado de ponta a ponta com Prisma e PostgreSQL no Neon.",
+      "Acessibilidade entrou como requisito desde o começo, com o SeeB integrado. Fiz o projeto sozinho, do banco ao deploy na Vercel.",
     ],
-    stack: ["Next.js", "React", "TypeScript", "Prisma", "PostgreSQL", "Clerk", "Tailwind"],
+    stack: ["Next.js 15 (App Router, Server Actions)", "React 19", "TypeScript", "Tailwind CSS", "Prisma", "Neon", "PostgreSQL", "Clerk", "Chart.js", "react-chartjs-2", "Framer Motion", "SeeB", "Vercel"],
     tags: ["Sites"],
     links: [
       { href: "https://somnus-track.vercel.app/", label: "Site", kind: "site" },
@@ -232,9 +245,14 @@ export const projects: Project[] = [
     id: "bicus",
     title: "Bicus",
     summary:
-      "Aplicativo de serviços, produtos, aluguéis e lojas da cidade, com mapa e chat. Está na App Store e na Google Play. A versão web usa Expo e React Native.",
-    points: ["Na loja, o app descreve busca por proximidade, vendedores verificados e conversa dentro do aplicativo."],
-    stack: ["Expo", "React Native"],
+      "App de serviços, produtos, aluguéis e lojas da cidade, com mapa, chat e anúncios em destaque pagos por Pix, cartão ou boleto. Na App Store, na Google Play e na web.",
+    points: [
+      "O Bicus junta serviços, produtos, aluguéis e lojas da cidade num app só, com busca por proximidade e vendedores verificados.",
+      "O app mostra anúncios no mapa, com escolha de localização e busca de endereço, e tem chat dentro do aplicativo para combinar direto com o vendedor.",
+      "Quem anuncia pode turbinar o anúncio. O pagamento é feito pelo Mercado Pago, por Pix, cartão ou boleto, e o destaque liga sozinho depois da confirmação. O app não recebe nem guarda dados de cartão.",
+      "Um único código em Expo e React Native gera os apps de iOS e Android e a versão web.",
+    ],
+    stack: ["React Native", "Expo", "Expo Router (web)", "React Native Web", "TypeScript", "Supabase", "Mercado Pago", "Leaflet", "OpenStreetMap (Nominatim)", "Expo Notifications"],
     tags: ["Apps", "PWA", "E-commerce"],
     links: [
       { href: "https://bicus.com.br", label: "Site", kind: "site" },
@@ -255,9 +273,14 @@ export const projects: Project[] = [
     id: "apertou",
     title: "Apertou Comprou",
     summary:
-      "Marketplace para comprar de lojas da cidade pelo celular, com chat, pedido condicional e pagamento por Pix ou cartão. Tem site, App Store e Google Play.",
-    points: ["A página da loja descreve receber em casa ou retirar no local, e pedir peças para provar antes de pagar."],
-    stack: [],
+      "Marketplace para lojas físicas venderem pelo celular, com app, painel do lojista e administração. Pix ou cartão, split automático para cada loja e pedido condicional.",
+    points: [
+      "Lojas de bairro perdem venda porque não estão no celular do cliente, e montar um e-commerce próprio custa caro. O Apertou Comprou coloca essas lojas num marketplace local, com entrega em casa ou retirada no local.",
+      "O cliente compra pelo app ou pelo site, conversa com a loja pelo chat e pode pedir peças para provar antes de pagar, no pedido condicional. O pagamento é por Pix ou cartão.",
+      "Cada loja tem um recebedor no Pagar.me, e o valor de cada venda é dividido automaticamente por split e transferido para a conta bancária do lojista. O painel guia o cadastro bancário e bloqueia a ativação da loja até ele estar completo.",
+      "O produto tem três frentes: o app para o cliente, o painel do lojista e a administração do marketplace, com gráficos de acompanhamento.",
+    ],
+    stack: ["React", "TypeScript", "Vite", "React Native", "Expo", "Supabase", "Pagar.me (recebedores e split)", "Pix", "Radix UI", "Recharts", "Motion", "Three.js", "Cloudflare"],
     tags: ["Apps", "Landing pages", "E-commerce"],
     links: [
       { href: "https://apertoucomprou.com.br/lp", label: "Site", kind: "site" },
@@ -282,8 +305,12 @@ export const projects: Project[] = [
     id: "junto",
     title: "Junto",
     summary:
-      "Aplicativo para encontrar treinos de corrida em grupo na cidade, confirmar presença, criar treinos e conversar no chat do grupo. Dá para conectar o Strava. Na Google Play o nome é Corra junto.",
-    points: ["A página da loja também cita treinos filtrados por distância, horário e ritmo, e treinos exclusivos para mulheres."],
+      "App para achar treinos de corrida em grupo na cidade, confirmar presença, criar treinos e conversar com o grupo. Conecta com o Strava. Na Google Play e aprovado na App Store.",
+    points: [
+      "Correr sozinho desanima, e achar um grupo com o mesmo ritmo e horário é difícil. O Junto mostra os treinos de corrida perto de você.",
+      "Dá para filtrar treinos por distância, horário e ritmo, confirmar presença, criar o próprio treino e conversar no chat do grupo. Também há treinos exclusivos para mulheres.",
+      "A conta pode ser ligada ao Strava. Na Google Play o app se chama Corra junto, e a versão para iOS, \"junto: companhia para correr\", foi aprovada na App Store.",
+    ],
     stack: [],
     tags: ["Apps", "PWA"],
     links: [
@@ -300,12 +327,13 @@ export const projects: Project[] = [
     id: "voxx",
     title: "Agência Voxx",
     summary:
-      "Site da Agência Voxx, de marketing digital em Itapetininga. A página apresenta planejamento, redes sociais, identidade visual e tráfego pago.",
+      "Site da Agência Voxx, de marketing digital em Itapetininga, com animações em Framer Motion, e formulário de contato com envio de e-mail.",
     points: [
-      "O repositório público descreve o site da agência com Next.js 16, React 19, TypeScript, Tailwind e Framer Motion.",
-      "A página apresenta planejamento, redes sociais, identidade visual e tráfego pago.",
+      "A agência precisava de um site que mostrasse o trabalho com a mesma qualidade visual que ela entrega aos clientes, sem ficar pesado no celular.",
+      "A página apresenta planejamento, redes sociais, identidade visual e tráfego pago, com animações de entrada e de scroll feitas em Framer Motion.",
+      "Fiz em Next.js 16 com App Router, Tailwind CSS e fontes do Google (Besley e DM Sans). O formulário de contato manda e-mail pelo Resend com Nodemailer, e o Google Analytics entra pelo @next/third-parties.",
     ],
-    stack: ["Next.js", "React", "TypeScript", "Tailwind", "Framer Motion"],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion", "Resend", "Nodemailer", "Google Analytics (@next/third-parties)", "Lucide", "Phosphor Icons", "SeeB", "Vercel"],
     tags: ["Sites"],
     links: [
       { href: "https://www.agenciavoxx.com.br/", label: "Site", kind: "site" },
@@ -320,9 +348,14 @@ export const projects: Project[] = [
   {
     id: "jotape",
     title: "Jotape Relógios",
-    summary: "Loja de relógios originais, projeto freelance. Catálogo por marca, busca, acompanhamento de pedido e atendimento pelo WhatsApp.",
-    points: ["A stack não aparece no site público, então não está listada aqui."],
-    stack: [],
+    summary:
+      "E-commerce de relógios originais, feito como freelance: catálogo por marca, busca, checkout com Pix ou cartão pelo Mercado Pago, acompanhamento de pedido e WhatsApp.",
+    points: [
+      "Loja de relógios originais que precisava de um e-commerce próprio, em que o cliente compra sozinho, a qualquer hora.",
+      "O catálogo é organizado por marca, com busca, página de produto e carrinho. O pagamento é feito no próprio site, por Pix ou cartão de crédito, processado pelo Mercado Pago.",
+      "O cliente acompanha o pedido pelo site e fala com a loja pelo WhatsApp. A loja também pode ser instalada como app no celular.",
+    ],
+    stack: ["React", "TypeScript", "Vite", "Supabase", "Mercado Pago", "Pix", "PWA", "Cloudflare"],
     tags: ["E-commerce", "Sites", "PWA"],
     links: [{ href: "https://jotaperelogios.store", label: "Site", kind: "site" }],
     images: [
@@ -338,17 +371,20 @@ export const projects: Project[] = [
     id: "seeb",
     title: "SeeB",
     summary:
-      "Extensão para Chromium, Manifest V3, e widget de uma linha. Foi o TCC na ETEC Parque Belém. Ajusta fonte e contraste, filtros de daltonismo, guia de leitura, cursor ampliado e pausa de animações. Não coleta dados.",
+      "Widget e extensão de acessibilidade open source, criados no meu TCC. Com uma linha de script, qualquer site ganha contraste, filtros de daltonismo, leitor de voz e mais, sem coletar dados.",
     points: [
-      "O widget entra com uma linha de script e reúne filtros de daltonismo, contraste, régua de leitura, pausa de animações e ajuste de texto.",
-      "A página pública e o repositório do widget estão em JavaScript, sem framework.",
-      "A documentação pública fica em seeb-page.vercel.app/docs.html.",
+      "Muita gente com baixa visão, daltonismo ou TDAH encontra barreiras para ler a web, e a maioria dos sites não oferece ajuste nenhum. O SeeB nasceu como extensão gratuita para Chromium e virou também um widget que qualquer site embute com uma linha.",
+      "O painel reúne filtros de protanopia, deuteranopia, tritanopia e monocromático, alto contraste, inversão de cores e modo escuro, texto ampliado, espaçamento, negrito, links sublinhados e destacados, régua e linha de foco de leitura, brilho e saturação, ocultar imagens, parar animações, realce de foco por teclado, cursor grande e leitor de voz com escolha de voz e velocidade.",
+      "O widget é servido por CDN no Cloudflare Pages, então toda melhoria chega na hora para quem já usa. A documentação pública ensina a integrar em HTML puro, Vite, Vue, Angular e Next.js com App Router, incluindo os cuidados com SSR e hydration que eu mesmo resolvi ao embutir o widget em projetos Next.js.",
+      "A extensão usa Manifest V3, só pede as permissões storage e activeTab e está na Chrome Web Store. Nada é coletado: as preferências ficam no próprio navegador.",
+      "Hoje o SeeB vai embutido nos meus projetos, como Carretel, Xerox Manager, Somnus, Giz, Velory, o dashboard de Excel, a Agência Voxx e o site institucional da Cresce+ Futuro. Fiz a parte técnica do TCC na ETEC Parque Belém e sigo mantendo o projeto aberto no GitHub.",
     ],
-    stack: ["JavaScript", "Manifest V3"],
+    stack: ["JavaScript", "HTML", "CSS", "Manifest V3", "Chrome Extensions API", "Webpack", "Web Speech API", "Cloudflare Pages", "Chrome Web Store", "Vercel"],
     tags: ["Extensões"],
     links: [
       { href: "https://seeb-page.vercel.app/", label: "Site", kind: "site" },
       { href: "https://github.com/devrafcks/seeb-widget", label: "Repositório", kind: "repo" },
+      { href: "https://chromewebstore.google.com/detail/faoblfaonpejepiealfiogalnkoakdni", label: "Chrome Web Store", kind: "site" },
     ],
     images: [
       laptop("/images/projects/seeb-hero.webp", "Abertura da página do SeeB"),
@@ -361,13 +397,15 @@ export const projects: Project[] = [
     id: "giz",
     title: "GIZ, assistente de IA",
     summary:
-      "Projeto acadêmico “Seu Primeiro Agente de IA”. Assistente de comunicação para uma rede de academias que transforma um briefing curto em textos para WhatsApp, Instagram e e-mail.",
+      "Agente de IA que recebe um briefing curto e escreve os textos para WhatsApp, Instagram e e-mail. Protege dados pessoais antes de chamar o modelo e só publica com aprovação humana.",
     points: [
-      "O agente tem quatro etapas. O servidor mascara CPF, telefone, e-mail e cartão antes de qualquer envio ao modelo. Depois entende o pedido, escreve e revisa. Uma pessoa lê, edita e aprova. Nada é publicado sozinho.",
-      "As etapas com modelo usam persona, meta-prompting, few-shot e verificação por perguntas. O modelo é o Gemini 3.5 Flash-Lite, com gemini-flash-lite-latest de reserva.",
-      "O back-end são funções Node.js na Vercel, com resposta em streaming NDJSON. O front é HTML, CSS e JavaScript em módulos, sem framework. O package.json não declara dependências de runtime: pede Node.js 20.11 ou mais novo e pnpm.",
+      "Projeto do desafio \"Seu Primeiro Agente de IA\". A Giz é uma rede de academias fictícia em que a equipe perde tempo escrevendo avisos e campanhas para cada canal.",
+      "O agente trabalha em quatro etapas. Primeiro o servidor mascara CPF, telefone, e-mail e cartão antes de qualquer envio ao modelo. Depois ele entende o pedido, escreve e revisa. No fim, uma pessoa lê, edita e aprova. Nada é publicado sozinho.",
+      "As etapas com modelo usam persona, meta-prompting, few-shot e verificação por perguntas, com saída em JSON para encadear uma etapa na outra e temperatura diferente por tarefa (0,2 na triagem e revisão, 0,8 na escrita).",
+      "O texto do colaborador entra delimitado e é tratado como dado, para evitar injeção de prompt. O guia de marca proíbe prometer resultado físico, dar orientação de saúde e inventar informação.",
+      "O back-end são funções serverless Node.js na Vercel, com resposta em streaming NDJSON. O front é HTML, CSS e JavaScript em módulos, sem framework. O modelo é o Gemini 3.5 Flash-Lite, com o gemini-flash-lite-latest de reserva.",
     ],
-    stack: ["Node.js", "Gemini 3.5 Flash-Lite", "Vercel", "JavaScript"],
+    stack: ["Google Gemini API (3.5 Flash-Lite)", "Node.js 20", "Vercel Functions (serverless)", "NDJSON streaming", "JavaScript (ES Modules)", "HTML", "CSS", "prompt engineering (persona, few-shot, meta-prompting)", "JSON estruturado", "pnpm", "SeeB"],
     tags: ["Sistemas", "IA"],
     links: [
       { href: "https://giz-assistente-ia.vercel.app", label: "Site", kind: "site" },
@@ -387,13 +425,14 @@ export const projects: Project[] = [
     id: "steal-a-boo",
     title: "STEAL A BOO!",
     summary:
-      "Simulator social numa feira noturna, para até 8 jogadores. Sustos leves, para todas as idades. Feito com ajuda de IA, por diversão, como experimento pessoal.",
+      "Simulator social para Roblox numa feira noturna, para até 8 jogadores: capture Boos, monte a base, gere Cash, roube dos amigos e defenda o que é seu. Feito com IA, por diversão.",
     points: [
-      "Capture Boos de 7 raridades e coloque na base para gerar Cash. Treine Speed e Throw Power e construa até 6 andares.",
-      "Roube das bases com o portão aberto e defenda com sustos cômicos. Tem Rebirth, baú diário e ranking.",
-      "O repositório usa Luau, Rojo 7.6.1, Wally e ProfileStore.",
+      "Experimento pessoal para aprender o desenvolvimento de jogos no Roblox com um fluxo profissional, usando IA como apoio.",
+      "Você captura Boos de 7 raridades e coloca na base para gerar Cash por segundo. Treina Speed e Throw Power e constrói até 6 andares.",
+      "Dá para roubar das bases com o portão aberto e defender com sustos cômicos. Tem Rebirth, baú diário e ranking. Os sustos são leves, para todas as idades.",
+      "O código fica fora do Studio, em Luau versionado no Git, sincronizado com Rojo, pacotes pelo Wally e dados dos jogadores salvos com ProfileStore.",
     ],
-    stack: ["Luau", "Rojo", "Wally", "ProfileStore"],
+    stack: ["Luau", "Roblox Studio", "Rojo 7.6", "Wally", "Rokit", "ProfileStore", "Git"],
     tags: ["Jogos"],
     links: [
       { href: "https://www.roblox.com/games/127475605109985/Steal-a-Boo", label: "Jogar no Roblox", kind: "roblox" },
@@ -411,14 +450,16 @@ export const projects: Project[] = [
     id: "67-noites",
     title: "67 NOITES COM EXU",
     summary:
-      "Survival cooperativo de 1 a 5 jogadores num terreiro no meio da mata. Manter o caldeirão aceso, sobreviver 67 noites e chegar ao confronto com o Zé Pilintra. Feito com ajuda de IA, por diversão, como experimento pessoal.",
+      "Survival cooperativo de 1 a 5 jogadores num terreiro no meio da mata: manter o caldeirão aceso e sobreviver 67 noites até o confronto com o Zé Pilintra. Feito com IA, por diversão.",
     notice:
       "Este jogo é uma obra de ficção feita com total respeito à Umbanda e à cultura afro-brasileira, sem nenhuma intenção de ofender. As entidades aparecem como guardiões que testam o jogador, e o jogo não reproduz rituais, pontos ou rezas reais. O humor está nas situações do jogo, nunca na religião.",
     points: [
-      "Invasões e quatro entidades. O combate é simples: combo, esquiva e aparar, e o confronto final é com o Zé Pilintra.",
-      "Luau, Rojo 7.6.1, Wally, ProfileStore 1.0.3, Lune, Selene e StyLua. O README marca 646 testes de balanço.",
+      "Experimento pessoal de survival cooperativo no Roblox, feito com ajuda de IA e com total respeito à Umbanda e à cultura afro-brasileira.",
+      "A cada noite, o grupo defende o caldeirão de invasões e encontra quatro entidades, que aparecem como guardiões que testam o jogador. O combate é simples, com combo, esquiva e aparar.",
+      "O mapa tem biomas como o terreiro, a pedreira e a cabana na mata.",
+      "O código é Luau versionado com Rojo e Wally, dados salvos com ProfileStore, lint com Selene, formatação com StyLua e scripts com Lune. O README registra 646 testes de balanço.",
     ],
-    stack: ["Luau", "Rojo", "Wally", "ProfileStore", "Lune", "Selene", "StyLua"],
+    stack: ["Luau", "Roblox Studio", "Rojo 7.6", "Wally", "Rokit", "ProfileStore 1.0.3", "Lune", "Selene", "StyLua", "Git"],
     tags: ["Jogos"],
     links: [
       { href: "https://www.roblox.com/games/119571245262683/67-Noites-com-Exu", label: "Jogar no Roblox", kind: "roblox" },
@@ -440,16 +481,16 @@ export const projects: Project[] = [
     id: "offscope",
     title: "OFFSCOPE",
     summary:
-      "FPS online em primeira pessoa para Roblox, com uma sniper, uma faca e três mapas. O foco é o no-scope: o tiro sem mira é o tiro certo. Feito com ajuda de IA (Claude Code), por diversão e aprendizado, como projeto pessoal.",
+      "FPS online em primeira pessoa para Roblox, focado no no-scope: uma sniper, uma faca, três mapas, ranked com ELO e servidor que valida cada tiro. Feito com IA, por diversão.",
     notice: "Leve, 16+, violência leve, sem sangue",
     points: [
+      "Projeto pessoal para aprender netcode e jogo competitivo, feito com ajuda de IA (Claude Code).",
       "Modos Duelo 1v1 e Duplas 2v2, casual e ranked com ELO, mais Equipes 4v4 e Todos contra todos para 8 jogadores. No fim da partida, um voto de 20 segundos escolhe o próximo mapa.",
       "O servidor decide cada tiro. O cliente manda a intenção com uma semente determinística, e o servidor refaz a direção, volta as hitboxes no tempo (lag compensation a 30 Hz, até 0,45 s) e confirma o acerto. A faca mata com um golpe pelas costas.",
-      "Três mapas feitos só com código, com terreno real via WriteVoxels: Cais 09, um porto ao amanhecer, Avenida 11, o centro à noite, e Posto 47, na serra. Arma, braços e faca são montados com Parts e animados por código.",
-      "Os cosméticos são só visuais, sem caixas e sem pay-to-win. A loja diária é igual em todos os servidores, e a compra só é confirmada depois que o ProfileStore salva de verdade.",
-      "Os 22 sons e as texturas são gerados por código no próprio repositório. O README marca 13,5 mil linhas de Luau, e o CI roda rojo build, type-check com luau-lsp e selene a cada push.",
+      "Três mapas feitos só com código, com terreno real via WriteVoxels: Cais 09, um porto ao amanhecer, Avenida 11, o centro à noite, e Posto 47, na serra. Arma, braços e faca são montados com Parts e animados por código, e os 22 sons e as texturas também são gerados no repositório.",
+      "Cosméticos só visuais, sem caixas e sem pay-to-win, com loja diária igual em todos os servidores e compra confirmada só depois que o ProfileStore salva. O README marca 13,5 mil linhas de Luau, e o CI roda rojo build, type-check com luau-lsp e Selene a cada push.",
     ],
-    stack: ["Luau", "Rojo", "Wally", "ProfileStore", "Lune", "Selene", "StyLua", "luau-lsp", "GitHub Actions"],
+    stack: ["Luau", "Roblox Studio", "Rojo", "Wally", "Rokit", "ProfileStore", "Lune", "Selene", "StyLua", "luau-lsp", "GitHub Actions"],
     tags: ["Jogos"],
     links: [
       { href: "https://www.roblox.com/games/133650768159073/OFFSCOPE", label: "Jogar no Roblox", kind: "roblox" },
@@ -470,13 +511,14 @@ export const projects: Project[] = [
     id: "mapinion",
     title: "Mapinion",
     summary:
-      "App mobile para descobrir e recomendar lugares. Você publica o local com foto, nota de 1 a 5 estrelas e comentário, e acompanha as recomendações de outras pessoas num feed.",
+      "App mobile para descobrir e recomendar lugares, com foto, nota de 1 a 5 e comentário, e um feed com as recomendações de outras pessoas. Fiz o app e a API.",
     points: [
-      "Feito em React Native com Expo e Expo Router, com login, cadastro e três abas: feed, nova recomendação e perfil. A sessão fica no Zustand, com AsyncStorage.",
-      "No perfil, você vê, edita e apaga as suas recomendações. A foto do lugar vem da galeria pelo Expo Image Picker.",
-      "A API também é minha: Node.js com Express, MongoDB com Mongoose, login com JWT (token de 15 dias) e imagens no Cloudinary. O feed é paginado, e o avatar é gerado pelo DiceBear a partir do nome de usuário.",
+      "Recomendação de lugar costuma se perder em conversa de grupo. O Mapinion guarda tudo num feed: você publica o local com foto, nota e comentário e acompanha o que as outras pessoas indicam.",
+      "O app em React Native com Expo e Expo Router tem login, cadastro e três abas: feed, nova recomendação e perfil. A sessão fica no Zustand com AsyncStorage, e a foto vem da galeria pelo Expo Image Picker.",
+      "No perfil, você vê, edita e apaga as suas recomendações.",
+      "A API também é minha: Node.js com Express, MongoDB com Mongoose, senhas com bcrypt, login com JWT de 15 dias e imagens no Cloudinary. O feed é paginado, o avatar é gerado pelo DiceBear e um cron mantém o servidor ativo.",
     ],
-    stack: ["React Native", "Expo", "Expo Router", "Zustand", "Node.js", "Express", "MongoDB", "JWT", "Cloudinary"],
+    stack: ["React Native", "Expo", "Expo Router", "TypeScript", "Zustand", "AsyncStorage", "Expo Image Picker", "React Navigation", "Reanimated", "Node.js", "Express", "MongoDB", "Mongoose", "JWT", "bcryptjs", "Cloudinary", "DiceBear", "cron"],
     tags: ["Apps"],
     links: [
       { href: "https://github.com/devrafcks/React-native_mapinion-app", label: "Repositório do app", kind: "repo" },
@@ -492,13 +534,14 @@ export const projects: Project[] = [
     id: "excel-dashboard",
     title: "Dashboard de vendas do Excel",
     summary:
-      "Teste técnico: você sobe uma planilha de vendas (.xlsx ou .xls) e o app limpa os dados e monta um dashboard com métricas, gráficos, filtros e tabelas.",
+      "Teste técnico: você sobe uma planilha de vendas e o app limpa os dados e monta um dashboard com métricas, quatro gráficos, filtros e tabela completa, tudo no navegador.",
     points: [
-      "Lê a primeira planilha com a biblioteca xlsx, descarta as linhas sem Categoria, Produto ou Receita e normaliza categorias e meses.",
-      "Mostra Receita Total, Pedidos e Ticket Médio, além de quatro gráficos em Recharts: vendas por categoria, vendas por mês, quantidade por mês e top 5 produtos por receita.",
-      "Tem filtros por categoria e mês e uma tabela completa com ordenação, paginação, busca em tempo real e 10, 25, 50 ou 100 itens por página. O widget de acessibilidade SeeB vem no index.html.",
+      "Planilhas de vendas reais vêm com linha vazia, categoria escrita de jeitos diferentes e mês fora do padrão. O desafio era chegar a um painel útil sem back-end.",
+      "O app lê a primeira aba do .xlsx ou .xls com SheetJS, descarta linhas sem categoria, produto ou receita e normaliza categorias e meses.",
+      "O painel mostra receita total, pedidos e ticket médio, e quatro gráficos em Recharts: vendas por categoria, vendas por mês, quantidade por mês e top 5 produtos por receita.",
+      "Os filtros por categoria e mês alimentam uma tabela com ordenação, paginação, busca em tempo real e 10, 25, 50 ou 100 itens por página. O SeeB entra no index.html.",
     ],
-    stack: ["React", "TypeScript", "Vite", "Recharts", "xlsx"],
+    stack: ["React 19", "TypeScript", "Vite", "Recharts", "SheetJS (xlsx)", "Lucide", "ESLint", "SeeB", "Vercel"],
     tags: ["Sistemas"],
     links: [
       { href: "https://desafio-excel.vercel.app", label: "Site", kind: "site" },
@@ -513,14 +556,15 @@ export const projects: Project[] = [
     id: "bystartup-web-qa",
     title: "bystartup-web-qa",
     summary:
-      "Skill para agentes de IA de programação, como Claude Code e Gemini CLI, que gera, roda e mantém testes E2E com Playwright em aplicações web. Criada no programa interno de inovação Bystartup Labs.",
+      "Skill para agentes de IA como Claude Code e Gemini CLI gerarem, rodarem e corrigirem testes E2E com Playwright em aplicações web. Criada no Bystartup Labs.",
     points: [
-      "Lê os arquivos do front, encontra botões, formulários, navegação e estados da interface e escreve os testes em testes/[feature].e2e.test.ts, criando a pasta se ela não existir.",
-      "Roda os testes, tenta de novo e corrige o que falhou, e atualiza testes antigos sem perder a cobertura que já funciona.",
+      "Escrever e manter testes de ponta a ponta toma tempo e costuma ficar para depois. A skill entrega esse trabalho para o agente de IA, com regras claras.",
+      "O agente lê os arquivos do front, encontra botões, formulários, navegação, chamadas de API e estados de erro, carregamento e sucesso, e escreve os testes em testes/[feature].e2e.test.ts, criando a pasta quando ela não existe.",
+      "Depois roda os testes, tenta de novo, corrige o que falhou e atualiza testes antigos sem perder a cobertura que já funcionava.",
       "Detecta login com JWT, cookies, localStorage, NextAuth, Clerk, Firebase Auth e Auth0, guarda a sessão e gera cenários para celular, tablet e desktop, com seletores semânticos e acessíveis.",
-      "Funciona com React, Next.js, Vue, Angular e outras interfaces web. Não cobre React Native, Flutter nem apps nativos.",
+      "Funciona com React, Next.js, Vue, Angular e outras interfaces web. Criei a skill no programa interno de inovação da ByStartup.",
     ],
-    stack: ["Playwright", "Claude Code", "Gemini CLI", "Markdown"],
+    stack: ["Playwright", "@playwright/test", "TypeScript", "Claude Code", "Gemini CLI", "Agent Skills (Markdown)", "E2E testing"],
     tags: ["IA"],
     links: [{ href: "https://github.com/devrafcks/bystartup-web-qa", label: "Repositório", kind: "repo" }],
     images: [laptop("/images/projects/bystartup-banner.webp", "Banner da skill bystartup-web-qa")],
@@ -529,12 +573,13 @@ export const projects: Project[] = [
     id: "iran-tapetes",
     title: "Iran Tapetes Orientais",
     summary:
-      "Página de link na bio feita para um cliente real, a Iran Tapetes Orientais, loja de tapetes nos Jardins, em São Paulo. Reúne WhatsApp, loja online, Instagram, e-mail, o mapa da loja física e o horário de funcionamento.",
+      "Página de link na bio para a Iran Tapetes Orientais, loja nos Jardins, em São Paulo: WhatsApp, loja online, Instagram, mapa e horário num visual premium.",
     points: [
-      "Mobile-first, com visual premium: gradiente animado, glassmorphism e layout em CSS Grid.",
-      "HTML com Tailwind CSS, Font Awesome e Google Fonts (Berkshire Swash, Inter e Oswald), mapa do Google embutido e manifest com ícones para a tela inicial.",
+      "A loja precisava de um link na bio à altura dos tapetes que vende, com tudo o que o cliente procura num toque só.",
+      "A página reúne WhatsApp, loja online, Instagram, e-mail, o mapa da loja física e o horário de funcionamento.",
+      "É mobile first, com gradiente animado, glassmorphism e layout em CSS Grid, mapa do Google embutido e manifest com ícones para a tela inicial.",
     ],
-    stack: ["HTML", "Tailwind CSS", "Font Awesome"],
+    stack: ["HTML", "Tailwind CSS", "Font Awesome", "Google Fonts", "Google Maps embed", "Web App Manifest", "Vercel"],
     tags: ["Link na bio"],
     links: [
       { href: "https://irantapetes.vercel.app", label: "Site", kind: "site" },
@@ -549,12 +594,13 @@ export const projects: Project[] = [
     id: "pizzaria-relampago",
     title: "Pizzaria Relâmpago",
     summary:
-      "Página de link na bio feita para um cliente real, a Pizzaria Relâmpago, pizzaria artesanal em Itu (SP). Leva para o pedido online, WhatsApp, Instagram, Facebook e o mapa da pizzaria.",
+      "Página de link na bio para a Pizzaria Relâmpago, pizzaria artesanal em Itu (SP), que leva direto para o pedido online, WhatsApp, redes sociais e mapa.",
     points: [
-      "HTML e CSS puros, sem framework, bundler ou dependências. O fundo é trocado por uma variável CSS.",
-      "Botão de pedido em destaque e mapa embutido com o endereço.",
+      "O objetivo era simples: quem chega pelo Instagram precisa conseguir pedir em um toque.",
+      "O botão de pedido fica em destaque, seguido de WhatsApp, Instagram, Facebook e o mapa com o endereço.",
+      "Fiz em HTML e CSS puros, sem framework nem dependências, para carregar quase na hora no celular. O fundo é trocado por uma variável CSS.",
     ],
-    stack: ["HTML", "CSS"],
+    stack: ["HTML", "CSS", "Google Maps embed", "Vercel"],
     tags: ["Link na bio"],
     links: [{ href: "https://relampagopizzaria.vercel.app", label: "Site", kind: "site" }],
     images: [
@@ -566,12 +612,13 @@ export const projects: Project[] = [
     id: "linkbio",
     title: "Linkbio",
     summary:
-      "Página pessoal de link na bio. Reúne um cartão de apresentação, uma frase de destaque, o portfólio, LinkedIn, GitHub, Spotify, e-mail e embeds de playlists e álbuns.",
+      "Minha página de link na bio, com a minha identidade visual: portfólio, LinkedIn, GitHub, e-mail e as músicas que eu escuto, com embeds do Spotify.",
     points: [
-      "HTML e CSS, com variáveis, Flexbox e animações. Os ícones são do Font Awesome e a fonte é Roboto, do Google Fonts.",
-      "Os embeds do Spotify mostram playlists e álbuns favoritos na própria página.",
+      "Reúne um cartão de apresentação com foto, uma frase de destaque e os links para portfólio, LinkedIn, GitHub, Spotify e e-mail.",
+      "Segue a identidade do meu banner, com Unbounded e Montserrat Black Italic, amarelo e laranja sobre fundo escuro. O verde aparece só nas partes do Spotify, que mostram playlists e álbuns favoritos na própria página.",
+      "HTML e CSS com variáveis, Flexbox e animações, metadados Open Graph e manifest.",
     ],
-    stack: ["HTML", "CSS", "Font Awesome", "Google Fonts"],
+    stack: ["HTML", "CSS", "Google Fonts (Unbounded, Montserrat)", "Spotify embeds", "Open Graph", "Web App Manifest", "GitHub Pages"],
     tags: ["Link na bio"],
     links: [
       { href: "https://devrafcks.github.io/Linkbio/", label: "Site", kind: "site" },
@@ -586,13 +633,14 @@ export const projects: Project[] = [
     id: "agenda-manager",
     title: "Agenda",
     summary:
-      "Teste técnico de front-end. Uma agenda com horários das 08:00 às 18:00, criação e remoção de agendamentos, estatísticas e um gráfico da distribuição por horário.",
+      "Teste técnico de front-end: agenda das 8h às 18h com criação e remoção de horários, validação de formulário, estatísticas e gráfico da distribuição por horário.",
     points: [
-      "A home apresenta o produto. A agenda do dia agrupa os horários, abre um modal para criar e permite remover um agendamento.",
-      "O formulário usa React Hook Form e Zod: título e cliente de 3 a 100 caracteres, horários em HH:mm e descrição opcional de até 500 caracteres.",
-      "Quatro agendamentos de exemplo ficam no Redux e duram só a sessão. O package.json usa Next.js 16.1.6 e React 19.2.3.",
+      "O desafio pedia uma agenda diária clara, com regras de validação e uma visão rápida de como o dia está distribuído.",
+      "A home apresenta o produto. A agenda agrupa os horários do dia, abre um modal para criar um agendamento e permite remover.",
+      "O formulário usa React Hook Form com Zod: título e cliente de 3 a 100 caracteres, horários em HH:mm e descrição opcional de até 500 caracteres.",
+      "O estado fica no Redux Toolkit, com quatro agendamentos de exemplo que duram a sessão, e as estatísticas aparecem num gráfico em Recharts.",
     ],
-    stack: ["Next.js 16.1.6", "React 19.2.3", "TypeScript", "Redux Toolkit", "React Hook Form", "Zod", "shadcn/ui", "Recharts", "Tailwind CSS"],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Redux Toolkit", "React Hook Form", "Zod", "shadcn/ui", "Radix UI", "Tailwind CSS 4", "Recharts", "Lucide", "Vercel"],
     tags: ["Sistemas"],
     links: [
       { href: "https://agenda-manager.vercel.app", label: "Site", kind: "site" },
@@ -608,12 +656,13 @@ export const projects: Project[] = [
     id: "epic-musical",
     title: "Epic: The Musical",
     summary:
-      "Landing page de fã, feita como projeto pessoal. Tem seções interativas, animações com GSAP, carrossel de álbuns do Spotify e um FAQ.",
+      "Landing page de fã de Epic: The Musical, com seções interativas, animações de scroll em GSAP, carrossel de álbuns do Spotify e FAQ.",
     points: [
-      "HTML, CSS e JavaScript. O layout usa Flexbox, Grid e variáveis de cor, com o breakpoint principal em 768px.",
-      "GSAP 3 faz as entradas e os efeitos de scroll. Os álbuns entram pelo embed do Spotify, e os ícones são Font Awesome e Material Symbols.",
+      "Projeto pessoal para treinar animação e narrativa visual numa página longa.",
+      "O layout usa Flexbox, Grid e variáveis de cor, com o breakpoint principal em 768px.",
+      "GSAP 3 com ScrollTrigger faz as entradas e os efeitos de scroll. Os álbuns entram pelo embed do Spotify, e os ícones vêm do Font Awesome e do Material Symbols.",
     ],
-    stack: ["HTML", "CSS", "JavaScript", "GSAP", "Font Awesome"],
+    stack: ["HTML", "CSS", "JavaScript", "GSAP", "ScrollTrigger", "Spotify embed", "Font Awesome", "Material Symbols", "Vercel"],
     tags: ["Landing pages"],
     links: [
       { href: "https://epic-musical.vercel.app/", label: "Site", kind: "site" },
@@ -628,12 +677,13 @@ export const projects: Project[] = [
     id: "velory",
     title: "Velory",
     summary:
-      "Projeto final do curso Engenheiro Front-End da EBAC. Catálogo de restaurantes com avaliação, carrinho e um checkout com entrega e pagamento simulado.",
+      "Projeto final do Engenheiro Front-end da EBAC: catálogo de restaurantes com avaliações, carrinho e checkout com entrega e pagamento simulado, em React e TypeScript.",
     points: [
-      "A listagem mostra restaurantes com categoria e nota. O carrinho fica no Redux e o contador aparece no topo.",
-      "O checkout passa por revisão dos itens, endereço de entrega, dados de cartão simulados e uma confirmação.",
+      "O desafio final do curso era juntar tudo o que eu tinha estudado num produto completo de delivery.",
+      "A listagem mostra restaurantes com categoria e nota, e cada um tem seu cardápio. O carrinho fica no Redux Toolkit, e o contador aparece no topo.",
+      "O checkout passa por revisão dos itens, endereço de entrega, dados de cartão simulados e confirmação do pedido. Os dados vêm de uma API consumida com Axios, e as rotas usam React Router.",
     ],
-    stack: ["React 19", "TypeScript", "Vite", "Redux Toolkit", "styled-components", "React Router"],
+    stack: ["React 19", "TypeScript", "Vite", "Redux Toolkit", "React Redux", "React Router", "styled-components", "Axios", "React Icons", "SeeB", "Vercel"],
     tags: ["E-commerce", "Sites"],
     links: [
       { href: "https://velory-ebac.vercel.app/", label: "Site", kind: "site" },
@@ -648,12 +698,13 @@ export const projects: Project[] = [
     id: "matemagika",
     title: "MatemaGika",
     summary:
-      "Aplicação educativa de matemática computacional, feita em grupo como trabalho escolar. Resolve equações do 1º e do 2º grau e faz interpolação linear com gráfico.",
+      "Aplicação educativa de matemática feita em grupo como trabalho escolar: resolve equações do 1º e do 2º grau com passo a passo e faz interpolação linear com gráfico.",
     points: [
+      "O trabalho pedia uma ferramenta que ajudasse a estudar matemática computacional.",
       "O cálculo mostra as raízes e o passo a passo. Para uma equação do 1º grau, o coeficiente a fica vazio ou zero.",
-      "A interpolação recebe pares de pontos e desenha a reta no Chart.js. A página deixa claro que o trabalho é de um grupo, não de uma pessoa só.",
+      "A interpolação recebe pares de pontos e desenha a reta no Chart.js. A página deixa claro que o trabalho é de um grupo.",
     ],
-    stack: ["HTML", "CSS", "JavaScript", "Chart.js"],
+    stack: ["HTML", "CSS", "JavaScript", "Chart.js", "Font Awesome", "GitHub Pages"],
     tags: ["Sites"],
     links: [
       { href: "https://devrafcks.github.io/MatemaGika/", label: "Site", kind: "site" },
@@ -668,12 +719,13 @@ export const projects: Project[] = [
     id: "marina-kamiya",
     title: "Cresce+ Futuro, site institucional",
     summary:
-      "Landing page institucional da consultoria Cresce+ Futuro, liderada por Marina Kamiya, sobre empreendedorismo feminino, tecnologia e inteligência artificial aplicada a negócios.",
+      "Landing page da consultoria Cresce+ Futuro, liderada por Marina Kamiya, sobre empreendedorismo feminino, tecnologia e IA aplicada a negócios.",
     points: [
-      "HTML, CSS e JavaScript, com animações de scroll no GSAP e ScrollTrigger e ícones do Font Awesome.",
-      "O widget de acessibilidade SeeB entra na página. É um site próprio, separado do produto SaaS da Cresce+.",
+      "A consultoria precisava de um site próprio, separado do SaaS, para apresentar o trabalho e os programas.",
+      "Fiz em HTML, CSS e JavaScript, com animações de scroll em GSAP e ScrollTrigger e ícones do Font Awesome.",
+      "O SeeB vem embutido, como em todos os meus projetos recentes.",
     ],
-    stack: ["HTML", "CSS", "JavaScript", "GSAP", "SeeB"],
+    stack: ["HTML", "CSS", "JavaScript", "GSAP", "ScrollTrigger", "Font Awesome", "SeeB", "Vercel"],
     tags: ["Landing pages"],
     links: [
       { href: "https://marinamya.vercel.app", label: "Site", kind: "site" },
@@ -688,12 +740,14 @@ export const projects: Project[] = [
     id: "portfolio",
     title: "Portfólio",
     summary:
-      "Este site. Reúne os projetos com filtros, um diálogo com galeria em cada card, modo escuro, SEO e atenção à performance.",
+      "Este site: projetos com filtros e diálogo com galeria, modo escuro, PWA, SEO completo e atenção a acessibilidade e performance.",
     points: [
-      "A grade separa os trabalhos por tipo. Cada projeto abre um diálogo com as imagens, a stack e os links.",
-      "O tema claro ou escuro usa next-themes. Metadados, sitemap e dados estruturados cobrem o SEO.",
+      "Queria um portfólio que mostrasse o trabalho do jeito que eu construo produto: rápido, acessível e com detalhe.",
+      "A grade separa os trabalhos por tipo, com cards grandes em ziguezague, e cada projeto abre um diálogo com galeria, stack e links. As imagens carregam só quando aparecem na tela.",
+      "O tema claro ou escuro usa next-themes. Metadados, Open Graph, sitemap, robots e dados estruturados cobrem o SEO, e o site é um PWA com manifest, ícones e service worker com página offline.",
+      "O formulário de contato usa FormSubmit, as animações usam Motion e o SeeB vem embutido.",
     ],
-    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Tabler", "next-themes", "Motion", "Vercel"],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Motion", "next-themes", "Tabler Icons", "Service Worker / PWA", "FormSubmit", "SeeB", "Vercel"],
     tags: ["Sites", "Landing pages"],
     links: [
       { href: "https://rafaelblanco.vercel.app", label: "Site", kind: "site" },
