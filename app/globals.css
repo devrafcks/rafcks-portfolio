@@ -16,6 +16,16 @@
   --color-night-2: #2b1e20;
 }
 
+:root {
+  --site-bg: #fffbf2;
+  --site-ink: #2b1e20;
+}
+
+.dark {
+  --site-bg: #1e1416;
+  --site-ink: #f6efe6;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -90,6 +100,130 @@ button {
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+/* ---------- arte e movimento ---------- */
+
+.hero-orb {
+  background: radial-gradient(circle at 50% 50%, rgb(255 188 0 / 0.55), rgb(255 127 26 / 0.32) 38%, rgb(255 127 26 / 0.08) 58%, transparent 70%);
+  will-change: transform;
+  animation: orb-breathe 14s ease-in-out infinite;
+}
+
+.hero-orb--soft {
+  opacity: 0.55;
+  animation-duration: 18s;
+  animation-delay: -6s;
+}
+
+.dark .hero-orb {
+  background: radial-gradient(circle at 50% 50%, rgb(255 127 26 / 0.42), rgb(255 188 0 / 0.16) 40%, transparent 68%);
+}
+
+@keyframes orb-breathe {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  46% { transform: scale(1.08, 0.96); opacity: 0.82; }
+  73% { transform: scale(0.97, 1.05); opacity: 0.95; }
+}
+
+/* entrada do menu, sem depender de JS */
+.nav-in-top {
+  animation: nav-in-top 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.nav-in-bottom {
+  animation: nav-in-bottom 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+}
+
+@keyframes nav-in-top {
+  from { opacity: 0; transform: translateY(-16px); }
+}
+
+@keyframes nav-in-bottom {
+  from { opacity: 0; transform: translateY(40px); }
+}
+
+/* entrada do título da Hero, sem depender de JS */
+.title-letter {
+  animation: title-rise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.title-wipe {
+  animation: title-wipe 1.3s cubic-bezier(0.22, 1, 0.36, 1) 450ms both;
+}
+
+@keyframes title-rise {
+  from { transform: translateY(108%) rotate(8deg); }
+  to { transform: none; }
+}
+
+@keyframes title-wipe {
+  from { clip-path: inset(0 100% 0 0); transform: translateX(-24px); }
+  to { clip-path: inset(0 0 0 0); transform: none; }
+}
+
+.spin-slow {
+  will-change: transform;
+  animation: spin-slow 140s linear infinite;
+}
+
+.hat-bob {
+  animation: hat-bob 6s ease-in-out infinite;
+}
+
+.hat-shadow {
+  animation: hat-shadow 6s ease-in-out infinite;
+}
+
+@keyframes hat-bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
+}
+
+@keyframes hat-shadow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.82); opacity: 0.6; }
+}
+
+/* loops infinitos param quando a aba está oculta ou o bloco saiu da tela */
+.offscreen .spin-slow,
+.offscreen .hero-orb,
+.offscreen .hat-bob,
+.offscreen .hat-shadow {
+  animation-play-state: paused;
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.scroll-cue {
+  animation: scroll-cue 1.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes scroll-cue {
+  0% { transform: translateY(-4px); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateY(12px); opacity: 0; }
+}
+
+.outline-band {
+  color: transparent;
+  -webkit-text-stroke: 1.4px rgb(43 30 32 / 0.55);
+}
+
+.dark .outline-band {
+  -webkit-text-stroke-color: rgb(255 255 255 / 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-orb,
+  .hat-bob,
+  .hat-shadow,
+  .spin-slow,
+  .scroll-cue {
+    animation: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

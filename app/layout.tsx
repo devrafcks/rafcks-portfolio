@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat, Unbounded } from "next/font/google";
 import Script from "next/script";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const unbounded = Unbounded({
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["600", "700", "800"],
   variable: "--font-unbounded",
   display: "swap",
 });
@@ -154,7 +155,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script id="theme-boot" strategy="beforeInteractive">
           {themeBoot}
         </Script>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <MotionProvider>{children}</MotionProvider>
+        </ThemeProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <Script src="https://seeb-widget.pages.dev/widget.js" strategy="lazyOnload" />
       </body>
