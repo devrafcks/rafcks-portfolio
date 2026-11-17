@@ -41,9 +41,14 @@ export function Study() {
           <article key={item.title}>
             <h3 className="font-display text-xl font-semibold tracking-[-0.03em]">{item.title}</h3>
             <p className="mt-1 font-label text-xs font-extrabold uppercase tracking-[0.06em] text-ink/60 italic dark:text-white/60">
-              {item.place} · {item.period}
+              {item.period ? `${item.place} · ${item.period}` : item.place}
             </p>
             <p className="mt-3 leading-relaxed text-ink/85 dark:text-white/80">{item.text}</p>
+            {item.href && (
+              <a href={item.href} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-sm text-ember underline-offset-2 hover:underline">
+                github.com/devrafcks/50days_50projects
+              </a>
+            )}
           </article>
         ))}
       </div>

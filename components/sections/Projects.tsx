@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { IconArrowUpRight } from "@tabler/icons-react";
 import { filters, projects } from "@/data/projects";
 import type { Project, ProjectTag } from "@/data/types";
 import { DeviceMockup } from "@/components/ui/DeviceMockup";
@@ -13,6 +14,7 @@ export function Projects() {
   const [filter, setFilter] = useState<Filter>("Geral");
   const [open, setOpen] = useState<Project | null>(null);
   const trigger = useRef<HTMLElement | null>(null);
+  const available = filters.filter((item) => item === "Geral" || projects.some((project) => project.tags.includes(item)));
   const visible = filter === "Geral" ? projects : projects.filter((project) => project.tags.includes(filter));
 
   return (
@@ -22,7 +24,7 @@ export function Projects() {
         Projetos
       </h2>
       <div role="tablist" aria-label="Filtros de projetos" className="mt-8 flex gap-2 overflow-x-auto pb-2">
-        {filters.map((item) => (
+        {available.map((item) => (
           <button
             key={item}
             type="button"
@@ -49,9 +51,11 @@ export function Projects() {
                 trigger.current = event.currentTarget;
                 setOpen(project);
               }}
-              className="text-left"
+              className={`project-card group cursor-pointer text-left ${project.id === "mirante" && (filter === "Geral" || filter === "SaaS" || filter === "Sistemas") ? "sm:col-span-2" : ""}`}
             >
-              <DeviceMockup {...project.images[0]} />
+              <div className="transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_22px_44px_rgba(43,30,32,0.16)]">
+                <DeviceMockup {...(project.cover ?? project.images[0])} hover />
+              </div>
               <h3 className="mt-4 font-display text-2xl font-semibold tracking-[-0.03em]">{project.title}</h3>
               <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink/75 dark:text-white/75">{project.summary}</p>
               <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
@@ -59,6 +63,10 @@ export function Projects() {
                   <Tag key={tag}>{tag}</Tag>
                 ))}
               </div>
+              <span className="mt-4 inline-flex items-center gap-1 font-label text-xs font-extrabold tracking-[0.08em] text-ember uppercase italic">
+                Ver projeto
+                <IconArrowUpRight size={16} stroke={1.75} aria-hidden="true" />
+              </span>
             </button>
           ))}
         </div>

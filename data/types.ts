@@ -14,6 +14,9 @@ export type Shot = {
   src: string;
   alt: string;
   device: "laptop" | "phone";
+  tall?: boolean;
+  width?: number;
+  height?: number;
 };
 
 export type ProjectLink = {
@@ -31,6 +34,7 @@ export type Project = {
   tags: ProjectTag[];
   links: ProjectLink[];
   images: Shot[];
+  cover?: Shot;
 };
 
 export type Experience = {
@@ -50,10 +54,14 @@ export type Study = {
   place: string;
   period: string;
   text: string;
+  href?: string;
 };
 
 export type Recommendation = {
   name: string;
   role: string;
+  date: string;
+  linkedin: string;
+  photo: string;
   paragraphs: string[];
 };

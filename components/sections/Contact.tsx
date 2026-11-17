@@ -25,7 +25,7 @@ export function Contact() {
               required
               autoComplete={field.auto}
               placeholder=" "
-              className="peer w-full border-b border-ink/25 bg-transparent py-2 text-ink outline-none focus:border-ember dark:border-white/30 dark:text-white"
+              className="peer w-full border-0 border-b border-ink/25 bg-transparent py-2 text-ink shadow-none ring-0 outline-none focus:border-b-[3px] focus:border-ember focus:shadow-none focus:ring-0 focus:outline-none focus-visible:shadow-none focus-visible:ring-0 focus-visible:outline-none dark:border-white/30 dark:text-white"
             />
             <label
               htmlFor={field.id}
@@ -42,7 +42,7 @@ export function Contact() {
             required
             rows={4}
             placeholder=" "
-            className="peer w-full resize-none border-b border-ink/25 bg-transparent py-2 text-ink outline-none focus:border-ember dark:border-white/30 dark:text-white"
+            className="peer w-full resize-none border-0 border-b border-ink/25 bg-transparent py-2 text-ink shadow-none ring-0 outline-none focus:border-b-[3px] focus:border-ember focus:shadow-none focus:ring-0 focus:outline-none focus-visible:shadow-none focus-visible:ring-0 focus-visible:outline-none dark:border-white/30 dark:text-white"
           />
           <label
             htmlFor="mensagem"

@@ -3,20 +3,41 @@ import type { Project, ProjectTag } from "./types";
 const laptop = (src: string, alt: string) => ({ src, alt, device: "laptop" as const });
 const phone = (src: string, alt: string) => ({ src, alt, device: "phone" as const });
 
-/**
- * A galeria do Mirante aceita de 15 a 25 imagens.
- * Os arquivos novos entram neste array, em public/images/projects.
- * Enquanto os prints novos não chegam, ficam os 8 da conta de teste.
- */
+const mirante = (file: string, alt: string, tall = false, width = 1600, height = 893) => ({
+  src: `/images/projects/${file}`,
+  alt,
+  device: "laptop" as const,
+  tall,
+  width,
+  height,
+});
+
 const miranteShots = [
-  laptop("/images/projects/mirante-dash.webp", "Visão geral do Mirante ERP, conta de teste com dados fictícios"),
-  laptop("/images/projects/mirante-pessoas.webp", "Cadastro de pessoas do Mirante ERP, dados fictícios"),
-  laptop("/images/projects/mirante-vendas.webp", "Módulo de vendas do Mirante ERP, com PDV, pedidos e orçamentos"),
-  laptop("/images/projects/mirante-notas.webp", "Notas fiscais do Mirante ERP, dados fictícios"),
-  laptop("/images/projects/mirante-fin.webp", "Módulo financeiro do Mirante ERP, dados fictícios"),
-  laptop("/images/projects/mirante-config.webp", "Configurações do Mirante ERP, dados fictícios"),
-  laptop("/images/projects/mirante-cadastro.webp", "Cadastro no Mirante ERP, dados fictícios"),
-  laptop("/images/projects/mirante-acesso.webp", "Tela de acesso do Mirante ERP"),
+  mirante("mirante-01-dashboard.webp", "Dashboard: KPIs e gráficos", true, 1400, 1915),
+  mirante("mirante-01b-faturamento.webp", "Dashboard: faturamento e projeção"),
+  mirante("mirante-01c-categorias.webp", "Dashboard: categorias e atividade recente"),
+  mirante("mirante-02-estoque.webp", "Produtos e estoque: alertas abaixo do mínimo"),
+  mirante("mirante-03-estoque-dashboard.webp", "Dashboard de estoque: produtos abaixo do mínimo"),
+  mirante("mirante-04-pdv.webp", "PDV: frente de caixa"),
+  mirante("mirante-05-pdv-pagamento.webp", "PDV: pagamento e finalizar venda"),
+  mirante("mirante-06-pedidos.webp", "Pedidos de venda"),
+  mirante("mirante-07-pedido-novo.webp", "Pedido de venda novo"),
+  mirante("mirante-08-orcamento.webp", "Orçamento novo"),
+  mirante("mirante-09-orcamentos.webp", "Orçamentos"),
+  mirante("mirante-10-receber.webp", "Contas a receber"),
+  mirante("mirante-11-pagar.webp", "Contas a pagar"),
+  mirante("mirante-12-pessoas.webp", "Cadastro de pessoas"),
+  mirante("mirante-13-caixa.webp", "Gestão de caixa"),
+  mirante("mirante-16-compras.webp", "Solicitações de compra"),
+  mirante("mirante-17-compra-nova.webp", "Solicitação de compra nova"),
+  mirante("mirante-18-compra-aprovar.webp", "Solicitação de compra: aprovar ou rejeitar"),
+  mirante("mirante-19-xml.webp", "Entrada de mercadorias por XML"),
+  mirante("mirante-21-config.webp", "Configurações"),
+  mirante("mirante-22-busca.webp", "Busca global, Ctrl+K"),
+  mirante("mirante-23-empresas.webp", "Empresas e filiais"),
+  mirante("mirante-24-usuarios.webp", "Usuários e permissões"),
+  mirante("mirante-25-auditoria.webp", "Log de auditoria"),
+  mirante("mirante-26-tema.webp", "Personalização de tema"),
 ];
 
 export const filters: Array<"Geral" | ProjectTag> = [
@@ -58,18 +79,53 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "t2-blog",
+    title: "Blog T2",
+    summary:
+      "Blog de artigos, guias e conteúdos sobre carreira, certificações e mercado financeiro. O conteúdo vem do Ghost, em modo headless.",
+    points: [
+      "Next.js 16 com App Router, React 19, TypeScript e Tailwind CSS 4.",
+      "SEO técnico, Core Web Vitals e GA4.",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind", "Ghost", "GA4"],
+    tags: ["Sites"],
+    links: [{ href: "https://blog.t2.com.br", label: "Ver site", kind: "blog" }],
+    images: [
+      laptop("/images/projects/t2-blog-home.webp", "Página inicial do Blog T2"),
+      laptop("/images/projects/t2-blog-artigo.webp", "Artigo público do Blog T2 sobre a prova C-Pro R"),
+    ],
+  },
+  {
+    id: "t2-docs",
+    title: "T2 Materiais Gratuitos",
+    summary:
+      "Portal de apostilas, simulados e resumos gratuitos para certificações financeiras, como CPA, C-Pro, CFP e ANCORD.",
+    points: ["Next.js com Ghost em modo headless. Os materiais publicados são de estudo, sem dados de alunos."],
+    stack: ["Next.js", "Ghost"],
+    tags: ["Sites", "Sistemas"],
+    links: [{ href: "https://docs.t2.com.br", label: "Ver site", kind: "site" }],
+    images: [
+      laptop("/images/projects/t2-docs-home.webp", "Página inicial dos materiais gratuitos da T2"),
+      laptop("/images/projects/t2-docs-materiais.webp", "Lista pública de materiais gratuitos da T2"),
+    ],
+  },
+  {
     id: "mirante",
     title: "Mirante ERP",
     summary:
-      "ERP feito na ByStartup. A página pública descreve vendas, estoque, financeiro, notas fiscais, multiempresa, NF-e e NFS-e com a SEFAZ, e dashboards.",
+      "ERP feito na ByStartup. Os prints são de uma conta de teste, com dados fictícios, e mostram o uso no dia a dia da operação.",
     points: [
-      "Nos prints de uma conta de teste, com dados fictícios, aparecem visão geral, pessoas, vendas com PDV, pedidos e orçamentos, notas fiscais, financeiro, configurações e cadastro.",
-      "O financeiro mostra contas a receber e a pagar, caixas, contas bancárias, adiantamentos e reparcelamento.",
+      "Dashboard executivo com KPIs, gráficos, faturamento, projeção, categorias e atividade recente.",
+      "PDV com frente de caixa e pagamento, pedidos de venda e orçamentos.",
+      "Financeiro com contas a pagar, contas a receber e caixa. Estoque com alertas de produtos abaixo do mínimo.",
+      "Compras com solicitação, aprovação ou rejeição, e entrada de mercadorias por XML.",
+      "Notas fiscais, multiempresa e filiais, usuários e permissões, log de auditoria, busca global com Ctrl+K e personalização de tema.",
     ],
     stack: ["Next.js"],
     tags: ["Sistemas", "SaaS"],
     links: [{ href: "https://miranteerp.com.br", label: "Site", kind: "site" }],
     images: miranteShots,
+    cover: mirante("mirante-01b-faturamento.webp", "Dashboard: faturamento e projeção"),
   },
   {
     id: "carretel",
@@ -78,7 +134,7 @@ export const projects: Project[] = [
       "SaaS próprio, em pré-lançamento. Caderno digital para oficinas de costura: registrar o corte, comprovar a entrega e organizar a cobrança pelo celular, inclusive sem sinal.",
     points: ["A aplicação publicada é feita em Next.js."],
     stack: ["Next.js"],
-    tags: ["SaaS", "Sites"],
+    tags: ["SaaS", "Sites", "PWA"],
     links: [{ href: "https://carretel.vercel.app", label: "Site", kind: "site" }],
     images: [
       laptop("/images/projects/carretel.webp", "Página inicial do Carretel"),
@@ -123,7 +179,7 @@ export const projects: Project[] = [
     summary: "Aplicação web para registrar o sono e ver padrões, com gráficos e conta por usuário. O SeeB faz parte da interface.",
     points: ["Next.js, Prisma, PostgreSQL, Clerk e Tailwind."],
     stack: ["Next.js", "Prisma", "PostgreSQL", "Clerk"],
-    tags: ["Sites", "SaaS"],
+    tags: ["Sites"],
     links: [
       { href: "https://somnus-track.vercel.app/", label: "Site", kind: "site" },
       { href: "https://github.com/devrafcks/somnus-next", label: "Repositório", kind: "repo" },
@@ -140,7 +196,7 @@ export const projects: Project[] = [
       "Aplicativo de serviços, produtos, aluguéis e lojas da cidade, com mapa e chat. Está na App Store e na Google Play. A versão web usa Expo e React Native.",
     points: ["Na loja, o app descreve busca por proximidade, vendedores verificados e conversa dentro do aplicativo."],
     stack: ["Expo", "React Native"],
-    tags: ["Apps"],
+    tags: ["Apps", "PWA"],
     links: [
       { href: "https://bicus.com.br", label: "Site", kind: "site" },
       { href: "https://apps.apple.com/br/app/bicus/id6802697550", label: "App Store", kind: "apple" },
@@ -188,7 +244,7 @@ export const projects: Project[] = [
       "Aplicativo para encontrar treinos de corrida em grupo na cidade, confirmar presença, criar treinos e conversar no chat do grupo. Dá para conectar o Strava. Na Google Play o nome é Corra junto.",
     points: ["A página da loja também cita treinos filtrados por distância, horário e ritmo, e treinos exclusivos para mulheres."],
     stack: [],
-    tags: ["Apps"],
+    tags: ["Apps", "PWA"],
     links: [
       { href: "https://play.google.com/store/apps/details?id=br.com.juntoapp.app&hl=pt_BR", label: "Google Play", kind: "play" },
     ],
@@ -223,7 +279,7 @@ export const projects: Project[] = [
     summary: "Loja de relógios originais, projeto freelance. Catálogo por marca, busca, acompanhamento de pedido e atendimento pelo WhatsApp.",
     points: ["A stack não aparece no site público, então não está listada aqui."],
     stack: [],
-    tags: ["E-commerce", "Sites"],
+    tags: ["E-commerce", "Sites", "PWA"],
     links: [{ href: "https://jotaperelogios.store", label: "Site", kind: "site" }],
     images: [
       laptop("/images/projects/jotape.webp", "Página da Jotape Relógios"),

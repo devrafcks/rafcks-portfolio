@@ -42,6 +42,23 @@ html.dark body {
   outline-offset: 3px;
 }
 
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.project-card:focus {
+  outline: none;
+}
+
+.project-card:focus-visible {
+  outline: 1px solid #ff7f1a;
+  outline-offset: 6px;
+}
+
 h1,
 h2,
 h3,
