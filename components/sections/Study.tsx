@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import {
   IconBook,
   IconBrush,
@@ -5,7 +8,6 @@ import {
   IconCode,
   IconDeviceLaptop,
   IconHash,
-  IconLanguage,
   IconRocket,
   IconSchool,
   IconUsers,
@@ -23,7 +25,6 @@ const icons: Record<string, ComponentType<{ size?: number; stroke?: number; "ari
   Alura: IconBook,
   DIO: IconDeviceLaptop,
   Udemy: IconCode,
-  "United Idiomas": IconLanguage,
   Microsoft: IconCertificate,
 };
 
@@ -39,7 +40,7 @@ function CourseCard({ item }: { item: Study }) {
         <p className="mt-1 font-label text-xs font-extrabold tracking-[0.04em] text-ink/80 uppercase italic dark:text-white/80">
           {item.period ? `${item.place} · ${item.period}` : item.place}
         </p>
-        <p className="mt-1 text-sm leading-snug text-ink/85 dark:text-white/80">{item.text}</p>
+        <p className="mt-1 text-sm leading-relaxed text-ink/85 dark:text-white/80">{item.text}</p>
         {item.href && (
           <a href={item.href} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block text-sm text-ember-ink underline-offset-2 hover:underline">
             github.com/devrafcks/50days_50projects
@@ -51,37 +52,46 @@ function CourseCard({ item }: { item: Study }) {
 }
 
 export function Study() {
-  const livres = studies.filter((item) => item.group === "curso" && item.track !== "certificacao");
-  const certificacoes = studies.filter((item) => item.group === "curso" && item.track === "certificacao");
+  const [tab, setTab] = useState<"formacao" | "cursos">("formacao");
   const formacao = studies.filter((item) => item.group === "formacao");
+  const cursos = studies.filter((item) => item.group === "curso");
 
   return (
     <section id="estudos" className="mx-auto max-w-6xl px-5 py-20 sm:px-10 lg:px-0">
-      <p className="font-label text-xs font-extrabold uppercase tracking-[0.14em] text-ember-ink italic">Estudos</p>
-      <h2 className="mt-3 font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
-        Formação e cursos
-      </h2>
-      <h3 className="mt-10 font-display text-2xl font-semibold tracking-[-0.03em]">Formação</h3>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        {formacao.map((item) => (
-          <article key={item.title} className="rounded-2xl bg-cream p-4 dark:bg-night-2">
-            <h4 className="font-display text-base font-semibold tracking-[-0.02em]">{item.title}</h4>
-            <p className="mt-1 font-label text-xs font-extrabold tracking-[0.04em] text-ink/80 uppercase italic dark:text-white/80">
-              {item.place} · {item.period}
-            </p>
-            <p className="mt-1 text-sm leading-snug text-ink/85 dark:text-white/80">{item.text}</p>
-          </article>
-        ))}
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <p className="font-label text-xs font-extrabold uppercase tracking-[0.14em] text-ember-ink italic">Estudos</p>
+          <h2 className="mt-3 font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
+            Formação e cursos
+          </h2>
+        </div>
+        <div role="tablist" aria-label="Formação e cursos" className="flex gap-6">
+          {(
+            [
+              ["formacao", "Formação"],
+              ["cursos", "Cursos e certificações"],
+            ] as const
+          ).map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              role="tab"
+              aria-selected={tab === id}
+              onClick={() => setTab(id)}
+              className={`border-b-2 pb-1 font-label text-sm font-extrabold uppercase tracking-[0.08em] italic ${tab === id ? "border-sun text-ink dark:text-white" : "border-transparent text-ink/80 dark:text-white/80"}`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
-      <h3 className="mt-12 font-display text-2xl font-semibold tracking-[-0.03em]">Cursos livres</h3>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        {livres.map((item) => (
+      <div className="mt-10 grid gap-4 sm:grid-cols-2" hidden={tab !== "formacao"}>
+        {formacao.map((item) => (
           <CourseCard key={item.title} item={item} />
         ))}
       </div>
-      <h3 className="mt-12 font-display text-2xl font-semibold tracking-[-0.03em]">Certificações</h3>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        {certificacoes.map((item) => (
+      <div className="mt-10 grid gap-4 sm:grid-cols-2" hidden={tab !== "cursos"}>
+        {cursos.map((item) => (
           <CourseCard key={item.title} item={item} />
         ))}
       </div>

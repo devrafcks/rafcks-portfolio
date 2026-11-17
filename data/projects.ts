@@ -112,9 +112,9 @@ export const projects: Project[] = [
   {
     id: "mirante",
     title: "Mirante ERP",
-    summary:
-      "ERP feito na ByStartup. Os prints são de uma conta de teste, com dados fictícios, e mostram o uso no dia a dia da operação.",
+    summary: "ERP completo com PDV, financeiro, estoque, compras e notas fiscais, multiempresa.",
     points: [
+      "Os prints são de uma conta de teste, com dados fictícios.",
       "Dashboard executivo com KPIs, gráficos, faturamento, projeção, categorias e atividade recente.",
       "PDV com frente de caixa e pagamento, pedidos de venda e orçamentos.",
       "Financeiro com contas a pagar, contas a receber e caixa. Estoque com alertas de produtos abaixo do mínimo.",

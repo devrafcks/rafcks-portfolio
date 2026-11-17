@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import { filters, projects } from "@/data/projects";
 import type { Project, ProjectTag } from "@/data/types";
@@ -13,9 +13,40 @@ type Filter = "Geral" | ProjectTag;
 export function Projects() {
   const [filter, setFilter] = useState<Filter>("Geral");
   const [open, setOpen] = useState<Project | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [geralSecond, setGeralSecond] = useState<string | null>(null);
+  const [filterPick, setFilterPick] = useState<string | null>(null);
   const trigger = useRef<HTMLElement | null>(null);
   const available = filters.filter((item) => item === "Geral" || projects.some((project) => project.tags.includes(item)));
   const visible = filter === "Geral" ? projects : projects.filter((project) => project.tags.includes(filter));
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    if (filter === "Geral") {
+      const others = projects.filter((project) => project.id !== "mirante");
+      setGeralSecond(others[Math.floor(Math.random() * others.length)]?.id ?? null);
+      return;
+    }
+    const pool = projects.filter((project) => project.tags.includes(filter));
+    setFilterPick(pool[Math.floor(Math.random() * pool.length)]?.id ?? null);
+  }, [filter, mounted]);
+
+  const ordered = useMemo(() => {
+    if (filter !== "Geral") {
+      if (!filterPick) return visible;
+      const featured = visible.find((project) => project.id === filterPick);
+      if (!featured) return visible;
+      return [featured, ...visible.filter((project) => project.id !== filterPick)];
+    }
+    const mirante = visible.find((project) => project.id === "mirante");
+    const second = geralSecond ? visible.find((project) => project.id === geralSecond) : undefined;
+    const rest = visible.filter((project) => project.id !== "mirante" && project.id !== geralSecond);
+    return [mirante, ...rest.slice(0, 4), second, ...rest.slice(4)].filter((project): project is Project => Boolean(project));
+  }, [filter, visible, filterPick, geralSecond]);
 
   return (
     <section id="projetos" className="mx-auto max-w-6xl px-5 py-20 sm:px-10 lg:px-0">
@@ -40,8 +71,14 @@ export function Projects() {
       {visible.length === 0 ? (
         <p className="mt-10 text-ink/70 dark:text-white/70">Nenhum projeto verificado neste filtro.</p>
       ) : (
-        <div className="mt-8 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
-          {visible.map((project) => (
+        <div className="mt-8 grid grid-flow-dense gap-8 sm:grid-cols-2 xl:grid-cols-3">
+          {ordered.map((project) => {
+            const geralLead = filter === "Geral" && project.id === "mirante";
+            const geralInverse = filter === "Geral" && project.id === geralSecond;
+            const filterLead = filter !== "Geral" && project.id === filterPick;
+            const large = geralLead || geralInverse || filterLead;
+            const place = geralInverse ? "xl:col-start-2" : "";
+            return (
             <button
               key={project.id}
               type="button"
@@ -51,7 +88,7 @@ export function Projects() {
                 trigger.current = event.currentTarget;
                 setOpen(project);
               }}
-              className={`project-card group cursor-pointer text-left ${project.id === "mirante" && (filter === "Geral" || filter === "SaaS" || filter === "Sistemas") ? "sm:col-span-2" : ""}`}
+              className={`project-card group cursor-pointer text-left ${large ? `sm:col-span-2 xl:col-span-2 ${place}` : ""}`}
             >
               <div className="transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_22px_44px_rgba(43,30,32,0.16)]">
                 <DeviceMockup {...(project.cover ?? project.images[0])} hover />
@@ -68,7 +105,8 @@ export function Projects() {
                 <IconArrowUpRight size={16} stroke={1.75} aria-hidden="true" />
               </span>
             </button>
-          ))}
+            );
+          })}
         </div>
       )}
       {open && (

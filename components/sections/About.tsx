@@ -25,10 +25,13 @@ export function About() {
           Desenvolvo produtos web, SaaS e mobile de ponta a ponta, do requisito à produção. Já construí ERP, apps publicados nas lojas, sistemas internos com dezenas de integrações e automações que tiram trabalho manual do caminho, sempre com foco em performance, acessibilidade e custo baixo de infraestrutura.
         </p>
         <p>
+          Gosto de entender o problema antes de escrever código. Participo do levantamento de requisitos, desenho a arquitetura, modelo o banco de dados, cuido das integrações com pagamentos, notas fiscais e plataformas externas, e acompanho o deploy e a evolução do produto depois que ele está no ar.
+        </p>
+        <p>
           Acessibilidade e performance entram no início do projeto. Uso IA e automação para ganhar velocidade, e sigo responsável pela revisão e pela qualidade do que vai para produção.
         </p>
         <p>
-          Sou formado em Informática para Internet pela ETEC Parque Belém. Curso Engenharia de Software na Gran Faculdade e Inteligência Artificial e Automação Digital na UniFECAF, com a Faculdade de Tecnologia Rocketseat. O inglês está em andamento na United Idiomas.
+          Sou formado em Informática para Internet pela ETEC Parque Belém. Curso Engenharia de Software na Gran Faculdade e Inteligência Artificial e Automação Digital na UniFECAF, com a Faculdade de Tecnologia Rocketseat. Me comunico bem em inglês, o que me ajuda a ler documentação, acompanhar a comunidade e trabalhar com ferramentas e times internacionais.
         </p>
       </div>
     </section>
