@@ -14,7 +14,7 @@ export function Hero() {
         </h1>
         <div className="mt-8 max-w-xl">
             <p className="text-[clamp(1rem,0.95rem+0.2vw,1.15rem)] leading-relaxed text-ink/80 dark:text-white/80">
-              Desenvolvedor full stack de 19 anos, em São Paulo. Crio SaaS e produtos digitais de ponta a ponta: entendo o problema, desenho a solução, construo, integro pagamentos e notas fiscais e cuido de tudo depois que vai para o ar. Acessibilidade e performance entram no primeiro commit.
+              Desenvolvedor full stack de 19 anos, em São Paulo. Crio SaaS e produtos digitais de ponta a ponta: entendo o problema, desenho a solução, construo, integro pagamentos e cuido de tudo depois que vai para o ar. Acessibilidade e performance entram no primeiro commit.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Button href="#projetos" variant="primary">
