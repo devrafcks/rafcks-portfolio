@@ -1,20 +1,26 @@
 import { experiences } from "@/data/experiences";
+import { CountUp } from "@/components/motion/CountUp";
+import { Reveal } from "@/components/motion/Reveal";
+import { TimelineLine } from "@/components/motion/TimelineLine";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
 
 export function Experience() {
   return (
     <section id="experiencia" className="bg-cream px-5 py-20 sm:px-10 dark:bg-night-2">
       <div className="mx-auto max-w-6xl">
-        <p className="font-label text-xs font-extrabold uppercase tracking-[0.14em] text-ember-ink italic">Trajetória</p>
-        <h2 className="mt-3 max-w-xl font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
-          Experiências
-        </h2>
-        <div className="mt-12 space-y-8">
+        <SectionHeading title="Experiências" titleClassName="max-w-xl" />
+        <TimelineLine className="mt-12 space-y-8">
           {experiences.map((item) => (
-            <article key={item.org} className="grid gap-6 border-t border-ink/15 pt-8 lg:grid-cols-[16rem_minmax(0,1fr)] dark:border-white/15">
+            <Reveal
+              as="article"
+              key={item.org}
+              className="relative grid gap-6 border-t border-ink/15 pt-8 sm:pl-10 lg:grid-cols-[16rem_minmax(0,1fr)] dark:border-white/15"
+            >
+              <span aria-hidden="true" className="absolute top-9 left-0 hidden size-[11px] rounded-full border-2 border-ember bg-cream sm:block dark:bg-night-2" />
               <div>
                 <p className="font-label text-xs font-extrabold uppercase tracking-[0.08em] italic">{item.period}</p>
-                <p className="mt-1 text-sm text-ink/70 dark:text-white/70">{item.mode}</p>
+                <p className="mt-1 text-sm text-ink/80 dark:text-white/80">{item.mode}</p>
               </div>
               <div>
                 <h3 className="font-display text-[clamp(1.35rem,1.1rem+0.8vw,1.9rem)] font-semibold tracking-[-0.03em]">
@@ -31,7 +37,7 @@ export function Experience() {
                 )}
                 {item.result && (
                   <p className="mt-6 inline-flex flex-col bg-ink px-4 py-3 text-white dark:bg-sun dark:text-ink">
-                    <span className="font-display text-[clamp(1.6rem,1.2rem+1vw,2.2rem)] leading-none font-bold">{item.result.value}</span>
+                    <CountUp value={item.result.value} className="font-display text-[clamp(1.6rem,1.2rem+1vw,2.2rem)] leading-none font-bold" />
                     <span className="mt-1 text-sm">{item.result.label}</span>
                   </p>
                 )}
@@ -41,9 +47,9 @@ export function Experience() {
                   ))}
                 </div>
               </div>
-            </article>
+            </Reveal>
           ))}
-        </div>
+        </TimelineLine>
       </div>
     </section>
   );

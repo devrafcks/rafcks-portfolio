@@ -5,7 +5,11 @@ import dynamic from "next/dynamic";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import { filters, projects } from "@/data/projects";
 import type { Project, ProjectTag } from "@/data/types";
+import { m } from "motion/react";
+import { EASE } from "@/components/motion/Reveal";
+import { Tilt } from "@/components/motion/Tilt";
 import { DeviceMockup } from "@/components/ui/DeviceMockup";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
 
 const ProjectDialog = dynamic(() => import("@/components/ui/ProjectDialog").then((mod) => mod.ProjectDialog), { ssr: false });
@@ -63,10 +67,7 @@ export function Projects() {
 
   return (
     <section id="projetos" className="mx-auto max-w-6xl px-5 py-20 sm:px-10 lg:px-0">
-      <p className="font-label text-xs font-extrabold uppercase tracking-[0.14em] text-ember-ink italic">Trabalho</p>
-      <h2 className="mt-3 font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
-        Projetos
-      </h2>
+      <SectionHeading title="Projetos" />
       <div role="tablist" aria-label="Filtros de projetos" className="mt-8 flex gap-2 overflow-x-auto pb-2">
         {available.map((item) => (
           <button
@@ -78,8 +79,16 @@ export function Projects() {
               setFilter(item);
               setShowAll(false);
             }}
-            className={`shrink-0 rounded-full px-3 py-2 font-label text-[0.72rem] font-extrabold uppercase tracking-[0.06em] italic ${filter === item ? "bg-ink text-white dark:bg-sun dark:text-ink" : "text-ink/70 dark:text-white/70"}`}
+            className={`relative isolate shrink-0 rounded-full px-3 py-2 font-label text-[0.72rem] font-extrabold uppercase tracking-[0.06em] italic transition-colors duration-300 ${filter === item ? "text-white dark:text-ink" : "text-ink/80 hover:text-ink dark:text-white/80 dark:hover:text-white"}`}
           >
+            {filter === item && (
+              <m.span
+                layoutId="project-filter"
+                aria-hidden="true"
+                className="absolute inset-0 -z-10 rounded-full bg-ink dark:bg-sun"
+                transition={{ type: "spring", stiffness: 380, damping: 32 }}
+              />
+            )}
             {item}
           </button>
         ))}
@@ -96,7 +105,7 @@ export function Projects() {
             const large = geralLead || geralInverse || geralThirdLead || filterLead;
             const place = geralInverse ? "xl:col-start-2" : "";
             return (
-            <button
+            <m.button
               key={project.id}
               type="button"
               aria-haspopup="dialog"
@@ -105,13 +114,19 @@ export function Projects() {
                 trigger.current = event.currentTarget;
                 setOpen(project);
               }}
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.9, delay: (cardIndex % 3) * 0.08, ease: EASE }}
               className={`project-card group cursor-pointer text-left ${large ? `sm:col-span-2 xl:col-span-2 ${place}` : ""}`}
             >
-              <div className="transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_22px_44px_rgba(43,30,32,0.16)]">
-                <DeviceMockup {...(project.cover ?? project.images[0])} hover wide={large} priority={cardIndex === 0} />
-              </div>
+              <Tilt max={large ? 3 : 5}>
+                <div className="rounded-2xl transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5 group-hover:shadow-[0_28px_50px_-12px_rgba(43,30,32,0.28)]">
+                  <DeviceMockup {...(project.cover ?? project.images[0])} hover wide={large} priority={cardIndex === 0} />
+                </div>
+              </Tilt>
               <h3 className="mt-4 font-display text-2xl font-semibold tracking-[-0.03em]">{project.title}</h3>
-              <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink/75 dark:text-white/75">{project.summary}</p>
+              <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink/80 dark:text-white/80">{project.summary}</p>
               {project.notice && (
                 <p className="mt-3 rounded-xl border border-ink/15 bg-sun/35 px-3 py-2 text-sm leading-relaxed text-ink dark:border-white/20 dark:bg-white/10 dark:text-white">
                   {project.notice}
@@ -123,10 +138,12 @@ export function Projects() {
                 ))}
               </div>
               <span className="mt-4 inline-flex items-center gap-1 font-label text-xs font-extrabold tracking-[0.08em] text-ember-ink uppercase italic">
-                Ver projeto
-                <IconArrowUpRight size={16} stroke={1.75} aria-hidden="true" />
+                <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1.5px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-500 group-hover:bg-[length:100%_1.5px]">
+                  Ver projeto
+                </span>
+                <IconArrowUpRight size={16} stroke={1.75} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
-            </button>
+            </m.button>
             );
           })}
         </div>
