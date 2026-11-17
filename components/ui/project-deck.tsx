@@ -109,7 +109,7 @@ function Card({ p, i, count, progress, still, load }: { p: DeckProject; i: numbe
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1400px) 90vw, 1280px"
               loading="eager"
-              className="object-cover object-top"
+              className="origin-top-left scale-[1.04] object-cover object-left-top"
             />
           )}
         </div>

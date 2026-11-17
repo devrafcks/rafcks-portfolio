@@ -185,7 +185,8 @@ export function TiltedGridHero({
                       draggable={false}
                       decoding="async"
                       className="absolute top-0 max-w-none object-cover object-top"
-                      style={{ left: u(-k * share), width: u(aspectRatio), height: u(1) }}
+                      // 4% mais larga e alinhada à esquerda: corta a barra de rolagem que alguns prints trazem na borda direita
+                      style={{ left: u(-k * share), width: u(aspectRatio * 1.04), height: u(1.04) }}
                     />
                   ) : null}
                 </div>
