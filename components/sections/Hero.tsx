@@ -8,7 +8,7 @@ export function Hero() {
         Desenvolvedor Full Stack
       </p>
       <div className="relative mt-4">
-        <h1 className="max-w-full font-display text-[clamp(2.025rem,calc(21.8cqw-6px),39.625rem)] leading-[0.9] font-bold tracking-[-0.04em] text-ink dark:text-white">
+        <h1 className="max-w-full font-display text-[clamp(4rem,15vw,15rem)] leading-[0.9] font-bold tracking-[-0.04em] text-ink dark:text-white">
           Rafael
           <span className="block text-paper [-webkit-text-stroke:0.035em_#2B1E20] [paint-order:stroke_fill] dark:text-night dark:[-webkit-text-stroke:0.035em_#fff]">
             Blanco
