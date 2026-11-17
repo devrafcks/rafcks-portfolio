@@ -17,10 +17,10 @@ export const studies: Study[] = [
   },
   {
     group: "formacao",
-    title: "Arquitetura de Software com Inteligência Artificial",
-    place: "Anhanguera e Full Stack Club",
-    period: "nov. 2026 a nov. 2027 · 360 h",
-    text: "Extensão universitária em andamento, com 9 disciplinas e foco em projetos práticos. O conteúdo trata de arquitetura de software, IA aplicada ao desenvolvimento, escalabilidade, performance, testes, boas práticas, microsserviços, CI/CD e cloud. Depois que eu concluir a graduação, ela será convertida em pós-graduação lato sensu.",
+    title: "Arquitetura de Software com IA",
+    place: "Extensão curricular",
+    period: "Anhanguera, em andamento, 360 h",
+    text: "Extensão curricular em andamento na Anhanguera, com o Full Stack Club, de 360 horas. O foco é arquitetura de software com inteligência artificial, em projetos práticos de escalabilidade, performance, testes, microsserviços, CI/CD e cloud.",
   },
   {
     group: "formacao",

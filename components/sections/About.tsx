@@ -37,7 +37,7 @@ export function About() {
           Acessibilidade e performance entram no começo do projeto. Criei o SeeB, um widget de acessibilidade open source que nasceu no meu TCC e hoje vai embutido nos meus outros produtos. Uso IA e automação no dia a dia para ganhar velocidade, com agentes e MCP no fluxo de trabalho, e continuo responsável pela arquitetura, pela revisão e pela qualidade do que vai para produção.
         </p>
         <p>
-          Quem trabalhou comigo costuma destacar a calma em projetos complexos, a organização e a mania de antecipar problema na reunião de planejamento. Sou técnico em Informática para Internet pela ETEC Parque Belém, curso Engenharia de Software na Gran Faculdade e Inteligência Artificial e Automação Digital na UniFECAF com a Faculdade de Tecnologia Rocketseat. Me comunico bem em inglês, o que me ajuda a ler documentação, acompanhar a comunidade e trabalhar com ferramentas e times de fora.
+          Quem trabalhou comigo costuma destacar a calma em projetos complexos, a organização e a mania de antecipar problema na reunião de planejamento. Sou técnico em Informática para Internet pela ETEC Parque Belém, curso Engenharia de Software na Gran Faculdade e Inteligência Artificial e Automação Digital na UniFECAF com a Faculdade de Tecnologia Rocketseat. Também faço a extensão curricular em Arquitetura de Software com IA na Anhanguera, com o Full Stack Club, de 360 horas, em andamento. Me comunico bem em inglês, o que me ajuda a ler documentação, acompanhar a comunidade e trabalhar com ferramentas e times de fora.
         </p>
       </div>
     </section>
