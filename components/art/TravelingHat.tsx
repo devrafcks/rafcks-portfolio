@@ -26,6 +26,7 @@ export function TravelingHat() {
     let raf = 0;
     let cancelled = false;
     let size = 0;
+    let bornAt = 0;
 
     // posições no documento, guardadas para não ler layout a cada frame
     type Box = { left: number; top: number; width: number; height: number };
@@ -124,6 +125,16 @@ export function TravelingHat() {
         }
       }
 
+      // nascimento: o 3D cai de leve no lugar do SVG em vez de só aparecer por cima
+      if (bornAt && !reduce) {
+        const t = clamp01((performance.now() - bornAt) / 800);
+        if (t < 1) {
+          const e = 1 - (1 - t) ** 3;
+          scale *= 0.8 + 0.2 * e;
+          cy -= (1 - e) * 36;
+        }
+      }
+
       el.style.transform = `translate3d(${cx - size / 2}px, ${cy - size / 2}px, 0) scale(${scale})`;
       // voando não bloqueia cliques; parado na Hero ou pousado dá para clicar e girar
       el.style.pointerEvents = (fly < 0.1 || land > 0.95) && flyby < 0.05 ? "auto" : "none";
@@ -140,8 +151,15 @@ export function TravelingHat() {
         if (cancelled) return;
         place();
         scene = createHatScene(el, { reduceMotion: reduce });
-        el.style.opacity = "1";
-        window.dispatchEvent(new Event("hat:ready"));
+        // só mostra depois que o primeiro quadro já foi desenhado no tamanho certo
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => {
+            if (cancelled) return;
+            bornAt = performance.now();
+            el.style.opacity = "1";
+            window.dispatchEvent(new Event("hat:ready"));
+          }),
+        );
       } catch {
         // sem WebGL: o SVG da Hero continua
       }
@@ -165,7 +183,7 @@ export function TravelingHat() {
       ref={host}
       aria-hidden="true"
       onClick={() => window.dispatchEvent(new Event("hat:spin"))}
-      className="fixed top-0 left-0 z-30 block origin-center cursor-pointer opacity-0 transition-opacity duration-700 will-change-transform md:block"
+      className="fixed top-0 left-0 z-30 block origin-center cursor-pointer opacity-0 transition-opacity duration-500 will-change-transform"
     />
   );
 }
