@@ -1,5 +1,6 @@
 export type ProjectTag =
   | "Landing pages"
+  | "Link na bio"
   | "Sites"
   | "Apps"
   | "PWA"

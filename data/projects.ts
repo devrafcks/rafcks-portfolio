@@ -43,6 +43,7 @@ const miranteShots = [
 export const filters: Array<"Geral" | ProjectTag> = [
   "Geral",
   "Landing pages",
+  "Link na bio",
   "Sites",
   "Apps",
   "PWA",
@@ -433,6 +434,254 @@ export const projects: Project[] = [
       laptop("/images/projects/exu-07-bichos.webp", "Bichos do jogo"),
       laptop("/images/projects/exu-08-motosserra.webp", "Árvore derrubada com motosserra"),
       laptop("/images/projects/exu-00-banner.webp", "Banner de 67 Noites com Exu"),
+    ],
+  },
+  {
+    id: "offscope",
+    title: "OFFSCOPE",
+    summary:
+      "FPS online em primeira pessoa para Roblox, com uma sniper, uma faca e três mapas. O foco é o no-scope: o tiro sem mira é o tiro certo. Feito com ajuda de IA (Claude Code), por diversão e aprendizado, como projeto pessoal.",
+    notice: "Leve, 16+, violência leve, sem sangue",
+    points: [
+      "Modos Duelo 1v1 e Duplas 2v2, casual e ranked com ELO, mais Equipes 4v4 e Todos contra todos para 8 jogadores. No fim da partida, um voto de 20 segundos escolhe o próximo mapa.",
+      "O servidor decide cada tiro. O cliente manda a intenção com uma semente determinística, e o servidor refaz a direção, volta as hitboxes no tempo (lag compensation a 30 Hz, até 0,45 s) e confirma o acerto. A faca mata com um golpe pelas costas.",
+      "Três mapas feitos só com código, com terreno real via WriteVoxels: Cais 09, um porto ao amanhecer, Avenida 11, o centro à noite, e Posto 47, na serra. Arma, braços e faca são montados com Parts e animados por código.",
+      "Os cosméticos são só visuais, sem caixas e sem pay-to-win. A loja diária é igual em todos os servidores, e a compra só é confirmada depois que o ProfileStore salva de verdade.",
+      "Os 22 sons e as texturas são gerados por código no próprio repositório. O README marca 13,5 mil linhas de Luau, e o CI roda rojo build, type-check com luau-lsp e selene a cada push.",
+    ],
+    stack: ["Luau", "Rojo", "Wally", "ProfileStore", "Lune", "Selene", "StyLua", "luau-lsp", "GitHub Actions"],
+    tags: ["Jogos"],
+    links: [
+      { href: "https://www.roblox.com/games/133650768159073/OFFSCOPE", label: "Jogar no Roblox", kind: "roblox" },
+      { href: "https://github.com/devrafcks/OFFSCOPE", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/offscope-01-match.webp", "Partida no Posto 47, no mapa do OFFSCOPE"),
+      laptop("/images/projects/offscope-02-scope.webp", "Luneta da sniper no OFFSCOPE"),
+      laptop("/images/projects/offscope-03-knife.webp", "Faca em primeira pessoa no OFFSCOPE"),
+      laptop("/images/projects/offscope-04-aereo.webp", "Base do OFFSCOPE vista de cima"),
+      laptop("/images/projects/offscope-05-praca.webp", "Praça com os portais de fila do OFFSCOPE"),
+      laptop("/images/projects/offscope-06-cais.webp", "Mapa Cais 09 do OFFSCOPE"),
+      laptop("/images/projects/offscope-07-avenida.webp", "Mapa Avenida 11 do OFFSCOPE"),
+      laptop("/images/projects/offscope-08-banner.webp", "Banner do OFFSCOPE"),
+    ],
+  },
+  {
+    id: "mapinion",
+    title: "Mapinion",
+    summary:
+      "App mobile para descobrir e recomendar lugares. Você publica o local com foto, nota de 1 a 5 estrelas e comentário, e acompanha as recomendações de outras pessoas num feed.",
+    points: [
+      "Feito em React Native com Expo e Expo Router, com login, cadastro e três abas: feed, nova recomendação e perfil. A sessão fica no Zustand, com AsyncStorage.",
+      "No perfil, você vê, edita e apaga as suas recomendações. A foto do lugar vem da galeria pelo Expo Image Picker.",
+      "A API também é minha: Node.js com Express, MongoDB com Mongoose, login com JWT (token de 15 dias) e imagens no Cloudinary. O feed é paginado, e o avatar é gerado pelo DiceBear a partir do nome de usuário.",
+    ],
+    stack: ["React Native", "Expo", "Expo Router", "Zustand", "Node.js", "Express", "MongoDB", "JWT", "Cloudinary"],
+    tags: ["Apps"],
+    links: [
+      { href: "https://github.com/devrafcks/React-native_mapinion-app", label: "Repositório do app", kind: "repo" },
+      { href: "https://github.com/devrafcks/React-native-mapinion", label: "Repositório da API", kind: "repo" },
+    ],
+    images: [
+      { ...phone("/images/projects/mapinion-01-login.webp", "Tela de login do Mapinion"), width: 539, height: 929 },
+      { ...phone("/images/projects/mapinion-02-cadastro.webp", "Tela de cadastro do Mapinion"), width: 529, height: 842 },
+      { ...phone("/images/projects/mapinion-03-compartilhar.webp", "Tela de nova recomendação do Mapinion"), width: 529, height: 952 },
+    ],
+  },
+  {
+    id: "excel-dashboard",
+    title: "Dashboard de vendas do Excel",
+    summary:
+      "Teste técnico: você sobe uma planilha de vendas (.xlsx ou .xls) e o app limpa os dados e monta um dashboard com métricas, gráficos, filtros e tabelas.",
+    points: [
+      "Lê a primeira planilha com a biblioteca xlsx, descarta as linhas sem Categoria, Produto ou Receita e normaliza categorias e meses.",
+      "Mostra Receita Total, Pedidos e Ticket Médio, além de quatro gráficos em Recharts: vendas por categoria, vendas por mês, quantidade por mês e top 5 produtos por receita.",
+      "Tem filtros por categoria e mês e uma tabela completa com ordenação, paginação, busca em tempo real e 10, 25, 50 ou 100 itens por página. O widget de acessibilidade SeeB vem no index.html.",
+    ],
+    stack: ["React", "TypeScript", "Vite", "Recharts", "xlsx"],
+    tags: ["Sistemas"],
+    links: [
+      { href: "https://desafio-excel.vercel.app", label: "Site", kind: "site" },
+      { href: "https://github.com/devrafcks/excel-dashboard-challenge", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/excel-01-dashboard.webp", "Dashboard de vendas com gráficos"),
+      laptop("/images/projects/excel-02-upload.webp", "Tela de upload da planilha Excel"),
+    ],
+  },
+  {
+    id: "bystartup-web-qa",
+    title: "bystartup-web-qa",
+    summary:
+      "Skill para agentes de IA de programação, como Claude Code e Gemini CLI, que gera, roda e mantém testes E2E com Playwright em aplicações web. Criada no programa interno de inovação Bystartup Labs.",
+    points: [
+      "Lê os arquivos do front, encontra botões, formulários, navegação e estados da interface e escreve os testes em testes/[feature].e2e.test.ts, criando a pasta se ela não existir.",
+      "Roda os testes, tenta de novo e corrige o que falhou, e atualiza testes antigos sem perder a cobertura que já funciona.",
+      "Detecta login com JWT, cookies, localStorage, NextAuth, Clerk, Firebase Auth e Auth0, guarda a sessão e gera cenários para celular, tablet e desktop, com seletores semânticos e acessíveis.",
+      "Funciona com React, Next.js, Vue, Angular e outras interfaces web. Não cobre React Native, Flutter nem apps nativos.",
+    ],
+    stack: ["Playwright", "Claude Code", "Gemini CLI", "Markdown"],
+    tags: ["IA"],
+    links: [{ href: "https://github.com/devrafcks/bystartup-web-qa", label: "Repositório", kind: "repo" }],
+    images: [laptop("/images/projects/bystartup-banner.webp", "Banner da skill bystartup-web-qa")],
+  },
+  {
+    id: "iran-tapetes",
+    title: "Iran Tapetes Orientais",
+    summary:
+      "Página de link na bio feita para um cliente real, a Iran Tapetes Orientais, loja de tapetes nos Jardins, em São Paulo. Reúne WhatsApp, loja online, Instagram, e-mail, o mapa da loja física e o horário de funcionamento.",
+    points: [
+      "Mobile-first, com visual premium: gradiente animado, glassmorphism e layout em CSS Grid.",
+      "HTML com Tailwind CSS, Font Awesome e Google Fonts (Berkshire Swash, Inter e Oswald), mapa do Google embutido e manifest com ícones para a tela inicial.",
+    ],
+    stack: ["HTML", "Tailwind CSS", "Font Awesome"],
+    tags: ["Link na bio"],
+    links: [
+      { href: "https://irantapetes.vercel.app", label: "Site", kind: "site" },
+      { href: "https://github.com/devrafcks/Linkbio-irantapetes", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/iran-desktop.webp", "Página da Iran Tapetes Orientais no computador"),
+      phone("/images/projects/iran-mobile.webp", "Página da Iran Tapetes Orientais no celular"),
+    ],
+  },
+  {
+    id: "pizzaria-relampago",
+    title: "Pizzaria Relâmpago",
+    summary:
+      "Página de link na bio feita para um cliente real, a Pizzaria Relâmpago, pizzaria artesanal em Itu (SP). Leva para o pedido online, WhatsApp, Instagram, Facebook e o mapa da pizzaria.",
+    points: [
+      "HTML e CSS puros, sem framework, bundler ou dependências. O fundo é trocado por uma variável CSS.",
+      "Botão de pedido em destaque e mapa embutido com o endereço.",
+    ],
+    stack: ["HTML", "CSS"],
+    tags: ["Link na bio"],
+    links: [{ href: "https://relampagopizzaria.vercel.app", label: "Site", kind: "site" }],
+    images: [
+      laptop("/images/projects/pizza-desktop.webp", "Página da Pizzaria Relâmpago no computador"),
+      phone("/images/projects/pizza-mobile.webp", "Página da Pizzaria Relâmpago no celular"),
+    ],
+  },
+  {
+    id: "linkbio",
+    title: "Linkbio",
+    summary:
+      "Página pessoal de link na bio. Reúne um cartão de apresentação, uma frase de destaque, o portfólio, LinkedIn, GitHub, Spotify, e-mail e embeds de playlists e álbuns.",
+    points: [
+      "HTML e CSS, com variáveis, Flexbox e animações. Os ícones são do Font Awesome e a fonte é Roboto, do Google Fonts.",
+      "Os embeds do Spotify mostram playlists e álbuns favoritos na própria página.",
+    ],
+    stack: ["HTML", "CSS", "Font Awesome", "Google Fonts"],
+    tags: ["Link na bio"],
+    links: [
+      { href: "https://devrafcks.github.io/Linkbio/", label: "Site", kind: "site" },
+      { href: "https://github.com/devrafcks/Linkbio", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/linkbio-desktop.webp", "Página de link na bio no computador"),
+      phone("/images/projects/linkbio-mobile.webp", "Página de link na bio no celular"),
+    ],
+  },
+  {
+    id: "agenda-manager",
+    title: "Agenda",
+    summary:
+      "Teste técnico de front-end. Uma agenda com horários das 08:00 às 18:00, criação e remoção de agendamentos, estatísticas e um gráfico da distribuição por horário.",
+    points: [
+      "A home apresenta o produto. A agenda do dia agrupa os horários, abre um modal para criar e permite remover um agendamento.",
+      "O formulário usa React Hook Form e Zod: título e cliente de 3 a 100 caracteres, horários em HH:mm e descrição opcional de até 500 caracteres.",
+      "Quatro agendamentos de exemplo ficam no Redux e duram só a sessão. O package.json usa Next.js 16.1.6 e React 19.2.3.",
+    ],
+    stack: ["Next.js 16.1.6", "React 19.2.3", "TypeScript", "Redux Toolkit", "React Hook Form", "Zod", "shadcn/ui", "Recharts", "Tailwind CSS"],
+    tags: ["Sistemas"],
+    links: [
+      { href: "https://agenda-manager.vercel.app", label: "Site", kind: "site" },
+      { href: "https://github.com/devrafcks/agenda-manager", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/agenda-02-dia.webp", "Agenda do dia com o gráfico de horários"),
+      laptop("/images/projects/agenda-01-home.webp", "Página inicial da agenda"),
+      phone("/images/projects/agenda-03-mobile.webp", "Agenda no celular"),
+    ],
+  },
+  {
+    id: "epic-musical",
+    title: "Epic: The Musical",
+    summary:
+      "Landing page de fã, feita como projeto pessoal. Tem seções interativas, animações com GSAP, carrossel de álbuns do Spotify e um FAQ.",
+    points: [
+      "HTML, CSS e JavaScript. O layout usa Flexbox, Grid e variáveis de cor, com o breakpoint principal em 768px.",
+      "GSAP 3 faz as entradas e os efeitos de scroll. Os álbuns entram pelo embed do Spotify, e os ícones são Font Awesome e Material Symbols.",
+    ],
+    stack: ["HTML", "CSS", "JavaScript", "GSAP", "Font Awesome"],
+    tags: ["Landing pages"],
+    links: [
+      { href: "https://epic-musical.vercel.app/", label: "Site", kind: "site" },
+      { href: "https://github.com/devrafcks/epic-musical-landing", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/epic-desktop.webp", "Abertura da landing de Epic: The Musical"),
+      phone("/images/projects/epic-mobile.webp", "Landing de Epic: The Musical no celular"),
+    ],
+  },
+  {
+    id: "velory",
+    title: "Velory",
+    summary:
+      "Projeto final do curso Engenheiro Front-End da EBAC. Catálogo de restaurantes com avaliação, carrinho e um checkout com entrega e pagamento simulado.",
+    points: [
+      "A listagem mostra restaurantes com categoria e nota. O carrinho fica no Redux e o contador aparece no topo.",
+      "O checkout passa por revisão dos itens, endereço de entrega, dados de cartão simulados e uma confirmação.",
+    ],
+    stack: ["React 19", "TypeScript", "Vite", "Redux Toolkit", "styled-components", "React Router"],
+    tags: ["E-commerce", "Sites"],
+    links: [
+      { href: "https://velory-ebac.vercel.app/", label: "Site", kind: "site" },
+      { href: "https://github.com/devrafcks/velory-ebac", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/velory-desktop.webp", "Catálogo de restaurantes da Velory"),
+      phone("/images/projects/velory-mobile.webp", "Velory no celular"),
+    ],
+  },
+  {
+    id: "matemagika",
+    title: "MatemaGika",
+    summary:
+      "Aplicação educativa de matemática computacional, feita em grupo como trabalho escolar. Resolve equações do 1º e do 2º grau e faz interpolação linear com gráfico.",
+    points: [
+      "O cálculo mostra as raízes e o passo a passo. Para uma equação do 1º grau, o coeficiente a fica vazio ou zero.",
+      "A interpolação recebe pares de pontos e desenha a reta no Chart.js. A página deixa claro que o trabalho é de um grupo, não de uma pessoa só.",
+    ],
+    stack: ["HTML", "CSS", "JavaScript", "Chart.js"],
+    tags: ["Sites"],
+    links: [
+      { href: "https://devrafcks.github.io/MatemaGika/", label: "Site", kind: "site" },
+      { href: "https://github.com/devrafcks/MatemaGika", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/mate-desktop.webp", "Resolução de equações e interpolação no MatemaGika"),
+      phone("/images/projects/mate-mobile.webp", "MatemaGika no celular"),
+    ],
+  },
+  {
+    id: "marina-kamiya",
+    title: "Cresce+ Futuro, site institucional",
+    summary:
+      "Landing page institucional da consultoria Cresce+ Futuro, liderada por Marina Kamiya, sobre empreendedorismo feminino, tecnologia e inteligência artificial aplicada a negócios.",
+    points: [
+      "HTML, CSS e JavaScript, com animações de scroll no GSAP e ScrollTrigger e ícones do Font Awesome.",
+      "O widget de acessibilidade SeeB entra na página. É um site próprio, separado do produto SaaS da Cresce+.",
+    ],
+    stack: ["HTML", "CSS", "JavaScript", "GSAP", "SeeB"],
+    tags: ["Landing pages"],
+    links: [
+      { href: "https://marinamya.vercel.app", label: "Site", kind: "site" },
+      { href: "https://github.com/devrafcks/marina-kamiya", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/marina-desktop.webp", "Abertura do site institucional da Cresce+ Futuro"),
+      phone("/images/projects/marina-mobile.webp", "Site institucional da Cresce+ Futuro no celular"),
     ],
   },
 ];

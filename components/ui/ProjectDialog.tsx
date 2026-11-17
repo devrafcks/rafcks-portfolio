@@ -189,7 +189,7 @@ export function ProjectDialog({
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-6">
           {shot && (
             <div data-gallery onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} className="relative">
-              <DeviceMockup {...shot} priority />
+              <DeviceMockup {...shot} wide />
               {total > 1 && (
                 <>
                   <button
@@ -230,7 +230,7 @@ export function ProjectDialog({
                       onClick={() => setIndex(imageIndex)}
                       className={`relative h-11 w-16 shrink-0 overflow-hidden rounded-md ${active ? "ring-2 ring-ember ring-offset-2 ring-offset-paper dark:ring-offset-night" : "opacity-70"}`}
                     >
-                      <Image src={image.src} alt="" width={96} height={64} sizes="64px" className="h-full w-full object-cover" />
+                      <Image src={image.src} alt="" width={96} height={64} sizes="64px" loading="lazy" className="h-full w-full object-cover" />
                     </button>
                   );
                 })}

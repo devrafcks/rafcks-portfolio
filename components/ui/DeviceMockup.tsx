@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+const BLUR = "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAABQAQCdASoIAAUABUB8JZQABDOAAP7weQ7xcAAA";
+
 export function DeviceMockup({
   src,
   alt,
@@ -7,6 +9,7 @@ export function DeviceMockup({
   priority = false,
   hover = false,
   tall = false,
+  wide = false,
   width,
   height,
 }: {
@@ -16,12 +19,14 @@ export function DeviceMockup({
   priority?: boolean;
   hover?: boolean;
   tall?: boolean;
+  wide?: boolean;
   width?: number;
   height?: number;
 }) {
   const zoom = hover ? "transition duration-500 group-hover:scale-[1.04]" : "";
   const imageWidth = width ?? (device === "phone" ? 390 : 1280);
   const imageHeight = height ?? (device === "phone" ? 844 : 800);
+  const laptopSizes = wide ? "(max-width: 640px) 92vw, (max-width: 1280px) 80vw, 760px" : "(max-width: 640px) 92vw, 420px";
   if (device === "phone") {
     return (
       <div className="mx-auto w-[min(100%,15.5rem)] rounded-[1.8rem] bg-night p-2 shadow-[0_20px_50px_rgba(43,30,32,0.25)]">
@@ -33,6 +38,8 @@ export function DeviceMockup({
             height={imageHeight}
             sizes="248px"
             priority={priority}
+            placeholder="blur"
+            blurDataURL={BLUR}
             className={`h-auto w-full object-contain ${zoom}`}
           />
         </div>
@@ -53,8 +60,10 @@ export function DeviceMockup({
           alt={alt}
           width={imageWidth}
           height={imageHeight}
-          sizes="(max-width: 768px) 92vw, 640px"
+          sizes={laptopSizes}
           priority={priority}
+          placeholder="blur"
+          blurDataURL={BLUR}
           className={`h-auto w-full ${tall ? "object-contain" : "aspect-video object-contain"} ${zoom}`}
         />
       </div>
