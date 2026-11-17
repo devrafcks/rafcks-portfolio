@@ -6,8 +6,8 @@
   width: 100%;
   background: transparent;
   border-radius: 3.125rem;
-  border: 1px solid var(--primary-border-color);
-  padding: 0.8rem 1.35rem;
+  border: none;
+  padding: 0.45rem 0;
   transition: background-color .3s ease, border-color .3s ease, transform .3s ease;
   cursor: pointer;
   color: var(--title-color);
@@ -33,8 +33,8 @@
 
 .btn--primary {
   background: var(--accent);
-  border-color: var(--accent);
   color: var(--on-accent);
+  padding: 0.8rem 1.35rem;
 }
 
 .btn--primary span,
@@ -141,8 +141,10 @@
 }
 
 .title-outline {
-  color: transparent;
-  -webkit-text-stroke: 2px var(--stroke);
+  color: var(--primary-bg-color);
+  -webkit-text-fill-color: var(--primary-bg-color);
+  -webkit-text-stroke: 0.045em var(--stroke);
+  paint-order: stroke fill;
 }
 
 html[data-theme='dark'] .title-solid {

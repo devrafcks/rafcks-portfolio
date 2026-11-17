@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#FFFBF2">
+  <link id="favicon" rel="icon" href="assets/images/logo-light.svg" type="image/svg+xml">
   <script>
     (function () {
       var theme = 'light';
@@ -14,6 +15,8 @@
       document.documentElement.setAttribute('data-theme', theme);
       var meta = document.querySelector('meta[name="theme-color"]');
       if (meta) meta.setAttribute('content', theme === 'dark' ? '#1E1416' : '#FFFBF2');
+      var icon = document.getElementById('favicon');
+      if (icon) icon.setAttribute('href', theme === 'dark' ? 'assets/images/logo-dark.svg' : 'assets/images/logo-light.svg');
     })();
   </script>
   <title>Rafael Blanco | Desenvolvedor Full Stack</title>
@@ -30,11 +33,10 @@
   <meta name="twitter:title" content="Rafael Blanco | Desenvolvedor Full Stack">
   <meta name="twitter:description" content="19 anos, São Paulo. Produtos web, SaaS e mobile, do requisito à publicação.">
   <meta name="twitter:image" content="https://rafaelblanco.vercel.app/assets/images/og.jpg">
-  <link rel="icon" href="assets/images/favicon-32.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/images/favicon-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:ital,wght@1,800;1,900&family=Unbounded:wght@900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:ital,wght@1,800;1,900&family=Unbounded:wght@800;900&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="assets/css/styles.css">
@@ -55,7 +57,7 @@
       "sameAs": [
         "https://github.com/devrafcks",
         "https://www.linkedin.com/in/rafael-henrique-blanco-0455b12a6/",
-        "https://www.instagram.com/rafaxsz.log/"
+        "https://devrafcks.github.io/Linkbio/"
       ]
     }
   </script>
@@ -94,7 +96,10 @@
       </ul>
     </nav>
     <div class="header__brand">
-      <a class="brand__logo" href="#home" aria-label="Rafael Blanco, início">RB</a>
+      <a href="#home" aria-label="Rafael Blanco, início">
+        <img class="brand__logo brand__logo--light" src="assets/images/logo-light.svg" alt="">
+        <img class="brand__logo brand__logo--dark" src="assets/images/logo-dark.svg" alt="">
+      </a>
     </div>
     <div class="header__toggle">
       <button id="toggleTheme" class="theme-toggle" type="button" aria-pressed="false" aria-label="Ativar modo escuro">
@@ -154,8 +159,8 @@
           </a>
         </li>
         <li>
-          <a class="menu__link" href="https://www.instagram.com/rafaxsz.log/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Rafael Blanco">
-            <i class="menu__icon bi bi-instagram" aria-hidden="true"></i>
+          <a class="menu__link" href="https://devrafcks.github.io/Linkbio/" target="_blank" rel="noopener noreferrer" aria-label="LinkBio de Rafael Blanco">
+            <i class="menu__icon bi bi-link-45deg" aria-hidden="true"></i>
           </a>
         </li>
       </ul>
@@ -164,19 +169,6 @@
         <i class="bi bi-arrow-down-right" aria-hidden="true"></i>
       </a>
     </div>
-
-    <figure class="hero__portrait">
-      <img
-        src="assets/images/rafael-640.webp"
-        srcset="assets/images/rafael-480.webp 480w, assets/images/rafael-640.webp 640w, assets/images/rafael-960.webp 960w"
-        sizes="(min-width: 992px) 420px, 80vw"
-        width="640"
-        height="640"
-        alt="Rafael Blanco, cabelo cacheado, camisa preta, fundo laranja"
-        fetchpriority="high"
-        decoding="async"
-      >
-    </figure>
 
     <div class="main__content2">
       <div class="testimonial-container">
@@ -214,12 +206,16 @@
   <section class="technologies" aria-label="Tecnologias">
     <div class="technologies-scroller">
       <ul class="technologies__list">
+        <li class="technologies__item"><i class="fab fa-html5" aria-hidden="true"></i> <span>HTML</span></li>
+        <li class="technologies__item"><i class="fab fa-css3-alt" aria-hidden="true"></i> <span>CSS</span></li>
+        <li class="technologies__item"><i class="fab fa-js" aria-hidden="true"></i> <span>JavaScript</span></li>
         <li class="technologies__item"><i class="fas fa-code" aria-hidden="true"></i> <span>TypeScript</span></li>
         <li class="technologies__item"><i class="fab fa-react" aria-hidden="true"></i> <span>React</span></li>
         <li class="technologies__item"><i class="fas fa-layer-group" aria-hidden="true"></i> <span>Next.js</span></li>
         <li class="technologies__item"><i class="fab fa-node-js" aria-hidden="true"></i> <span>Node.js</span></li>
         <li class="technologies__item"><i class="fas fa-cube" aria-hidden="true"></i> <span>NestJS</span></li>
         <li class="technologies__item"><i class="fab fa-react" aria-hidden="true"></i> <span>React Native</span></li>
+        <li class="technologies__item"><i class="fas fa-mobile-alt" aria-hidden="true"></i> <span>Expo</span></li>
         <li class="technologies__item"><i class="fas fa-database" aria-hidden="true"></i> <span>PostgreSQL</span></li>
         <li class="technologies__item"><i class="fas fa-bolt" aria-hidden="true"></i> <span>Supabase</span></li>
         <li class="technologies__item"><i class="fas fa-project-diagram" aria-hidden="true"></i> <span>Prisma</span></li>
@@ -230,14 +226,21 @@
         <li class="technologies__item"><i class="fas fa-cloud-upload-alt" aria-hidden="true"></i> <span>Vercel</span></li>
         <li class="technologies__item"><i class="fas fa-wind" aria-hidden="true"></i> <span>Tailwind CSS</span></li>
         <li class="technologies__item"><i class="fab fa-git-alt" aria-hidden="true"></i> <span>Git</span></li>
+        <li class="technologies__item"><i class="fas fa-magic" aria-hidden="true"></i> <span>GSAP</span></li>
+        <li class="technologies__item"><i class="fas fa-shapes" aria-hidden="true"></i> <span>Radix</span></li>
+        <li class="technologies__item"><i class="fab fa-figma" aria-hidden="true"></i> <span>Figma</span></li>
       </ul>
       <ul class="technologies__list" aria-hidden="true">
+        <li class="technologies__item"><i class="fab fa-html5" aria-hidden="true"></i> <span>HTML</span></li>
+        <li class="technologies__item"><i class="fab fa-css3-alt" aria-hidden="true"></i> <span>CSS</span></li>
+        <li class="technologies__item"><i class="fab fa-js" aria-hidden="true"></i> <span>JavaScript</span></li>
         <li class="technologies__item"><i class="fas fa-code" aria-hidden="true"></i> <span>TypeScript</span></li>
         <li class="technologies__item"><i class="fab fa-react" aria-hidden="true"></i> <span>React</span></li>
         <li class="technologies__item"><i class="fas fa-layer-group" aria-hidden="true"></i> <span>Next.js</span></li>
         <li class="technologies__item"><i class="fab fa-node-js" aria-hidden="true"></i> <span>Node.js</span></li>
         <li class="technologies__item"><i class="fas fa-cube" aria-hidden="true"></i> <span>NestJS</span></li>
         <li class="technologies__item"><i class="fab fa-react" aria-hidden="true"></i> <span>React Native</span></li>
+        <li class="technologies__item"><i class="fas fa-mobile-alt" aria-hidden="true"></i> <span>Expo</span></li>
         <li class="technologies__item"><i class="fas fa-database" aria-hidden="true"></i> <span>PostgreSQL</span></li>
         <li class="technologies__item"><i class="fas fa-bolt" aria-hidden="true"></i> <span>Supabase</span></li>
         <li class="technologies__item"><i class="fas fa-project-diagram" aria-hidden="true"></i> <span>Prisma</span></li>
@@ -248,20 +251,22 @@
         <li class="technologies__item"><i class="fas fa-cloud-upload-alt" aria-hidden="true"></i> <span>Vercel</span></li>
         <li class="technologies__item"><i class="fas fa-wind" aria-hidden="true"></i> <span>Tailwind CSS</span></li>
         <li class="technologies__item"><i class="fab fa-git-alt" aria-hidden="true"></i> <span>Git</span></li>
+        <li class="technologies__item"><i class="fas fa-magic" aria-hidden="true"></i> <span>GSAP</span></li>
+        <li class="technologies__item"><i class="fas fa-shapes" aria-hidden="true"></i> <span>Radix</span></li>
+        <li class="technologies__item"><i class="fab fa-figma" aria-hidden="true"></i> <span>Figma</span></li>
       </ul>
     </div>
   </section>
 
   <section id="sobre" class="about">
     <div class="about__content1">
-      <img class="about__photo" src="assets/images/rafael-640.webp" width="640" height="640" alt="Retrato de Rafael Blanco" loading="lazy" decoding="async">
+      <img class="about__photo" src="assets/images/rafael-640.webp" srcset="assets/images/rafael-480.webp 480w, assets/images/rafael-640.webp 640w, assets/images/rafael-960.webp 960w" sizes="(max-width: 720px) 70vw, 22rem" width="640" height="640" alt="Retrato de Rafael Blanco" loading="lazy" decoding="async">
       <div class="about__description">
         <h2>Sobre mim</h2>
         <p>Meu nome é Rafael Henrique Blanco. Tenho 19 anos, moro em São Paulo e trabalho como desenvolvedor full stack.</p>
         <p>Hoje cuido da tecnologia da T2 Educação: o sistema interno, as integrações entre plataformas, a automação de processos, o banco de dados, a infraestrutura e o deploy. Também construo produtos para empresas e startups, do levantamento de requisitos até a publicação e a evolução em produção.</p>
         <p>Acessibilidade e performance entram no início do projeto. Uso IA e automação para ganhar velocidade, e sigo responsável pela revisão e pela qualidade do que vai para produção.</p>
         <p>Sou formado em Informática para Internet pela ETEC Parque Belém. Curso Engenharia de Software na Gran Faculdade e Inteligência Artificial e Automação Digital na UniFECAF, com a Faculdade de Tecnologia Rocketseat.</p>
-        <p>No dia a dia: TypeScript, React, Next.js, Node.js, NestJS, React Native, PostgreSQL, Supabase, Prisma, Drizzle, Docker, Coolify, CI/CD, Cloudflare e Vercel.</p>
         <div class="about__icons">
           <i class="bi bi-translate" aria-hidden="true"></i>
           <span>Inglês em andamento, United Idiomas</span>
@@ -275,212 +280,150 @@
       </div>
     </div>
 
-    <div class="about__content2">
-      <div class="col1">
-        <div class="row1">
-          <h3>Formação</h3>
-
-          <article class="about__entry">
-            <h4>Engenharia de Software</h4>
-            <span>Gran Faculdade · junho de 2026 a junho de 2030</span>
-            <div class="about__icons">
-              <i class="bi bi-mortarboard" aria-hidden="true"></i>
-              <span>Bacharelado, cursando</span>
-            </div>
-          </article>
-
-          <article class="about__entry">
-            <h4>Inteligência Artificial e Automação Digital</h4>
-            <span>UniFECAF com a Faculdade de Tecnologia Rocketseat · outubro de 2026 a março de 2028</span>
-            <div class="about__icons">
-              <i class="bi bi-mortarboard" aria-hidden="true"></i>
-              <span>CST, cursando</span>
-            </div>
-          </article>
-
-          <article class="about__entry">
-            <h4>Arquitetura de Software com Inteligência Artificial</h4>
-            <span>Anhanguera em parceria com a Full Stack Club · novembro de 2026 a novembro de 2027</span>
-            <div class="about__icons">
-              <i class="bi bi-bank" aria-hidden="true"></i>
-              <span>Extensão universitária, 360 horas. Vira pós-graduação lato sensu depois da graduação.</span>
-            </div>
-          </article>
-
-          <article class="about__entry">
-            <h4>Informática para Internet</h4>
-            <span>ETEC Parque Belém · 2023 a 2025</span>
-            <div class="about__icons">
-              <i class="bi bi-mortarboard" aria-hidden="true"></i>
-              <span>Ensino médio técnico, concluído. TCC: SeeB.</span>
-            </div>
-          </article>
+    <div class="timeline" aria-label="Experiências">
+      <h3>Experiências</h3>
+      <article class="timeline__item">
+        <p class="timeline__when"><span>jun. 2026</span><span>até agora</span></p>
+        <div class="timeline__body">
+          <h3>Desenvolvedor Full Stack</h3>
+          <p class="timeline__place">T2 Educação · remoto</p>
+          <p>Cuido da tecnologia da empresa: sistema interno, integrações, automações, banco, infraestrutura e a presença digital.</p>
+          <p class="timeline__highlight">Entrei em maio de 2026 como desenvolvedor web front-end e, no mês seguinte, passei a atuar como full stack.</p>
+          <ul class="stack-row">
+            <li>Next.js</li><li>TypeScript</li><li>PostgreSQL</li><li>Cloudflare</li><li>CI/CD</li>
+          </ul>
         </div>
+      </article>
+      <article class="timeline__item">
+        <p class="timeline__when"><span>mar. 2026</span><span>ago. 2026</span></p>
+        <div class="timeline__body">
+          <h3>Engenheiro de Software (Full Stack), AI-First</h3>
+          <p class="timeline__place">ByStartup · remoto</p>
+          <p>Produtos SaaS, web e mobile para startups, do requisito ao deploy. Entre eles, o Mirante ERP.</p>
+          <p class="timeline__highlight">MVPs, marketplaces e aplicativos publicados nas lojas, com Docker, Coolify, pagamentos e autenticação.</p>
+          <ul class="stack-row">
+            <li>React</li><li>Next.js</li><li>React Native</li><li>Docker</li>
+          </ul>
+        </div>
+      </article>
+      <article class="timeline__item">
+        <p class="timeline__when"><span>jan. 2026</span><span>mar. 2026</span></p>
+        <div class="timeline__body">
+          <h3>Desenvolvedor Full Stack</h3>
+          <p class="timeline__place">Cresce+ Futuro · remoto</p>
+          <p>Reestruturei o SaaS em Next.js 16, com Tailwind, Mercado Pago e autenticação, e migrei a infra de Azure, Railway e Hostinger para Neon e Vercel.</p>
+          <p class="timeline__highlight">A troca reduziu mais de R$ 400 por mês em infraestrutura.</p>
+          <ul class="stack-row">
+            <li>Next.js</li><li>Tailwind</li><li>Mercado Pago</li><li>PostgreSQL</li>
+          </ul>
+        </div>
+      </article>
+      <article class="timeline__item">
+        <p class="timeline__when"><span>ago. 2024</span><span>dez. 2024</span></p>
+        <div class="timeline__body">
+          <h3>Estagiário de marketing</h3>
+          <p class="timeline__place">Digital LZ · presencial</p>
+          <p>Redes sociais, campanhas, peças em Photoshop e atendimento da ouvidoria no WhatsApp.</p>
+        </div>
+      </article>
+    </div>
 
-        <div class="row2">
-          <h3>Experiências</h3>
-
-          <article class="about__entry">
-            <h4>Desenvolvedor Full Stack</h4>
-            <span>T2 Educação · junho de 2026 até o momento · remoto</span>
-            <ul class="about__list">
-              <li class="about__item">De maio a junho de 2026 atuei como desenvolvedor web front-end. No mês seguinte, o escopo passou a ser full stack.</li>
-              <li class="about__item">Sistema interno, integrações, automações e aplicações web com React, Next.js, Node.js e TypeScript.</li>
-              <li class="about__item">PostgreSQL, Cloudflare, CI/CD e integrações com IA, incluindo a Crisp AI.</li>
-              <li class="about__item">Performance, Core Web Vitals, SEO técnico, acessibilidade e tracking da presença digital.</li>
-            </ul>
+    <div class="study">
+      <div class="tabs" role="tablist" aria-label="Formação e cursos">
+        <button type="button" role="tab" id="tab-formacao" aria-controls="panel-formacao" aria-selected="true">Formação</button>
+        <button type="button" role="tab" id="tab-cursos" aria-controls="panel-cursos" aria-selected="false" tabindex="-1">Cursos</button>
+      </div>
+      <div class="panel" role="tabpanel" id="panel-formacao" aria-labelledby="tab-formacao">
+        <div class="study__grid">
+          <article class="study-card">
+            <h3>Engenharia de Software</h3>
+            <p class="study-card__meta">Gran Faculdade · jun. 2026 a jun. 2030</p>
+            <p>Bacharelado em andamento. O curso acompanha o trabalho com construção de produto e sistemas.</p>
           </article>
-
-          <article class="about__entry">
-            <h4>Engenheiro de Software (Full Stack), AI-First</h4>
-            <span>ByStartup · março a agosto de 2026 · remoto</span>
-            <ul class="about__list">
-              <li class="about__item">Produtos SaaS, web e mobile para startups, entre eles o Mirante ERP.</li>
-              <li class="about__item">MVPs, marketplaces e aplicativos publicados nas lojas.</li>
-              <li class="about__item">VPS com Docker e Coolify, pagamentos e autenticação.</li>
-            </ul>
+          <article class="study-card">
+            <h3>Inteligência Artificial e Automação Digital</h3>
+            <p class="study-card__meta">UniFECAF e Rocketseat · out. 2026 a mar. 2028</p>
+            <p>CST em andamento, com a Faculdade de Tecnologia Rocketseat. O programa trata de IA generativa, automação, APIs, RAG, embeddings, agentes e no/low-code.</p>
           </article>
-
-          <article class="about__entry">
-            <h4>Desenvolvedor Full Stack</h4>
-            <span>Cresce+ Futuro · janeiro a março de 2026 · remoto</span>
-            <ul class="about__list">
-              <li class="about__item">Reestruturação do SaaS em Next.js 16, com Tailwind, Mercado Pago e autenticação.</li>
-              <li class="about__item">Migração de Azure, Railway e Hostinger para Neon e Vercel.</li>
-              <li class="about__item">Economia de mais de R$ 400 por mês em infraestrutura.</li>
-            </ul>
+          <article class="study-card">
+            <h3>Arquitetura de Software com IA</h3>
+            <p class="study-card__meta">Anhanguera e Full Stack Club · nov. 2026 a nov. 2027 · 360 h</p>
+            <p>Extensão universitária. Depois da graduação, será convertida em pós-graduação lato sensu.</p>
           </article>
-
-          <article class="about__entry">
-            <h4>Estagiário de marketing</h4>
-            <span>Digital LZ · agosto a dezembro de 2024 · presencial</span>
-            <ul class="about__list">
-              <li class="about__item">Redes sociais, campanhas, peças em Photoshop e atendimento da ouvidoria no WhatsApp.</li>
-            </ul>
+          <article class="study-card">
+            <h3>Informática para Internet</h3>
+            <p class="study-card__meta">ETEC Parque Belém · 2023 a 2025</p>
+            <p>Ensino médio técnico concluído. O TCC foi o SeeB, widget e extensão de acessibilidade.</p>
           </article>
         </div>
       </div>
-
-      <div class="col2">
-        <h3>Cursos</h3>
-        <div id="accordion">
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>Inglês, United Idiomas (2026, em andamento)</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>Curso de inglês iniciado em 2026.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>Engenheiro Front-end, EBAC (jul. 2024 a jan. 2026)</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>Formação com HTML, CSS, JavaScript, React, Tailwind e Bootstrap.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>Design e Photoshop, Brainstorm Academy (2024 a 2025)</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>Curso de design com foco em Photoshop.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>Metodologias Ágeis, Rocketseat (2025)</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>Curso de metodologias ágeis.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>Introdução ao Go, Rocketseat (2025)</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>Introdução à linguagem Go.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>NLW Agents, Rocketseat</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>Edição NLW Agents da Rocketseat.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>Instituto PROA (2026)</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>Formação concluída em 2026.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>Intensivão de JavaScript, Hashtag</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>Intensivo de JavaScript da Hashtag Treinamentos.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>Semana Carreira Tech, Alura</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>Semana de carreira em tecnologia da Alura.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>Bootcamp Ri Happy, Front-end do Zero (DIO)</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>Bootcamp de front-end da DIO.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>50 Projects in 50 Days, Udemy</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>50 projetos em HTML, CSS e JavaScript.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>Introdução à Programação, EBAC</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>Curso de introdução à programação.</p>
-            </div>
-          </div>
-          <div class="accordion__item">
-            <button class="accordion__header" type="button">
-              <span>Microsoft AZ-900 (em preparação)</span>
-              <i class="bi bi-caret-down-fill" aria-hidden="true"></i>
-            </button>
-            <div class="accordion__body">
-              <p>Estudo em andamento. A certificação ainda não foi concluída.</p>
-            </div>
-          </div>
+      <div class="panel" role="tabpanel" id="panel-cursos" aria-labelledby="tab-cursos" hidden>
+        <div class="study__grid">
+          <article class="study-card">
+            <h3>Inglês</h3>
+            <p class="study-card__meta">United Idiomas · desde mai. 2026</p>
+            <p>Curso de inglês em andamento.</p>
+          </article>
+          <article class="study-card">
+            <h3>Engenheiro Front-end</h3>
+            <p class="study-card__meta">EBAC · jul. 2024 a jan. 2026</p>
+            <p>Formação com HTML, CSS, JavaScript, React, Tailwind, Bootstrap e testes.</p>
+          </article>
+          <article class="study-card">
+            <h3>Design e Photoshop</h3>
+            <p class="study-card__meta">Brainstorm Academy · 2024 a jul. 2025</p>
+            <p>Curso Universo Photoshop, de design e edição de imagem.</p>
+          </article>
+          <article class="study-card">
+            <h3>Metodologias Ágeis</h3>
+            <p class="study-card__meta">Rocketseat · out. 2025</p>
+            <p>Curso de metodologias ágeis.</p>
+          </article>
+          <article class="study-card">
+            <h3>Introdução ao Go</h3>
+            <p class="study-card__meta">Rocketseat · out. 2025</p>
+            <p>Introdução à linguagem Go.</p>
+          </article>
+          <article class="study-card">
+            <h3>NLW Agents</h3>
+            <p class="study-card__meta">Rocketseat</p>
+            <p>Edição NLW Agents da Rocketseat.</p>
+          </article>
+          <article class="study-card">
+            <h3>Instituto PROA</h3>
+            <p class="study-card__meta">Instituto PROA · mar. 2026</p>
+            <p>Formação com autoconhecimento, planejamento profissional, raciocínio lógico e comunicação.</p>
+          </article>
+          <article class="study-card">
+            <h3>Intensivão de JavaScript</h3>
+            <p class="study-card__meta">Hashtag Treinamentos</p>
+            <p>Intensivo de JavaScript.</p>
+          </article>
+          <article class="study-card">
+            <h3>Semana Carreira Tech</h3>
+            <p class="study-card__meta">Alura</p>
+            <p>Semana de carreira em tecnologia.</p>
+          </article>
+          <article class="study-card">
+            <h3>Bootcamp Ri Happy, Front-end do Zero</h3>
+            <p class="study-card__meta">DIO</p>
+            <p>Bootcamp de front-end.</p>
+          </article>
+          <article class="study-card">
+            <h3>50 Projects in 50 Days</h3>
+            <p class="study-card__meta">Udemy</p>
+            <p>Cinquenta projetos em HTML, CSS e JavaScript.</p>
+          </article>
+          <article class="study-card">
+            <h3>Introdução à Programação</h3>
+            <p class="study-card__meta">EBAC</p>
+            <p>Curso de introdução à programação.</p>
+          </article>
+          <article class="study-card">
+            <h3>Microsoft AZ-900</h3>
+            <p class="study-card__meta">Em preparação</p>
+            <p>Estudo em andamento. A certificação ainda não foi concluída.</p>
+          </article>
         </div>
       </div>
     </div>
@@ -488,208 +431,92 @@
 
   <section id="projetos" class="projects">
     <h2>Projetos</h2>
-    <div class="projects__container">
-      <article class="projects__card">
-        <img class="card__cover" src="assets/images/projects/mirante.webp" width="1440" height="760" alt="Painel Visão Geral do Mirante ERP, com atalhos de venda, compras e indicadores de uma conta de demonstração" loading="lazy" decoding="async">
-        <div class="card__body">
-          <h3 class="card__title">Mirante ERP</h3>
-          <p class="card__description">ERP desenvolvido na ByStartup para a operação da empresa. A página pública descreve vendas, estoque, financeiro, notas fiscais, multiempresa, NF-e e NFS-e com a SEFAZ, e dashboards. No painel de demonstração aparecem PDV, pedidos de compra e o módulo financeiro.</p>
-          <ul class="card__list">
-            <li class="card__item">Visão geral com atalhos de venda, recebimento, cliente, entrada de mercadorias e pagamentos.</li>
-            <li class="card__item">Financeiro com contas a receber e a pagar, caixas, contas bancárias, adiantamentos e reparcelamento.</li>
-            <li class="card__item">A capa usa uma conta de teste, com dados fictícios.</li>
-          </ul>
-          <ul class="technologies__list">
-            <li class="technologies__item"><i class="fas fa-layer-group" aria-hidden="true"></i> <span>Next.js</span></li>
-          </ul>
-          <div class="card__buttons">
-            <a class="btn btn--primary" href="https://miranteerp.com.br" target="_blank" rel="noopener noreferrer">
-              <span>Projeto</span>
-              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <article class="projects__card card--reverse">
-        <img class="card__cover" src="assets/images/projects/t2.webp" width="1440" height="900" alt="Página inicial da T2 Educação, preparatório para certificações do mercado financeiro" loading="lazy" decoding="async">
-        <div class="card__body">
-          <h3 class="card__title">T2 Educação</h3>
-          <p class="card__description">Site institucional da T2 Educação, preparatório para certificações do mercado financeiro, e o blog em blog.t2.com.br. Na empresa, cuido da presença digital e também do sistema interno, das integrações e da infraestrutura.</p>
-          <ul class="technologies__list">
-            <li class="technologies__item"><i class="fas fa-layer-group" aria-hidden="true"></i> <span>Next.js</span></li>
-          </ul>
-          <div class="card__buttons">
-            <a class="btn btn--primary" href="https://t2.com.br" target="_blank" rel="noopener noreferrer">
-              <span>Site</span>
-              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
-            </a>
-            <a class="btn" href="https://blog.t2.com.br" target="_blank" rel="noopener noreferrer">
-              <span>Blog</span>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <article class="projects__card">
-        <img class="card__cover" src="assets/images/projects/carretel.webp" width="1440" height="900" alt="Página do Carretel, caderno digital para oficinas de costura" loading="lazy" decoding="async">
-        <div class="card__body">
-          <h3 class="card__title">Carretel</h3>
-          <p class="card__description">SaaS próprio, em pré-lançamento. Caderno digital para oficinas de costura: registrar o corte, comprovar a entrega com o cliente e organizar a cobrança pelo celular, inclusive sem sinal.</p>
-          <ul class="technologies__list">
-            <li class="technologies__item"><i class="fas fa-layer-group" aria-hidden="true"></i> <span>Next.js</span></li>
-          </ul>
-          <div class="card__buttons">
-            <a class="btn btn--primary" href="https://carretel.vercel.app" target="_blank" rel="noopener noreferrer">
-              <span>Projeto</span>
-              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <article class="projects__card card--reverse">
-        <img class="card__cover" src="assets/images/projects/cresce.webp" width="1440" height="900" alt="Página da Cresce+ Futuro, plataforma para organizar estoque, vendas, tarefas e equipe" loading="lazy" decoding="async">
-        <div class="card__body">
-          <h3 class="card__title">Cresce+ Futuro</h3>
-          <p class="card__description">Plataforma para micro e pequenos negócios organizarem estoque, vendas, tarefas e equipe. Atuei na reestruturação do SaaS e na troca da infraestrutura.</p>
-          <ul class="card__list">
-            <li class="card__item">Next.js 16, Tailwind, Mercado Pago e autenticação.</li>
-            <li class="card__item">Migração de Azure, Railway e Hostinger para Neon e Vercel.</li>
-            <li class="card__item">Economia de mais de R$ 400 por mês.</li>
-          </ul>
-          <ul class="technologies__list">
-            <li class="technologies__item"><i class="fas fa-layer-group" aria-hidden="true"></i> <span>Next.js</span></li>
-            <li class="technologies__item"><i class="fab fa-react" aria-hidden="true"></i> <span>React</span></li>
-            <li class="technologies__item"><i class="fas fa-database" aria-hidden="true"></i> <span>PostgreSQL</span></li>
-            <li class="technologies__item"><i class="fas fa-credit-card" aria-hidden="true"></i> <span>Mercado Pago</span></li>
-          </ul>
-          <div class="card__buttons">
-            <a class="btn btn--primary" href="https://crescemaistech.com.br/" target="_blank" rel="noopener noreferrer">
-              <span>Projeto</span>
-              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <article class="projects__card">
-        <img class="card__cover" src="assets/images/projects/apertou.webp" width="1440" height="900" alt="Página do Apertou Comprou, marketplace para a loja física vender pelo celular" loading="lazy" decoding="async">
-        <div class="card__body">
-          <h3 class="card__title">Apertou Comprou</h3>
-          <p class="card__description">Desenvolvimento de um marketplace para a loja física vender pelo celular. Quem está por perto reserva, a loja confirma o estoque e o pagamento segue no aplicativo. Há app na App Store e na Play Store.</p>
-          <div class="card__buttons">
-            <a class="btn btn--primary" href="https://apertoucomprou.com.br/lp" target="_blank" rel="noopener noreferrer">
-              <span>Projeto</span>
-              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <article class="projects__card card--reverse">
-        <img class="card__cover" src="assets/images/projects/bicus.webp" width="1440" height="900" alt="Tela inicial do Bicus, com busca, anúncios, lojas e mapa" loading="lazy" decoding="async">
-        <div class="card__body">
-          <h3 class="card__title">Bicus</h3>
-          <p class="card__description">Aplicativo de classificados e serviços, com anúncios, lojas e mapa. A versão web publicada em bicus.com.br é feita em Expo e React Native.</p>
-          <ul class="technologies__list">
-            <li class="technologies__item"><i class="fab fa-react" aria-hidden="true"></i> <span>Expo</span></li>
-            <li class="technologies__item"><i class="fab fa-react" aria-hidden="true"></i> <span>React Native</span></li>
-          </ul>
-          <div class="card__buttons">
-            <a class="btn btn--primary" href="https://bicus.com.br" target="_blank" rel="noopener noreferrer">
-              <span>Projeto</span>
-              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <article class="projects__card">
-        <img class="card__cover" src="assets/images/projects/jotape.webp" width="1440" height="900" alt="Loja Jotape Relógios, com catálogo de relógios e busca por marca" loading="lazy" decoding="async">
-        <div class="card__body">
-          <h3 class="card__title">Jotape Relógios</h3>
-          <p class="card__description">Loja de relógios originais, projeto freelance. Catálogo por marca, busca, acompanhamento de pedido e atendimento pelo WhatsApp.</p>
-          <div class="card__buttons">
-            <a class="btn btn--primary" href="https://jotaperelogios.store" target="_blank" rel="noopener noreferrer">
-              <span>Projeto</span>
-              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <article class="projects__card card--reverse">
-        <img class="card__cover" src="assets/images/projects/xerox.webp" width="1440" height="900" alt="Tela de acesso do Xerox Manager, sistema de gestão para gráfica" loading="lazy" decoding="async">
-        <div class="card__body">
-          <h3 class="card__title">Xerox Manager</h3>
-          <p class="card__description">Sistema para gráfica no lugar do vale-caixa de papel. O funcionário registra cópias, impressões e encadernações. O estoque baixa a cada operação e há relatórios com exportação em PDF. O SeeB entra na interface.</p>
-          <ul class="technologies__list">
-            <li class="technologies__item"><i class="fas fa-layer-group" aria-hidden="true"></i> <span>Next.js</span></li>
-            <li class="technologies__item"><i class="fas fa-database" aria-hidden="true"></i> <span>Prisma</span></li>
-            <li class="technologies__item"><i class="fas fa-database" aria-hidden="true"></i> <span>PostgreSQL</span></li>
-            <li class="technologies__item"><i class="fas fa-lock" aria-hidden="true"></i> <span>JWT</span></li>
-          </ul>
-          <div class="card__buttons">
-            <a class="btn btn--primary" href="https://sistema-grafica.vercel.app" target="_blank" rel="noopener noreferrer">
-              <span>Projeto</span>
-              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
-            </a>
-            <a class="btn" href="https://github.com/devrafcks/sistema-grafica" target="_blank" rel="noopener noreferrer">
-              <span>Repositório</span>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <article class="projects__card">
-        <img class="card__cover" src="assets/images/projects/seeb.webp" width="1440" height="470" alt="Seção de recursos do SeeB, ferramenta de acessibilidade, com o mascote de raposa" loading="lazy" decoding="async">
-        <div class="card__body">
-          <h3 class="card__title">SeeB</h3>
-          <p class="card__description">Extensão para Chromium, Manifest V3, e widget de uma linha. Foi o TCC na ETEC Parque Belém. Dá para ajustar fonte e contraste, usar filtros de daltonismo, guia de leitura e cursor ampliado, e pausar animações. O widget não coleta dados.</p>
-          <ul class="technologies__list">
-            <li class="technologies__item"><i class="fab fa-js" aria-hidden="true"></i> <span>JavaScript</span></li>
-            <li class="technologies__item"><i class="fas fa-puzzle-piece" aria-hidden="true"></i> <span>Manifest V3</span></li>
-          </ul>
-          <div class="card__buttons">
-            <a class="btn btn--primary" href="https://seeb-page.vercel.app/" target="_blank" rel="noopener noreferrer">
-              <span>Página</span>
-              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
-            </a>
-            <a class="btn" href="https://github.com/devrafcks/seeb-widget" target="_blank" rel="noopener noreferrer">
-              <span>Repositório</span>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <article class="projects__card card--reverse">
-        <img class="card__cover" src="assets/images/projects/somnus.webp" width="1440" height="900" alt="Página inicial do Somnus, aplicação para registrar e acompanhar o sono" loading="lazy" decoding="async">
-        <div class="card__body">
-          <h3 class="card__title">Somnus</h3>
-          <p class="card__description">Aplicação web para registrar o sono e ver padrões, com gráficos e conta por usuário. O SeeB faz parte da interface.</p>
-          <ul class="technologies__list">
-            <li class="technologies__item"><i class="fas fa-layer-group" aria-hidden="true"></i> <span>Next.js</span></li>
-            <li class="technologies__item"><i class="fas fa-database" aria-hidden="true"></i> <span>Prisma</span></li>
-            <li class="technologies__item"><i class="fas fa-database" aria-hidden="true"></i> <span>PostgreSQL</span></li>
-            <li class="technologies__item"><i class="fas fa-user-lock" aria-hidden="true"></i> <span>Clerk</span></li>
-          </ul>
-          <div class="card__buttons">
-            <a class="btn btn--primary" href="https://somnus-track.vercel.app/" target="_blank" rel="noopener noreferrer">
-              <span>Projeto</span>
-              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
-            </a>
-            <a class="btn" href="https://github.com/devrafcks/somnus-next" target="_blank" rel="noopener noreferrer">
-              <span>Repositório</span>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <a class="btn btn--primary" href="https://github.com/devrafcks" target="_blank" rel="noopener noreferrer">
-        <span>Ver todos os projetos</span>
-        <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
-      </a>
+    <div class="tabs" role="tablist" aria-label="Tipos de projeto">
+      <button type="button" role="tab" id="tab-sistemas" aria-controls="panel-sistemas" aria-selected="true">Sistemas</button>
+      <button type="button" role="tab" id="tab-apps" aria-controls="panel-apps" aria-selected="false" tabindex="-1">Aplicativos</button>
+      <button type="button" role="tab" id="tab-sites" aria-controls="panel-sites" aria-selected="false" tabindex="-1">Sites</button>
+      <button type="button" role="tab" id="tab-loja" aria-controls="panel-loja" aria-selected="false" tabindex="-1">E-commerce</button>
+      <button type="button" role="tab" id="tab-ext" aria-controls="panel-ext" aria-selected="false" tabindex="-1">Extensões</button>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-sistemas" aria-labelledby="tab-sistemas">
+      <div class="project-grid">
+          <button class="pcard" type="button" data-project="t2">
+            <img src="assets/images/projects/t2-home.webp" srcset="assets/images/projects/t2-home-640.webp 640w, assets/images/projects/t2-home.webp 1280w" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Página inicial da T2 Educação" width="1280" height="800" loading="lazy" decoding="async">
+            <h3>T2 Educação</h3>
+            <p class="pcard__meta">Site, blog e sistema interno</p>
+          </button>
+          <button class="pcard" type="button" data-project="mirante">
+            <img src="assets/images/projects/mirante-dash.webp" srcset="assets/images/projects/mirante-dash-640.webp 640w, assets/images/projects/mirante-dash.webp 1280w" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Painel do Mirante ERP, conta de teste com dados fictícios" width="1280" height="715" loading="lazy" decoding="async">
+            <h3>Mirante ERP</h3>
+            <p class="pcard__meta">ERP na ByStartup</p>
+          </button>
+          <button class="pcard" type="button" data-project="carretel">
+            <img src="assets/images/projects/carretel.webp" srcset="assets/images/projects/carretel-640.webp 640w, assets/images/projects/carretel.webp 1280w" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Página do Carretel" width="1280" height="800" loading="lazy" decoding="async">
+            <h3>Carretel</h3>
+            <p class="pcard__meta">SaaS para oficinas de costura</p>
+          </button>
+          <button class="pcard" type="button" data-project="cresce">
+            <img src="assets/images/projects/cresce.webp" srcset="assets/images/projects/cresce-640.webp 640w, assets/images/projects/cresce.webp 1280w" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Página da Cresce+ Futuro" width="1280" height="800" loading="lazy" decoding="async">
+            <h3>Cresce+ Futuro</h3>
+            <p class="pcard__meta">SaaS para pequenos negócios</p>
+          </button>
+          <button class="pcard" type="button" data-project="xerox">
+            <img src="assets/images/projects/xerox.webp" srcset="assets/images/projects/xerox-640.webp 640w, assets/images/projects/xerox.webp 1280w" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Tela de acesso do Xerox Manager" width="1280" height="800" loading="lazy" decoding="async">
+            <h3>Xerox Manager</h3>
+            <p class="pcard__meta">Gestão para gráfica</p>
+          </button>
+          <button class="pcard" type="button" data-project="somnus">
+            <img src="assets/images/projects/somnus.webp" srcset="assets/images/projects/somnus-640.webp 640w, assets/images/projects/somnus.webp 1280w" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Página do Somnus" width="1280" height="800" loading="lazy" decoding="async">
+            <h3>Somnus</h3>
+            <p class="pcard__meta">Registro de sono</p>
+          </button>
+      </div>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-apps" aria-labelledby="tab-apps" hidden>
+      <div class="project-grid">
+          <button class="pcard" type="button" data-project="bicus">
+            <img src="assets/images/projects/bicus.webp" srcset="assets/images/projects/bicus-640.webp 640w, assets/images/projects/bicus.webp 1280w" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Tela do aplicativo Bicus" width="1280" height="800" loading="lazy" decoding="async">
+            <h3>Bicus</h3>
+            <p class="pcard__meta">Classificados e serviços</p>
+          </button>
+          <button class="pcard" type="button" data-project="apertou">
+            <img src="assets/images/projects/apertou.webp" srcset="assets/images/projects/apertou-640.webp 640w, assets/images/projects/apertou.webp 1280w" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Página do Apertou Comprou" width="1280" height="800" loading="lazy" decoding="async">
+            <h3>Apertou Comprou</h3>
+            <p class="pcard__meta">Marketplace para loja física</p>
+          </button>
+          <button class="pcard" type="button" data-project="junto">
+            <img src="assets/images/projects/junto-play-1.webp" srcset="assets/images/projects/junto-play-1-640.webp 640w, assets/images/projects/junto-play-1.webp 1280w" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Tela do aplicativo Junto publicada na Google Play" width="900" height="1600" loading="lazy" decoding="async">
+            <h3>Junto</h3>
+            <p class="pcard__meta">Corrida em grupo</p>
+          </button>
+      </div>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-sites" aria-labelledby="tab-sites" hidden>
+      <div class="project-grid">
+          <button class="pcard" type="button" data-project="voxx">
+            <img src="assets/images/projects/voxx.webp" srcset="assets/images/projects/voxx-640.webp 640w, assets/images/projects/voxx.webp 1280w" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Página inicial da Agência Voxx" width="1280" height="800" loading="lazy" decoding="async">
+            <h3>Agência Voxx</h3>
+            <p class="pcard__meta">Site institucional</p>
+          </button>
+      </div>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-loja" aria-labelledby="tab-loja" hidden>
+      <div class="project-grid">
+          <button class="pcard" type="button" data-project="jotape">
+            <img src="assets/images/projects/jotape.webp" srcset="assets/images/projects/jotape-640.webp 640w, assets/images/projects/jotape.webp 1280w" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Loja Jotape Relógios" width="1280" height="800" loading="lazy" decoding="async">
+            <h3>Jotape Relógios</h3>
+            <p class="pcard__meta">Loja de relógios originais</p>
+          </button>
+      </div>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-ext" aria-labelledby="tab-ext" hidden>
+      <div class="project-grid">
+          <button class="pcard" type="button" data-project="seeb">
+            <img src="assets/images/projects/seeb-recursos.webp" srcset="assets/images/projects/seeb-recursos-640.webp 640w, assets/images/projects/seeb-recursos.webp 1280w" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Recursos do SeeB" width="1280" height="800" loading="lazy" decoding="async">
+            <h3>SeeB</h3>
+            <p class="pcard__meta">Extensão e widget de acessibilidade</p>
+          </button>
+      </div>
     </div>
   </section>
 
@@ -731,20 +558,58 @@
         </a>
       </li>
       <li>
-        <a class="menu__link" href="https://www.instagram.com/rafaxsz.log/" target="_blank" rel="noopener noreferrer">
-          <i class="menu__icon bi bi-instagram" aria-hidden="true"></i>
-          <span class="sr-only">Instagram</span>
+        <a class="menu__link" href="https://devrafcks.github.io/Linkbio/" target="_blank" rel="noopener noreferrer">
+          <i class="menu__icon bi bi-link-45deg" aria-hidden="true"></i>
+          <span class="sr-only">LinkBio</span>
         </a>
       </li>
     </ul>
   </section>
 
-  <footer>
-    <p>
-      © 2026 Rafael Blanco. Feito por
-      <a href="https://github.com/devrafcks" target="_blank" rel="noopener noreferrer">devrafcks</a>.
-    </p>
+  <footer class="site-footer">
+    <p>Rafael Henrique Blanco</p>
+    <p class="footer__cnpj">CNPJ 65.605.980/0001-00</p>
+    <ul class="menu menu--social">
+      <li>
+        <a class="menu__link" href="https://github.com/devrafcks" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="menu__icon bi bi-github" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li>
+        <a class="menu__link" href="https://www.linkedin.com/in/rafael-henrique-blanco-0455b12a6/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="menu__icon bi bi-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li>
+        <a class="menu__link" href="https://devrafcks.github.io/Linkbio/" target="_blank" rel="noopener noreferrer" aria-label="LinkBio">
+          <i class="menu__icon bi bi-link-45deg" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+    <p>© 2026 Rafael Blanco</p>
   </footer>
+
+
+  <dialog id="project-dialog" aria-labelledby="dialog-title">
+    <div class="dialog__bar">
+      <button type="button" class="dialog__close" data-close>Fechar</button>
+    </div>
+    <div class="dialog__body">
+      <div class="dialog__gallery">
+        <img class="dialog__shot" alt="" width="1280" height="800">
+        <div class="dialog__nav">
+          <button type="button" data-prev>Anterior</button>
+          <span data-count></span>
+          <button type="button" data-next>Próxima</button>
+        </div>
+      </div>
+      <h3 id="dialog-title"></h3>
+      <p data-summary></p>
+      <ul class="card__list" data-points></ul>
+      <ul class="stack-row" data-stack></ul>
+      <div class="dialog__links" data-links></div>
+    </div>
+  </dialog>
 
   <script src="https://seeb-widget.pages.dev/widget.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>

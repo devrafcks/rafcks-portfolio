@@ -6,7 +6,8 @@ form {
 
 .form-control {
   position: relative;
-  margin-bottom: 2.75rem;
+  margin-bottom: 1.65rem;
+  padding-top: 1.15rem;
   width: 100%;
 }
 
@@ -19,7 +20,7 @@ form {
   font-family: inherit;
   width: 100%;
   font-size: 1rem;
-  padding: 10px 0;
+  padding: 0.45rem 0 0.55rem;
   resize: none;
   transition: border-color 0.3s ease;
   z-index: 1;
@@ -36,14 +37,15 @@ form {
 
 .form-control input:focus-visible,
 .form-control textarea:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 4px;
+  outline: none;
+  border-bottom-color: var(--accent-2);
+  box-shadow: 0 1px 0 0 var(--accent-2);
 }
 
 .form-control label {
   position: absolute;
   left: 0;
-  top: 10px;
+  top: 1.45rem;
   pointer-events: none;
   display: flex;
   gap: 2px;
@@ -61,7 +63,8 @@ form {
 .form-control input:valid ~ label span,
 .form-control textarea:focus ~ label span,
 .form-control textarea:valid ~ label span {
-  transform: translateY(-28px);
+  transform: translateY(-1.25rem);
+  font-size: 0.78rem;
   color: var(--title-color);
 }
 
@@ -71,7 +74,7 @@ form .btn {
   border: none;
   width: 100%;
   padding: 14px;
-  font-size: 16px;
+  font-size: 1rem;
   display: flex;
   border-radius: 6px;
   cursor: pointer;

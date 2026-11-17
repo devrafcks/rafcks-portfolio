@@ -48,21 +48,22 @@ i {
 }
 
 h1 {
-  font-size: clamp(3.4rem, 12vw, 4.6rem);
-  line-height: 0.95;
+  font-size: clamp(2.5rem, 1rem + 6.2vw, 7.25rem);
+  line-height: 0.92;
+  font-weight: 900;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size: clamp(1.7rem, 1.1rem + 2vw, 3.4rem);
   text-align: center;
-  line-height: 0.95;
+  line-height: 1.05;
 }
 
 h3 {
-  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.7rem);
   text-align: left;
   margin-bottom: 0.35rem;
-  line-height: 1.05;
+  line-height: 1.15;
 }
 
 h4 {
@@ -75,24 +76,37 @@ h4 {
   letter-spacing: 0;
 }
 
+h1, h2, h3, h4, p, li, a, button {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
 h1, h2, h3 {
   font-family: 'Unbounded', sans-serif;
-  font-weight: 900;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   text-transform: none;
   color: var(--title-color);
 }
 
+h2, h3 {
+  font-weight: 800;
+}
+
 p, li {
-  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+  font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.08rem);
 }
 
 p {
   text-align: left;
 }
 
+:focus {
+  outline: none;
+}
+
 :focus-visible {
-  outline: 3px solid var(--focus);
+  outline: 2px solid var(--focus);
   outline-offset: 3px;
 }
 
