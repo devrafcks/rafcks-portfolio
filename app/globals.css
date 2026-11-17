@@ -64,6 +64,24 @@ textarea:focus-visible {
   outline-offset: 6px;
 }
 
+.pwa-dismiss {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pwa-dismiss:focus,
+.pwa-dismiss:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+}
+
+.pwa-dismiss:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.pwa-dismiss:focus-visible {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
 h1,
 h2,
 h3,

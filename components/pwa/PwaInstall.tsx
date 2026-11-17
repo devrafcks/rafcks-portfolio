@@ -1,7 +1,7 @@
 "use client";
 
 import { IconShare2, IconX } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>;
@@ -9,6 +9,34 @@ type BeforeInstallPromptEvent = Event & {
 };
 
 const DISMISS_KEY = "pwa-install-dismissed";
+const SESSION_KEY = "pwa-install-dismissed-session";
+const COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
+
+function isDismissed() {
+  try {
+    if (sessionStorage.getItem(SESSION_KEY) === "1") return true;
+    const raw = localStorage.getItem(DISMISS_KEY);
+    if (!raw) return false;
+    const at = raw === "1" ? Date.now() : Number(raw);
+    return Number.isFinite(at) && Date.now() - at < COOLDOWN_MS;
+  } catch {
+    return false;
+  }
+}
+
+function rememberDismiss() {
+  const now = String(Date.now());
+  try {
+    localStorage.setItem(DISMISS_KEY, now);
+  } catch {
+    /* storage indisponível */
+  }
+  try {
+    sessionStorage.setItem(SESSION_KEY, "1");
+  } catch {
+    /* storage indisponível */
+  }
+}
 
 function isStandalone() {
   const nav = navigator as Navigator & { standalone?: boolean };
@@ -26,12 +54,16 @@ export function PwaInstall() {
   const [promptEvent, setPromptEvent] = useState<BeforeInstallPromptEvent | null>(null);
   const [ios, setIos] = useState(false);
   const [visible, setVisible] = useState(false);
+  const dismissedRef = useRef(false);
 
   useEffect(() => {
-    if (isStandalone()) return;
-    if (localStorage.getItem(DISMISS_KEY) === "1") return;
+    if (isStandalone() || isDismissed()) {
+      dismissedRef.current = isDismissed();
+      return;
+    }
 
     const onPrompt = (event: Event) => {
+      if (dismissedRef.current || isDismissed()) return;
       event.preventDefault();
       setPromptEvent(event as BeforeInstallPromptEvent);
       setVisible(true);
@@ -72,14 +104,12 @@ export function PwaInstall() {
     return () => observer.disconnect();
   }, []);
 
-  function dismiss(event: React.MouseEvent | React.PointerEvent) {
+  function dismiss(event: React.SyntheticEvent) {
     event.preventDefault();
     event.stopPropagation();
-    try {
-      localStorage.setItem(DISMISS_KEY, "1");
-    } catch {
-      /* storage indisponível */
-    }
+    dismissedRef.current = true;
+    rememberDismiss();
+    setPromptEvent(null);
     setVisible(false);
   }
 
@@ -87,7 +117,11 @@ export function PwaInstall() {
     if (!promptEvent) return;
     await promptEvent.prompt();
     const choice = await promptEvent.userChoice;
-    if (choice.outcome === "accepted") setVisible(false);
+    if (choice.outcome === "accepted") {
+      dismissedRef.current = true;
+      rememberDismiss();
+      setVisible(false);
+    }
     setPromptEvent(null);
   }
 
@@ -114,10 +148,9 @@ export function PwaInstall() {
       )}
       <button
         type="button"
-        onPointerDown={dismiss}
         onClick={dismiss}
         aria-label="Dispensar instalação"
-        className="pointer-events-auto relative z-10 inline-flex size-11 shrink-0 items-center justify-center"
+        className="pwa-dismiss pointer-events-auto relative z-10 inline-flex size-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full"
       >
         <IconX size={18} stroke={1.75} aria-hidden="true" />
       </button>
