@@ -9,6 +9,7 @@ type Props = {
   className?: string;
   type?: "button" | "submit";
   onClick?: () => void;
+  disabled?: boolean;
 };
 
 const styles = {
@@ -18,8 +19,8 @@ const styles = {
     "bg-transparent text-ink hover:text-ember-ink dark:text-white",
 };
 
-export function Button({ href, children, variant = "ghost", external, className = "", type = "button", onClick }: Props) {
-  const classNames = `inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-label text-[0.78rem] font-extrabold italic uppercase tracking-[0.06em] transition ${styles[variant]} ${className}`;
+export function Button({ href, children, variant = "ghost", external, className = "", type = "button", onClick, disabled }: Props) {
+  const classNames = `inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-label text-[0.78rem] font-extrabold italic uppercase tracking-[0.06em] transition disabled:cursor-not-allowed disabled:opacity-60 ${styles[variant]} ${className}`;
 
   if (href) {
     if (external) {
@@ -37,7 +38,7 @@ export function Button({ href, children, variant = "ghost", external, className 
   }
 
   return (
-    <button type={type} onClick={onClick} className={classNames}>
+    <button type={type} onClick={onClick} className={classNames} disabled={disabled} aria-busy={disabled || undefined}>
       {children}
     </button>
   );

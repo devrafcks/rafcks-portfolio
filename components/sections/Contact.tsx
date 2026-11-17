@@ -1,12 +1,61 @@
+"use client";
+
+import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 
 const fields = [
-  { id: "nome", name: "from_name", label: "Nome", type: "text", auto: "name" },
-  { id: "email", name: "reply_email", label: "E-mail", type: "email", auto: "email" },
-  { id: "assunto", name: "subject", label: "Assunto", type: "text", auto: "off" },
+  { id: "nome", name: "name", label: "Nome", type: "text", auto: "name", maxLength: 80 },
+  { id: "email", name: "email", label: "E-mail", type: "email", auto: "email", maxLength: 160 },
+  { id: "assunto", name: "subject", label: "Assunto", type: "text", auto: "off", maxLength: 120 },
 ] as const;
 
 export function Contact() {
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [error, setError] = useState("");
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    setSending(true);
+    setStatus("idle");
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          subject: data.get("subject"),
+          message: data.get("message"),
+          company: data.get("company"),
+        }),
+      });
+      const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+
+      if (response.ok) {
+        form.reset();
+        setStatus("success");
+        return;
+      }
+
+      setStatus("error");
+      if (response.status === 400 || response.status === 429) {
+        setError(payload?.error || "Confere os campos e tenta de novo.");
+        return;
+      }
+      setError("Não consegui enviar agora. Tenta de novo mais tarde.");
+    } catch {
+      setStatus("error");
+      setError("Não consegui enviar agora. Tenta de novo mais tarde.");
+    } finally {
+      setSending(false);
+    }
+  }
+
   return (
     <section id="contato" className="mx-auto max-w-xl px-5 py-20 sm:px-10">
       <h2 className="text-center font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
@@ -15,7 +64,7 @@ export function Contact() {
       <p className="mx-auto mt-4 max-w-md text-center leading-relaxed text-ink/80 dark:text-white/75">
         Tem um produto para tirar do papel, um sistema que precisa de alguém de ponta a ponta ou uma vaga em que eu me encaixo? Me manda uma mensagem por aqui. Se preferir, me chama no LinkedIn.
       </p>
-      <form action="https://formsubmit.co/rafcksps@gmail.com" method="POST" className="mt-10 space-y-7">
+      <form onSubmit={onSubmit} className="relative mt-10 space-y-7">
         {fields.map((field) => (
           <div key={field.id} className="relative pt-5">
             <input
@@ -23,9 +72,11 @@ export function Contact() {
               name={field.name}
               type={field.type}
               required
+              maxLength={field.maxLength}
               autoComplete={field.auto}
+              disabled={sending}
               placeholder=" "
-              className="peer w-full border-0 border-b border-ink/25 bg-transparent py-2 text-ink shadow-none ring-0 outline-none focus:border-b-[3px] focus:border-ember focus:shadow-none focus:ring-0 focus:outline-none focus-visible:shadow-none focus-visible:ring-0 focus-visible:outline-none dark:border-white/30 dark:text-white"
+              className="peer w-full border-0 border-b border-ink/25 bg-transparent py-2 text-ink shadow-none ring-0 outline-none focus:border-b-[3px] focus:border-ember focus:shadow-none focus:ring-0 focus:outline-none focus-visible:shadow-none focus-visible:ring-0 focus-visible:outline-none disabled:opacity-60 dark:border-white/30 dark:text-white"
             />
             <label
               htmlFor={field.id}
@@ -41,8 +92,10 @@ export function Contact() {
             name="message"
             required
             rows={4}
+            maxLength={4000}
+            disabled={sending}
             placeholder=" "
-            className="peer w-full resize-none border-0 border-b border-ink/25 bg-transparent py-2 text-ink shadow-none ring-0 outline-none focus:border-b-[3px] focus:border-ember focus:shadow-none focus:ring-0 focus:outline-none focus-visible:shadow-none focus-visible:ring-0 focus-visible:outline-none dark:border-white/30 dark:text-white"
+            className="peer w-full resize-none border-0 border-b border-ink/25 bg-transparent py-2 text-ink shadow-none ring-0 outline-none focus:border-b-[3px] focus:border-ember focus:shadow-none focus:ring-0 focus:outline-none focus-visible:shadow-none focus-visible:ring-0 focus-visible:outline-none disabled:opacity-60 dark:border-white/30 dark:text-white"
           />
           <label
             htmlFor="mensagem"
@@ -51,9 +104,17 @@ export function Contact() {
             Mensagem
           </label>
         </div>
-        <Button type="submit" variant="primary" className="w-full">
-          Enviar mensagem
+        <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+          <label htmlFor="company">Empresa</label>
+          <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </div>
+        <Button type="submit" variant="primary" className="w-full" disabled={sending}>
+          {sending ? "Enviando..." : "Enviar mensagem"}
         </Button>
+        <p role="status" aria-live="polite" className="min-h-6 text-center text-sm text-ink dark:text-white">
+          {status === "success" ? "Mensagem enviada. Vou responder em breve." : null}
+          {status === "error" ? error : null}
+        </p>
       </form>
     </section>
   );

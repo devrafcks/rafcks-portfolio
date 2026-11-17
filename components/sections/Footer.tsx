@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="px-5 pt-8 pb-28 text-center">
       <p className="font-display text-lg font-semibold">Rafael Henrique Blanco</p>
       <p className="mt-2 font-label text-sm font-extrabold uppercase tracking-[0.08em] italic">
-        Desenvolvedor full stack · SaaS e produtos digitais · São Paulo
+        Desenvolvedor full stack · SaaS e produtos digitais
       </p>
       <ul className="mt-4 flex justify-center gap-4">
         {links.map((link) => (

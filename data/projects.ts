@@ -745,9 +745,9 @@ export const projects: Project[] = [
       "Queria um portfólio que mostrasse o trabalho do jeito que eu construo produto: rápido, acessível e com detalhe.",
       "A grade separa os trabalhos por tipo, com cards grandes em ziguezague, e cada projeto abre um diálogo com galeria, stack e links. As imagens carregam só quando aparecem na tela.",
       "O tema claro ou escuro usa next-themes. Metadados, Open Graph, sitemap, robots e dados estruturados cobrem o SEO, e o site é um PWA com manifest, ícones e service worker com página offline.",
-      "O formulário de contato usa FormSubmit, as animações usam Motion e o SeeB vem embutido.",
+      "O formulário de contato envia o e-mail direto, as animações usam Motion e o SeeB vem embutido.",
     ],
-    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Motion", "next-themes", "Tabler Icons", "Service Worker / PWA", "FormSubmit", "SeeB", "Vercel"],
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Motion", "next-themes", "Tabler Icons", "Service Worker / PWA", "Nodemailer", "SeeB", "Vercel"],
     tags: ["Sites", "Landing pages"],
     links: [
       { href: "https://rafaelblanco.vercel.app", label: "Site", kind: "site" },

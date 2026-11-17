@@ -13,7 +13,7 @@ Portfólio pessoal de Rafael Blanco, desenvolvedor full stack. O site apresenta 
 - next-themes
 - Tabler Icons
 - SeeB Widget
-- FormSubmit
+- Nodemailer (formulário de contato via Gmail SMTP)
 - Vercel
 
 ## Desenvolvimento
