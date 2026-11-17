@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-unbounded), ui-sans-serif, sans-serif;
+  --font-label: var(--font-montserrat), ui-sans-serif, sans-serif;
+  --color-ink: #2b1e20;
+  --color-paper: #fffbf2;
+  --color-cream: #fff6e0;
+  --color-sun: #ffbc00;
+  --color-ember: #ff7f1a;
+  --color-night: #1e1416;
+  --color-night-2: #2b1e20;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+.dark body,
+html.dark body {
+  background: var(--color-night);
+  color: #f6efe6;
+}
+
+::selection {
+  background: #ffbc00;
+  color: #2b1e20;
+}
+
+:focus-visible {
+  outline: 2px solid #ff7f1a;
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+a,
+button {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

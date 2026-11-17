@@ -6,18 +6,24 @@ Portfólio pessoal de Rafael Blanco, desenvolvedor full stack. O site apresenta 
 
 ## Tecnologias
 
-- HTML5
-- CSS3
-- JavaScript
-- Anime.js
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- next-themes
+- Tabler Icons
 - SeeB Widget
+- FormSubmit
 - Vercel
 
-## O que o site faz
+## Desenvolvimento
 
-- Modo claro por padrão e modo escuro, com a escolha salva no navegador
-- Depoimentos reais recebidos no LinkedIn
-- Acordeão de cursos
-- Animações com Anime.js, desligadas quando o sistema pede menos movimento
-- Formulário de contato via FormSubmit
-- Lista dos projetos em produção
+```bash
+npm install
+npm run dev
+```
+
+```bash
+npm run build
+npm start
+```
