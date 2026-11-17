@@ -8,9 +8,9 @@ export function Hero() {
         Desenvolvedor Full Stack
       </p>
       <div className="relative mt-4">
-        <h1 className="max-w-full font-display text-[clamp(2.35rem,12vw,3.1rem)] leading-[0.9] font-bold tracking-[-0.04em] text-ink sm:text-[clamp(2rem,10.9cqw,16rem)] sm:whitespace-nowrap dark:text-white">
-          <span className="block sm:inline">Rafael</span>{" "}
-          <span className="block text-paper [-webkit-text-stroke:0.035em_#2B1E20] [paint-order:stroke_fill] sm:inline dark:text-night dark:[-webkit-text-stroke:0.035em_#fff]">
+        <h1 className="max-w-full font-display text-[clamp(2rem,14.94cqw,18rem)] leading-[0.9] font-bold tracking-[-0.04em] text-ink dark:text-white">
+          <span className="block w-fit origin-left scale-x-[1.652]">Rafael</span>
+          <span className="block w-fit origin-left scale-x-[1.545] text-paper [-webkit-text-stroke:0.035em_#2B1E20] [paint-order:stroke_fill] dark:text-night dark:[-webkit-text-stroke:0.035em_#fff]">
             Blanco
           </span>
         </h1>
