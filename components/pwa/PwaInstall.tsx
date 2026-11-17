@@ -48,10 +48,11 @@ export function PwaInstall() {
 
   useEffect(() => {
     if (!("serviceWorker" in navigator)) return;
+    const hadController = Boolean(navigator.serviceWorker.controller);
     navigator.serviceWorker.register("/sw.js").catch(() => undefined);
     let refreshing = false;
     const onChange = () => {
-      if (refreshing) return;
+      if (!hadController || refreshing) return;
       refreshing = true;
       window.location.reload();
     };
@@ -71,8 +72,14 @@ export function PwaInstall() {
     return () => observer.disconnect();
   }, []);
 
-  function dismiss() {
-    localStorage.setItem(DISMISS_KEY, "1");
+  function dismiss(event: React.MouseEvent | React.PointerEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    try {
+      localStorage.setItem(DISMISS_KEY, "1");
+    } catch {
+      /* storage indisponível */
+    }
     setVisible(false);
   }
 
@@ -87,7 +94,7 @@ export function PwaInstall() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-x-3 bottom-28 z-30 mx-auto flex max-w-md items-start gap-3 rounded-2xl bg-ink px-4 py-3 text-white shadow-lg sm:bottom-6 sm:left-auto sm:right-4">
+    <div className="pointer-events-auto fixed inset-x-3 bottom-28 z-[1200000] mx-auto flex max-w-md items-start gap-3 rounded-2xl bg-ink px-4 py-3 text-white shadow-lg sm:bottom-6 sm:left-auto sm:right-4">
       <div className="min-w-0 flex-1">
         <p className="font-display text-sm font-semibold">Instalar app</p>
         {ios ? (
@@ -105,7 +112,13 @@ export function PwaInstall() {
           Instalar
         </button>
       )}
-      <button type="button" onClick={dismiss} aria-label="Dispensar instalação" className="inline-flex size-11 shrink-0 items-center justify-center">
+      <button
+        type="button"
+        onPointerDown={dismiss}
+        onClick={dismiss}
+        aria-label="Dispensar instalação"
+        className="pointer-events-auto relative z-10 inline-flex size-11 shrink-0 items-center justify-center"
+      >
         <IconX size={18} stroke={1.75} aria-hidden="true" />
       </button>
     </div>

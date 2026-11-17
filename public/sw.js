@@ -1,4 +1,4 @@
-const CACHE = "rafael-blanco-v1";
+const CACHE = "rafael-blanco-v2";
 const PRECACHE = ["/", "/offline", "/manifest.webmanifest", "/icon-192.png", "/icon-512.png", "/icon-maskable-192.png", "/icon-maskable-512.png", "/apple-touch-icon.png", "/icon.svg"];
 
 self.addEventListener("install", (event) => {
@@ -26,29 +26,43 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (request.mode === "navigate") {
+  if (request.mode === "navigate" || isCode(url.pathname)) {
     event.respondWith(networkFirst(request));
     return;
   }
 
-  const asset =
-    url.pathname.startsWith("/_next/static/") ||
-    url.pathname.startsWith("/images/") ||
-    url.pathname.startsWith("/splash/") ||
-    url.pathname.startsWith("/pwa/") ||
-    /\.(?:png|webp|svg|ico|woff2|jpg|jpeg)$/.test(url.pathname);
-
-  if (asset) event.respondWith(staleWhileRevalidate(request));
+  if (isStaticAsset(url.pathname)) {
+    event.respondWith(staleWhileRevalidate(request));
+  }
 });
+
+function isCode(pathname) {
+  return pathname.startsWith("/_next/static/") && /\.(?:css|js)$/.test(pathname);
+}
+
+function isStaticAsset(pathname) {
+  return (
+    pathname.startsWith("/images/") ||
+    pathname.startsWith("/splash/") ||
+    pathname.startsWith("/pwa/") ||
+    /\.(?:png|webp|svg|ico|woff2|jpg|jpeg)$/.test(pathname)
+  );
+}
 
 async function networkFirst(request) {
   const cache = await caches.open(CACHE);
   try {
     const response = await fetch(request);
-    if (response.ok) cache.put(request, response.clone());
+    if (response.ok && response.type === "basic") cache.put(request, response.clone());
     return response;
   } catch {
-    return (await cache.match(request)) || (await cache.match("/offline")) || new Response("Offline", { status: 503 });
+    const cached = await cache.match(request);
+    if (cached) return cached;
+    if (request.mode === "navigate") {
+      const offline = await cache.match("/offline");
+      if (offline) return offline;
+    }
+    return new Response("Offline", { status: 503 });
   }
 }
 
@@ -57,7 +71,7 @@ async function staleWhileRevalidate(request) {
   const cached = await cache.match(request);
   const network = fetch(request)
     .then((response) => {
-      if (response.ok) cache.put(request, response.clone());
+      if (response.ok && response.type === "basic") cache.put(request, response.clone());
       return response;
     })
     .catch(() => cached);
