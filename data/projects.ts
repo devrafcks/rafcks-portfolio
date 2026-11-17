@@ -49,7 +49,9 @@ export const filters: Array<"Geral" | ProjectTag> = [
   "SaaS",
   "E-commerce",
   "Sistemas",
+  "IA",
   "Extensões",
+  "Jogos",
 ];
 
 export const projects: Project[] = [
@@ -352,6 +354,85 @@ export const projects: Project[] = [
       laptop("/images/projects/seeb-recursos.webp", "Recursos do SeeB"),
       laptop("/images/projects/seeb-docs-d.webp", "Documentação pública do SeeB"),
       laptop("/images/projects/seeb-docs-d-2.webp", "Trecho da documentação do SeeB"),
+    ],
+  },
+  {
+    id: "giz",
+    title: "GIZ, assistente de IA",
+    summary:
+      "Projeto acadêmico “Seu Primeiro Agente de IA”. Assistente de comunicação para uma rede de academias que transforma um briefing curto em textos para WhatsApp, Instagram e e-mail.",
+    points: [
+      "O agente tem quatro etapas. O servidor mascara CPF, telefone, e-mail e cartão antes de qualquer envio ao modelo. Depois entende o pedido, escreve e revisa. Uma pessoa lê, edita e aprova. Nada é publicado sozinho.",
+      "As etapas com modelo usam persona, meta-prompting, few-shot e verificação por perguntas. O modelo é o Gemini 3.5 Flash-Lite, com gemini-flash-lite-latest de reserva.",
+      "O back-end são funções Node.js na Vercel, com resposta em streaming NDJSON. O front é HTML, CSS e JavaScript em módulos, sem framework. O package.json não declara dependências de runtime: pede Node.js 20.11 ou mais novo e pnpm.",
+    ],
+    stack: ["Node.js", "Gemini 3.5 Flash-Lite", "Vercel", "JavaScript"],
+    tags: ["Sistemas", "IA"],
+    links: [
+      { href: "https://giz-assistente-ia.vercel.app", label: "Site", kind: "site" },
+      { href: "https://giz-assistente-ia.vercel.app/?demo", label: "Demo", kind: "site" },
+      { href: "https://github.com/devrafcks/giz-assistente-ia", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/giz-04-site.webp", "Site da Giz: briefing e etapas do agente"),
+      laptop("/images/projects/giz-05-demo.webp", "Giz no modo demonstração"),
+      laptop("/images/projects/giz-06-demo-form.webp", "Formulário da Giz: canal, tom e gerar comunicação"),
+      laptop("/images/projects/giz-01-inicio.webp", "Evidência: tela inicial da Giz"),
+      laptop("/images/projects/giz-02-etapas.webp", "Evidência: agente em etapas"),
+      laptop("/images/projects/giz-03-revisao.webp", "Evidência: revisão e verificação"),
+    ],
+  },
+  {
+    id: "steal-a-boo",
+    title: "STEAL A BOO!",
+    summary:
+      "Simulator social numa feira noturna, para até 8 jogadores. Sustos leves, para todas as idades. Feito com ajuda de IA, por diversão, como experimento pessoal.",
+    points: [
+      "Capture Boos de 7 raridades e coloque na base para gerar Cash. Treine Speed e Throw Power e construa até 6 andares.",
+      "Roube das bases com o portão aberto e defenda com sustos cômicos. Tem Rebirth, baú diário e ranking.",
+      "O repositório usa Luau, Rojo 7.6.1, Wally e ProfileStore.",
+    ],
+    stack: ["Luau", "Rojo", "Wally", "ProfileStore"],
+    tags: ["Jogos"],
+    links: [
+      { href: "https://www.roblox.com/games/127475605109985/Steal-a-Boo", label: "Jogar no Roblox", kind: "roblox" },
+      { href: "https://github.com/devrafcks/steal-a-boo", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/boo-01-visao.webp", "Visão geral do parque de Steal a Boo"),
+      laptop("/images/projects/boo-02-praca.webp", "Praça central de Steal a Boo"),
+      laptop("/images/projects/boo-03-base.webp", "Base com andares de Steal a Boo"),
+      laptop("/images/projects/boo-04-zona.webp", "Zona de captura de Steal a Boo"),
+      laptop("/images/projects/boo-05-tenda.webp", "Tenda secreta de Steal a Boo"),
+    ],
+  },
+  {
+    id: "67-noites",
+    title: "67 NOITES COM EXU",
+    summary:
+      "Survival cooperativo de 1 a 5 jogadores num terreiro no meio da mata. Manter o caldeirão aceso, sobreviver 67 noites e chegar ao confronto com o Zé Pilintra. Feito com ajuda de IA, por diversão, como experimento pessoal.",
+    notice:
+      "Este jogo é uma obra de ficção feita com total respeito à Umbanda e à cultura afro-brasileira, sem nenhuma intenção de ofender. As entidades aparecem como guardiões que testam o jogador, e o jogo não reproduz rituais, pontos ou rezas reais. O humor está nas situações do jogo, nunca na religião.",
+    points: [
+      "Invasões e quatro entidades. O combate é simples: combo, esquiva e aparar, e o confronto final é com o Zé Pilintra.",
+      "Luau, Rojo 7.6.1, Wally, ProfileStore 1.0.3, Lune, Selene e StyLua. O README marca 646 testes de balanço.",
+    ],
+    stack: ["Luau", "Rojo", "Wally", "ProfileStore", "Lune", "Selene", "StyLua"],
+    tags: ["Jogos"],
+    links: [
+      { href: "https://www.roblox.com/games/119571245262683/67-Noites-com-Exu", label: "Jogar no Roblox", kind: "roblox" },
+      { href: "https://github.com/devrafcks/67-noites-com-exu", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/exu-01-lobby.webp", "Lobby de 67 Noites com Exu"),
+      laptop("/images/projects/exu-02-terreiro.webp", "Terreiro com ipê e capim alto"),
+      laptop("/images/projects/exu-03-pedreira.webp", "Bioma da pedreira"),
+      laptop("/images/projects/exu-04-invasao.webp", "Invasão no caldeirão"),
+      laptop("/images/projects/exu-05-cabana.webp", "Cabana na mata"),
+      laptop("/images/projects/exu-06-noite.webp", "Noite com o caldeirão aceso"),
+      laptop("/images/projects/exu-07-bichos.webp", "Bichos do jogo"),
+      laptop("/images/projects/exu-08-motosserra.webp", "Árvore derrubada com motosserra"),
+      laptop("/images/projects/exu-00-banner.webp", "Banner de 67 Noites com Exu"),
     ],
   },
 ];

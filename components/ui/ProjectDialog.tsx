@@ -240,6 +240,11 @@ export function ProjectDialog({
           <h3 id={titleId} className="mt-5 font-display text-[clamp(1.6rem,1.2rem+1.4vw,2.4rem)] font-semibold tracking-[-0.03em]">
             {project.title}
           </h3>
+          {project.notice && (
+            <p role="note" className="mt-4 rounded-xl border border-ink/15 bg-sun/35 px-4 py-3 text-sm leading-relaxed text-ink dark:border-white/20 dark:bg-white/10 dark:text-white">
+              {project.notice}
+            </p>
+          )}
           <p className="mt-3 leading-relaxed text-ink/85 dark:text-white/80">{project.summary}</p>
           {project.points.length > 0 && (
             <ul className="mt-4 list-disc space-y-2 pl-5 leading-relaxed">

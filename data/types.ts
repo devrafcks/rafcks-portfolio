@@ -6,9 +6,11 @@ export type ProjectTag =
   | "SaaS"
   | "E-commerce"
   | "Sistemas"
-  | "Extensões";
+  | "IA"
+  | "Extensões"
+  | "Jogos";
 
-export type LinkKind = "site" | "repo" | "apple" | "play" | "blog";
+export type LinkKind = "site" | "repo" | "apple" | "play" | "blog" | "roblox";
 
 export type Shot = {
   src: string;
@@ -35,6 +37,7 @@ export type Project = {
   links: ProjectLink[];
   images: Shot[];
   cover?: Shot;
+  notice?: string;
 };
 
 export type Experience = {

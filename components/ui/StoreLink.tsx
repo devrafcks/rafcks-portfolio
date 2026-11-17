@@ -1,4 +1,4 @@
-import { IconBrandApple, IconBrandGithub, IconBrandGooglePlay, IconWorld } from "@tabler/icons-react";
+import { IconBrandApple, IconBrandGithub, IconBrandGooglePlay, IconDeviceGamepad2, IconWorld } from "@tabler/icons-react";
 import type { LinkKind } from "@/data/types";
 
 const icon = {
@@ -7,11 +7,12 @@ const icon = {
   repo: IconBrandGithub,
   apple: IconBrandApple,
   play: IconBrandGooglePlay,
+  roblox: IconDeviceGamepad2,
 };
 
 export function StoreLink({ href, label, kind }: { href: string; label: string; kind: LinkKind }) {
   const Icon = icon[kind];
-  const store = kind === "apple" || kind === "play";
+  const store = kind === "apple" || kind === "play" || kind === "roblox";
 
   return (
     <a
