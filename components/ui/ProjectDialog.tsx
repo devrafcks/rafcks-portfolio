@@ -7,7 +7,6 @@ import { IconChevronLeft, IconChevronRight, IconX } from "@tabler/icons-react";
 import type { Project } from "@/data/types";
 import { DeviceMockup } from "@/components/ui/DeviceMockup";
 import { StoreLink } from "@/components/ui/StoreLink";
-import { Tag } from "@/components/ui/Tag";
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
@@ -172,7 +171,7 @@ export function ProjectDialog({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className={`relative z-10 flex h-[calc(100dvh-0.75rem)] w-full flex-col overflow-hidden rounded-t-[1.4rem] bg-paper text-ink shadow-[0_-24px_60px_rgba(43,30,32,0.28)] transition duration-200 ease-out sm:h-auto sm:max-h-[min(90dvh,52rem)] sm:w-[min(48rem,calc(100vw-2rem))] sm:rounded-[1.6rem] dark:bg-night dark:text-[#f6efe6] ${shown ? "translate-y-0 opacity-100" : "translate-y-full sm:translate-y-6 sm:opacity-0"}`}
+        className={`relative z-10 flex h-[calc(100dvh-0.75rem)] w-full flex-col overflow-hidden rounded-t-[1.4rem] bg-paper text-ink shadow-[0_-24px_60px_rgba(43,30,32,0.28)] transition duration-200 ease-out sm:h-auto sm:max-h-[min(92dvh,56rem)] sm:w-[min(90vw,75rem)] sm:rounded-[1.6rem] dark:bg-night dark:text-[#f6efe6] ${shown ? "translate-y-0 opacity-100" : "translate-y-full sm:translate-y-6 sm:opacity-0"}`}
       >
         <div className="relative flex shrink-0 items-center justify-end px-2 pt-[max(0.35rem,env(safe-area-inset-top))]">
           <span className="pointer-events-none absolute top-2 left-1/2 h-1 w-10 -translate-x-1/2 rounded-full bg-ink/15 sm:hidden dark:bg-white/20" aria-hidden="true" />
@@ -186,7 +185,7 @@ export function ProjectDialog({
             <IconX size={22} stroke={1.75} aria-hidden="true" />
           </button>
         </div>
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-6">
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-8">
           {shot && (
             <div data-gallery onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} className="relative">
               <DeviceMockup {...shot} wide />
@@ -254,11 +253,16 @@ export function ProjectDialog({
             </ul>
           )}
           {project.stack.length > 0 && (
-            <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+            <ul className="mt-4 flex flex-wrap gap-2" aria-label="Tecnologias">
               {project.stack.map((item) => (
-                <Tag key={item}>{item}</Tag>
+                <li
+                  key={item}
+                  className="rounded-full border border-ink/15 bg-cream px-3 py-1.5 font-label text-[0.68rem] font-extrabold tracking-[0.04em] text-ink uppercase dark:border-white/20 dark:bg-white/10 dark:text-white"
+                >
+                  {item}
+                </li>
               ))}
-            </div>
+            </ul>
           )}
           <div className="mt-6 flex flex-wrap gap-3">
             {project.links.map((link) => (

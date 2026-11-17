@@ -26,7 +26,7 @@ export function DeviceMockup({
   const zoom = hover ? "transition duration-500 group-hover:scale-[1.04]" : "";
   const imageWidth = width ?? (device === "phone" ? 390 : 1280);
   const imageHeight = height ?? (device === "phone" ? 844 : 800);
-  const laptopSizes = wide ? "(max-width: 640px) 92vw, (max-width: 1280px) 80vw, 760px" : "(max-width: 640px) 92vw, 420px";
+  const laptopSizes = wide ? "(max-width: 640px) 100vw, 1120px" : "(max-width: 640px) 92vw, 420px";
   if (device === "phone") {
     return (
       <div className="mx-auto w-[min(100%,15.5rem)] rounded-[1.8rem] bg-night p-2 shadow-[0_20px_50px_rgba(43,30,32,0.25)]">
