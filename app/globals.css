@@ -64,6 +64,17 @@ textarea:focus-visible {
   outline-offset: 6px;
 }
 
+.blanco-outline {
+  color: #fffbf2;
+  -webkit-text-stroke: 1px #2b1e20;
+  paint-order: stroke fill;
+}
+
+.dark .blanco-outline {
+  color: #1e1416;
+  -webkit-text-stroke-color: #fff;
+}
+
 .pwa-dismiss {
   -webkit-tap-highlight-color: transparent;
 }

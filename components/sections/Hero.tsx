@@ -8,11 +8,9 @@ export function Hero() {
         Desenvolvedor Full Stack
       </p>
       <div className="relative mt-4">
-        <h1 className="max-w-full font-display text-[clamp(2rem,14.94cqw,18rem)] leading-[0.9] font-bold tracking-[-0.04em] text-ink dark:text-white">
-          <span className="block w-fit origin-left scale-x-[1.652]">Rafael</span>
-          <span className="block w-fit origin-left scale-x-[1.545] text-paper [-webkit-text-stroke:0.035em_#2B1E20] [paint-order:stroke_fill] dark:text-night dark:[-webkit-text-stroke:0.035em_#fff]">
-            Blanco
-          </span>
+        <h1 className="max-w-full font-display text-[clamp(1.75rem,10.5cqw,12.5rem)] leading-[0.92] font-bold text-ink dark:text-white">
+          <span className="block w-fit tracking-[0.005em]">Rafael</span>
+          <span className="blanco-outline block w-fit tracking-[-0.04em]">Blanco</span>
         </h1>
         <div className="mt-8 max-w-xl">
             <p className="text-[clamp(1rem,0.95rem+0.2vw,1.15rem)] leading-relaxed text-ink/80 dark:text-white/80">
