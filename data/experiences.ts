@@ -9,6 +9,7 @@ export const experiences: Experience[] = [
     summary:
       "Sou o desenvolvedor responsável pela tecnologia da T2 Educação: o Hub interno de gestão, as integrações entre plataformas, as automações, o banco de dados, a infraestrutura e toda a presença digital. Entrei em maio de 2026 como desenvolvedor front-end e, um mês depois, fui promovido a full stack, com a operação de tecnologia inteira no escopo.",
     did: [
+      "Mais de R$ 5.000 economizados em ferramentas, trocando ferramentas pagas por soluções feitas em casa e enxugando a infraestrutura.",
       "Desenvolvo e evoluo o Hub da T2, o sistema interno em Next.js, React e TypeScript com módulos de tarefas, atendimento, financeiro com conciliação, marketing, central de contatos, afiliados e representantes, biblioteca de aulas e gestão de vendas B2B.",
       "Integrei o Hub a mais de dez plataformas: Crisp e Crisp AI no atendimento, ActiveCampaign, Hotmart, Pagar.me, Granatum, eNotas para nota fiscal, Instagram Graph API, YouTube Analytics, automações de WhatsApp, Google Reviews, GitHub, Cloudflare Turnstile no login e GA4 no tracking de conversão.",
       "Modelo e mantenho o banco em PostgreSQL com Supabase, com schemas por domínio, e cuido da API própria, das dezenas de crons na Vercel, da geração de PDF, planilhas e apresentações e dos health checks que vigiam os endpoints.",

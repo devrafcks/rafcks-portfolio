@@ -21,6 +21,12 @@ export function About() {
         <p>
           Meu nome é Rafael Henrique Blanco. Tenho 19 anos, moro em São Paulo e trabalho como desenvolvedor full stack. Crio SaaS, sistemas e apps de ponta a ponta, e é na construção de produto que eu rendo mais.
         </p>
+        <p className="inline-flex max-w-md flex-col bg-ink px-5 py-4 text-white dark:bg-sun dark:text-ink">
+          <span className="font-display text-[clamp(1.8rem,1.4rem+1vw,2.6rem)] leading-none font-bold">+R$ 7.000</span>
+          <span className="mt-2 text-sm leading-snug">
+            economizados em ferramentas e infraestrutura. Construo por dentro e enxugo a infra para a empresa gastar menos.
+          </span>
+        </p>
         <p>
           Já construí um ERP com PDV, financeiro com conciliação e gateway de pagamento, apps publicados na App Store e na Google Play, marketplaces, sistemas internos com dezenas de integrações e um SaaS próprio que funciona até com sinal fraco. Em uma das reestruturações que conduzi, a troca de infraestrutura cortou mais de R$ 400 por mês em custos.
         </p>
