@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { IconSend } from "@tabler/icons-react";
-import { projects } from "@/data/projects";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitText } from "@/components/motion/SplitText";
 import { Button } from "@/components/ui/Button";
@@ -11,21 +11,14 @@ import { NearView } from "@/components/motion/NearView";
 
 const TiltedGridHero = dynamic(() => import("@/components/ui/tilted-grid-hero").then((mod) => mod.TiltedGridHero), { ssr: false });
 
-const bandImages = projects
-  .filter((project) => !["mirante", "t2", "carretel", "cresce"].includes(project.id))
-  .map((project) => project.cover ?? project.images.find((image) => image.device === "laptop"))
-  .filter((shot): shot is NonNullable<typeof shot> => Boolean(shot) && shot!.device === "laptop")
-  .slice(0, 12)
-  // versões de 640px pelo otimizador do Next: a faixa nunca mostra o print maior que isso
-  .map((shot) => ({ src: `/_next/image?url=${encodeURIComponent(shot.src)}&w=640&q=75` }));
-
 const fields = [
-  { id: "nome", name: "name", label: "Nome", type: "text", auto: "name", maxLength: 80 },
-  { id: "email", name: "email", label: "E-mail", type: "email", auto: "email", maxLength: 160 },
-  { id: "assunto", name: "subject", label: "Assunto", type: "text", auto: "off", maxLength: 120 },
+  { id: "nome", name: "name", type: "text", auto: "name", maxLength: 80 },
+  { id: "email", name: "email", type: "email", auto: "email", maxLength: 160 },
+  { id: "assunto", name: "subject", type: "text", auto: "off", maxLength: 120 },
 ] as const;
 
-export function Contact() {
+export function Contact({ bandImages }: { bandImages: { src: string }[] }) {
+  const { t, locale } = useI18n();
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [error, setError] = useState("");
@@ -41,13 +34,14 @@ export function Contact() {
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-lang": locale },
         body: JSON.stringify({
           name: data.get("name"),
           email: data.get("email"),
           subject: data.get("subject"),
           message: data.get("message"),
           company: data.get("company"),
+          lang: locale,
         }),
       });
       const payload = (await response.json().catch(() => null)) as { error?: string } | null;
@@ -60,13 +54,13 @@ export function Contact() {
 
       setStatus("error");
       if (response.status === 400 || response.status === 429) {
-        setError(payload?.error || "Confere os campos e tenta de novo.");
+        setError(payload?.error || t.contact.checkFields);
         return;
       }
-      setError("Não consegui enviar agora. Tenta de novo mais tarde.");
+      setError(t.contact.failed);
     } catch {
       setStatus("error");
-      setError("Não consegui enviar agora. Tenta de novo mais tarde.");
+      setError(t.contact.failed);
     } finally {
       setSending(false);
     }
@@ -77,18 +71,18 @@ export function Contact() {
       {/* o título fica no HTML; a faixa curva de telas por trás só baixa quando o contato está chegando */}
       <div className="relative h-[clamp(22rem,52vw,34rem)] w-full">
         <NearView className="absolute inset-0" fallback={null}>
-          <TiltedGridHero images={bandImages} className="h-full w-full" axis={62} tileHeight={28} gap={10} curve={70} speed={5} fade={14} />
+          <TiltedGridHero images={bandImages} className="h-full w-full" axis={62} tileHeight={28} gap={10} curve={48} speed={5} fade={20} />
         </NearView>
         <div className="relative z-10 mx-auto max-w-xl px-5 pt-10 sm:px-10">
           <h2 className="text-center font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
-            <SplitText text="Vamos construir alguma coisa?" />
+            <SplitText text={t.contact.title} />
           </h2>
         </div>
       </div>
       <div className="mx-auto max-w-xl px-5 sm:px-10">
       <Reveal delay={0.2}>
         <p className="mx-auto mt-4 max-w-md text-center leading-relaxed text-ink/80 dark:text-white/75">
-          Tem um produto para tirar do papel, um sistema que precisa de alguém de ponta a ponta ou uma vaga em que eu me encaixo? Me manda uma mensagem por aqui. Se preferir, me chama no LinkedIn.
+          {t.contact.text}
         </p>
       </Reveal>
       <Reveal delay={0.3} amount={0.1}>
@@ -110,7 +104,7 @@ export function Contact() {
               htmlFor={field.id}
               className="pointer-events-none absolute top-6 left-0 text-ink/70 transition peer-focus:-translate-y-5 peer-focus:text-xs peer-[:not(:placeholder-shown)]:-translate-y-5 peer-[:not(:placeholder-shown)]:text-xs dark:text-white/70"
             >
-              {field.label}
+              {t.contact.fields[field.name]}
             </label>
           </div>
         ))}
@@ -129,19 +123,19 @@ export function Contact() {
             htmlFor="mensagem"
             className="pointer-events-none absolute top-6 left-0 text-ink/70 transition peer-focus:-translate-y-5 peer-focus:text-xs peer-[:not(:placeholder-shown)]:-translate-y-5 peer-[:not(:placeholder-shown)]:text-xs dark:text-white/70"
           >
-            Mensagem
+            {t.contact.fields.message}
           </label>
         </div>
         <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
-          <label htmlFor="company">Empresa</label>
+          <label htmlFor="company">{t.contact.fields.company}</label>
           <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
         </div>
         <Button type="submit" variant="primary" className="group w-full shadow-[0_14px_30px_-12px_rgba(255,127,26,0.7)]" disabled={sending}>
-          {sending ? "Enviando..." : "Enviar mensagem"}
+          {sending ? t.contact.sending : t.contact.send}
           <IconSend size={18} stroke={1.75} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
         </Button>
         <p role="status" aria-live="polite" className="min-h-6 text-center text-sm text-ink dark:text-white">
-          {status === "success" ? "Mensagem enviada. Vou responder em breve." : null}
+          {status === "success" ? t.contact.success : null}
           {status === "error" ? error : null}
         </p>
       </form>

@@ -183,6 +183,8 @@ button {
 /* a mesma margem lateral da Hero: as seções começam e terminam alinhadas com ela */
 @utility shell {
   width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
   padding-inline: 1.25rem;
   @media (width >= 40rem) {
     padding-inline: 2rem;

@@ -13,7 +13,8 @@ import { cn } from "@/lib/utils";
  * fileira congela no lugar.
  * ─────────────────────────────────────────────────────────────── */
 
-const SLICES = 16;
+// uma faceta por tile: com várias tiras por tile, as das pontas (quase de lado) brigavam entre si e piscavam
+const SLICES = 1;
 const CAMERA = 1.6;
 
 function arc(bend: number) {
@@ -76,7 +77,6 @@ export function TiltedGridHero({
   const bend = (Math.min(85, Math.max(5, curve)) * Math.PI) / 180;
 
   const [layout, setLayout] = React.useState<ReturnType<typeof measure> | null>(null);
-  const [shown, setShown] = React.useState<Record<number, number>>({});
   const [visible, setVisible] = React.useState(true);
 
   React.useEffect(() => {
@@ -138,8 +138,8 @@ export function TiltedGridHero({
       >
       <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
         {Array.from({ length: columns }, (_, t) => {
-          const first = columns - 1 - t;
-          const img = images[(shown[t] ?? first) % Math.max(images.length, 1)];
+          // cada tile fica sempre com a mesma imagem: trocar a imagem a cada volta fazia o lado direito piscar
+          const img = images[(columns - 1 - t) % Math.max(images.length, 1)];
           return (
             <div
               key={t}
@@ -158,13 +158,6 @@ export function TiltedGridHero({
                 animationIterationCount: "infinite",
                 animationPlayState: visible ? "running" : "paused",
               }}
-              onAnimationIteration={(e) => {
-                const lap = Math.round(e.elapsedTime / duration);
-                setShown((prev) => {
-                  const next = lap * columns + first;
-                  return prev[t] === next ? prev : { ...prev, [t]: next };
-                });
-              }}
             >
               {Array.from({ length: SLICES }, (_, k) => (
                 <div
@@ -175,6 +168,9 @@ export function TiltedGridHero({
                     width: k === SLICES - 1 ? u(share) : `calc(${u(share)} + 1px)`,
                     height: u(1),
                     transform: turn((aspectRatio / 2 - (k + 0.5) * share) * unit),
+                    // a face de trás nunca aparece: nas pontas, quase de lado, as tiras brigavam entre si e piscavam
+                    backfaceVisibility: "hidden",
+                    WebkitBackfaceVisibility: "hidden",
                   }}
                 >
                   {img ? (
@@ -183,7 +179,8 @@ export function TiltedGridHero({
                       src={img.src}
                       alt=""
                       draggable={false}
-                      decoding="async"
+                      decoding="sync"
+                      loading="eager"
                       className="absolute top-0 max-w-none object-cover object-top"
                       // 4% mais larga e alinhada à esquerda: corta a barra de rolagem que alguns prints trazem na borda direita
                       style={{ left: u(-k * share), width: u(aspectRatio * 1.04), height: u(1.04) }}
