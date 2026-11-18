@@ -6,13 +6,15 @@ import { StrawHat } from "@/components/art/StrawHat";
 /**
  * Lugar do chapéu na Hero. Mostra o chapéu em SVG (leve, já no HTML) até a
  * versão 3D ficar pronta; daí o 3D assume a partir daqui e sai passeando
- * pela página (ver TravelingHat). A caixa não anima: ela é a régua do 3D.
+ * pela página (ver TravelingHat). A caixa não gira nem muda de tamanho: ela é a régua do 3D.
  */
-export function HeroHat() {
+export function HeroHat({ className = "" }: { className?: string }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const onReady = () => setReady(true);
+    // o 3D mora na raiz e sobrevive à troca de idioma: se já estava pronto, nada de SVG por cima
+    if (document.documentElement.dataset.hat === "ready") setReady(true);
     window.addEventListener("hat:ready", onReady);
     return () => window.removeEventListener("hat:ready", onReady);
   }, []);
@@ -21,7 +23,7 @@ export function HeroHat() {
     <div
       id="hat-anchor"
       aria-hidden="true"
-      className="pointer-events-none absolute top-14 -right-4 aspect-square w-40 sm:top-16 sm:w-52 md:top-[14%] md:right-[2%] md:w-[clamp(18rem,34vw,32rem)] lg:top-[12%] lg:right-[max(4%,calc((100%-80rem)/2+2rem))] lg:w-[clamp(18rem,30vw,28rem)]"
+      className={`pointer-events-none aspect-square ${className}`}
     >
       <div className={`absolute inset-x-[16%] top-[26%] transition-opacity duration-500 ${ready ? "opacity-0" : "opacity-100"}`}>
         <div className="hat-enter">

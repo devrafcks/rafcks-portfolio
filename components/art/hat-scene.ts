@@ -33,7 +33,8 @@ export type HatScene = {
   /** fly: 0 parado na Hero, 1 voando pela página. land: 0 no ar, 1 pousado no B do footer. */
   setPhase: (fly: number, land: number) => void;
   /** Tamanho na tela em relação ao canvas: ajusta a resolução interna. */
-  setScale: (scale: number) => void;
+  /** "high" na Hero e pousado (grande na tela), "low" voando (pequeno): troca o buffer uma vez por transição. */
+  setQuality: (quality: "high" | "low") => void;
 };
 
 /**
@@ -135,7 +136,7 @@ function hatProfile() {
 export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMotion: boolean }): HatScene {
   const renderer = new WebGLRenderer({ antialias: true, alpha: true, powerPreference: "low-power" });
   // celular: resolução um pouco menor, economiza GPU e bateria sem perder nitidez visível
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.25 : 1.5));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2, window.innerWidth < 768 ? 1.25 : 1.5));
   renderer.outputColorSpace = SRGBColorSpace;
   renderer.toneMapping = ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -247,8 +248,16 @@ export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMoti
   const ro = new ResizeObserver(resize);
   ro.observe(host);
 
-  // resolução fixa: trocar o tamanho do buffer durante o scroll é o que mais pesa
-  const setScale = (_scale: number) => {};
+  // duas resoluções: nítida quando o chapéu está grande, leve quando voa pequeno
+  const dpr = Math.min(window.devicePixelRatio, 2);
+  const ratios = { high: Math.min(dpr, window.innerWidth < 768 ? 1.25 : 1.5), low: Math.max(0.5, dpr * 0.5) };
+  let quality: "high" | "low" = "high";
+  const setQuality = (next: "high" | "low") => {
+    if (next === quality) return;
+    quality = next;
+    renderer.setPixelRatio(ratios[next]);
+    resize();
+  };
 
   // mouse: inclinação suave; clique: um giro
   let targetX = 0;
@@ -278,6 +287,7 @@ export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMoti
   let tiltY = 0;
   let fly = 0;
   let land = 0;
+  let skip = false;
 
   const draw = () => {
     renderer.render(scene, camera);
@@ -305,14 +315,19 @@ export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMoti
     hat.rotation.x = 0.22 + (tiltX + Math.sin(t * 0.9) * 0.04) * air + fly * Math.sin(t * 1.3) * 0.05 - land * 0.1;
     hat.rotation.z = (Math.sin(t * 0.7) * 0.05 - tiltY * 0.15) * air + fly * Math.sin(t * 1.1) * 0.06 - land * 0.16;
     hat.position.x = tiltY * 0.25 * air;
-    hat.position.y = Math.sin(t * 1.1) * 0.08 * air;
+    // na Hero ele está pendurado na letra: nada de flutuar; voando, sobe e desce de leve
+    hat.position.y = Math.sin(t * 1.1) * 0.08 * air * fly;
 
     const lift = (hat.position.y + 0.08) / 0.16; // 0..1
     shadow.scale.setScalar(1 - lift * 0.12);
     // sombra só no chão da Hero; voando ou pousado ela some
-    (shadow.material as MeshBasicMaterial).opacity = (1 - lift * 0.35) * (1 - Math.max(fly, land));
+    // sem sombra no chão: pendurado na letra, voando ou pousado, não há chão embaixo
+    (shadow.material as MeshBasicMaterial).opacity = 0;
+    shadow.visible = false;
 
-    draw();
+    // voando, desenha a 30 quadros por segundo: o movimento da camada continua a 60 pelo transform
+    skip = fly > 0.5 && land < 0.5 ? !skip : false;
+    if (!skip) draw();
     frame = requestAnimationFrame(tick);
   };
 
@@ -332,7 +347,7 @@ export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMoti
     spin: () => {
       if (!reduceMotion) spinBoost = 1;
     },
-    setScale,
+    setQuality,
     setPhase: (nextFly, nextLand) => {
       fly = nextFly;
       land = nextLand;

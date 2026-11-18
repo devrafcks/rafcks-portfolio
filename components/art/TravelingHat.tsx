@@ -90,7 +90,8 @@ export function TravelingHat() {
       let cx = heroX;
       let cy = heroY;
       let scale = 1;
-      let turn = 0;
+      // pendurado no "l": inclinado e balançando de leve como um pêndulo
+      let turn = reduce ? -14 : -14 + Math.sin(now / 1000 * 1.4) * 3.5;
       let phase = 0;
       let land = 0;
       let flying = false;
@@ -133,7 +134,7 @@ export function TravelingHat() {
         cx = lerp(heroX, fx, exit);
         cy = lerp(heroY, fy, exit);
         scale = lerp(1, fs, exit);
-        turn = lean * exit;
+        turn = lerp(turn, lean, exit);
         phase = exit;
         flying = exit > 0.1;
 
@@ -173,6 +174,9 @@ export function TravelingHat() {
         // voando ao lado do cursor nunca bloqueia clique; parado na Hero ou pousado dá para girar
         el.style.pointerEvents = flying ? "none" : "auto";
         scene?.setPhase(Math.min(1, phase), land);
+        // qualidade com folga para não ficar trocando: alta parado ou pousado, baixa voando
+        if (phase > 0.6 && land < 0.4) scene?.setQuality("low");
+        else if (phase < 0.3 || land > 0.7) scene?.setQuality("high");
       }
     };
 
@@ -195,6 +199,7 @@ export function TravelingHat() {
             if (cancelled) return;
             bornAt = performance.now();
             el.style.opacity = "1";
+            document.documentElement.dataset.hat = "ready";
             window.dispatchEvent(new Event("hat:ready"));
           }),
         );

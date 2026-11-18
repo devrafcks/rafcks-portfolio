@@ -1,7 +1,7 @@
 /**
  * Project Deck (base: Aakash Mehra). Um baralho de sites distribuído pelo scroll:
  * cada card é a tela inicial de um projeto. O próximo sobe de baixo inclinado e
- * desfocado, aterrissa reto e nítido no meio da tela, e os de baixo recuam e
+ * aterrissa reto no meio da tela, e os de baixo recuam e
  * escurecem. O canto inferior direito é recortado para o botão de visita.
  *
  * Adaptado ao portfólio: next/image, ícones Tabler, textos em português, fundo
@@ -100,11 +100,7 @@ function Card({ p, i, count, progress, still, load, peek }: { p: DeckProject; i:
   const y = useTransform(progress, (v) => `${(1 - arrived(i, v, count)) * 108 - above(v) * peek}svh`);
   const rotateX = useTransform(progress, (v) => -(1 - arrived(i, v, count)) * 30 + above(v) * 5);
   const scale = useTransform(progress, (v) => 0.9 + 0.1 * arrived(i, v, count) - above(v) * 0.05);
-  // desfoque só enquanto o card chega; pousado ou coberto, sem filtro (filtro custa repintura a cada frame)
-  const filter = useTransform(progress, (v) => {
-    const blur = (1 - arrived(i, v, count)) ** 2 * 12;
-    return blur < 0.05 ? "none" : `blur(${blur.toFixed(2)}px)`;
-  });
+  // sem desfoque: filtro em camada grande repinta a cada quadro e era o que mais travava o deck
   const { t } = useI18n();
   const dim = useTransform(progress, (v) => above(v) * 0.15);
   const stillY = useTransform(progress, (v) => (arrived(i, v, count) >= 0.5 ? "0svh" : "110svh"));
@@ -113,7 +109,7 @@ function Card({ p, i, count, progress, still, load, peek }: { p: DeckProject; i:
     <m.article
       aria-label={`${p.name}: ${p.summary}`}
       className="col-start-1 row-start-1 mt-[4svh] w-[min(100%,calc(78svh*16/9),1280px)] origin-[50%_25%] will-change-transform max-sm:mt-0 max-sm:w-[min(100%,calc((100svh-12rem)*0.6))]"
-      style={{ zIndex: i + 1, ...(still ? { y: stillY } : { y, rotateX, scale, filter }) }}
+      style={{ zIndex: i + 1, ...(still ? { y: stillY } : { y, rotateX, scale }) }}
     >
       <div className="relative overflow-hidden rounded-[24px] bg-paper shadow-[0_50px_90px_-35px_rgba(43,30,32,0.5)] dark:bg-night">
         <div className="relative aspect-[16/9] w-full max-sm:aspect-[3/5]">

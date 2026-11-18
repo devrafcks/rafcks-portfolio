@@ -1,6 +1,5 @@
 import { IconArrowDown, IconArrowDownRight, IconBrandGithub, IconBrandLinkedin, IconLink } from "@tabler/icons-react";
 import { HeroArt } from "@/components/art/HeroArt";
-import { HeroHat } from "@/components/art/HeroHat";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { Reveal } from "@/components/motion/Reveal";
 import { HeroTitle } from "@/components/sections/HeroTitle";
@@ -20,7 +19,6 @@ export function Hero({ t }: { t: Dict["hero"] }) {
       className="relative isolate overflow-x-clip pt-24 pb-16 lg:flex lg:min-h-[100svh] lg:flex-col lg:justify-center lg:pt-28 lg:pb-24"
     >
       <HeroArt />
-      <HeroHat />
       {/* o conteúdo segue a mesma largura das seções; só a arte de fundo vai até a borda */}
       <div className="shell @container relative">
       <div>
