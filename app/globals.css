@@ -162,10 +162,11 @@ button {
   to { clip-path: inset(0 0 0 0); transform: none; }
 }
 
-/* cursor de desenho: um dedo apontando; em links e botões ele estica. Só com mouse. */
+/* cursor: seta na cor da tinta com borda creme (lê no claro e no escuro) e um anel cor de sol
+   que segue com atraso e cresce sobre o que é clicável. Só com mouse. */
 @media (pointer: fine) {
   html {
-    cursor: url("/cursors/finger.svg") 11 1, auto;
+    cursor: url("/cursors/arrow.svg") 4 3, auto;
   }
 
   a,
@@ -176,13 +177,40 @@ button {
   [role="button"],
   [role="tab"],
   .cursor-pointer {
-    cursor: url("/cursors/finger-stretch.svg") 11 1, pointer !important;
+    cursor: url("/cursors/arrow.svg") 4 3, pointer !important;
   }
 
   input,
   textarea,
   [contenteditable="true"] {
     cursor: text;
+  }
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1200000;
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  border: 2px solid rgb(255 188 0 / 0.95);
+  background: rgb(255 188 0 / 0);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+  will-change: transform;
+}
+
+.cursor-ring[data-hot="true"] {
+  background: rgb(255 188 0 / 0.22);
+  border-color: rgb(255 127 26 / 0.9);
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-ring {
+    display: none;
   }
 }
 
@@ -199,6 +227,25 @@ button {
 
 @keyframes sea-drift {
   to { transform: translateX(-50%); }
+}
+
+/* barquinho: balança nas ondas e anda devagar de um lado para o outro */
+.boat-drift {
+  animation: boat-drift 26s ease-in-out infinite alternate;
+}
+
+@keyframes boat-drift {
+  to { transform: translateX(56px); }
+}
+
+.boat-bob {
+  transform-origin: 50% 82%;
+  animation: boat-bob 5.2s ease-in-out infinite;
+}
+
+@keyframes boat-bob {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-4px) rotate(3deg); }
 }
 
 .sea-glint {
@@ -254,6 +301,8 @@ button {
 
 /* loops infinitos param quando a aba está oculta ou o bloco saiu da tela */
 .offscreen .sea-wave,
+.offscreen .boat-drift,
+.offscreen .boat-bob,
 .offscreen .sea-glint,
 .offscreen .hero-orb,
 .offscreen .hat-bob,
@@ -286,6 +335,8 @@ button {
   .hat-shadow,
   .sea-wave,
   .sea-glint,
+  .boat-drift,
+  .boat-bob,
   .scroll-cue {
     animation: none !important;
   }

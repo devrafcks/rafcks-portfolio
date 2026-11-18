@@ -1,9 +1,12 @@
 /**
  * Mar ao nascer do sol, atrás do chapéu: linha do horizonte, ondas finas que
- * deslizam devagar (cada uma no seu ritmo) e o reflexo do sol na água.
+ * deslizam devagar (cada uma no seu ritmo), o reflexo do sol na água e um
+ * veleirinho balançando entre as ondas.
  * Só SVG + transform em CSS (roda no compositor); pausa fora da tela e com
  * "reduzir movimento". Puro desenho, sem JS.
  */
+
+import { Boat } from "@/components/art/Boat";
 
 const WIDTH = 1200;
 
@@ -38,6 +41,11 @@ export function Sea({ className = "" }: { className?: string }) {
             style={{ width: `${width}%`, animationDelay: `${index * -0.9}s` }}
           />
         ))}
+      </div>
+
+      {/* veleiro entre a primeira e a segunda onda */}
+      <div className="boat-drift absolute top-[calc(24%-5.6rem)] left-[34%] w-[7.5rem]">
+        <Boat className="boat-bob block h-auto w-full" />
       </div>
 
       {waves.map((wave) => (
