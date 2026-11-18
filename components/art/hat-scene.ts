@@ -7,7 +7,6 @@
 import {
   ACESFilmicToneMapping,
   CanvasTexture,
-  Color,
   CylinderGeometry,
   DirectionalLight,
   DoubleSide,
@@ -17,7 +16,6 @@ import {
   MathUtils,
   Mesh,
   MeshBasicMaterial,
-  MeshPhysicalMaterial,
   MeshStandardMaterial,
   PerspectiveCamera,
   PlaneGeometry,
@@ -44,16 +42,16 @@ export type HatScene = {
  * fibras soltas. A mesma imagem serve de cor e de relevo.
  */
 function strawTexture() {
-  const size = 1024;
+  const size = 512;
   const canvas = document.createElement("canvas");
   canvas.width = canvas.height = size;
   const ctx = canvas.getContext("2d")!;
   ctx.fillStyle = "#e9b852";
   ctx.fillRect(0, 0, size, size);
 
-  const rows = 32;
+  const rows = 16;
   const rowH = size / rows;
-  const step = 14;
+  const step = 10;
   for (let r = 0; r < rows; r++) {
     const y = r * rowH;
     const tone = 0.9 + Math.random() * 0.16;
@@ -86,21 +84,21 @@ function strawTexture() {
     ctx.fillRect(0, y, size, 2.5);
   }
   // fibras soltas e manchas leves
-  for (let i = 0; i < 1600; i++) {
+  for (let i = 0; i < 360; i++) {
     const x = Math.random() * size;
     const y = Math.random() * size;
     ctx.strokeStyle = `rgba(118, 74, 16, ${0.06 + Math.random() * 0.12})`;
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(x, y);
-    ctx.lineTo(x + 8 + Math.random() * 14, y + (Math.random() - 0.5) * 3);
+    ctx.lineTo(x + 4 + Math.random() * 7, y + (Math.random() - 0.5) * 3);
     ctx.stroke();
   }
   const texture = new CanvasTexture(canvas);
   texture.wrapS = texture.wrapT = RepeatWrapping;
-  texture.repeat.set(14, 1.7);
+  texture.repeat.set(10, 1.4);
   texture.colorSpace = SRGBColorSpace;
-  texture.anisotropy = 8;
+  texture.anisotropy = 4;
   return texture;
 }
 
@@ -137,7 +135,7 @@ function hatProfile() {
 export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMotion: boolean }): HatScene {
   const renderer = new WebGLRenderer({ antialias: true, alpha: true, powerPreference: "low-power" });
   // celular: resolução um pouco menor, economiza GPU e bateria sem perder nitidez visível
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.5 : 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.25 : 1.5));
   renderer.outputColorSpace = SRGBColorSpace;
   renderer.toneMapping = ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -165,20 +163,18 @@ export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMoti
   scene.add(fill);
 
   const straw = strawTexture();
-  const hatMaterial = new MeshPhysicalMaterial({
+  // material padrão (não o físico): o shader compila bem mais rápido e não trava a tela na entrada
+  const hatMaterial = new MeshStandardMaterial({
     map: straw,
     bumpMap: straw,
-    bumpScale: 1.4,
-    roughness: 0.78,
+    bumpScale: 1.2,
+    roughness: 0.8,
     metalness: 0,
-    sheen: 0.6,
-    sheenRoughness: 0.5,
-    sheenColor: new Color(0xfff0c2),
     side: DoubleSide,
   });
 
   const hat = new Group();
-  const geometry = new LatheGeometry(hatProfile(), 160);
+  const geometry = new LatheGeometry(hatProfile(), 96);
   // aba viva: ondula de leve e a borda não é um círculo perfeito
   const pos = geometry.attributes.position;
   for (let i = 0; i < pos.count; i++) {
@@ -200,8 +196,8 @@ export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMoti
 
   // fios de palha soltos na borda da aba
   const strandGeometry = new CylinderGeometry(0.006, 0.004, 1, 5);
-  for (let i = 0; i < 26; i++) {
-    const angle = (i / 26) * Math.PI * 2 + Math.random() * 0.2;
+  for (let i = 0; i < 14; i++) {
+    const angle = (i / 14) * Math.PI * 2 + Math.random() * 0.2;
     const length = 0.06 + Math.random() * 0.12;
     const strand = new Mesh(strandGeometry, hatMaterial);
     strand.scale.set(1, length, 1);
@@ -213,12 +209,12 @@ export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMoti
   }
 
   // faixa vermelha (cilindro aberto acompanhando a base da copa) + debruns
-  const bandMaterial = new MeshPhysicalMaterial({ color: 0xc8322a, roughness: 0.5, metalness: 0, sheen: 0.8, sheenRoughness: 0.4, sheenColor: new Color(0xff8a6a), side: DoubleSide });
-  const band = new Mesh(new CylinderGeometry(0.772, 0.794, 0.2, 96, 1, true), bandMaterial);
+  const bandMaterial = new MeshStandardMaterial({ color: 0xc8322a, roughness: 0.55, metalness: 0, side: DoubleSide });
+  const band = new Mesh(new CylinderGeometry(0.772, 0.794, 0.2, 64, 1, true), bandMaterial);
   band.position.y = 0.225;
   hat.add(band);
   const trimMaterial = new MeshStandardMaterial({ color: 0x8f1d16, roughness: 0.6 });
-  const trimTop = new Mesh(new TorusGeometry(0.773, 0.012, 8, 96), trimMaterial);
+  const trimTop = new Mesh(new TorusGeometry(0.773, 0.012, 6, 64), trimMaterial);
   trimTop.rotation.x = Math.PI / 2;
   trimTop.position.y = 0.325;
   const trimBottom = trimTop.clone();
@@ -251,17 +247,8 @@ export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMoti
   const ro = new ResizeObserver(resize);
   ro.observe(host);
 
-  // resolução interna segue o tamanho visível do chapéu (em degraus, para não recriar o buffer toda hora)
-  const baseRatio = Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.5 : 2);
-  let currentRatio = renderer.getPixelRatio();
-  const setScale = (scale: number) => {
-    const wanted = Math.min(3.5, Math.max(0.6, baseRatio * scale));
-    const stepped = Math.round(wanted * 4) / 4;
-    if (Math.abs(stepped - currentRatio) < 0.24) return;
-    currentRatio = stepped;
-    renderer.setPixelRatio(stepped);
-    resize();
-  };
+  // resolução fixa: trocar o tamanho do buffer durante o scroll é o que mais pesa
+  const setScale = (_scale: number) => {};
 
   // mouse: inclinação suave; clique: um giro
   let targetX = 0;

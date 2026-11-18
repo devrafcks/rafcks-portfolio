@@ -7,13 +7,30 @@ import type { HatScene } from "@/components/art/hat-scene";
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+const smooth = (t: number) => {
+  const x = clamp01(t);
+  return x * x * (3 - 2 * x);
+};
 
 /**
- * O chapéu 3D numa camada fixa que acompanha o scroll: começa na âncora da
- * Hero, sai voando de um lado para o outro da página quando você rola e pousa
- * no topo do "B" do footer quando a página chega ao fim. A posição sai de dois
- * pontos reais (a âncora e a letra), então funciona em qualquer tamanho de tela.
- * Funciona em qualquer largura; com "reduzir movimento" ele fica parado na Hero.
+ * Truques nas viradas de seção: quando o topo da seção atravessa a tela, o chapéu larga
+ * o cursor, dá uma volta grande pela tela (um looping) e volta para perto dele.
+ * `dir` é o sentido do giro, `start` o ângulo de saída e `spins` quantas voltas ele dá no próprio eixo.
+ */
+const tricks = [
+  { id: "experiencia", dir: 1, start: Math.PI, spins: 1 },
+  { id: "faixa", dir: -1, start: 0, spins: -1 },
+  { id: "projetos", dir: 1, start: Math.PI / 2, spins: 2 },
+  { id: "contato", dir: -1, start: -Math.PI / 2, spins: -1 },
+];
+
+/**
+ * O chapéu 3D numa camada fixa. Nasce na Hero; quando você rola ele sai voando e
+ * passa a acompanhar o cursor de pertinho, com um atraso de quem está flutuando
+ * (no celular, sem cursor, segue um caminho guiado pelo scroll). Nas viradas de algumas
+ * seções ele dá um looping pela tela e volta. No fim da página pousa no topo do "B" do footer.
+ * A resolução do 3D é fixa: só o transform da camada muda, então o custo é constante.
+ * Com "reduzir movimento" ele fica parado na Hero.
  */
 export function TravelingHat() {
   const reduce = useReducedMotion() ?? false;
@@ -27,8 +44,8 @@ export function TravelingHat() {
     let cancelled = false;
     let size = 0;
     let bornAt = 0;
+    let lastKey = "";
 
-    // posições no documento, guardadas para não ler layout a cada frame
     type Box = { left: number; top: number; width: number; height: number };
     const read = (node: Element | null): Box | null => {
       if (!node) return null;
@@ -37,22 +54,39 @@ export function TravelingHat() {
     };
     let anchorBox: Box | null = null;
     let letterBox: Box | null = null;
-    let bandBox: Box | null = null;
+    let trickTops: (number | null)[] = [];
     let frames = 0;
     const measure = () => {
       anchorBox = read(document.getElementById("hat-anchor"));
-      // a primeira letra da palavra carimbada no footer
       letterBox = read(document.querySelector(".dcf .dcf-letter .dcf-glyph"));
-      // a faixa amarela: é ali que o chapéu passa rente à tela
-      bandBox = read(document.getElementById("faixa"));
+      trickTops = tricks.map((trick) => read(document.getElementById(trick.id))?.top ?? null);
     };
     const onResize = () => measure();
     window.addEventListener("resize", onResize);
 
-    const place = () => {
+    // cursor: só mouse/trackpad de verdade; no toque o chapéu segue o scroll
+    let mouseX = -1;
+    let mouseY = -1;
+    const onMove = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse") return;
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+
+    // posição que persegue o alvo (atraso de flutuar)
+    let fx = -1;
+    let fy = -1;
+    let fs = 0.4;
+    let lastY = window.scrollY;
+    let lean = 0;
+    let last = performance.now();
+
+    const place = (now: number) => {
       raf = requestAnimationFrame(place);
-      // nos primeiros segundos a âncora e o footer ainda estão animando; depois, releitura a cada ~half segundo
-      if (frames < 150 || frames % 30 === 0) measure();
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      if (frames < 90 || frames % 30 === 0) measure();
       frames++;
       const a = anchorBox;
       if (!a) return;
@@ -64,68 +98,98 @@ export function TravelingHat() {
         el.style.width = el.style.height = `${size}px`;
       }
 
-      // ponto 1: a âncora na Hero
-      let cx = a.left + a.width / 2;
-      let cy = a.top - y + a.height / 2;
+      // na Hero
+      const heroX = a.left + a.width / 2;
+      const heroY = a.top - y + a.height / 2;
+      let cx = heroX;
+      let cy = heroY;
       let scale = 1;
-      let fly = 0;
+      let turn = 0;
+      let phase = 0;
       let land = 0;
-      let flyby = 0;
+      let flying = false;
 
       if (!reduce) {
+        const flyScale = Math.min(1, (vw < 640 ? 110 : 150) / (size * 0.65));
         const max = document.documentElement.scrollHeight - vh;
-        // saída da Hero
-        fly = ease(clamp01(y / (vh * 0.6)));
-        // passeio: vai e volta pelas laterais, sobe e desce um pouco
-        const flyCx = vw * (0.5 + 0.36 * Math.sin(y / 700 + 1.1));
-        const flyCy = vh * (0.5 + 0.12 * Math.sin(y / 520));
-        // voando: ~210px no desktop, ~130px no celular
-        const flyScale = Math.min(1, (vw < 640 ? 130 : 210) / size);
-        cx = lerp(cx, flyCx, fly);
-        cy = lerp(cy, flyCy, fly);
-        scale = lerp(1, flyScale, fly);
 
-        // passagem: perto da faixa amarela o chapéu vem enorme na direção da tela e se afasta até sumir no fundo
-        if (bandBox) {
-          const top = bandBox.top - y;
-          const q = clamp01((vh * 1.05 - top) / (vh * 1.7));
-          if (q > 0 && q < 1) {
-            flyby = clamp01(q / 0.12) * clamp01((1 - q) / 0.15);
-            const big = (Math.max(vw, vh) * 0.95) / (size * 0.65);
-            const far = flyScale * 0.22;
-            let passScale: number;
-            if (q < 0.32) passScale = lerp(flyScale, big, ease(q / 0.32));
-            else if (q < 0.85) passScale = lerp(big, far, ease((q - 0.32) / 0.53));
-            else passScale = lerp(far, flyScale, ease((q - 0.85) / 0.15));
-            // parte de onde o chapéu já está, cresce vindo pro centro e depois foge pro alto à direita
-            const passCx = q < 0.32 ? lerp(cx, vw * 0.44, ease(q / 0.32)) : lerp(vw * 0.44, vw * 0.86, ease((q - 0.32) / 0.68));
-            const passCy = q < 0.32 ? lerp(cy, vh * 0.56, ease(q / 0.32)) : lerp(vh * 0.56, vh * 0.3, ease((q - 0.32) / 0.68));
-            cx = lerp(cx, passCx, flyby);
-            cy = lerp(cy, passCy, flyby);
-            scale = lerp(scale, passScale, flyby);
-          }
+        // alvo do voo: logo acima e à direita do cursor; sem cursor, um passeio guiado pelo scroll
+        let tx: number;
+        let ty: number;
+        if (mouseX >= 0) {
+          tx = Math.min(vw - 60, Math.max(60, mouseX + 70));
+          ty = Math.min(vh - 60, Math.max(60, mouseY - 90));
+        } else {
+          tx = vw * (0.5 + 0.34 * Math.sin(y / 700 + 1.1));
+          ty = vh * (0.42 + 0.12 * Math.sin(y / 520));
+        }
+        let ts = flyScale;
+        let follow = 5; // quanto mais alto, mais grudado no alvo
+        let spin = 0;
+
+        // looping nas viradas de seção
+        for (let i = 0; i < tricks.length; i++) {
+          const top = trickTops[i];
+          if (top == null) continue;
+          const q = clamp01((vh * 0.95 - (top - y)) / (vh * 0.8));
+          if (q <= 0 || q >= 1) continue;
+          const t = tricks[i];
+          const w = smooth(q / 0.18) * smooth((1 - q) / 0.18);
+          const angle = t.start + t.dir * ease(q) * Math.PI * 2;
+          const r = Math.min(vw, vh) * 0.3;
+          tx = lerp(tx, vw / 2 + Math.cos(angle) * r * 1.25, w);
+          ty = lerp(ty, vh / 2 + Math.sin(angle) * r, w);
+          ts = flyScale * (1 + 0.35 * w);
+          follow = lerp(follow, 9, w);
+          spin = ease(q) * 360 * t.spins * w;
+          break;
         }
 
-        // pouso: termina exatamente no fim da página, em cima do B
+        if (fx < 0) {
+          fx = tx;
+          fy = ty;
+          fs = ts;
+        }
+        const k = 1 - Math.exp(-dt * follow);
+        fx += (tx - fx) * k;
+        fy += (ty - fy) * k;
+        fs += (ts - fs) * k;
+
+        // inclina na direção do movimento e com a velocidade do scroll
+        const vx = (tx - fx) / Math.max(vw, 1);
+        const vy = (y - lastY) / Math.max(dt, 0.001) / 4000;
+        lastY = y;
+        lean += (Math.max(-1, Math.min(1, vx * 6 + vy)) * 18 - lean) * Math.min(1, dt * 6);
+
+        // saída da Hero: da âncora até o voo
+        const exit = ease(clamp01(y / (vh * 0.7)));
+        cx = lerp(heroX, fx, exit);
+        cy = lerp(heroY, fy, exit);
+        scale = lerp(1, fs, exit);
+        turn = (lean + spin) * exit;
+        phase = exit;
+        flying = exit > 0.1;
+
+        // pouso no topo do B quando a página chega ao fim
         const b = letterBox;
         if (b && b.width > 0) {
           land = ease(clamp01(1 - (max - y) / (vh * 0.9)));
           if (land > 0) {
-            // o chapéu ocupa ~65% do canvas; no pouso fica só um pouco mais largo que a letra
             const landScale = (b.width * 1.15) / (size * 0.65);
             const landCx = b.left + b.width * 0.48;
-            // o retângulo do texto inclui o espaço acima das maiúsculas: o topo real do B fica ~20% abaixo
             const capTop = b.top - y + b.height * 0.2;
-            // a base da aba fica ~12,7% do canvas abaixo do centro; ela encosta no topo da letra
             const landCy = capTop + b.height * 0.03 - 0.127 * size * landScale;
             cx = lerp(cx, landCx, land);
             cy = lerp(cy, landCy, land);
             scale = lerp(scale, landScale, land);
+            turn = lerp(turn, 0, land);
+            phase = phase * (1 - land);
+            flying = land < 0.95;
           }
         }
       }
 
-      // nascimento: o 3D cai de leve no lugar do SVG em vez de só aparecer por cima
+      // nascimento: o 3D cai de leve no lugar do SVG
       if (bornAt && !reduce) {
         const t = clamp01((performance.now() - bornAt) / 800);
         if (t < 1) {
@@ -135,22 +199,29 @@ export function TravelingHat() {
         }
       }
 
-      el.style.transform = `translate3d(${cx - size / 2}px, ${cy - size / 2}px, 0) scale(${scale})`;
-      // voando não bloqueia cliques; parado na Hero ou pousado dá para clicar e girar
-      el.style.pointerEvents = (fly < 0.1 || land > 0.95) && flyby < 0.05 ? "auto" : "none";
-      scene?.setPhase(Math.min(1, fly * (1 - land) + flyby), land);
-      // resolução acompanha o tamanho na tela: nítido quando passa grande, barato quando está pequeno
-      scene?.setScale(scale);
+      const transform = `translate3d(${(cx - size / 2).toFixed(1)}px, ${(cy - size / 2).toFixed(1)}px, 0) rotate(${turn.toFixed(1)}deg) scale(${scale.toFixed(4)})`;
+      if (transform !== lastKey) {
+        lastKey = transform;
+        el.style.transform = transform;
+        // voando ao lado do cursor nunca bloqueia clique; parado na Hero ou pousado dá para girar
+        el.style.pointerEvents = flying ? "none" : "auto";
+        scene?.setPhase(Math.min(1, phase), land);
+      }
     };
 
-    const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 600));
+    // espera o navegador folgar, mas no máximo 2,5 s (rolando sem parar, o "folgar" nunca chega)
+    const idle = window.requestIdleCallback
+      ? (cb: () => void) => window.requestIdleCallback(cb, { timeout: 2500 })
+      : (cb: () => void) => window.setTimeout(cb, 600);
     const cancelIdle = window.cancelIdleCallback ?? window.clearTimeout;
     const handle = idle(async () => {
       try {
         const { createHatScene } = await import("@/components/art/hat-scene");
         if (cancelled) return;
-        place();
+        last = performance.now();
+        place(last);
         scene = createHatScene(el, { reduceMotion: reduce });
+        lastKey = "";
         // só mostra depois que o primeiro quadro já foi desenhado no tamanho certo
         requestAnimationFrame(() =>
           requestAnimationFrame(() => {
@@ -170,6 +241,7 @@ export function TravelingHat() {
 
     return () => {
       window.removeEventListener("hat:spin", onSpin);
+      window.removeEventListener("pointermove", onMove);
       cancelled = true;
       cancelIdle(handle as number);
       cancelAnimationFrame(raf);

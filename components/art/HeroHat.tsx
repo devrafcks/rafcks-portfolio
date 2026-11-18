@@ -21,7 +21,7 @@ export function HeroHat() {
     <div
       id="hat-anchor"
       aria-hidden="true"
-      className="pointer-events-none absolute top-14 -right-4 aspect-square w-40 sm:top-16 sm:w-52 md:top-[14%] md:right-[2%] md:w-[clamp(18rem,34vw,32rem)] lg:top-[12%] lg:right-[4%]"
+      className="pointer-events-none absolute top-14 -right-4 aspect-square w-40 sm:top-16 sm:w-52 md:top-[14%] md:right-[2%] md:w-[clamp(18rem,34vw,32rem)] lg:top-[12%] lg:right-[max(4%,calc((100%-80rem)/2+2rem))] lg:w-[clamp(18rem,30vw,28rem)]"
     >
       <div className={`absolute inset-x-[16%] top-[26%] transition-opacity duration-500 ${ready ? "opacity-0" : "opacity-100"}`}>
         <div className="hat-enter">
