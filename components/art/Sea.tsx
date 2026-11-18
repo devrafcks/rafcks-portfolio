@@ -1,12 +1,10 @@
 /**
- * Mar ao nascer do sol, atrás do chapéu: linha do horizonte, ondas finas que
- * deslizam devagar (cada uma no seu ritmo), o reflexo do sol na água e um
- * veleirinho balançando entre as ondas.
- * Só SVG + transform em CSS (roda no compositor); pausa fora da tela e com
- * "reduzir movimento". Puro desenho, sem JS.
+ * Mar ao nascer do sol, atrás do chapéu: a água num degradê quente, a linha do
+ * horizonte, ondas em perspectiva que deslizam devagar (cada uma no seu ritmo) e o
+ * reflexo do sol na água. O sol e o navio ficam fora daqui (em HeroArt) para a
+ * máscara do mar não cortar nada. Só SVG + transform em CSS; pausa fora da tela
+ * e com "reduzir movimento".
  */
-
-import { Boat } from "@/components/art/Boat";
 
 const WIDTH = 1200;
 
@@ -19,33 +17,42 @@ function wavePath(length: number, amp: number) {
   return d;
 }
 
+// perspectiva: perto do horizonte as ondas são baixas e juntas; perto de quem olha, maiores e mais espaçadas
 const waves = [
-  { top: 14, length: 120, amp: 4, stroke: 2, className: "text-ember/70 dark:text-ember/60", duration: 18 },
-  { top: 30, length: 150, amp: 6, stroke: 2.5, className: "text-sun dark:text-sun/80", duration: 24 },
-  { top: 50, length: 200, amp: 8, stroke: 3, className: "text-ember/45 dark:text-ember/40", duration: 30 },
-  { top: 72, length: 240, amp: 10, stroke: 3.5, className: "text-ink/12 dark:text-white/12", duration: 38 },
+  { top: 9, length: 100, amp: 2.5, stroke: 1.5, className: "text-ember/55 dark:text-ember/60", duration: 16 },
+  { top: 20, length: 120, amp: 4, stroke: 2, className: "text-sun dark:text-sun/85", duration: 20 },
+  { top: 35, length: 150, amp: 6, stroke: 2.5, className: "text-ember/50 dark:text-ember/50", duration: 26 },
+  { top: 55, length: 200, amp: 8, stroke: 3, className: "text-sun/55 dark:text-sun/40", duration: 32 },
+  { top: 79, length: 240, amp: 10, stroke: 3.5, className: "text-ink/12 dark:text-white/14", duration: 40 },
+];
+
+/** Reflexo do sol: traços que cintilam numa coluna embaixo dele, mais espalhados perto de quem olha. */
+const glints = [
+  { width: 56, offset: 0, opacity: 0.95 },
+  { width: 72, offset: -4, opacity: 0.85 },
+  { width: 60, offset: 6, opacity: 0.7 },
+  { width: 84, offset: -8, opacity: 0.55 },
+  { width: 50, offset: 10, opacity: 0.42 },
+  { width: 70, offset: -6, opacity: 0.3 },
 ];
 
 export function Sea({ className = "" }: { className?: string }) {
   return (
     <div className={`sea ${className}`}>
+      {/* a água: um degradê quente logo abaixo do horizonte que some para a frente */}
+      <div className="absolute inset-0 bg-gradient-to-b from-ember/20 via-sun/[0.07] to-transparent dark:from-ember/30 dark:via-ember/[0.08]" />
       {/* horizonte */}
-      <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-ember/60 to-ember/80" />
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-ember/70 to-ember" />
 
-      {/* reflexo do sol: traços curtos que cintilam embaixo dele */}
-      <div className="absolute top-[6%] right-[22%] flex w-[22%] flex-col items-center gap-[7%]">
-        {[70, 52, 38, 26].map((width, index) => (
+      {/* reflexo, centrado embaixo do sol */}
+      <div className="absolute top-[5%] right-[16%] flex w-[9rem] flex-col items-center gap-[0.55rem]">
+        {glints.map((glint, index) => (
           <span
-            key={width}
-            className="sea-glint block h-[3px] rounded-full bg-sun/80"
-            style={{ width: `${width}%`, animationDelay: `${index * -0.9}s` }}
+            key={index}
+            className="sea-glint block h-[3px] rounded-full bg-gradient-to-r from-transparent via-sun to-transparent"
+            style={{ width: `${glint.width}%`, marginLeft: `${glint.offset}%`, opacity: glint.opacity, animationDelay: `${index * -0.7}s` }}
           />
         ))}
-      </div>
-
-      {/* veleiro entre a primeira e a segunda onda */}
-      <div className="boat-drift absolute top-[calc(24%-5.6rem)] left-[34%] w-[7.5rem]">
-        <Boat className="boat-bob block h-auto w-full" />
       </div>
 
       {waves.map((wave) => (

@@ -106,14 +106,26 @@ button {
 
 .hero-orb {
   background: radial-gradient(circle at 50% 50%, rgb(255 188 0 / 0.55), rgb(255 127 26 / 0.32) 38%, rgb(255 127 26 / 0.08) 58%, transparent 70%);
-  will-change: transform;
-  animation: orb-breathe 14s ease-in-out infinite;
 }
 
 .hero-orb--soft {
   opacity: 0.55;
   animation-duration: 18s;
   animation-delay: -6s;
+}
+
+/* sol do horizonte: disco com degradê e um brilho largo em volta */
+.sun-disc {
+  background: radial-gradient(circle at 50% 38%, #fff3b0, #ffd23f 34%, #ffbc00 55%, #ff7f1a 100%);
+  box-shadow: 0 0 40px 8px rgb(255 188 0 / 0.45);
+}
+
+.sun-glow {
+  background: radial-gradient(circle, rgb(255 188 0 / 0.45), rgb(255 127 26 / 0.22) 32%, rgb(255 127 26 / 0.06) 55%, transparent 70%);
+}
+
+.dark .sun-glow {
+  background: radial-gradient(circle, rgb(255 160 40 / 0.5), rgb(255 127 26 / 0.24) 30%, rgb(255 127 26 / 0.07) 52%, transparent 68%);
 }
 
 .dark .hero-orb {
@@ -160,6 +172,31 @@ button {
 @keyframes title-wipe {
   from { clip-path: inset(0 100% 0 0); transform: translateX(-24px); }
   to { clip-path: inset(0 0 0 0); transform: none; }
+}
+
+/* barra de rolagem nas cores do site: polegar cor de sol, trilho no papel (ou na noite) */
+html {
+  scrollbar-color: #ffbc00 var(--site-bg);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--site-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid var(--site-bg);
+  border-radius: 9999px;
+  background: #ffbc00;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff7f1a;
 }
 
 /* cursor: seta na cor da tinta com borda creme (lê no claro e no escuro) e um anel cor de sol
@@ -227,6 +264,74 @@ button {
 
 @keyframes sea-drift {
   to { transform: translateX(-50%); }
+}
+
+/* monstros marinhos atrás do navio: o recorte embaixo é a linha d'água; cada um sobe, atravessa e mergulha */
+.sea-monsters {
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.monster {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  will-change: transform;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.monster-serpent {
+  animation-name: swim-serpent;
+  animation-duration: 17s;
+}
+
+@keyframes swim-serpent {
+  0% { transform: translate(92cqw, 105%); }
+  10% { transform: translate(82cqw, 18%); }
+  40% { transform: translate(56cqw, 6%); }
+  66% { transform: translate(30cqw, 14%); }
+  76% { transform: translate(22cqw, 105%); }
+  100% { transform: translate(22cqw, 105%); }
+}
+
+.monster-sway {
+  transform-origin: 40% 100%;
+  animation: monster-sway 2.6s ease-in-out infinite;
+}
+
+@keyframes monster-sway {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(6deg); }
+}
+
+.monster-puffer {
+  animation-name: swim-puffer;
+  animation-duration: 13s;
+  animation-delay: -5s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes swim-puffer {
+  0%, 30% { transform: translate(14cqw, 110%); }
+  40% { transform: translate(18cqw, 34%) rotate(-8deg); }
+  52% { transform: translate(26cqw, 40%) rotate(6deg); }
+  64% { transform: translate(34cqw, 32%) rotate(-6deg); }
+  74%, 100% { transform: translate(40cqw, 110%); }
+}
+
+.monster-whale {
+  animation-name: swim-whale;
+  animation-duration: 24s;
+  animation-delay: -11s;
+}
+
+@keyframes swim-whale {
+  0% { transform: translate(-30cqw, 110%); }
+  12% { transform: translate(-14cqw, 40%); }
+  58% { transform: translate(44cqw, 36%); }
+  70% { transform: translate(58cqw, 110%); }
+  100% { transform: translate(58cqw, 110%); }
 }
 
 /* barquinho: balança nas ondas e anda devagar de um lado para o outro */
@@ -300,6 +405,8 @@ button {
 }
 
 /* loops infinitos param quando a aba está oculta ou o bloco saiu da tela */
+.offscreen .monster,
+.offscreen .monster-sway,
 .offscreen .sea-wave,
 .offscreen .boat-drift,
 .offscreen .boat-bob,
@@ -335,6 +442,8 @@ button {
   .hat-shadow,
   .sea-wave,
   .sea-glint,
+  .monster,
+  .monster-sway,
   .boat-drift,
   .boat-bob,
   .scroll-cue {
