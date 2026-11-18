@@ -15,6 +15,8 @@ import { MotionConfig, m, useInView, useReducedMotion, useScroll, useSpring, use
 import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { fill } from "@/lib/i18n/format";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
 export type DeckProject = {
   name: string;
@@ -103,6 +105,7 @@ function Card({ p, i, count, progress, still, load, peek }: { p: DeckProject; i:
     const blur = (1 - arrived(i, v, count)) ** 2 * 12;
     return blur < 0.05 ? "none" : `blur(${blur.toFixed(2)}px)`;
   });
+  const { t } = useI18n();
   const dim = useTransform(progress, (v) => above(v) * 0.15);
   const stillY = useTransform(progress, (v) => (arrived(i, v, count) >= 0.5 ? "0svh" : "110svh"));
 
@@ -119,7 +122,7 @@ function Card({ p, i, count, progress, still, load, peek }: { p: DeckProject; i:
               {/* telas estreitas: o print do celular, que cabe inteiro na largura e fica nítido */}
               <Image
                 src={p.mobileImage ?? p.image}
-                alt={`Tela inicial de ${host(p.url)}`}
+                alt={fill(t.featured.screenAlt, { host: host(p.url) })}
                 fill
                 sizes={p.mobileImage ? "(max-width: 640px) 360px, 1px" : "(max-width: 640px) 1000px, 1px"}
                 className="object-cover object-left-top sm:hidden"
@@ -144,6 +147,7 @@ function Card({ p, i, count, progress, still, load, peek }: { p: DeckProject; i:
 
 /** O botão de visita, encaixado num canto recortado do card. */
 function Visit({ p }: { p: DeckProject }) {
+  const { t } = useI18n();
   const R = 18;
   const corner = (
     <svg aria-hidden width={R} height={R} viewBox={`0 0 ${R} ${R}`} className="block fill-paper dark:fill-night">
@@ -158,7 +162,7 @@ function Visit({ p }: { p: DeckProject }) {
         href={p.url}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`Visitar ${p.name} em ${host(p.url)} (abre em nova aba)`}
+        aria-label={fill(t.featured.visit, { name: p.name, host: host(p.url) })}
         className="group flex items-center gap-4 rounded-tl-[20px] bg-paper py-3 pr-1 pl-5 text-ink outline-none sm:gap-5 sm:py-4 sm:pl-7 dark:bg-night dark:text-white"
       >
         <span className="flex flex-col leading-tight">

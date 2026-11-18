@@ -1,17 +1,17 @@
-import { experiences } from "@/data/experiences";
+import type { Experience as ExperienceItem } from "@/data/types";
 import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
 import { TimelineLine } from "@/components/motion/TimelineLine";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
 
-export function Experience() {
+export function Experience({ title, items }: { title: string; items: ExperienceItem[] }) {
   return (
     <section id="experiencia" className="shell bg-cream py-20 dark:bg-night-2">
       <div>
-        <SectionHeading title="Experiências" titleClassName="max-w-xl" />
+        <SectionHeading title={title} titleClassName="max-w-xl" />
         <TimelineLine className="mt-12 space-y-8">
-          {experiences.map((item) => (
+          {items.map((item) => (
             <Reveal
               as="article"
               key={item.org}

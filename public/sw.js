@@ -1,5 +1,5 @@
-const CACHE = "rafael-blanco-v3";
-const PRECACHE = ["/", "/offline", "/manifest.webmanifest", "/icon-192.png", "/icon-512.png", "/icon-maskable-192.png", "/icon-maskable-512.png", "/apple-touch-icon.png", "/icon.svg"];
+const CACHE = "rafael-blanco-v4";
+const PRECACHE = ["/", "/en", "/es", "/offline", "/manifest.webmanifest", "/icon-192.png", "/icon-512.png", "/icon-maskable-192.png", "/icon-maskable-512.png", "/apple-touch-icon.png", "/icon.svg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

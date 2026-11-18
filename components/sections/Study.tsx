@@ -14,10 +14,10 @@ import {
   IconUsers,
 } from "@tabler/icons-react";
 import type { ComponentType } from "react";
-import { studies } from "@/data/courses";
 import type { Study } from "@/data/types";
 import { EASE } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
 const icons: Record<string, ComponentType<{ size?: number; stroke?: number; "aria-hidden"?: boolean }>> = {
   "Instituto PROA": IconUsers,
@@ -63,12 +63,10 @@ function CourseCard({ item, index }: { item: Study; index: number }) {
   );
 }
 
-const tabs = [
-  ["formacao", "Formação"],
-  ["cursos", "Cursos e certificações"],
-] as const;
+const tabs = ["formacao", "cursos"] as const;
 
-export function Study() {
+export function Study({ studies }: { studies: Study[] }) {
+  const { t } = useI18n();
   const [tab, setTab] = useState<"formacao" | "cursos">("formacao");
   const formacao = studies.filter((item) => item.group === "formacao");
   const cursos = studies.filter((item) => item.group === "curso");
@@ -76,9 +74,9 @@ export function Study() {
   return (
     <section id="estudos" className="shell py-20">
       <div className="flex flex-wrap items-end justify-between gap-6">
-        <SectionHeading title="Formação e cursos" />
-        <div role="tablist" aria-label="Formação e cursos" className="relative flex gap-6">
-          {tabs.map(([id, label]) => (
+        <SectionHeading title={t.study.title} />
+        <div role="tablist" aria-label={t.study.title} className="relative flex gap-6">
+          {tabs.map((id) => (
             <button
               key={id}
               id={`tab-${id}`}
@@ -89,7 +87,7 @@ export function Study() {
               onClick={() => setTab(id)}
               className={`relative pb-1 font-label text-sm font-extrabold uppercase tracking-[0.08em] italic transition-colors ${tab === id ? "text-ink dark:text-white" : "text-ink/80 hover:text-ink dark:text-white/80 dark:hover:text-white"}`}
             >
-              {label}
+              {t.study.tabs[id]}
               {tab === id && (
                 <m.span
                   layoutId="study-tab"

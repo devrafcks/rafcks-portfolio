@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { IconArrowUpRight } from "@tabler/icons-react";
-import { filters, projects } from "@/data/projects";
 import type { Project, ProjectTag } from "@/data/types";
 import { m } from "motion/react";
 import { EASE } from "@/components/motion/Reveal";
@@ -11,14 +10,17 @@ import { Tilt } from "@/components/motion/Tilt";
 import { DeviceMockup } from "@/components/ui/DeviceMockup";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
-const ProjectDialog = dynamic(() => import("@/components/ui/ProjectDialog").then((mod) => mod.ProjectDialog), { ssr: false });
+const loadDialog = () => import("@/components/ui/ProjectDialog");
+const ProjectDialog = dynamic(() => loadDialog().then((mod) => mod.ProjectDialog), { ssr: false });
 
 const GERAL_PAGE = 12;
 
 type Filter = "Geral" | ProjectTag;
 
-export function Projects() {
+export function Projects({ projects, filters }: { projects: Project[]; filters: Filter[] }) {
+  const { t } = useI18n();
   const [filter, setFilter] = useState<Filter>("Geral");
   const [open, setOpen] = useState<Project | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -32,6 +34,9 @@ export function Projects() {
 
   useEffect(() => {
     setMounted(true);
+    // baixa o código do diálogo antes do primeiro clique, quando o navegador estiver livre
+    const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 1500));
+    idle(() => void loadDialog());
   }, []);
 
   useEffect(() => {
@@ -47,7 +52,7 @@ export function Projects() {
     }
     const pool = projects.filter((project) => project.tags.includes(filter));
     setFilterPick(pool[Math.floor(Math.random() * pool.length)]?.id ?? null);
-  }, [filter, mounted]);
+  }, [filter, mounted, projects]);
 
   const ordered = useMemo(() => {
     if (filter !== "Geral") {
@@ -67,8 +72,8 @@ export function Projects() {
 
   return (
     <section id="projetos" className="shell py-20">
-      <SectionHeading title="Projetos" />
-      <div role="tablist" aria-label="Filtros de projetos" className="mt-8 flex gap-2 overflow-x-auto pb-2">
+      <SectionHeading title={t.projects.title} />
+      <div role="tablist" aria-label={t.projects.filtersLabel} className="mt-8 flex gap-2 overflow-x-auto pb-2">
         {available.map((item) => (
           <button
             key={item}
@@ -89,12 +94,12 @@ export function Projects() {
                 transition={{ type: "spring", stiffness: 380, damping: 32 }}
               />
             )}
-            {item}
+            {t.projects.filters[item] ?? item}
           </button>
         ))}
       </div>
       {visible.length === 0 ? (
-        <p className="mt-10 text-ink/70 dark:text-white/70">Ainda não tem projeto neste filtro.</p>
+        <p className="mt-10 text-ink/70 dark:text-white/70">{t.projects.empty}</p>
       ) : (
         <div className="mt-8 grid grid-flow-dense gap-8 sm:grid-cols-2 xl:grid-cols-3">
           {shown.map((project, cardIndex) => {
@@ -134,12 +139,12 @@ export function Projects() {
               )}
               <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
                 {project.tags.map((tag) => (
-                  <Tag key={tag}>{tag}</Tag>
+                  <Tag key={tag}>{t.projects.filters[tag] ?? tag}</Tag>
                 ))}
               </div>
               <span className="mt-4 inline-flex items-center gap-1 font-label text-xs font-extrabold tracking-[0.08em] text-ember-ink uppercase italic">
                 <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1.5px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-500 group-hover:bg-[length:100%_1.5px]">
-                  Ver projeto
+                  {t.projects.open}
                 </span>
                 <IconArrowUpRight size={16} stroke={1.75} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
@@ -155,7 +160,7 @@ export function Projects() {
             onClick={() => setShowAll(true)}
             className="rounded-full bg-sun px-5 py-3 font-label text-xs font-extrabold tracking-[0.08em] text-ink uppercase italic hover:bg-ember"
           >
-            Ver mais projetos
+            {t.projects.more}
           </button>
         </div>
       )}

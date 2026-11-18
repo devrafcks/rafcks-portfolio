@@ -5,28 +5,41 @@ const MAX_HITS = 5;
 
 const hits = new Map<string, number[]>();
 
-export const contactSchema = z.object({
+export type ContactMessages = { name: string; nameMax: string; email: string; emailMax: string; subject: string; subjectMax: string; message: string; messageMax: string };
+
+export const contactSchemaFor = (m: ContactMessages) => z.object({
   name: z
     .string()
     .trim()
-    .min(2, "Diz como você se chama.")
-    .max(80, "O nome pode ter no máximo 80 caracteres."),
+    .min(2, m.name)
+    .max(80, m.nameMax),
   email: z
     .string()
     .trim()
-    .max(160, "O e-mail pode ter no máximo 160 caracteres.")
-    .email("Esse e-mail não parece válido."),
+    .max(160, m.emailMax)
+    .email(m.email),
   subject: z
     .string()
     .trim()
-    .min(2, "Escreve um assunto.")
-    .max(120, "O assunto pode ter no máximo 120 caracteres."),
+    .min(2, m.subject)
+    .max(120, m.subjectMax),
   message: z
     .string()
     .trim()
-    .min(10, "Conta um pouco mais na mensagem.")
-    .max(4000, "A mensagem pode ter no máximo 4.000 caracteres."),
+    .min(10, m.message)
+    .max(4000, m.messageMax),
   company: z.string().trim().max(200).optional().default(""),
+});
+
+export const contactSchema = contactSchemaFor({
+  name: "Diz como você se chama.",
+  nameMax: "O nome pode ter no máximo 80 caracteres.",
+  email: "Esse e-mail não parece válido.",
+  emailMax: "O e-mail pode ter no máximo 160 caracteres.",
+  subject: "Escreve um assunto.",
+  subjectMax: "O assunto pode ter no máximo 120 caracteres.",
+  message: "Conta um pouco mais na mensagem.",
+  messageMax: "A mensagem pode ter no máximo 4.000 caracteres.",
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;

@@ -1,13 +1,11 @@
 import { VelocityTrack } from "@/components/motion/VelocityTrack";
 
-const words = ["SaaS", "ERP com NF-e", "Apps nas lojas", "Pagamentos", "Integrações", "Acessibilidade", "Performance"];
-
 /**
  * Duas fitas cruzadas: a amarela na frente, com o texto grande, e uma fita
  * escura por trás, menor e legível, andando no sentido oposto. As duas
  * aceleram com o scroll e param fora da tela. Só decoração.
  */
-export function Band() {
+export function Band({ words }: { words: string[] }) {
   return (
     <div id="faixa" aria-hidden="true" className="relative isolate my-10 overflow-x-clip py-20 sm:my-16">
       {/* fita de trás */}

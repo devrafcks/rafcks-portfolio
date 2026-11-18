@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { allowContact, clientIp, contactBodies, contactSchema } from "@/lib/contact";
+import { allowContact, clientIp, contactBodies, contactSchemaFor } from "@/lib/contact";
+import { isLocale } from "@/lib/i18n/config";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 
 export const runtime = "nodejs";
 
@@ -13,9 +15,12 @@ function mailConfig() {
 }
 
 export async function POST(request: Request) {
+  // o idioma vem no corpo; antes de ler o corpo, usa o do cabeçalho ou português
+  const headerLang = request.headers.get("x-lang") ?? "pt";
+  let t = getDictionary(isLocale(headerLang) ? headerLang : "pt");
   if (!allowContact(clientIp(request))) {
     return NextResponse.json(
-      { error: "Muitas mensagens em pouco tempo. Espera um pouco e tenta de novo." },
+      { error: t.api.tooMany },
       { status: 429 },
     );
   }
@@ -24,13 +29,16 @@ export async function POST(request: Request) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Não consegui ler a mensagem." }, { status: 400 });
+    return NextResponse.json({ error: t.api.unreadable }, { status: 400 });
   }
 
-  const parsed = contactSchema.safeParse(body);
+  const lang = (body as { lang?: unknown } | null)?.lang;
+  if (typeof lang === "string" && isLocale(lang)) t = getDictionary(lang);
+
+  const parsed = contactSchemaFor(t.api).safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
-      { error: parsed.error.issues[0]?.message ?? "Confere os campos e tenta de novo." },
+      { error: parsed.error.issues[0]?.message ?? t.contact.checkFields },
       { status: 400 },
     );
   }
@@ -66,7 +74,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("Falha ao enviar o contato", error instanceof Error ? error.message : "erro desconhecido");
-    return NextResponse.json({ error: "Não consegui enviar o e-mail agora." }, { status: 500 });
+    return NextResponse.json({ error: t.api.sendFailed }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true });

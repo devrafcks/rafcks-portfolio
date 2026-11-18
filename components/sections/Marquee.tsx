@@ -30,9 +30,9 @@ const items = [
   ["Figma", IconBrandFigma],
 ] as const;
 
-export function Marquee() {
+export function Marquee({ label }: { label: string }) {
   return (
-    <section aria-label="Tecnologias" className="border-y border-ink/10 py-5 dark:border-white/10">
+    <section aria-label={label} className="border-y border-ink/10 py-5 dark:border-white/10">
       <VelocityTrack speed={1.6}>
         <ul className="flex shrink-0 items-center">
           {items.map(([label, Icon]) => (

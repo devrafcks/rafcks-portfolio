@@ -1,16 +1,16 @@
 import { IconBrandLinkedin } from "@tabler/icons-react";
 import Image from "next/image";
-import { recommendations } from "@/data/recommendations";
+import type { Recommendation } from "@/data/types";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-export function Recommendations() {
+export function Recommendations({ title, items }: { title: string; items: Recommendation[] }) {
   return (
     <section id="recomendacoes" className="shell bg-cream py-20 dark:bg-night-2">
       <div>
-        <SectionHeading title="Quem trabalhou comigo" />
+        <SectionHeading title={title} />
         <RevealGroup className="mt-10 grid items-stretch gap-6 lg:grid-cols-2" stagger={0.15}>
-          {recommendations.map((item) => (
+          {items.map((item) => (
             <RevealItem
               as="figure"
               key={item.name}
