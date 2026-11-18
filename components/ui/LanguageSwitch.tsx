@@ -3,13 +3,12 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { LOCALE_COOKIE, localePath, locales } from "@/lib/i18n/config";
+import { localePath, locales } from "@/lib/i18n/config";
 import { useI18n } from "@/lib/i18n/I18nProvider";
 
 /**
  * PT · EN · ES. Navegação do próprio Next (sem recarregar a página): os outros idiomas
  * já ficam pré-carregados, então a troca é imediata e a posição da página se mantém.
- * Guarda a escolha num cookie para a próxima visita à raiz.
  */
 export function LanguageSwitch() {
   const { locale, t } = useI18n();
@@ -34,7 +33,6 @@ export function LanguageSwitch() {
             aria-label={t.nav.languageNames[item]}
             aria-current={current ? "true" : undefined}
             onClick={(event) => {
-              document.cookie = `${LOCALE_COOKIE}=${item}; path=/; max-age=31536000; samesite=lax`;
               if (current) event.preventDefault();
             }}
             className={`grid h-8 min-w-9 place-items-center rounded-full px-2 font-label text-[0.68rem] font-extrabold uppercase tracking-[0.06em] italic transition-colors duration-300 ${current ? "bg-ink text-sun dark:bg-sun dark:text-ink" : "text-ink/80 hover:text-ink dark:text-white/80 dark:hover:text-white"}`}

@@ -15,4 +15,3 @@ export const numberLocale: Record<Locale, string> = { pt: "pt-BR", en: "en-US", 
 export const localePath = (locale: Locale) => (locale === defaultLocale ? "/" : `/${locale}`);
 
 export const SITE_URL = "https://rafaelblanco.vercel.app";
-export const LOCALE_COOKIE = "NEXT_LOCALE";

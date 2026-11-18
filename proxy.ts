@@ -1,11 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { defaultLocale, isLocale, LOCALE_COOKIE, locales } from "@/lib/i18n/config";
+import { defaultLocale, isLocale } from "@/lib/i18n/config";
 
 /**
  * Português mora na raiz ("/"), sem prefixo; inglês e espanhol em /en e /es.
  * - "/pt/..." redireciona para a versão sem prefixo (uma URL por página para o Google).
- * - Na raiz, quem já escolheu outro idioma (cookie) vai direto para ele.
  * - O resto sem prefixo é servido pela rota /pt por dentro (rewrite), sem mudar a URL.
+ * A raiz é sempre português: nada de redirecionar pelo idioma salvo, que fazia o botão
+ * PT voltar para o inglês quando a página era recarregada.
  */
 export function proxy(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
@@ -17,16 +18,6 @@ export function proxy(request: NextRequest) {
   }
 
   if (isLocale(first)) return NextResponse.next();
-
-  // só em carregamento de página: as requisições internas do Next (navegação e prefetch) nunca
-  // redirecionam, senão o roteador guarda "/ vai para /en" e o botão PT deixa de funcionar
-  const internal = request.headers.has("rsc") || request.headers.has("next-router-prefetch");
-  if (pathname === "/" && !internal) {
-    const saved = request.cookies.get(LOCALE_COOKIE)?.value;
-    if (saved && saved !== defaultLocale && (locales as readonly string[]).includes(saved)) {
-      return NextResponse.redirect(new URL(`/${saved}${search}`, request.url), 307);
-    }
-  }
 
   return NextResponse.rewrite(new URL(`/${defaultLocale}${pathname}${search}`, request.url));
 }
