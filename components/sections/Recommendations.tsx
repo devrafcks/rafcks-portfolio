@@ -6,8 +6,9 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Recommendations({ title, items }: { title: string; items: Recommendation[] }) {
   return (
-    <section id="recomendacoes" className="shell bg-cream py-20 dark:bg-night-2">
-      <div>
+    <section id="recomendacoes" className="bg-cream py-20 dark:bg-night-2">
+      {/* o fundo vai de ponta a ponta; só o conteúdo segue a largura da página */}
+      <div className="shell">
         <SectionHeading title={title} />
         <RevealGroup className="mt-10 grid items-stretch gap-6 lg:grid-cols-2" stagger={0.15}>
           {items.map((item) => (

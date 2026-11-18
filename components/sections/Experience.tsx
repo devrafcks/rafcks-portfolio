@@ -7,8 +7,9 @@ import { Tag } from "@/components/ui/Tag";
 
 export function Experience({ title, items }: { title: string; items: ExperienceItem[] }) {
   return (
-    <section id="experiencia" className="shell bg-cream py-20 dark:bg-night-2">
-      <div>
+    <section id="experiencia" className="bg-cream py-20 dark:bg-night-2">
+      {/* o fundo vai de ponta a ponta; só o conteúdo segue a largura da página */}
+      <div className="shell">
         <SectionHeading title={title} titleClassName="max-w-xl" />
         <TimelineLine className="mt-12 space-y-8">
           {items.map((item) => (
