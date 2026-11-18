@@ -84,6 +84,8 @@ export function TravelingHat() {
       if (frames < 90 || frames % 30 === 0) measure();
       frames++;
       const a = anchorBox;
+      // página sem o título da Hero (404, offline): o chapéu não tem de onde sair, então some
+      el.style.visibility = a ? "visible" : "hidden";
       if (!a) return;
       const vw = window.innerWidth;
       const vh = window.innerHeight;
