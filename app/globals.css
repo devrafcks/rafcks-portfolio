@@ -281,18 +281,19 @@ html {
   animation-iteration-count: infinite;
 }
 
+/* todos nadam da direita para a esquerda, como o navio, cada um num trecho e num tempo */
 .monster-serpent {
   animation-name: swim-serpent;
-  animation-duration: 17s;
+  animation-duration: 21s;
+  animation-delay: -9s;
 }
 
 @keyframes swim-serpent {
-  0% { transform: translate(92cqw, 105%); }
-  10% { transform: translate(82cqw, 18%); }
-  40% { transform: translate(56cqw, 6%); }
-  66% { transform: translate(30cqw, 14%); }
-  76% { transform: translate(22cqw, 105%); }
-  100% { transform: translate(22cqw, 105%); }
+  0% { transform: translate(96cqw, 105%); }
+  9% { transform: translate(86cqw, 16%); }
+  50% { transform: translate(46cqw, 6%); }
+  62% { transform: translate(34cqw, 105%); }
+  100% { transform: translate(34cqw, 105%); }
 }
 
 .monster-sway {
@@ -307,31 +308,31 @@ html {
 
 .monster-puffer {
   animation-name: swim-puffer;
-  animation-duration: 13s;
-  animation-delay: -5s;
+  animation-duration: 17s;
+  animation-delay: -2s;
   animation-timing-function: ease-in-out;
 }
 
 @keyframes swim-puffer {
-  0%, 30% { transform: translate(14cqw, 110%); }
-  40% { transform: translate(18cqw, 34%) rotate(-8deg); }
-  52% { transform: translate(26cqw, 40%) rotate(6deg); }
-  64% { transform: translate(34cqw, 32%) rotate(-6deg); }
-  74%, 100% { transform: translate(40cqw, 110%); }
+  0%, 34% { transform: translate(60cqw, 110%); }
+  42% { transform: translate(54cqw, 34%) rotate(8deg); }
+  54% { transform: translate(44cqw, 40%) rotate(-6deg); }
+  66% { transform: translate(34cqw, 32%) rotate(6deg); }
+  76%, 100% { transform: translate(28cqw, 110%); }
 }
 
 .monster-whale {
   animation-name: swim-whale;
-  animation-duration: 24s;
-  animation-delay: -11s;
+  animation-duration: 29s;
+  animation-delay: -21s;
 }
 
 @keyframes swim-whale {
-  0% { transform: translate(-30cqw, 110%); }
-  12% { transform: translate(-14cqw, 40%); }
-  58% { transform: translate(44cqw, 36%); }
-  70% { transform: translate(58cqw, 110%); }
-  100% { transform: translate(58cqw, 110%); }
+  0% { transform: translate(100cqw, 110%); }
+  10% { transform: translate(84cqw, 38%); }
+  56% { transform: translate(18cqw, 34%); }
+  66% { transform: translate(4cqw, 110%); }
+  100% { transform: translate(4cqw, 110%); }
 }
 
 /* barquinho: balança nas ondas e anda devagar de um lado para o outro */

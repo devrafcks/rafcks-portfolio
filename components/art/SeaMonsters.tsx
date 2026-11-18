@@ -1,7 +1,8 @@
 /**
  * Monstros marinhos (fan art no traço do site) passando atrás do navio: uma serpente
- * roxa de boca aberta, um baiacu laranja espinhento e uma baleia malhada. Cada um sobe
- * do mar, atravessa num ritmo próprio e mergulha de novo, em ciclos desencontrados.
+ * roxa de boca aberta, um baiacu laranja espinhento e uma baleia malhada. Todos nadam
+ * para a esquerda, como o navio: cada um sobe do mar, atravessa um trecho num ritmo
+ * próprio e mergulha de novo, em ciclos desencontrados para não se amontoarem.
  * O recorte embaixo é a linha d'água: eles parecem sair de dentro do mar.
  * Só transform em CSS (veja .monster-* em globals.css).
  */
@@ -88,12 +89,17 @@ function Whale() {
 export function SeaMonsters({ className = "" }: { className?: string }) {
   return (
     <div className={`sea-monsters ${className}`}>
+      {/* os desenhos olham para a direita: espelhados para nadar para a esquerda */}
       <div className="monster monster-whale w-[13rem]">
-        <Whale />
+        <div className="-scale-x-100">
+          <Whale />
+        </div>
       </div>
       <div className="monster monster-serpent w-[8.5rem]">
-        <div className="monster-sway">
-          <Serpent />
+        <div className="-scale-x-100">
+          <div className="monster-sway">
+            <Serpent />
+          </div>
         </div>
       </div>
       <div className="monster monster-puffer w-[6rem]">

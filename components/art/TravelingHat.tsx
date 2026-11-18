@@ -99,8 +99,8 @@ export function TravelingHat() {
       let cx = heroX;
       let cy = heroY;
       let scale = 1;
-      // pendurado no "l": inclinado e balançando de leve como um pêndulo
-      let turn = reduce ? -14 : -14 + Math.sin(now / 1000 * 1.4) * 3.5;
+      // apoiado na ponta do "l": um pouco inclinado, balançando bem de leve
+      let turn = reduce ? -8 : -8 + Math.sin(now / 1000 * 1.4) * 2.5;
       let phase = 0;
       let land = 0;
       let flying = false;
