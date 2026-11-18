@@ -3,6 +3,7 @@ import { Inter, Montserrat, Unbounded } from "next/font/google";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import { MotionProvider } from "@/components/motion/MotionProvider";
+import { SeeBFix } from "@/components/SeeBFix";
 import { ThemeProvider } from "@/components/theme-provider";
 import { htmlLang, isLocale, localePath, locales, ogLocale, SITE_URL, type Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
@@ -144,6 +145,7 @@ export default async function RootLayout({ children, params }: { children: React
         </ThemeProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <Script src="https://seeb-widget.pages.dev/widget.js" strategy="lazyOnload" />
+        <SeeBFix />
       </body>
     </html>
   );
