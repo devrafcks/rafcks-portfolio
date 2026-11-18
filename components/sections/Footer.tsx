@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { FooterHat } from "@/components/art/FooterHat";
 import { NearView } from "@/components/motion/NearView";
 import type { CrewMember, FooterColumn } from "@/components/ui/doodle-crew-footer";
 import type { Dict } from "@/lib/i18n/dictionaries/pt";
@@ -81,7 +82,7 @@ function StaticFooter({ t }: { t: Dict["footer"] }) {
 export function Footer() {
   const t = useI18n().t.footer;
   return (
-    <NearView className="pb-24" fallback={<StaticFooter t={t} />}>
+    <NearView className="relative pb-24" fallback={<StaticFooter t={t} />}>
       <DoodleCrewFooter
         wordmark="BLANCO"
         brand="Rafael Henrique Blanco"
@@ -106,6 +107,8 @@ export function Footer() {
         tracking={-0.03}
         height="680px"
       />
+      {/* no celular o chapéu já está pousado no B */}
+      <FooterHat />
     </NearView>
   );
 }

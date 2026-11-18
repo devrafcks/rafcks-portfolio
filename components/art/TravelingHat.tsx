@@ -1,7 +1,7 @@
 "use client";
 
 import { useReducedMotion } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { HatScene } from "@/components/art/hat-scene";
 
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
@@ -23,10 +23,19 @@ const smooth = (t: number) => {
 export function TravelingHat() {
   const reduce = useReducedMotion() ?? false;
   const host = useRef<HTMLDivElement>(null);
+  // no celular o chapéu não aparece: atrapalharia a leitura e nem baixa o 3D
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const sync = () => setWide(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     const el = host.current;
-    if (!el) return;
+    if (!el || !wide) return;
     let scene: HatScene | null = null;
     let raf = 0;
     let cancelled = false;
@@ -220,14 +229,14 @@ export function TravelingHat() {
       window.removeEventListener("resize", onResize);
       scene?.dispose();
     };
-  }, [reduce]);
+  }, [reduce, wide]);
 
   return (
     <div
       ref={host}
       aria-hidden="true"
       onClick={() => window.dispatchEvent(new Event("hat:spin"))}
-      className="fixed top-0 left-0 z-30 block origin-center cursor-pointer opacity-0 transition-opacity duration-500 will-change-transform"
+      className="fixed top-0 left-0 z-30 hidden origin-center md:block cursor-pointer opacity-0 transition-opacity duration-500 will-change-transform"
     />
   );
 }

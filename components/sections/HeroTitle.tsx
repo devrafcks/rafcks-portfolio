@@ -19,7 +19,7 @@ export function HeroTitle() {
           ))}
         </span>
         {/* o chapéu fica pendurado no "l" (a última letra, ~0,13em da borda direita): o centro dele cai na ponta da letra */}
-        <HeroHat className="absolute right-[-0.82em] bottom-[-0.12em] w-[1.9em]" />
+        <HeroHat className="absolute right-[-0.82em] bottom-[-0.12em] hidden w-[1.9em] md:block" />
       </span>
       <span aria-hidden="true" className="title-wipe blanco-outline block w-fit tracking-[-0.04em]">
         Blanco
