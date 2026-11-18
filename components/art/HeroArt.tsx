@@ -2,11 +2,12 @@
 
 import { m, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
-import { Rings } from "@/components/art/Rings";
+import { Sea } from "@/components/art/Sea";
 
 /**
- * Fundo da Hero: os arcos do banner e um brilho quente atrás deles.
- * Mexe um pouco com o mouse e com o scroll. Só decoração.
+ * Fundo da Hero: o sol nascendo atrás do chapéu e o mar embaixo dele, o lugar
+ * de onde ele sai para navegar pela página. Mexe um pouco com o mouse e com o scroll.
+ * Só decoração.
  */
 export function HeroArt() {
   const reduce = useReducedMotion();
@@ -16,14 +17,14 @@ export function HeroArt() {
   const sy = useSpring(py, { stiffness: 40, damping: 18, mass: 0.8 });
 
   const { scrollY } = useScroll();
-  const ringsY = useTransform(scrollY, [0, 900], [0, -120]);
-  const ringsRotate = useTransform(scrollY, [0, 900], [0, 30]);
-  const ringX = useTransform(sx, (v) => v * -20);
-  const ringPY = useTransform(sy, (v) => v * -20);
+  // o sol sobe um pouco e o mar desce quando você rola: a Hero "amanhece" enquanto sai
+  const sunY = useTransform(scrollY, [0, 900], [0, -90]);
+  const seaY = useTransform(scrollY, [0, 900], [0, 60]);
+  const seaX = useTransform(sx, (v) => v * -14);
   const orbX = useTransform(sx, (v) => v * 30);
   const orbY = useTransform(sy, (v) => v * 30);
 
-  // os loops CSS da Hero (anéis, brilho, chapéu) pausam quando ela sai da tela
+  // os loops CSS da Hero (ondas, brilho, chapéu) pausam quando ela sai da tela
   const rootRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const hero = rootRef.current?.parentElement;
@@ -45,18 +46,16 @@ export function HeroArt() {
 
   return (
     <div ref={rootRef} aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-      <m.div style={{ x: orbX, y: orbY }} className="absolute top-[10%] right-[-30%] size-[min(110vw,760px)] sm:right-[-12%] lg:top-[4%] lg:right-[-6%]">
-        <div className="hero-orb size-full rounded-full" />
+      <m.div style={{ y: sunY }} className="absolute top-[2%] right-[-30%] size-[min(110vw,760px)] sm:right-[-12%] lg:top-[-2%] lg:right-[max(-6%,calc((100%-80rem)/2-12rem))]">
+        <m.div style={{ x: orbX, y: orbY }} className="size-full">
+          <div className="hero-orb size-full rounded-full" />
+        </m.div>
       </m.div>
       <m.div
-        style={{ y: ringsY, rotate: ringsRotate }}
-        className="absolute top-[-12%] right-[-45%] w-[min(130vw,780px)] sm:right-[-24%] lg:top-[-18%] lg:right-[-8%]"
+        style={{ y: seaY, x: seaX }}
+        className="absolute right-0 hidden lg:top-[54%] lg:block lg:h-[36%] lg:w-[max(48%,calc((100%-80rem)/2+34rem))] lg:opacity-100"
       >
-        <m.div style={{ x: ringX, y: ringPY }}>
-          <div className="spin-slow">
-            <Rings className="h-auto w-full opacity-60 lg:opacity-90 dark:opacity-80" />
-          </div>
-        </m.div>
+        <Sea className="absolute inset-0" />
       </m.div>
     </div>
   );

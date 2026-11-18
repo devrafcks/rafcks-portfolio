@@ -300,10 +300,10 @@ export function createHatScene(host: HTMLElement, { reduceMotion }: { reduceMoti
       const facing = Math.round((hat.rotation.y - 0.5) / (Math.PI * 2)) * Math.PI * 2 + 0.5;
       hat.rotation.y = MathUtils.damp(hat.rotation.y, facing, 3, dt);
     } else {
-      hat.rotation.y += dt * (0.35 + fly * 2.4 + spinBoost * 9);
+      hat.rotation.y += dt * (0.35 + fly * 0.6 + spinBoost * 9);
     }
-    hat.rotation.x = 0.22 + (tiltX + Math.sin(t * 0.9) * 0.04) * air + fly * Math.sin(t * 2.1) * 0.12 - land * 0.1;
-    hat.rotation.z = (Math.sin(t * 0.7) * 0.05 - tiltY * 0.15) * air + fly * Math.sin(t * 1.7) * 0.18 - land * 0.16;
+    hat.rotation.x = 0.22 + (tiltX + Math.sin(t * 0.9) * 0.04) * air + fly * Math.sin(t * 1.3) * 0.05 - land * 0.1;
+    hat.rotation.z = (Math.sin(t * 0.7) * 0.05 - tiltY * 0.15) * air + fly * Math.sin(t * 1.1) * 0.06 - land * 0.16;
     hat.position.x = tiltY * 0.25 * air;
     hat.position.y = Math.sin(t * 1.1) * 0.08 * air;
 

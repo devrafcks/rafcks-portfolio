@@ -162,9 +162,52 @@ button {
   to { clip-path: inset(0 0 0 0); transform: none; }
 }
 
-.spin-slow {
+/* cursor de desenho: um dedo apontando; em links e botões ele estica. Só com mouse. */
+@media (pointer: fine) {
+  html {
+    cursor: url("/cursors/finger.svg") 11 1, auto;
+  }
+
+  a,
+  button,
+  summary,
+  select,
+  label[for],
+  [role="button"],
+  [role="tab"],
+  .cursor-pointer {
+    cursor: url("/cursors/finger-stretch.svg") 11 1, pointer !important;
+  }
+
+  input,
+  textarea,
+  [contenteditable="true"] {
+    cursor: text;
+  }
+}
+
+/* mar da Hero: some à esquerda para não brigar com o texto */
+.sea {
+  mask-image: linear-gradient(90deg, transparent, #000 30%);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%);
+}
+
+.sea-wave {
   will-change: transform;
-  animation: spin-slow 140s linear infinite;
+  animation: sea-drift 24s linear infinite;
+}
+
+@keyframes sea-drift {
+  to { transform: translateX(-50%); }
+}
+
+.sea-glint {
+  animation: sea-glint 3.6s ease-in-out infinite;
+}
+
+@keyframes sea-glint {
+  0%, 100% { opacity: 0.85; transform: scaleX(1); }
+  50% { opacity: 0.35; transform: scaleX(0.7); }
 }
 
 .hat-bob {
@@ -210,15 +253,12 @@ button {
 }
 
 /* loops infinitos param quando a aba está oculta ou o bloco saiu da tela */
-.offscreen .spin-slow,
+.offscreen .sea-wave,
+.offscreen .sea-glint,
 .offscreen .hero-orb,
 .offscreen .hat-bob,
 .offscreen .hat-shadow {
   animation-play-state: paused;
-}
-
-@keyframes spin-slow {
-  to { transform: rotate(360deg); }
 }
 
 .scroll-cue {
@@ -244,7 +284,8 @@ button {
   .hero-orb,
   .hat-bob,
   .hat-shadow,
-  .spin-slow,
+  .sea-wave,
+  .sea-glint,
   .scroll-cue {
     animation: none !important;
   }

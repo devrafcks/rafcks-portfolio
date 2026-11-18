@@ -13,22 +13,10 @@ const smooth = (t: number) => {
 };
 
 /**
- * Truques nas viradas de seção: quando o topo da seção atravessa a tela, o chapéu larga
- * o cursor, dá uma volta grande pela tela (um looping) e volta para perto dele.
- * `dir` é o sentido do giro, `start` o ângulo de saída e `spins` quantas voltas ele dá no próprio eixo.
- */
-const tricks = [
-  { id: "experiencia", dir: 1, start: Math.PI, spins: 1 },
-  { id: "faixa", dir: -1, start: 0, spins: -1 },
-  { id: "projetos", dir: 1, start: Math.PI / 2, spins: 2 },
-  { id: "contato", dir: -1, start: -Math.PI / 2, spins: -1 },
-];
-
-/**
  * O chapéu 3D numa camada fixa. Nasce na Hero; quando você rola ele sai voando e
- * passa a acompanhar o cursor de pertinho, com um atraso de quem está flutuando
- * (no celular, sem cursor, segue um caminho guiado pelo scroll). Nas viradas de algumas
- * seções ele dá um looping pela tela e volta. No fim da página pousa no topo do "B" do footer.
+ * passa a acompanhar o cursor de pertinho, com um atraso de quem está flutuando e
+ * inclinando para o lado em que vai (no celular, sem cursor, segue um caminho guiado
+ * pelo scroll). No fim da página pousa no topo do "B" do footer.
  * A resolução do 3D é fixa: só o transform da camada muda, então o custo é constante.
  * Com "reduzir movimento" ele fica parado na Hero.
  */
@@ -54,12 +42,10 @@ export function TravelingHat() {
     };
     let anchorBox: Box | null = null;
     let letterBox: Box | null = null;
-    let trickTops: (number | null)[] = [];
     let frames = 0;
     const measure = () => {
       anchorBox = read(document.getElementById("hat-anchor"));
       letterBox = read(document.querySelector(".dcf .dcf-letter .dcf-glyph"));
-      trickTops = tricks.map((trick) => read(document.getElementById(trick.id))?.top ?? null);
     };
     const onResize = () => measure();
     window.addEventListener("resize", onResize);
@@ -110,7 +96,7 @@ export function TravelingHat() {
       let flying = false;
 
       if (!reduce) {
-        const flyScale = Math.min(1, (vw < 640 ? 110 : 150) / (size * 0.65));
+        const flyScale = Math.min(1, (vw < 640 ? 96 : 130) / (size * 0.65));
         const max = document.documentElement.scrollHeight - vh;
 
         // alvo do voo: logo acima e à direita do cursor; sem cursor, um passeio guiado pelo scroll
@@ -123,27 +109,8 @@ export function TravelingHat() {
           tx = vw * (0.5 + 0.34 * Math.sin(y / 700 + 1.1));
           ty = vh * (0.42 + 0.12 * Math.sin(y / 520));
         }
-        let ts = flyScale;
-        let follow = 5; // quanto mais alto, mais grudado no alvo
-        let spin = 0;
-
-        // looping nas viradas de seção
-        for (let i = 0; i < tricks.length; i++) {
-          const top = trickTops[i];
-          if (top == null) continue;
-          const q = clamp01((vh * 0.95 - (top - y)) / (vh * 0.8));
-          if (q <= 0 || q >= 1) continue;
-          const t = tricks[i];
-          const w = smooth(q / 0.18) * smooth((1 - q) / 0.18);
-          const angle = t.start + t.dir * ease(q) * Math.PI * 2;
-          const r = Math.min(vw, vh) * 0.3;
-          tx = lerp(tx, vw / 2 + Math.cos(angle) * r * 1.25, w);
-          ty = lerp(ty, vh / 2 + Math.sin(angle) * r, w);
-          ts = flyScale * (1 + 0.35 * w);
-          follow = lerp(follow, 9, w);
-          spin = ease(q) * 360 * t.spins * w;
-          break;
-        }
+        const ts = flyScale;
+        const follow = 5; // quanto mais alto, mais grudado no alvo
 
         if (fx < 0) {
           fx = tx;
@@ -159,14 +126,14 @@ export function TravelingHat() {
         const vx = (tx - fx) / Math.max(vw, 1);
         const vy = (y - lastY) / Math.max(dt, 0.001) / 4000;
         lastY = y;
-        lean += (Math.max(-1, Math.min(1, vx * 6 + vy)) * 18 - lean) * Math.min(1, dt * 6);
+        lean += (Math.max(-1, Math.min(1, vx * 6 + vy)) * 10 - lean) * Math.min(1, dt * 6);
 
         // saída da Hero: da âncora até o voo
         const exit = ease(clamp01(y / (vh * 0.7)));
         cx = lerp(heroX, fx, exit);
         cy = lerp(heroY, fy, exit);
         scale = lerp(1, fs, exit);
-        turn = (lean + spin) * exit;
+        turn = lean * exit;
         phase = exit;
         flying = exit > 0.1;
 
