@@ -12,6 +12,9 @@ export function proxy(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const first = pathname.split("/")[1] ?? "";
 
+  // imagens de compartilhamento geradas pelo Next: passam direto, sem redirecionar
+  if (/\/(opengraph|twitter)-image(\/|$)/.test(pathname)) return NextResponse.next();
+
   if (first === defaultLocale) {
     const rest = pathname.slice(defaultLocale.length + 1) || "/";
     return NextResponse.redirect(new URL(`${rest}${search}`, request.url), 308);

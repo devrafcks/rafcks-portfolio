@@ -6,9 +6,9 @@
  */
 const INK = "#2b1e20";
 
-export function Boat({ className = "" }: { className?: string }) {
+export function Boat({ className = "", width, height }: { className?: string; width?: number; height?: number }) {
   return (
-    <svg viewBox="0 0 240 200" className={className} aria-hidden="true">
+    <svg viewBox="0 0 240 200" width={width} height={height} className={className} aria-hidden="true">
       <defs>
         <clipPath id="merry-stern-sail">
           <path d="M168 54c11-2.6 23-3.2 35-2l2.4 40c-12-1.6-25-1.2-38 1.4z" />

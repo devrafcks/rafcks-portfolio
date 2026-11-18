@@ -8,9 +8,9 @@
  */
 const INK = "#2b1e20";
 
-export function Serpent() {
+export function Serpent({ width }: { width?: number }) {
   return (
-    <svg viewBox="0 0 200 170" className="block h-auto w-full">
+    <svg viewBox="0 0 200 170" width={width} height={width ? (width * 170) / 200 : undefined} className="block h-auto w-full">
       <g stroke={INK} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round">
         {/* pescoço em S */}
         <path d="M52 170c-2-46 6-86 44-112 18-12 40-14 56-4l-10 16c-12-6-26-5-38 3-26 18-30 52-28 97z" fill="#8a63c9" />
@@ -37,9 +37,9 @@ export function Serpent() {
   );
 }
 
-export function Puffer() {
+export function Puffer({ width }: { width?: number }) {
   return (
-    <svg viewBox="0 0 160 150" className="block h-auto w-full">
+    <svg viewBox="0 0 160 150" width={width} height={width ? (width * 150) / 160 : undefined} className="block h-auto w-full">
       <g stroke={INK} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round">
         {/* espinhos */}
         <path d="M24 70l-14-8 10 16zM34 44l-10-14 2 18zM58 28l-4-16-6 16zM86 22l4-16 4 18zM112 30l10-12-2 18zM132 50l16-8-10 16zM140 78l16 0-14 10z" fill="#ffd27a" />
@@ -63,9 +63,9 @@ export function Puffer() {
   );
 }
 
-export function Whale() {
+export function Whale({ width }: { width?: number }) {
   return (
-    <svg viewBox="0 0 280 130" className="block h-auto w-full">
+    <svg viewBox="0 0 280 130" width={width} height={width ? (width * 130) / 280 : undefined} className="block h-auto w-full">
       <g stroke={INK} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round">
         {/* cauda */}
         <path d="M18 70c-10-14-14-30-8-40 10 6 18 18 22 30 6-12 16-22 28-26 2 12-6 26-18 34z" fill={INK} />

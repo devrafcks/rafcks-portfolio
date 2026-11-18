@@ -46,9 +46,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       locale: ogLocale[lang],
       alternateLocale: locales.filter((item) => item !== lang).map((item) => ogLocale[item]),
       type: "website",
-      images: [{ url: "/images/og.png", width: 1200, height: 630, alt: t.ogAlt }],
     },
-    twitter: { card: "summary_large_image", title: t.title, description: t.ogDescription, images: ["/images/og.png"] },
+    // a imagem vem de opengraph-image.tsx (uma por idioma); o X usa a mesma
+    twitter: { card: "summary_large_image", title: t.title, description: t.ogDescription },
   };
 }
 
