@@ -3,6 +3,7 @@ import { Inter, Montserrat, Unbounded } from "next/font/google";
 import Script from "next/script";
 import { TravelingHat } from "@/components/art/TravelingHat";
 import { CursorRing } from "@/components/CursorRing";
+import { IntroScreen } from "@/components/IntroScreen";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { SeeBFix } from "@/components/SeeBFix";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -49,6 +50,9 @@ const splash = [
   { w: 375, h: 667, dpr: 2, file: "750x1334" },
 ];
 
+// tela de abertura só na primeira visita da sessão e nunca com "reduzir movimento"; decide antes da primeira pintura
+const introBoot = `(function(){var d=document.documentElement;try{if(matchMedia("(prefers-reduced-motion: reduce)").matches||sessionStorage.getItem("intro")){d.classList.add("intro-skip")}else{sessionStorage.setItem("intro","1")}}catch(e){d.classList.add("intro-skip")}})();`;
+
 const themeBoot = `(function(){try{var t=localStorage.getItem("theme");if(t!=="dark"&&t!=="light")t="light";document.documentElement.classList.toggle("dark",t==="dark");document.documentElement.style.colorScheme=t;}catch(e){}})();`;
 
 /**
@@ -79,7 +83,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* tudo o que o React desenha fica dentro de um único elemento: o SeeB move os filhos do <body>
             para um invólucro dele, e assim o React nunca perde a referência de quem é o pai de cada nó
             (sem isso, trocar de idioma quebrava com "removeChild"). display: contents = nenhuma mudança visual. */}
+        <script dangerouslySetInnerHTML={{ __html: introBoot }} />
         <div id="app" className="contents">
+          <IntroScreen />
           <ThemeProvider>
             <MotionProvider>
               {children}

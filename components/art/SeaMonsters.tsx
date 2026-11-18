@@ -8,7 +8,7 @@
  */
 const INK = "#2b1e20";
 
-function Serpent() {
+export function Serpent() {
   return (
     <svg viewBox="0 0 200 170" className="block h-auto w-full">
       <g stroke={INK} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round">
@@ -37,7 +37,7 @@ function Serpent() {
   );
 }
 
-function Puffer() {
+export function Puffer() {
   return (
     <svg viewBox="0 0 160 150" className="block h-auto w-full">
       <g stroke={INK} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round">
@@ -63,7 +63,7 @@ function Puffer() {
   );
 }
 
-function Whale() {
+export function Whale() {
   return (
     <svg viewBox="0 0 280 130" className="block h-auto w-full">
       <g stroke={INK} strokeWidth="3" strokeLinejoin="round" strokeLinecap="round">
