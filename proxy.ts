@@ -18,7 +18,10 @@ export function proxy(request: NextRequest) {
 
   if (isLocale(first)) return NextResponse.next();
 
-  if (pathname === "/") {
+  // só em carregamento de página: as requisições internas do Next (navegação e prefetch) nunca
+  // redirecionam, senão o roteador guarda "/ vai para /en" e o botão PT deixa de funcionar
+  const internal = request.headers.has("rsc") || request.headers.has("next-router-prefetch");
+  if (pathname === "/" && !internal) {
     const saved = request.cookies.get(LOCALE_COOKIE)?.value;
     if (saved && saved !== defaultLocale && (locales as readonly string[]).includes(saved)) {
       return NextResponse.redirect(new URL(`/${saved}${search}`, request.url), 307);

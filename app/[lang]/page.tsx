@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { TravelingHat } from "@/components/art/TravelingHat";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { About } from "@/components/sections/About";
 import { Band } from "@/components/sections/Band";
@@ -50,7 +49,6 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         <Contact bandImages={bandImages} />
       </main>
       <Footer />
-      <TravelingHat />
     </>
   );
 }
