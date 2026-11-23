@@ -128,6 +128,35 @@ export const es: ContentText = {
         "Cobros de Carretel en el celular",
       ],
     },
+    gatelite: {
+      summary:
+        "La Tierra de hoy, vista desde arriba: elige un lugar y mira la imagen satelital del día, qué satélites pasaron por encima, cómo cambió desde 2000 y qué está pasando cerca ahora. Todo con datos abiertos de la NASA, sin login y sin base de datos.",
+      points: [
+        "El nombre une gato y satélite. Las imágenes satelitales de la NASA son abiertas, pero están repartidas en portales técnicos. Gatélite las reúne en un solo sitio, pensado para quien quiere ver su barrio, su ciudad o el planeta entero desde arriba.",
+        "Explorar: un globo con el mosaico diario de los satélites de la NASA (VIIRS y MODIS), Landsat y Sentinel a 30 m, infrarrojo, luces nocturnas, temperatura y humo. Cuando el zoom pasa de lo que muestra la imagen del día, el mapa cambia solo a una capa de alta resolución, en la que se ven casas, manzanas y el Cristo Redentor. Toda la vista queda en la URL.",
+        "La pestaña Tiempo muestra los últimos 14 días del lugar lado a lado y estima la nubosidad de cada uno por el color de la imagen, con la salida y la puesta del Sol. Los pasos de 14 satélites en las últimas y las próximas 24 horas se calculan en el navegador, con SGP4 en un Web Worker. También hay un time-lapse del mismo día del año desde 2001 y un antes y después con cortina deslizable.",
+        "El planeta ahora: un mapamundi con el día y la noche avanzando en tiempo real, las luces de las ciudades, la flota de satélites en vivo, los eventos naturales activos (incendios, tormentas, volcanes e icebergs) y las fotos de la cámara EPIC, tomadas a 1,5 millones de km.",
+        "No hay cuenta ni base de datos: la URL guarda la vista, el dispositivo guarda los lugares guardados y el servidor solo hace caché de las APIs externas. El dominio (órbitas, nubes, Sol y eventos) está hecho de reglas puras probadas con Vitest. Es un proyecto personal de código abierto, con licencia MIT y sin vínculo oficial con la NASA.",
+      ],
+      alts: [
+        "Página de inicio de Gatélite, con la Tierra fotografiada hoy por la cámara EPIC",
+        "El planeta entero en fotos del día y el conteo de pasos sobre ciudades brasileñas",
+        "Explorador de Gatélite con Río de Janeiro en la imagen satelital del día",
+        "Capa de alta resolución con zoom en Alto da Boa Vista, en Río de Janeiro",
+        "Pestaña Tiempo con los últimos 14 días del lugar, la nubosidad de cada uno y la salida y la puesta del Sol",
+        "Pasos de los satélites sobre el lugar en las últimas y las próximas 24 horas",
+        "Explorador con el globo entero y la pestaña de eventos naturales abierta",
+        "Mapa del planeta ahora, con el día, la noche y las luces de las ciudades",
+        "Fotos de la cámara EPIC día a día, tomadas a 1,5 millones de km",
+        "Flota de satélites en vivo, con la ficha del Landsat 9",
+        "Tabla de los satélites seguidos, por resolución y ancho de franja",
+        "Página de la marca de Gatélite",
+        "Página 404 de Gatélite, Fuera de la franja",
+        "Página de inicio de Gatélite en el celular",
+        "Explorador en el celular, con la pestaña Tiempo abierta",
+        "El planeta ahora en el celular",
+      ],
+    },
     cresce: {
       summary:
         "SaaS de gestión para micro y pequeños negocios. Reescribí el producto en Next.js 16 y migré la infraestructura a Neon y Vercel.",

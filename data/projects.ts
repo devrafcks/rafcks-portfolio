@@ -186,6 +186,43 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "gatelite",
+    title: "Gatélite",
+    summary:
+      "A Terra de hoje, vista de cima: escolha um lugar e veja a imagem de satélite do dia, quais satélites passaram por cima, como ele mudou desde 2000 e o que está acontecendo perto dele agora. Tudo com dados abertos da NASA, sem login e sem banco de dados.",
+    points: [
+      "O nome junta gato e satélite. As imagens de satélite da NASA são abertas, mas ficam espalhadas em portais técnicos. O Gatélite junta tudo num site só, pensado para quem quer ver o próprio bairro, a própria cidade ou o planeta inteiro de cima.",
+      "Explorar: um globo com o mosaico diário dos satélites da NASA (VIIRS e MODIS), Landsat e Sentinel a 30 m, infravermelho, luzes da noite, temperatura e fumaça. Quando o zoom passa do que a imagem do dia mostra, o mapa troca sozinho para uma camada de alta resolução, em que dá para ver casas, quadras e o Cristo Redentor. A visão inteira fica na URL.",
+      "A aba Tempo mostra os últimos 14 dias do lugar lado a lado e estima a nuvem de cada um pela cor da imagem, com o nascer e o pôr do Sol. As passagens de 14 satélites nas últimas e nas próximas 24 horas são calculadas no navegador, com SGP4 num Web Worker. Também tem time-lapse do mesmo dia do ano desde 2001 e antes e depois com cortina arrastável.",
+      "O planeta agora: um mapa-múndi com o dia e a noite andando em tempo real, as luzes das cidades, a frota de satélites ao vivo, os eventos naturais ativos (queimadas, tempestades, vulcões e icebergs) e as fotos da câmera EPIC, tiradas a 1,5 milhão de km.",
+      "Não tem conta nem banco: a URL guarda a visão, o aparelho guarda os lugares salvos e o servidor só faz cache das APIs externas. O domínio (órbitas, nuvens, Sol e eventos) é feito de regras puras testadas com Vitest. É um projeto pessoal de código aberto, com licença MIT e sem ligação oficial com a NASA.",
+    ],
+    stack: ["Next.js 16 (App Router, Cache Components)", "React 19", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Base UI", "MapLibre GL", "satellite.js (SGP4)", "Web Worker", "astronomy-engine", "d3-geo", "nuqs", "Zustand", "TanStack Query", "Zod", "NASA GIBS, EPIC, EONET e APOD", "CelesTrak", "Vitest", "Biome", "Vercel"],
+    tags: ["Sites"],
+    links: [
+      { href: "https://gatelite.vercel.app", label: "Site", kind: "site" },
+      { href: "https://github.com/devrafcks/gatelite", label: "Repositório", kind: "repo" },
+    ],
+    images: [
+      laptop("/images/projects/gatelite-01-inicio.webp", "Página inicial do Gatélite, com a Terra fotografada hoje pela câmera EPIC"),
+      laptop("/images/projects/gatelite-02-epic.webp", "O planeta inteiro em fotos do dia e a contagem de passagens sobre cidades brasileiras"),
+      laptop("/images/projects/gatelite-03-explorar.webp", "Explorador do Gatélite com o Rio de Janeiro na imagem de satélite do dia"),
+      laptop("/images/projects/gatelite-04-detalhe.webp", "Camada de alta resolução com zoom no Alto da Boa Vista, no Rio de Janeiro"),
+      laptop("/images/projects/gatelite-05-tempo.webp", "Aba Tempo com os últimos 14 dias do lugar, a nuvem de cada um e o nascer e o pôr do Sol"),
+      laptop("/images/projects/gatelite-06-passagens.webp", "Passagens dos satélites sobre o lugar nas últimas e nas próximas 24 horas"),
+      laptop("/images/projects/gatelite-07-eventos.webp", "Explorador com o globo inteiro e a aba de eventos naturais aberta"),
+      laptop("/images/projects/gatelite-08-planeta.webp", "Mapa do planeta agora, com o dia, a noite e as luzes das cidades"),
+      laptop("/images/projects/gatelite-09-epic-dia.webp", "Fotos da câmera EPIC dia a dia, tiradas a 1,5 milhão de km"),
+      laptop("/images/projects/gatelite-10-satelites.webp", "Frota de satélites ao vivo, com a ficha do Landsat 9"),
+      laptop("/images/projects/gatelite-11-frota.webp", "Tabela dos satélites acompanhados, por resolução e largura da faixa"),
+      laptop("/images/projects/gatelite-12-marca.webp", "Página da marca do Gatélite"),
+      laptop("/images/projects/gatelite-13-404.webp", "Página 404 do Gatélite, Fora da faixa"),
+      phone("/images/projects/gatelite-20-inicio-mobile.webp", "Página inicial do Gatélite no celular"),
+      phone("/images/projects/gatelite-21-tempo-mobile.webp", "Explorador no celular, com a aba Tempo aberta"),
+      phone("/images/projects/gatelite-22-planeta-mobile.webp", "O planeta agora no celular"),
+    ],
+  },
+  {
     id: "cresce",
     title: "Cresce+ Futuro",
     summary:

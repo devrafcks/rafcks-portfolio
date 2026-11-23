@@ -128,6 +128,35 @@ export const en: ContentText = {
         "Carretel payments due on a phone",
       ],
     },
+    gatelite: {
+      summary:
+        "Today's Earth, seen from above: pick a place and see the day's satellite image, which satellites passed overhead, how it has changed since 2000 and what is happening near it right now. All with NASA open data, no login and no database.",
+      points: [
+        "The name blends gato (cat) and satélite (satellite). NASA's satellite imagery is open, but it is scattered across technical portals. Gatélite brings it into a single site, made for anyone who wants to see their neighborhood, their city or the whole planet from above.",
+        "Explore: a globe with the daily mosaic from NASA satellites (VIIRS and MODIS), Landsat and Sentinel at 30 m, infrared, night lights, temperature and smoke. When the zoom goes past what the day's image can show, the map switches by itself to a high resolution layer where you can see houses, blocks and Christ the Redeemer. The whole view lives in the URL.",
+        "The Weather tab shows the place's last 14 days side by side and estimates the cloud cover of each one from the image's color, with sunrise and sunset. Passes of 14 satellites over the last and next 24 hours are calculated in the browser, with SGP4 in a Web Worker. There is also a time-lapse of the same day of the year since 2001 and a before and after with a draggable curtain.",
+        "The planet now: a world map with day and night moving in real time, city lights, the live satellite fleet, active natural events (wildfires, storms, volcanoes and icebergs) and photos from the EPIC camera, taken 1.5 million km away.",
+        "There is no account and no database: the URL stores the view, the device stores saved places and the server only caches the external APIs. The domain (orbits, clouds, sun and events) is made of pure rules tested with Vitest. It's an open source personal project, MIT licensed and with no official link to NASA.",
+      ],
+      alts: [
+        "Gatélite home page, with the Earth photographed today by the EPIC camera",
+        "The whole planet in today's photos and the count of passes over Brazilian cities",
+        "Gatélite explorer with Rio de Janeiro in the day's satellite image",
+        "High resolution layer zoomed in on Alto da Boa Vista, in Rio de Janeiro",
+        "Weather tab with the place's last 14 days, the cloud cover of each one and sunrise and sunset",
+        "Satellite passes over the place in the last and next 24 hours",
+        "Explorer with the whole globe and the natural events tab open",
+        "Map of the planet now, with day, night and city lights",
+        "EPIC camera photos day by day, taken 1.5 million km away",
+        "Live satellite fleet, with the Landsat 9 card",
+        "Table of tracked satellites, by resolution and swath width",
+        "Gatélite brand page",
+        "Gatélite 404 page, Out of the swath",
+        "Gatélite home page on a phone",
+        "Explorer on a phone, with the Weather tab open",
+        "The planet now on a phone",
+      ],
+    },
     cresce: {
       summary:
         "Management SaaS for micro and small businesses. I rewrote the product in Next.js 16 and moved the infrastructure to Neon and Vercel.",
