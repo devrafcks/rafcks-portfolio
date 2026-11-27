@@ -255,13 +255,19 @@ export const es: ContentText = {
     },
     junto: {
       summary:
-        "App para encontrar entrenamientos de carrera en grupo en la ciudad, confirmar asistencia, crear entrenamientos y conversar con el grupo. Se conecta con Strava. En Google Play y aprobada en la App Store.",
+        "App y sitio para encontrar entrenamientos abiertos de carrera cerca de ti, creados por gente real. Puedes ver quién va, confirmar asistencia y crear tu propio entrenamiento. En la web, en Google Play y en la App Store.",
       points: [
-        "Correr solo desanima, y encontrar un grupo con el mismo ritmo y horario es difícil. Junto muestra los entrenamientos de carrera cerca de ti.",
-        "Puedes filtrar entrenamientos por distancia, horario y ritmo, confirmar asistencia, crear tu propio entrenamiento y conversar en el chat del grupo. También hay entrenamientos exclusivos para mujeres.",
-        "La cuenta se puede vincular con Strava. En Google Play la app se llama Corra junto, y la versión para iOS, \"junto: companhia para correr\", fue aprobada en la App Store. La idea de la app vino del cliente. El prototipo, el producto, el desarrollo full stack y la infraestructura fueron trabajo mío.",
+        "Correr solo desanima, y combinar por el grupo no siempre funciona. Junto muestra entrenamientos abiertos cerca de ti, creados por gente real. La frase del producto es: encuentra a alguien, corre junto.",
+        "Puedes ver quién va, confirmar asistencia, entrar al chat del entrenamiento, hacer check-in en el punto de encuentro y crear tu propio entrenamiento, con lugar, día y tono. Los entrenamientos aparecen por barrio y horario, y hay un filtro de entrenamientos solo para mujeres. La app es gratis, sin tarjeta.",
+        "La página explica la seguridad del encuentro: identidad verificada, lista abierta de confirmados, rastreo en vivo con una persona de confianza, check-out automático y botón de emergencia. Los crews y las asesorías tienen página, agenda y entrenamientos abiertos. La beta está abierta en Río de Janeiro.",
+        "En la App Store y en Google Play la app se llama \"junto: companhia para correr\". La idea del producto vino del cliente. El prototipo, el producto, el desarrollo full stack y la infraestructura fueron trabajo mío.",
       ],
       alts: [
+        "Página inicial de Junto",
+        "Cómo funciona Junto",
+        "Seguridad del encuentro en el sitio de Junto",
+        "Recursos de Junto en el sitio",
+        "Junto en el celular",
         "Página de Junto en Google Play",
         "Pantalla de Junto publicada en Google Play",
         "Otra pantalla de Junto publicada en Google Play",
