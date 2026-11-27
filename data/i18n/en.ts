@@ -572,6 +572,17 @@ export const en: ContentText = {
   },
   experiences: [
     {
+      role: "Co-founder & CTO",
+      period: "Nov 2026 to present",
+      mode: "Remote",
+      summary:
+        "I co-founded Coach Up with a friend and I lead all of the technology, from architecture to full stack development and infrastructure. It is a white-label SaaS PWA for gyms and personal trainers to manage training, and the product is still being built.",
+      did: [
+        "The product brings together workout prescription, demo videos, physical assessments, activity history and progress dashboards, and each gym or personal trainer uses its own brand identity.",
+        "I build the application in Node.js and Next.js, with Supabase and the infrastructure on Cloudflare, in the TypeScript and JavaScript ecosystem. Nothing has launched yet.",
+      ],
+    },
+    {
       role: "Full Stack Developer",
       period: "May 2026 to present",
       mode: "Remote",
