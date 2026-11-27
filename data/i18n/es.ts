@@ -564,6 +564,18 @@ export const es: ContentText = {
 
   experiences: [
     {
+      role: "Cofundador y CTO",
+      period: "nov. 2026 a la actualidad",
+      mode: "Remoto",
+      summary:
+        "Cofundé Coach Up con un amigo y lidero toda la tecnología: arquitectura, desarrollo full stack e infraestructura. Es un SaaS white-label en PWA para la gestión de entrenamientos de gimnasios y personal trainers.",
+      did: [
+        "El producto cubre la prescripción de entrenamientos, videos de demostración, evaluaciones físicas, historial de actividades y dashboards de progreso, con la identidad visual de cada gimnasio o personal trainer.",
+        "Construyo el producto en Node.js y Next.js, con Supabase y la infraestructura en Cloudflare, en el ecosistema TypeScript y JavaScript.",
+        "El producto está en construcción y todavía no se ha lanzado.",
+      ],
+    },
+    {
       role: "Desarrollador Full Stack",
       period: "may. 2026 a la actualidad",
       mode: "Remoto",

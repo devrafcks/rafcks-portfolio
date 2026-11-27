@@ -2,6 +2,20 @@ import type { Experience } from "./types";
 
 export const experiences: Experience[] = [
   {
+    role: "Cofundador e CTO",
+    org: "Coach Up",
+    period: "nov. 2026 até agora",
+    mode: "Remoto",
+    summary:
+      "Cofundei a Coach Up com um amigo e lidero toda a tecnologia: arquitetura, desenvolvimento full stack e infraestrutura. É um SaaS white-label em PWA para gestão de treinos de academias e personal trainers.",
+    did: [
+      "O produto cobre prescrição de treinos, vídeos de demonstração, avaliações físicas, histórico de atividades e dashboards de progresso, com a identidade visual de cada academia ou personal trainer.",
+      "Construo o produto em Node.js e Next.js, com Supabase e a infraestrutura na Cloudflare, no ecossistema TypeScript e JavaScript.",
+      "O produto está em construção e ainda não foi lançado.",
+    ],
+    stack: ["Node.js", "Next.js", "TypeScript", "JavaScript", "Supabase", "Cloudflare"],
+  },
+  {
     role: "Desenvolvedor Full Stack",
     org: "T2 Educação",
     period: "mai. 2026 até agora",
