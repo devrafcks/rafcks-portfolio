@@ -255,13 +255,19 @@ export const en: ContentText = {
     },
     junto: {
       summary:
-        "App for finding group running sessions in the city, confirming attendance, creating runs and chatting with the group. Connects with Strava. On Google Play and approved on the App Store.",
+        "App and website for finding open running sessions near you, created by real people. You can see who's going, confirm attendance and create your own run. On the web, Google Play and the App Store.",
       points: [
-        "Running alone is discouraging, and finding a group with the same pace and schedule is hard. Junto shows you the group runs near you.",
-        "You can filter runs by distance, time and pace, confirm attendance, create your own run and talk in the group chat. There are also women-only runs.",
-        "The account can be linked to Strava. On Google Play the app is called Corra junto, and the iOS version, \"junto: companhia para correr\", was approved on the App Store. The app idea came from the client. Prototype, product, full stack development and infrastructure were my work.",
+        "Running alone is discouraging, and making plans in a group chat doesn't always work out. Junto shows open runs near you, created by real people. The line on the product is: find someone, run together.",
+        "You can see who's going, confirm attendance, join the run's chat, check in at the meeting point and create your own run, with a place, a day and a tone. Runs show up by neighborhood and time, and there's a filter for women-only runs. The app is free, with no card.",
+        "The page covers the safety of the meetup: verified identity, an open list of who's confirmed, live tracking with a trusted person, automatic check-out and an emergency button. Crews and coaching groups have a page, a schedule and open runs. The beta is open in Rio de Janeiro.",
+        "On the App Store and Google Play the app is called \"junto: companhia para correr\". The product idea came from the client. Prototype, product, full stack development and infrastructure were my work.",
       ],
       alts: [
+        "Junto home page",
+        "How Junto works",
+        "Meetup safety on the Junto website",
+        "Junto features on the website",
+        "Junto on a phone",
         "Junto page on Google Play",
         "Junto screen published on Google Play",
         "Another Junto screen published on Google Play",
