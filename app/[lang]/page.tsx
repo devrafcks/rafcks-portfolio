@@ -1,20 +1,22 @@
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { About } from "@/components/sections/About";
 import { Band } from "@/components/sections/Band";
-import { Contact } from "@/components/sections/Contact";
 import { Experience } from "@/components/sections/Experience";
 import { Featured } from "@/components/sections/Featured";
-import { Footer } from "@/components/sections/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Marquee } from "@/components/sections/Marquee";
-import { Projects } from "@/components/sections/Projects";
 import { Recommendations } from "@/components/sections/Recommendations";
 import { SiteNav } from "@/components/sections/SiteNav";
-import { Study } from "@/components/sections/Study";
 import { isLocale } from "@/lib/i18n/config";
 import { getContent } from "@/lib/i18n/content";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+
+const Study = dynamic(() => import("@/components/sections/Study").then((mod) => mod.Study));
+const Projects = dynamic(() => import("@/components/sections/Projects").then((mod) => mod.Projects));
+const Contact = dynamic(() => import("@/components/sections/Contact").then((mod) => mod.Contact));
+const Footer = dynamic(() => import("@/components/sections/Footer").then((mod) => mod.Footer));
 
 const featuredIds = ["mirante", "t2", "carretel", "cresce"];
 

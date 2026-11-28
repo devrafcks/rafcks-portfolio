@@ -1,8 +1,10 @@
+import dynamic from "next/dynamic";
 import { BrushStroke } from "@/components/motion/BrushStroke";
 import { SplitText } from "@/components/motion/SplitText";
 import type { Project } from "@/data/types";
 import type { DeckProject } from "@/components/ui/project-deck";
-import { FeaturedDeck } from "@/components/sections/FeaturedDeck";
+
+const FeaturedDeck = dynamic(() => import("@/components/sections/FeaturedDeck").then((mod) => mod.FeaturedDeck));
 
 const accents = ["#2b1e20", "#b45309"];
 // prints de celular que existem mas não estão na galeria do projeto

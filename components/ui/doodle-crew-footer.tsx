@@ -592,6 +592,7 @@ export default function DoodleCrewFooter({
   const [talking, setTalking] = React.useState(-1)
   const [hopping, setHopping] = React.useState(-1)
   const talkTimer = React.useRef(0)
+  const loopKick = React.useRef(null as null | (() => void))
 
   // ---- measure the real face, again once late web fonts land ----
   useIso(() => {
@@ -691,6 +692,9 @@ export default function DoodleCrewFooter({
     gaze: [] as { x: number; y: number; tx: number; ty: number; next: number; blinkAt: number; blink: number }[],
     seed: 1,
     start: 0,
+    rectLeft: 0,
+    rectTop: 0,
+    rectScroll: -1,
   })
 
   const paintDoodles = () => {
@@ -741,6 +745,7 @@ export default function DoodleCrewFooter({
           f.y *= r.height / oh
         }
       }
+      s.rectScroll = -1
       paintDoodles()
     }
     size()
@@ -768,14 +773,18 @@ export default function DoodleCrewFooter({
     const s = sim.current
     if (typeof IntersectionObserver === "undefined") {
       s.visible = true
+      root.dataset.awake = "1"
       setPlay(true)
+      loopKick.current?.()
       return
     }
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
           s.visible = e.isIntersecting
+          root.dataset.awake = e.isIntersecting ? "1" : "0"
           if (e.isIntersecting && e.intersectionRatio > 0.12) setPlay(true)
+          loopKick.current?.()
         }
       },
       { threshold: [0, 0.12, 0.3] },
@@ -793,6 +802,7 @@ export default function DoodleCrewFooter({
     if (typeof window === "undefined") return
     const s = sim.current
     let raf = 0
+    let running = false
     let last = performance.now()
     let boilAt = 0
     let boil = 0
@@ -806,12 +816,21 @@ export default function DoodleCrewFooter({
       const inv = m.inverse()
       return { x: inv.a * cx + inv.c * cy + inv.e, y: inv.b * cx + inv.d * cy + inv.f }
     }
+    const readRect = () => {
+      const world = worldRef.current
+      if (!world) return
+      const r = world.getBoundingClientRect()
+      s.rectLeft = r.left
+      s.rectTop = r.top
+      s.rectScroll = window.scrollY
+    }
     const frame = (now: number) => {
-      raf = requestAnimationFrame(frame)
       if (!s.visible || document.hidden) {
+        running = false
         last = now
         return
       }
+      raf = requestAnimationFrame(frame)
       const dt = Math.min(0.05, (now - last) / 1000)
       last = now
       const t = now / 1000
@@ -866,9 +885,9 @@ export default function DoodleCrewFooter({
       if (world && s.floaters.length) {
         const started = play && s.start ? now - s.start > tl.doodles || reduced : false
         if (started) {
-          const r = world.getBoundingClientRect()
-          const px = s.inside && interactive ? s.px - r.left : NaN
-          const py = s.inside && interactive ? s.py - r.top : NaN
+          if (window.scrollY !== s.rectScroll) readRect()
+          const px = s.inside && interactive ? s.px - s.rectLeft : NaN
+          const py = s.inside && interactive ? s.py - s.rectTop : NaN
           if (!reduced) for (const f of s.floaters) stepFloater(f, dt, t, s.w, s.h, px, py, 110, rand)
           paintDoodles()
         }
@@ -882,8 +901,28 @@ export default function DoodleCrewFooter({
         for (const el of crewLayerRefs.current) if (el) el.setAttribute("filter", f)
       }
     }
-    raf = requestAnimationFrame(frame)
-    return () => cancelAnimationFrame(raf)
+    const kick = () => {
+      if (running || !s.visible || document.hidden) return
+      running = true
+      last = performance.now()
+      s.rectScroll = -1
+      raf = requestAnimationFrame(frame)
+    }
+    loopKick.current = kick
+    const onVis = () => {
+      if (document.hidden) {
+        running = false
+        cancelAnimationFrame(raf)
+      } else kick()
+    }
+    document.addEventListener("visibilitychange", onVis)
+    kick()
+    return () => {
+      loopKick.current = null
+      running = false
+      cancelAnimationFrame(raf)
+      document.removeEventListener("visibilitychange", onVis)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [placed, play, reduced, interactive, uid, tl.doodles])
 
@@ -978,6 +1017,7 @@ export default function DoodleCrewFooter({
       ref={rootRef}
       className={"dcf" + (className ? " " + className : "")}
       data-play={play || reduced ? "1" : "0"}
+      data-awake="0"
       data-interactive={interactive ? "1" : "0"}
       style={vars}
       onPointerMove={onPointerMove}
@@ -1052,11 +1092,12 @@ export default function DoodleCrewFooter({
               {placed.filter((p) => p.seat === "behind").map((p) => renderCrew(p, "body"))}
             </g>
 
+            <g filter={"url(#" + uid + "-ink)"}>
             {chars.map((c, i) =>
               c === " " ? null : (
                 <g key={i} className="dcf-letter" style={{ "--d": tl.letter(i) + "ms", "--r": ((hash(i * 2.3) - 0.5) * 9).toFixed(2) + "deg" } as React.CSSProperties}>
                   <g className="dcf-glyph">
-                    <text x={layout.x[i]} y={0} fontSize={FONT_SIZE} fontWeight={fontWeight} style={{ fontFamily }} filter={"url(#" + uid + "-ink)"}>
+                    <text x={layout.x[i]} y={0} fontSize={FONT_SIZE} fontWeight={fontWeight} style={{ fontFamily }}>
                       {c}
                     </text>
                   </g>
@@ -1069,6 +1110,7 @@ export default function DoodleCrewFooter({
                 </g>
               ),
             )}
+            </g>
 
             <g ref={(el) => void (crewLayerRefs.current[1] = el)}>
               {placed.filter((p) => p.seat === "behind").map((p) => renderCrew(p, "front"))}
@@ -1286,6 +1328,7 @@ const CSS =
   ".dcf-totop svg{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}" +
   ".dcf-totop:hover{transform:translateY(-2px)}" +
   ".dcf-totop:hover svg{animation:dcf-up .6s ease-in-out infinite}" +
+  ".dcf[data-awake='0'] .dcf-bob,.dcf[data-awake='0'] .dcf-sway,.dcf[data-awake='0'] .dcf-peck,.dcf[data-awake='0'] .dcf-tail{animation-play-state:paused}" +
   ".dcf[data-play='0'] .dcf-letter,.dcf[data-play='0'] .dcf-arrive,.dcf[data-play='0'] .dcf-word,.dcf[data-play='0'] .dcf-pop,.dcf[data-play='0'] .dcf-rise,.dcf[data-play='0'] .dcf-fade,.dcf[data-play='0'] .dcf-doodle-in{opacity:0}" +
   ".dcf[data-play='0'] .dcf-draw{stroke-dasharray:1;stroke-dashoffset:1}" +
   ".dcf-letter{transform-box:fill-box;transform-origin:50% 100%}" +

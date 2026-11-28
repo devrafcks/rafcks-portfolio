@@ -70,8 +70,8 @@ export function SiteNav() {
         className="nav-in-top pointer-events-none fixed inset-x-0 top-0 z-40 flex items-center justify-between px-4 py-4 sm:px-8"
       >
         <a href="#inicio" className="pointer-events-auto transition-transform duration-500 hover:-rotate-3" aria-label={t.nav.home}>
-          <Image src="/images/logo-light.svg" alt="" width={92} height={40} className="h-8 w-auto dark:hidden" />
-          <Image src="/images/logo-dark.svg" alt="" width={92} height={40} className="hidden h-8 w-auto dark:block" />
+          <Image src="/images/logo-light.svg" alt="" width={92} height={40} loading="eager" fetchPriority="low" className="h-8 w-auto dark:hidden" />
+          <Image src="/images/logo-dark.svg" alt="" width={92} height={40} loading="lazy" fetchPriority="low" className="hidden h-8 w-auto dark:block" />
         </a>
         <div className="pointer-events-auto flex items-center gap-2">
           <LanguageSwitch />

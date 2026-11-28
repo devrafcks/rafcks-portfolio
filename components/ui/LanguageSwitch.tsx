@@ -27,9 +27,19 @@ export function LanguageSwitch() {
   const timer = useRef<number>(0);
   const id = useId();
 
+  const warmed = useRef(false);
+
   useEffect(() => {
+    warmed.current = false;
+  }, [locale]);
+
+  // só depois do primeiro gesto no seletor: no carregamento esses pedidos
+  // disputavam banda e thread com a fonte do texto da hero
+  const warm = () => {
+    if (warmed.current) return;
+    warmed.current = true;
     for (const item of locales) if (item !== locale) router.prefetch(localePath(item));
-  }, [locale, router]);
+  };
 
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
@@ -91,7 +101,12 @@ export function LanguageSwitch() {
         aria-label={`${t.nav.languageLabel}: ${t.nav.languageNames[locale]}`}
         aria-expanded={open}
         aria-controls={id}
-        onClick={() => setOpen((value) => !value)}
+        onPointerEnter={warm}
+        onFocus={warm}
+        onClick={() => {
+          warm();
+          setOpen((value) => !value);
+        }}
         onKeyDown={(event) => {
           if (event.key === "ArrowDown" && !open) {
             event.preventDefault();
@@ -132,7 +147,7 @@ export function LanguageSwitch() {
                   <Link
                     href={localePath(item)}
                     scroll={false}
-                    prefetch
+                    prefetch={false}
                     hrefLang={htmlLang[item]}
                     lang={htmlLang[item]}
                     aria-current={current ? "true" : undefined}

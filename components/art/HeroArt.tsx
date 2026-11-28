@@ -38,12 +38,24 @@ export function HeroArt() {
 
   useEffect(() => {
     if (reduce || !window.matchMedia("(pointer: fine)").matches) return;
+    let frame = 0;
+    let nx = 0;
+    let ny = 0;
+    const flush = () => {
+      frame = 0;
+      px.set(nx);
+      py.set(ny);
+    };
     const onMove = (event: PointerEvent) => {
-      px.set(event.clientX / window.innerWidth - 0.5);
-      py.set(event.clientY / window.innerHeight - 0.5);
+      nx = event.clientX / window.innerWidth - 0.5;
+      ny = event.clientY / window.innerHeight - 0.5;
+      if (!frame) frame = requestAnimationFrame(flush);
     };
     window.addEventListener("pointermove", onMove, { passive: true });
-    return () => window.removeEventListener("pointermove", onMove);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("pointermove", onMove);
+    };
   }, [px, py, reduce]);
 
   return (

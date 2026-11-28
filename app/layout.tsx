@@ -15,14 +15,16 @@ const unbounded = Unbounded({
   weight: ["600", "700", "800"],
   variable: "--font-unbounded",
   display: "swap",
+  adjustFontFallback: true,
 });
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["700", "800"],
-  style: ["italic"],
+  weight: "800",
+  style: "italic",
   variable: "--font-montserrat",
   display: "swap",
+  adjustFontFallback: true,
 });
 
 const inter = Inter({
@@ -30,6 +32,7 @@ const inter = Inter({
   weight: ["400", "500", "600"],
   variable: "--font-inter",
   display: "swap",
+  adjustFontFallback: true,
 });
 
 export const viewport: Viewport = {
