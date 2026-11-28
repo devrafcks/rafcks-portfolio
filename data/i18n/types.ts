@@ -9,8 +9,8 @@ export type ProjectText = {
   summary: string;
   points: string[];
   notice?: string;
-  /** Um alt por imagem, na ordem de `images`. */
-  alts: string[];
+  /** Um alt por imagem, na ordem de `images`. Sem ele, vale o alt do idioma-base. */
+  alts?: string[];
   coverAlt?: string;
 };
 

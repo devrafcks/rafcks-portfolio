@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HtmlLang } from "@/components/HtmlLang";
-import { htmlLang, isLocale, localePath, locales, ogLocale, SITE_URL, type Locale } from "@/lib/i18n/config";
+import { htmlLang, isLocale, languageAlternates, locales, localeUrl, ogLocale, SITE_URL } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { I18nProvider } from "@/lib/i18n/I18nProvider";
 
@@ -11,7 +11,7 @@ export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
 
-const url = (locale: Locale) => (locale === "pt" ? SITE_URL : `${SITE_URL}${localePath(locale)}`);
+const url = localeUrl;
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     authors: [{ name: "Rafael Blanco", url: SITE_URL }],
     alternates: {
       canonical: url(lang),
-      languages: { "pt-BR": url("pt"), en: url("en"), es: url("es"), "x-default": url("pt") },
+      languages: { ...languageAlternates(), "x-default": url("pt") },
     },
     robots: { index: true, follow: true },
     appleWebApp: { capable: true, title: "Rafael", statusBarStyle: "black-translucent" },
@@ -66,7 +66,7 @@ export default async function LangLayout({ children, params }: { children: React
         name: "Rafael Blanco",
         jobTitle: t.meta.jobTitle,
         url: SITE_URL,
-        knowsLanguage: ["pt-BR", "en"],
+        knowsLanguage: ["pt-BR", "en", "es"],
         sameAs: ["https://www.linkedin.com/in/rafael-henrique-blanco-0455b12a6/", "https://github.com/devrafcks"],
       },
       { "@type": "WebSite", name: "Rafael Blanco", url: url(lang), inLanguage: htmlLang[lang] },

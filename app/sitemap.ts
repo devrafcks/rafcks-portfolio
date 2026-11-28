@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
-import { localePath, locales, SITE_URL } from "@/lib/i18n/config";
+import { languageAlternates, localePath, locales, SITE_URL } from "@/lib/i18n/config";
 
 const url = (path: string) => (path === "/" ? SITE_URL : `${SITE_URL}${path}`);
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const languages = { "pt-BR": url("/"), en: url("/en"), es: url("/es") };
+  const languages = languageAlternates();
   return locales.map((locale) => ({
     url: url(localePath(locale)),
     lastModified: new Date("2026-11-17"),

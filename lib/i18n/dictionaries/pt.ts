@@ -38,7 +38,7 @@ export const pt = {
     themeToLight: "Ativar modo claro",
     themeToDark: "Ativar modo escuro",
     languageLabel: "Idioma",
-    languageNames: { pt: "Português", en: "English", es: "Español" },
+    languageNames: { pt: "Português", en: "English", es: "Español", fr: "Français", de: "Deutsch", it: "Italiano" },
   },
   hero: {
     chip: "Full stack · SaaS · Produto",
