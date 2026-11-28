@@ -67,6 +67,20 @@ export type StudyLink = {
   name?: string;
 };
 
+export type StudyArea = "frontend" | "backend" | "ia" | "carreira" | "design";
+
+export type IssuerId =
+  | "rocketseat"
+  | "dio"
+  | "alura"
+  | "udemy"
+  | "ebac"
+  | "hashtag"
+  | "proa"
+  | "brainstorm"
+  | "unifecaf"
+  | "microsoft";
+
 export type Study = {
   group: "formacao" | "curso";
   title: string;
@@ -76,8 +90,12 @@ export type Study = {
   /** Credencial, repositório ou site publicado do projeto. */
   links?: StudyLink[];
   track?: "livre" | "certificacao";
-  /** Só na formação: em andamento ou concluída. */
+  /** Formação e cursos em andamento. "Concluído" só aparece na formação. */
   status?: "andamento" | "concluido";
+  /** Emissor estável, para o logo. Não entra na tradução. */
+  issuers?: IssuerId[];
+  /** Área para o filtro de cursos. Um curso pode caber em mais de uma. */
+  areas?: StudyArea[];
 };
 
 export type Recommendation = {

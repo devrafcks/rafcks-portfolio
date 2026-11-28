@@ -420,6 +420,16 @@ html {
   to { transform: scale(2.6); opacity: 0; }
 }
 
+/* hashtag: monocromática na tinta e colorida no hover da linha */
+.issuer-hash {
+  fill: currentColor;
+  transition: fill 300ms ease;
+}
+
+.group:hover .issuer-hash {
+  fill: var(--hash-fill);
+}
+
 /* número vazado dos cartões de formação */
 .study-number {
   color: transparent;

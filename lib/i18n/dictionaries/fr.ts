@@ -68,6 +68,11 @@ export const fr: Dict = {
     tabs: { formacao: "Formation", cursos: "Cours et certifications" },
     status: { andamento: "En cours", concluido: "Terminé" },
     links: { credential: "Certificat", repo: "Dépôt", site: "Site" },
+    more: "Voir plus",
+    less: "Voir moins",
+    filtersLabel: "Filtrer les cours par domaine",
+    areas: { all: "Tous", frontend: "Front-end", backend: "Back-end", ia: "IA", carreira: "Carrière", design: "Design" },
+    empty: "Aucun cours dans ce domaine.",
   },
   band: { words: ["SaaS", "ERP avec NF-e", "Apps dans les stores", "Paiements", "Intégrations", "Accessibilité", "Performance"] },
   featured: {

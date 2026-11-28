@@ -68,6 +68,11 @@ export const en: Dict = {
     tabs: { formacao: "Education", cursos: "Courses and certifications" },
     status: { andamento: "In progress", concluido: "Completed" },
     links: { credential: "Credential", repo: "Repository", site: "Site" },
+    more: "Show more",
+    less: "Show less",
+    filtersLabel: "Filter courses by area",
+    areas: { all: "All", frontend: "Front-end", backend: "Back-end", ia: "AI", carreira: "Career", design: "Design" },
+    empty: "No courses in this area.",
   },
   band: { words: ["SaaS", "ERP with NF-e", "Apps in the stores", "Payments", "Integrations", "Accessibility", "Performance"] },
   featured: {

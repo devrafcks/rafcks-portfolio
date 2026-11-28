@@ -68,6 +68,11 @@ export const pt = {
     tabs: { formacao: "Formação", cursos: "Cursos e certificações" },
     status: { andamento: "Em andamento", concluido: "Concluído" },
     links: { credential: "Credencial", repo: "Repositório", site: "Site" },
+    more: "Ver mais",
+    less: "Ver menos",
+    filtersLabel: "Filtrar cursos por área",
+    areas: { all: "Todos", frontend: "Front-end", backend: "Back-end", ia: "IA", carreira: "Carreira", design: "Design" },
+    empty: "Nenhum curso nesta área.",
   },
   band: { words: ["SaaS", "ERP com NF-e", "Apps nas lojas", "Pagamentos", "Integrações", "Acessibilidade", "Performance"] },
   featured: {

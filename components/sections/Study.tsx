@@ -2,37 +2,17 @@
 
 import { useId, useState } from "react";
 import { AnimatePresence, m } from "motion/react";
-import {
-  IconBook,
-  IconBrush,
-  IconCertificate,
-  IconCode,
-  IconDeviceLaptop,
-  IconHash,
-  IconPlus,
-  IconRocket,
-  IconSchool,
-  IconUsers,
-} from "@tabler/icons-react";
-import type { ComponentType } from "react";
-import type { Study, StudyLink } from "@/data/types";
+import { IconPlus } from "@tabler/icons-react";
+import type { Study, StudyArea, StudyLink } from "@/data/types";
 import { EASE } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { IssuerMarks } from "@/components/ui/IssuerLogo";
 import { useI18n } from "@/lib/i18n/I18nProvider";
 
-const icons: Record<string, ComponentType<{ size?: number; stroke?: number; "aria-hidden"?: boolean }>> = {
-  "Instituto PROA": IconUsers,
-  Rocketseat: IconRocket,
-  "Hashtag Treinamentos": IconHash,
-  EBAC: IconSchool,
-  "Brainstorm Academy": IconBrush,
-  Alura: IconBook,
-  DIO: IconDeviceLaptop,
-  Udemy: IconCode,
-  Microsoft: IconCertificate,
-};
-
 const pad = (n: number) => String(n + 1).padStart(2, "0");
+const VISIBLE = 8;
+const areas = ["all", "frontend", "backend", "ia", "carreira", "design"] as const;
+type AreaFilter = (typeof areas)[number];
 
 /** Formação: cartões grandes, com número, selo de andamento e o texto completo. */
 function DegreeCard({ item, index }: { item: Study; index: number }) {
@@ -80,12 +60,13 @@ function studyLinkLabel(link: StudyLink, labels: { credential: string; repo: str
   return link.name ? `${prefix} · ${link.name}` : prefix;
 }
 
-/** Curso: uma linha com número, título e escola; o texto abre como sanfona. */
+/** Curso: uma linha com número, logo e escola; o texto abre como sanfona. */
 function CourseRow({ item, index }: { item: Study; index: number }) {
   const [open, setOpen] = useState(false);
   const id = useId();
   const { t } = useI18n();
-  const Icon = icons[item.place] ?? IconSchool;
+  const ongoing = item.status === "andamento";
+  const meta = [item.place, item.period].filter(Boolean).join(" · ");
   return (
     <m.li
       initial={{ opacity: 0, x: -16 }}
@@ -100,22 +81,29 @@ function CourseRow({ item, index }: { item: Study; index: number }) {
           aria-expanded={open}
           aria-controls={id}
           onClick={() => setOpen((value) => !value)}
-          className="group grid w-full grid-cols-[2.2rem_minmax(0,1fr)_auto] items-center gap-3 py-4 text-left sm:grid-cols-[2.6rem_2.75rem_minmax(0,1fr)_auto] sm:gap-4"
+          className="group grid w-full grid-cols-[1.4rem_2.75rem_minmax(0,1fr)_auto] items-center gap-2.5 py-3.5 text-left sm:grid-cols-[2.2rem_3.75rem_minmax(0,1fr)_auto] sm:gap-4 sm:py-4"
         >
           <span className="font-label text-xs font-extrabold text-ink/50 italic tabular-nums dark:text-white/50">{pad(index)}</span>
-          <span
-            aria-hidden="true"
-            className="hidden size-11 place-items-center rounded-full bg-ink text-sun transition-colors duration-300 group-hover:bg-sun group-hover:text-ink sm:grid"
-          >
-            <Icon size={20} stroke={1.75} />
-          </span>
+          <IssuerMarks ids={item.issuers} title={item.title} />
           <span className="min-w-0">
             <span className="block font-display text-[clamp(1rem,0.92rem+0.3vw,1.2rem)] leading-tight font-semibold tracking-[-0.02em] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
               {item.title}
             </span>
-            <span className="mt-1 block font-label text-[0.7rem] font-extrabold tracking-[0.04em] text-ink/75 uppercase italic dark:text-white/75">
-              {item.period ? `${item.place} · ${item.period}` : item.place}
-            </span>
+            {(meta || ongoing) && (
+              <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
+                {meta && (
+                  <span className="font-label text-[0.7rem] font-extrabold tracking-[0.04em] text-ink/75 uppercase italic dark:text-white/75">
+                    {meta}
+                  </span>
+                )}
+                {ongoing && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-sun px-2 py-0.5 font-label text-[0.58rem] font-extrabold tracking-[0.08em] text-ink uppercase not-italic">
+                    <span aria-hidden="true" className="live-dot size-1.5 rounded-full bg-ink" />
+                    {t.study.status.andamento}
+                  </span>
+                )}
+              </span>
+            )}
           </span>
           <span
             aria-hidden="true"
@@ -131,7 +119,7 @@ function CourseRow({ item, index }: { item: Study; index: number }) {
         className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
       >
         <div className="overflow-hidden">
-          <div className="pb-5 pl-[2.95rem] sm:pl-[calc(2.6rem+2.75rem+2rem)] sm:pr-14">
+          <div className="pb-5 pl-[calc(1.4rem+2.75rem+1.25rem)] sm:pl-[calc(2.2rem+3.75rem+2rem)] sm:pr-14">
             <p className="max-w-3xl text-sm leading-relaxed text-ink/85 dark:text-white/80">{item.text}</p>
             {item.links && item.links.length > 0 && (
               <ul className="mt-3 flex max-w-3xl flex-wrap gap-x-4 gap-y-1.5">
@@ -148,6 +136,89 @@ function CourseRow({ item, index }: { item: Study; index: number }) {
         </div>
       </div>
     </m.li>
+  );
+}
+
+function CourseList({ courses }: { courses: Study[] }) {
+  const { t } = useI18n();
+  const [area, setArea] = useState<AreaFilter>("all");
+  const [more, setMore] = useState(false);
+  const panelId = useId();
+  const counts = {
+    all: courses.length,
+    frontend: courses.filter((item) => item.areas?.includes("frontend")).length,
+    backend: courses.filter((item) => item.areas?.includes("backend")).length,
+    ia: courses.filter((item) => item.areas?.includes("ia")).length,
+    carreira: courses.filter((item) => item.areas?.includes("carreira")).length,
+    design: courses.filter((item) => item.areas?.includes("design")).length,
+  };
+  const available = areas.filter((id) => id === "all" || counts[id] > 0);
+  const filtered = area === "all" ? courses : courses.filter((item) => item.areas?.includes(area as StudyArea));
+  const collapsible = filtered.length > VISIBLE + 1;
+  const head = collapsible ? filtered.slice(0, VISIBLE) : filtered;
+  const tail = collapsible ? filtered.slice(VISIBLE) : [];
+
+  return (
+    <div>
+      <div role="group" aria-label={t.study.filtersLabel} className="mb-6 flex gap-2 overflow-x-auto pb-1">
+        {available.map((id) => {
+          const selected = area === id;
+          return (
+            <button
+              key={id}
+              type="button"
+              aria-pressed={selected}
+              onClick={() => {
+                setArea(id);
+                setMore(false);
+              }}
+              className={`inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-2 font-label text-[0.72rem] font-extrabold tracking-[0.06em] uppercase italic transition-colors duration-300 ${selected ? "bg-ink text-sun dark:bg-white dark:text-ink" : "bg-ink/5 text-ink/75 hover:text-ink dark:bg-white/8 dark:text-white/75 dark:hover:text-white"}`}
+            >
+              {t.study.areas[id]}
+              <span className={`tabular-nums not-italic ${selected ? "text-sun/80 dark:text-ink/70" : "text-ink/45 dark:text-white/45"}`}>{counts[id]}</span>
+            </button>
+          );
+        })}
+      </div>
+      {filtered.length === 0 ? (
+        <p className="text-sm text-ink/70 dark:text-white/70">{t.study.empty}</p>
+      ) : (
+        <>
+          <ul className="border-t border-ink/12 dark:border-white/12">
+            {head.map((item, index) => (
+              <CourseRow key={item.title} item={item} index={index} />
+            ))}
+          </ul>
+          {collapsible && (
+            <>
+              <div
+                id={panelId}
+                inert={!more}
+                className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${more ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+              >
+                <ul className="overflow-hidden">
+                  {tail.map((item, index) => (
+                    <CourseRow key={item.title} item={item} index={index + VISIBLE} />
+                  ))}
+                </ul>
+              </div>
+              <button
+                type="button"
+                aria-expanded={more}
+                aria-controls={panelId}
+                onClick={() => setMore((value) => !value)}
+                className="group mt-5 inline-flex items-center gap-2 font-label text-xs font-extrabold tracking-[0.08em] text-ember-ink uppercase italic"
+              >
+                <span className="grid size-6 place-items-center rounded-full bg-ink text-sun transition-colors duration-300 group-hover:bg-sun group-hover:text-ink dark:bg-white dark:text-ink">
+                  <IconPlus size={14} stroke={2.5} aria-hidden="true" className={`transition-transform duration-500 ${more ? "rotate-45" : ""}`} />
+                </span>
+                {more ? t.study.less : `${t.study.more} (${tail.length})`}
+              </button>
+            </>
+          )}
+        </>
+      )}
+    </div>
   );
 }
 
@@ -213,11 +284,7 @@ export function Study({ studies }: { studies: Study[] }) {
               ))}
             </div>
           ) : (
-            <ul className="border-t border-ink/12 dark:border-white/12">
-              {cursos.map((item, index) => (
-                <CourseRow key={item.title} item={item} index={index} />
-              ))}
-            </ul>
+            <CourseList courses={cursos} />
           )}
         </m.div>
       </AnimatePresence>
