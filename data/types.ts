@@ -60,13 +60,21 @@ export type Experience = {
   stack: string[];
 };
 
+export type StudyLink = {
+  href: string;
+  kind: "credential" | "repo" | "site";
+  /** Nome curto para distinguir vários repositórios ou deploys do mesmo curso. */
+  name?: string;
+};
+
 export type Study = {
   group: "formacao" | "curso";
   title: string;
   place: string;
   period: string;
   text: string;
-  href?: string;
+  /** Credencial, repositório ou site publicado do projeto. */
+  links?: StudyLink[];
   track?: "livre" | "certificacao";
   /** Só na formação: em andamento ou concluída. */
   status?: "andamento" | "concluido";

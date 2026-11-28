@@ -67,6 +67,7 @@ export const de: Dict = {
     title: "Ausbildung und Kurse",
     tabs: { formacao: "Ausbildung", cursos: "Kurse und Zertifikate" },
     status: { andamento: "Laufend", concluido: "Abgeschlossen" },
+    links: { credential: "Zertifikat", repo: "Repository", site: "Website" },
   },
   band: { words: ["SaaS", "ERP mit NF-e", "Apps in den Stores", "Zahlungen", "Integrationen", "Barrierefreiheit", "Performance"] },
   featured: {

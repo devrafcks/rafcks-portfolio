@@ -15,7 +15,7 @@ import {
   IconUsers,
 } from "@tabler/icons-react";
 import type { ComponentType } from "react";
-import type { Study } from "@/data/types";
+import type { Study, StudyLink } from "@/data/types";
 import { EASE } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { useI18n } from "@/lib/i18n/I18nProvider";
@@ -74,10 +74,17 @@ function DegreeCard({ item, index }: { item: Study; index: number }) {
   );
 }
 
+function studyLinkLabel(link: StudyLink, labels: { credential: string; repo: string; site: string }) {
+  if (link.kind === "credential") return labels.credential;
+  const prefix = link.kind === "repo" ? labels.repo : labels.site;
+  return link.name ? `${prefix} · ${link.name}` : prefix;
+}
+
 /** Curso: uma linha com número, título e escola; o texto abre como sanfona. */
 function CourseRow({ item, index }: { item: Study; index: number }) {
   const [open, setOpen] = useState(false);
   const id = useId();
+  const { t } = useI18n();
   const Icon = icons[item.place] ?? IconSchool;
   return (
     <m.li
@@ -126,10 +133,16 @@ function CourseRow({ item, index }: { item: Study; index: number }) {
         <div className="overflow-hidden">
           <div className="pb-5 pl-[2.95rem] sm:pl-[calc(2.6rem+2.75rem+2rem)] sm:pr-14">
             <p className="max-w-3xl text-sm leading-relaxed text-ink/85 dark:text-white/80">{item.text}</p>
-            {item.href && (
-              <a href={item.href} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-sm text-ember-ink underline-offset-2 hover:underline">
-                github.com/devrafcks/50days_50projects
-              </a>
+            {item.links && item.links.length > 0 && (
+              <ul className="mt-3 flex max-w-3xl flex-wrap gap-x-4 gap-y-1.5">
+                {item.links.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-sm text-ember-ink underline-offset-2 hover:underline">
+                      {studyLinkLabel(link, t.study.links)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             )}
           </div>
         </div>

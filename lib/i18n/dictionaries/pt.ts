@@ -67,6 +67,7 @@ export const pt = {
     title: "Formação e cursos",
     tabs: { formacao: "Formação", cursos: "Cursos e certificações" },
     status: { andamento: "Em andamento", concluido: "Concluído" },
+    links: { credential: "Credencial", repo: "Repositório", site: "Site" },
   },
   band: { words: ["SaaS", "ERP com NF-e", "Apps nas lojas", "Pagamentos", "Integrações", "Acessibilidade", "Performance"] },
   featured: {
