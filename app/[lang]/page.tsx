@@ -40,7 +40,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         <Hero t={t.hero} />
         <Marquee label={t.marquee.label} />
         <About t={t.about} />
-        <Experience title={t.experience.title} items={content.experiences} />
+        <Experience t={t.experience} items={content.experiences} />
         <Study studies={content.studies} />
         <Band words={t.band.words} />
         <Featured title={t.featured.title} projects={content.projects} ids={featuredIds} />

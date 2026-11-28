@@ -57,15 +57,16 @@ export const pt = {
       "economizados em ferramentas e infraestrutura. Eu construo em casa o que a empresa pagaria num SaaS. Assim ela gasta menos, o produto escala e a operação fica livre de fornecedor.",
     paragraphs: [
       "Já construí um ERP com PDV, financeiro com conciliação e gateway de pagamento, apps publicados na App Store e na Google Play, marketplaces, sistemas internos com dezenas de integrações e um SaaS próprio que funciona até com sinal fraco.",
-      "Gosto de entender a dor antes de abrir o editor. Participo do levantamento de requisitos, escrevo a especificação, desenho a arquitetura e modelo o banco. Depois cuido das integrações com pagamentos e plataformas externas, do deploy e da evolução do produto em produção. Trabalho bem com TypeScript, React, Next.js, Node.js, React Native e PostgreSQL, e me viro com Docker, VPS, Coolify, Cloudflare e CI/CD quando a infraestrutura também é minha.",
-      "Acessibilidade e performance entram no começo do projeto. Criei o SeeB, um widget de acessibilidade open source que nasceu no meu TCC e hoje vai embutido nos meus outros produtos. Uso IA e automação no dia a dia para ganhar velocidade, com agentes e MCP no fluxo de trabalho, e continuo responsável pela arquitetura, pela revisão e pela qualidade do que vai para produção.",
-      "Quem trabalhou comigo costuma destacar a calma em projetos complexos, a organização e a mania de antecipar problema na reunião de planejamento. Sou técnico em Informática para Internet pela ETEC Parque Belém, curso Engenharia de Software na Gran Faculdade e Inteligência Artificial e Automação Digital na UniFECAF com a Faculdade de Tecnologia Rocketseat. Também faço a extensão curricular em Arquitetura de Software com IA na Anhanguera, com o Full Stack Club, de 360 horas, em andamento. Me comunico bem em inglês, o que me ajuda a ler documentação, acompanhar a comunidade e trabalhar com ferramentas e times de fora.",
+      "Gosto de entender a dor antes de abrir o editor. Levanto requisitos, escrevo a especificação, desenho a arquitetura e modelo o banco. Depois cuido das integrações, do deploy e da evolução do produto em produção. Trabalho bem com TypeScript, React, Next.js, Node.js, React Native e PostgreSQL, e me viro com Docker, VPS, Coolify, Cloudflare e CI/CD quando a infraestrutura também é minha.",
+      "Acessibilidade e performance entram no começo do projeto. Criei o SeeB, um widget de acessibilidade open source que nasceu no meu TCC e hoje vai embutido nos meus produtos. Uso IA e automação no dia a dia, com agentes e MCP no fluxo, e sigo responsável pela arquitetura, pela revisão e pela qualidade do que vai para produção.",
+      "Quem trabalhou comigo costuma destacar a calma em projetos complexos, a organização e a mania de antecipar problema no planejamento. Sou técnico em Informática para Internet pela ETEC Parque Belém, curso Engenharia de Software na Gran Faculdade e Inteligência Artificial e Automação Digital na UniFECAF com a Rocketseat, além da extensão em Arquitetura de Software com IA na Anhanguera. Me comunico bem em inglês, o que me ajuda com documentação, comunidade e times de fora.",
     ],
   },
-  experience: { title: "Experiências" },
+  experience: { title: "Experiências", current: "Atual", more: "Ver mais", less: "Ver menos" },
   study: {
     title: "Formação e cursos",
     tabs: { formacao: "Formação", cursos: "Cursos e certificações" },
+    status: { andamento: "Em andamento", concluido: "Concluído" },
   },
   band: { words: ["SaaS", "ERP com NF-e", "Apps nas lojas", "Pagamentos", "Integrações", "Acessibilidade", "Performance"] },
   featured: {

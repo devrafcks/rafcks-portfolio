@@ -4,6 +4,7 @@ export const experiences: Experience[] = [
   {
     role: "Cofundador e CTO",
     org: "Coach Up",
+    current: true,
     period: "out. 2026 até agora",
     mode: "Remoto",
     summary:
@@ -28,6 +29,7 @@ export const experiences: Experience[] = [
   {
     role: "Desenvolvedor Full Stack",
     org: "T2 Educação",
+    current: true,
     period: "mai. 2026 até agora",
     mode: "Remoto",
     summary:

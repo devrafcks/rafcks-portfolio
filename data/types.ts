@@ -55,6 +55,8 @@ export type Experience = {
   /** Parágrafo depois da lista. */
   closing?: string;
   result?: { value: string; label: string };
+  /** Cargo atual: ganha o selo "Atual" e o ponto pulsando na linha do tempo. */
+  current?: boolean;
   stack: string[];
 };
 
@@ -66,6 +68,8 @@ export type Study = {
   text: string;
   href?: string;
   track?: "livre" | "certificacao";
+  /** Só na formação: em andamento ou concluída. */
+  status?: "andamento" | "concluido";
 };
 
 export type Recommendation = {

@@ -57,15 +57,16 @@ export const en: Dict = {
       "saved on tools and infrastructure. I build in house what the company would otherwise pay a SaaS for. That way it spends less, the product scales and the operation doesn't depend on vendors.",
     paragraphs: [
       "I've built an ERP with a point of sale, finance with reconciliation and a payment gateway, apps published on the App Store and Google Play, marketplaces, internal systems with dozens of integrations and my own SaaS that works even on a weak signal.",
-      "I like to understand the pain before I open the editor. I take part in gathering requirements, write the spec, design the architecture and model the database. Then I handle the integrations with payments and external platforms, the deploy and how the product evolves in production. I work well with TypeScript, React, Next.js, Node.js, React Native and PostgreSQL, and I can find my way around Docker, VPS, Coolify, Cloudflare and CI/CD when the infrastructure is mine too.",
-      "Accessibility and performance come in at the start of a project. I created SeeB, an open source accessibility widget that started as my final school project and now ships inside my other products. I use AI and automation every day to move faster, with agents and MCP in my workflow, and I'm still the one responsible for the architecture, the review and the quality of what goes to production.",
-      "People who have worked with me usually point out how calm I stay on complex projects, how organized I am and my habit of spotting problems early in planning meetings. I have a technical diploma in Informática para Internet (web development) from ETEC Parque Belém, I'm studying Software Engineering at Gran Faculdade and Artificial Intelligence and Digital Automation at UniFECAF with Faculdade de Tecnologia Rocketseat. I'm also taking a 360-hour extension program in Software Architecture with AI at Anhanguera, with Full Stack Club, still in progress. I communicate well in English, which helps me read documentation, follow the community and work with tools and teams from abroad.",
+      "I like to understand the pain before I open the editor. I gather requirements, write the spec, design the architecture and model the database. Then I handle the integrations, the deploy and how the product evolves in production. I work well with TypeScript, React, Next.js, Node.js, React Native and PostgreSQL, and I can find my way around Docker, VPS, Coolify, Cloudflare and CI/CD when the infrastructure is mine too.",
+      "Accessibility and performance come in at the start of a project. I created SeeB, an open source accessibility widget that started as my final school project and now ships inside my products. I use AI and automation every day, with agents and MCP in my workflow, and I'm still responsible for the architecture, the review and the quality of what goes to production.",
+      "People who have worked with me usually point out how calm I stay on complex projects, how organized I am and my habit of spotting problems early in planning. I have a technical diploma in Informática para Internet (web development) from ETEC Parque Belém, I'm studying Software Engineering at Gran Faculdade and Artificial Intelligence and Digital Automation at UniFECAF with Rocketseat, plus an extension program in Software Architecture with AI at Anhanguera. I communicate well in English, which helps with documentation, the community and teams from abroad.",
     ],
   },
-  experience: { title: "Experience" },
+  experience: { title: "Experience", current: "Current", more: "Show more", less: "Show less" },
   study: {
     title: "Education and courses",
     tabs: { formacao: "Education", cursos: "Courses and certifications" },
+    status: { andamento: "In progress", concluido: "Completed" },
   },
   band: { words: ["SaaS", "ERP with NF-e", "Apps in the stores", "Payments", "Integrations", "Accessibility", "Performance"] },
   featured: {
