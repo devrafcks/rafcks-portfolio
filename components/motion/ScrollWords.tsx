@@ -1,5 +1,6 @@
 "use client";
 
+import { splitWords } from "@/lib/splitWords";
 import { m, useScroll, useTransform, type MotionValue } from "motion/react";
 import { useRef } from "react";
 
@@ -22,7 +23,7 @@ function Word({ word, progress, range }: { word: string; progress: MotionValue<n
 export function ScrollWords({ text, className = "" }: { text: string; className?: string }) {
   const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 85%", "end 45%"] });
-  const words = text.split(" ");
+  const words = splitWords(text);
 
   return (
     <p ref={ref} className={className}>
@@ -32,9 +33,9 @@ export function ScrollWords({ text, className = "" }: { text: string; className?
           const start = index / words.length;
           const end = Math.min(1, start + 2.5 / words.length);
           return (
-            <span key={`${word}-${index}`}>
-              <Word word={word} progress={scrollYProgress} range={[start, end]} />
-              {index < words.length - 1 ? " " : null}
+            <span key={`${word.text}-${index}`}>
+              <Word word={word.text} progress={scrollYProgress} range={[start, end]} />
+              {word.space ? " " : null}
             </span>
           );
         })}

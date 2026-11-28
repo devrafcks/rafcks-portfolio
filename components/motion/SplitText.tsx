@@ -1,5 +1,6 @@
 "use client";
 
+import { splitWords } from "@/lib/splitWords";
 import { m, type Variants } from "motion/react";
 import { EASE } from "@/components/motion/Reveal";
 
@@ -26,7 +27,7 @@ export function SplitText({
   onMount?: boolean;
   className?: string;
 }) {
-  const words = text.split(" ");
+  const words = splitWords(text);
   const trigger = onMount ? { animate: "show" } : { whileInView: "show", viewport: { once: true, amount: 0.5 } };
 
   return (
@@ -40,11 +41,11 @@ export function SplitText({
         variants={{ hidden: {}, show: { transition: { staggerChildren: stagger, delayChildren: delay } } }}
       >
         {words.map((item, index) => (
-          <span key={`${item}-${index}`} className="inline-block overflow-hidden pb-[0.12em] -mb-[0.12em] align-bottom">
+          <span key={`${item.text}-${index}`} className="inline-block overflow-hidden pb-[0.12em] -mb-[0.12em] align-bottom">
             <m.span className="inline-block will-change-transform" variants={word}>
-              {item}
+              {item.text}
             </m.span>
-            {index < words.length - 1 ? " " : null}
+            {item.space ? " " : null}
           </span>
         ))}
       </m.span>

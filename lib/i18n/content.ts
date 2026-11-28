@@ -5,6 +5,11 @@ import { en } from "@/data/i18n/en";
 import { es } from "@/data/i18n/es";
 import { fr } from "@/data/i18n/fr";
 import { it } from "@/data/i18n/it";
+import { ja } from "@/data/i18n/ja";
+import { ko } from "@/data/i18n/ko";
+import { nl } from "@/data/i18n/nl";
+import { ru } from "@/data/i18n/ru";
+import { zh } from "@/data/i18n/zh";
 import type { ContentText } from "@/data/i18n/types";
 import { filters, projects as ptProjects } from "@/data/projects";
 import { recommendations as ptRecommendations } from "@/data/recommendations";
@@ -84,6 +89,11 @@ const contents: Record<Locale, Content> = {
   fr: translate(english, fr),
   de: translate(english, de),
   it: translate(english, it),
+  ja: translate(english, ja),
+  zh: translate(english, zh),
+  ko: translate(english, ko),
+  ru: translate(english, ru),
+  nl: translate(english, nl),
 };
 
 export function getContent(locale: Locale): Content {

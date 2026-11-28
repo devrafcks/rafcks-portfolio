@@ -38,7 +38,7 @@ export const fr: Dict = {
     themeToLight: "Passer en mode clair",
     themeToDark: "Passer en mode sombre",
     languageLabel: "Langue",
-    languageNames: { pt: "Português", en: "English", es: "Español", fr: "Français", de: "Deutsch", it: "Italiano" },
+    languageNames: { pt: "Português", en: "English", es: "Español", fr: "Français", de: "Deutsch", it: "Italiano", ja: "日本語", zh: "中文", ko: "한국어", ru: "Русский", nl: "Nederlands" },
   },
   hero: {
     chip: "Full stack · SaaS · Produit",

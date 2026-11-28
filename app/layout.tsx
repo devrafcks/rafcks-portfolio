@@ -11,7 +11,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const unbounded = Unbounded({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["600", "700", "800"],
   variable: "--font-unbounded",
   display: "swap",
@@ -19,7 +19,7 @@ const unbounded = Unbounded({
 });
 
 const montserrat = Montserrat({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: "800",
   style: "italic",
   variable: "--font-montserrat",
@@ -28,7 +28,7 @@ const montserrat = Montserrat({
 });
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600"],
   variable: "--font-inter",
   display: "swap",

@@ -21,6 +21,13 @@ export async function generateImageMetadata({ params }: { params: Promise<{ lang
   return [{ id: "card", alt: t.meta.ogAlt, size, contentType: "image/png" }];
 }
 
+/**
+ * As fontes do card só têm o alfabeto latino. Em japonês, chinês, coreano e russo o card
+ * desenha o texto em inglês (o alt continua no idioma da página), em vez de quadradinhos vazios.
+ */
+const latin = new Set(["pt", "en", "es", "fr", "de", "it", "nl"]);
+const cardLocale = (lang: string) => (isLocale(lang) ? (latin.has(lang) ? lang : "en") : "pt");
+
 const font = (file: string) => readFile(join(process.cwd(), "assets/fonts", file));
 
 /** Uma onda que se repete, desenhada de ponta a ponta da cena. */
@@ -32,7 +39,7 @@ function wave(y: number, amp: number, length: number, width: number) {
 
 export default async function Image({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const t = getDictionary(isLocale(lang) ? lang : "pt");
+  const t = getDictionary(cardLocale(lang));
   const [unbounded, montserrat, inter] = await Promise.all([
     font("Unbounded-ExtraBold.woff"),
     font("Montserrat-ExtraBoldItalic.woff"),

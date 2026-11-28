@@ -61,6 +61,51 @@ const flags: Record<Locale, ReactNode> = {
       <rect x="21.33" width="10.67" height="32" fill="#ce2b37" />
     </>
   ),
+  ja: (
+    <>
+      <rect width="32" height="32" fill="#fff" />
+      <circle cx="16" cy="16" r="7.5" fill="#bc002d" />
+    </>
+  ),
+  zh: (
+    <>
+      <rect width="32" height="32" fill="#de2910" />
+      <path d="m10 6.5 1.5 4.6h4.8l-3.9 2.8 1.5 4.6-3.9-2.8-3.9 2.8 1.5-4.6-3.9-2.8h4.8Z" fill="#ffde00" />
+      <circle cx="18.5" cy="6.5" r="1.1" fill="#ffde00" />
+      <circle cx="21" cy="9.5" r="1.1" fill="#ffde00" />
+      <circle cx="21" cy="13.5" r="1.1" fill="#ffde00" />
+      <circle cx="18.5" cy="16.5" r="1.1" fill="#ffde00" />
+    </>
+  ),
+  ko: (
+    <>
+      <rect width="32" height="32" fill="#fff" />
+      <path d="M9.5 16a6.5 6.5 0 0 1 13 0Z" fill="#cd2e3a" />
+      <path d="M9.5 16a6.5 6.5 0 0 0 13 0Z" fill="#0047a0" />
+      <circle cx="12.75" cy="16" r="3.25" fill="#cd2e3a" />
+      <circle cx="19.25" cy="16" r="3.25" fill="#0047a0" />
+      <g stroke="#000" strokeWidth="1.2">
+        <path d="m4.5 9.5 3-4.5M6 10.5l3-4.5" />
+        <path d="m22.5 26.5 3-4.5M24 27.5l3-4.5" />
+        <path d="m22.5 5 3 4.5M24 4l3 4.5" />
+        <path d="m4.5 22.5 3 4.5M6 21.5l3 4.5" />
+      </g>
+    </>
+  ),
+  ru: (
+    <>
+      <rect width="32" height="32" fill="#d52b1e" />
+      <rect width="32" height="21.33" fill="#0039a6" />
+      <rect width="32" height="10.67" fill="#fff" />
+    </>
+  ),
+  nl: (
+    <>
+      <rect width="32" height="32" fill="#21468b" />
+      <rect width="32" height="21.33" fill="#fff" />
+      <rect width="32" height="10.67" fill="#ae1c28" />
+    </>
+  ),
 };
 
 export function Flag({ locale, className = "" }: { locale: Locale; className?: string }) {
