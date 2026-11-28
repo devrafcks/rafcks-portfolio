@@ -4,14 +4,25 @@ export const experiences: Experience[] = [
   {
     role: "Cofundador e CTO",
     org: "Coach Up",
-    period: "nov. 2026 até agora",
+    period: "out. 2026 até agora",
     mode: "Remoto",
     summary:
-      "Cofundei a Coach Up com um amigo e lidero toda a tecnologia, da arquitetura ao desenvolvimento full stack e à infraestrutura. É um SaaS white-label em PWA para academias e personal trainers gerenciarem treinos, e o produto ainda está em construção.",
-    did: [
-      "O produto reúne prescrição de treinos, vídeos de demonstração, avaliações físicas, histórico de atividades e dashboards de progresso, e cada academia ou personal trainer usa a própria identidade de marca.",
-      "Construo a aplicação em Node.js e Next.js, com Supabase e a infraestrutura na Cloudflare, no ecossistema TypeScript e JavaScript. Nada foi lançado ainda.",
+      "Cofundador e responsável pela direção tecnológica da Coach Up, uma plataforma SaaS white label voltada à gestão de academias e personal trainers, com foco na digitalização e simplificação de processos. Cada academia ou personal trainer oferece aos alunos um app com a própria marca, instalável direto pelo navegador (PWA).",
+    more: [
+      "Atuo na definição da arquitetura do sistema, na escolha de tecnologias, no planejamento de funcionalidades e no desenvolvimento do produto, do protótipo à produção.",
     ],
+    didLabel: "Principais responsabilidades:",
+    did: [
+      "Desenvolvimento e planejamento da arquitetura full stack da plataforma, com Next.js, Node.js e TypeScript.",
+      "Modelagem de dados, autenticação e armazenamento com Supabase.",
+      "Desenvolvimento das soluções de gestão de alunos, montagem e prescrição de treinos, registro de séries e cargas e indicadores de desempenho.",
+      "Estrutura white label, para que cada academia ou personal trainer use a plataforma com a própria identidade visual.",
+      "Planejamento da infraestrutura, armazenamento em nuvem e segurança da aplicação, com Cloudflare.",
+      "Definição do roadmap tecnológico e evolução do produto.",
+      "Pesquisa de novas tecnologias e oportunidades de inovação.",
+    ],
+    closing:
+      "O projeto tem como objetivo tornar a gestão de academias e personal trainers mais eficiente, acessível e centralizada, e dar ao aluno um acompanhamento que continua fora da academia.",
     stack: ["Node.js", "Next.js", "TypeScript", "JavaScript", "Supabase", "Cloudflare"],
   },
   {

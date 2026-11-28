@@ -47,7 +47,13 @@ export type Experience = {
   period: string;
   mode: string;
   summary: string;
+  /** Parágrafos entre o resumo e a lista. */
+  more?: string[];
+  /** Rótulo da lista, quando ela tem um título próprio. */
+  didLabel?: string;
   did: string[];
+  /** Parágrafo depois da lista. */
+  closing?: string;
   result?: { value: string; label: string };
   stack: string[];
 };

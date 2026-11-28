@@ -573,14 +573,25 @@ export const en: ContentText = {
   experiences: [
     {
       role: "Co-founder & CTO",
-      period: "Nov 2026 to present",
+      period: "Oct 2026 to present",
       mode: "Remote",
       summary:
-        "I co-founded Coach Up with a friend and I lead all of the technology, from architecture to full stack development and infrastructure. It is a white-label SaaS PWA for gyms and personal trainers to manage training, and the product is still being built.",
-      did: [
-        "The product brings together workout prescription, demo videos, physical assessments, activity history and progress dashboards, and each gym or personal trainer uses its own brand identity.",
-        "I build the application in Node.js and Next.js, with Supabase and the infrastructure on Cloudflare, in the TypeScript and JavaScript ecosystem. Nothing has launched yet.",
+        "Co-founder and responsible for the technology direction of Coach Up, a white label SaaS platform aimed at gym and personal trainer management, focused on digitizing and simplifying processes. Each gym or personal trainer offers students an app with its own brand, installable directly from the browser (PWA).",
+      more: [
+        "I work on defining the system architecture, choosing technologies, planning features and developing the product, from the prototype to production.",
       ],
+      didLabel: "Main responsibilities:",
+      did: [
+        "Development and planning of the platform's full stack architecture, with Next.js, Node.js and TypeScript.",
+        "Data modeling, authentication and storage with Supabase.",
+        "Development of the solutions for student management, workout building and prescription, set and load logging, and performance indicators.",
+        "White label structure, so each gym or personal trainer uses the platform with its own visual identity.",
+        "Planning of the infrastructure, cloud storage and application security, with Cloudflare.",
+        "Definition of the technology roadmap and product evolution.",
+        "Research into new technologies and innovation opportunities.",
+      ],
+      closing:
+        "The project aims to make gym and personal trainer management more efficient, accessible and centralized, and to give the student follow-up that continues outside the gym.",
     },
     {
       role: "Full Stack Developer",
