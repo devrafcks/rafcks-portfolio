@@ -19,7 +19,10 @@ export type ExperienceText = {
   period: string;
   mode: string;
   summary: string;
+  more?: string[];
+  didLabel?: string;
   did: string[];
+  closing?: string;
   resultValue?: string;
   resultLabel?: string;
 };

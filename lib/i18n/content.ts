@@ -51,7 +51,10 @@ export function getContent(locale: Locale): Content {
       period: tr.period,
       mode: tr.mode,
       summary: tr.summary,
+      more: tr.more ?? item.more,
+      didLabel: tr.didLabel ?? item.didLabel,
       did: tr.did,
+      closing: tr.closing ?? item.closing,
       result: item.result ? { value: tr.resultValue ?? item.result.value, label: tr.resultLabel ?? item.result.label } : undefined,
     };
   });

@@ -565,14 +565,25 @@ export const es: ContentText = {
   experiences: [
     {
       role: "Cofundador y CTO",
-      period: "nov. 2026 a la actualidad",
+      period: "oct. 2026 a la actualidad",
       mode: "Remoto",
       summary:
-        "Cofundé Coach Up con un amigo y lidero toda la tecnología, de la arquitectura al desarrollo full stack y a la infraestructura. Es un SaaS white-label en PWA para que gimnasios y entrenadores personales gestionen entrenamientos, y el producto todavía está en construcción.",
-      did: [
-        "El producto reúne prescripción de entrenamientos, videos de demostración, evaluaciones físicas, historial de actividades y dashboards de progreso, y cada gimnasio o entrenador personal usa su propia identidad de marca.",
-        "Construyo la aplicación en Node.js y Next.js, con Supabase y la infraestructura en Cloudflare, en el ecosistema TypeScript y JavaScript. Todavía no se ha lanzado nada.",
+        "Cofundador y responsable de la dirección tecnológica de Coach Up, una plataforma SaaS white label orientada a la gestión de gimnasios y entrenadores personales, con foco en la digitalización y la simplificación de procesos. Cada gimnasio o entrenador personal ofrece a los alumnos una app con su propia marca, instalable directamente desde el navegador (PWA).",
+      more: [
+        "Actúo en la definición de la arquitectura del sistema, en la elección de tecnologías, en la planificación de funcionalidades y en el desarrollo del producto, del prototipo a la producción.",
       ],
+      didLabel: "Principales responsabilidades:",
+      did: [
+        "Desarrollo y planificación de la arquitectura full stack de la plataforma, con Next.js, Node.js y TypeScript.",
+        "Modelado de datos, autenticación y almacenamiento con Supabase.",
+        "Desarrollo de las soluciones de gestión de alumnos, armado y prescripción de entrenamientos, registro de series y cargas e indicadores de desempeño.",
+        "Estructura white label, para que cada gimnasio o entrenador personal use la plataforma con su propia identidad visual.",
+        "Planificación de la infraestructura, almacenamiento en la nube y seguridad de la aplicación, con Cloudflare.",
+        "Definición del roadmap tecnológico y evolución del producto.",
+        "Investigación de nuevas tecnologías y oportunidades de innovación.",
+      ],
+      closing:
+        "El proyecto tiene como objetivo hacer la gestión de gimnasios y entrenadores personales más eficiente, accesible y centralizada, y dar al alumno un seguimiento que continúa fuera del gimnasio.",
     },
     {
       role: "Desarrollador Full Stack",

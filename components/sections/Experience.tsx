@@ -29,13 +29,26 @@ export function Experience({ title, items }: { title: string; items: ExperienceI
                 </h3>
                 <p className="mt-1 font-label text-sm font-extrabold uppercase tracking-[0.06em] italic">{item.org}</p>
                 <p className="mt-4 max-w-2xl leading-relaxed text-ink/85 dark:text-white/80">{item.summary}</p>
+                {item.more?.map((paragraph) => (
+                  <p key={paragraph} className="mt-4 max-w-2xl leading-relaxed text-ink/85 dark:text-white/80">
+                    {paragraph}
+                  </p>
+                ))}
                 {item.did.length > 0 && (
-                  <ul className="mt-4 list-disc space-y-2 pl-5 leading-relaxed text-ink/85 dark:text-white/80">
-                    {item.did.map((line) => (
-                      <li key={line}>{line}</li>
-                    ))}
-                  </ul>
+                  <>
+                    {item.didLabel ? (
+                      <p className="mt-4 max-w-2xl leading-relaxed text-ink/85 dark:text-white/80">{item.didLabel}</p>
+                    ) : null}
+                    <ul className="mt-4 list-disc space-y-2 pl-5 leading-relaxed text-ink/85 dark:text-white/80">
+                      {item.did.map((line) => (
+                        <li key={line}>{line}</li>
+                      ))}
+                    </ul>
+                  </>
                 )}
+                {item.closing ? (
+                  <p className="mt-4 max-w-2xl leading-relaxed text-ink/85 dark:text-white/80">{item.closing}</p>
+                ) : null}
                 {item.result && (
                   <p className="mt-6 inline-flex flex-col bg-ink px-4 py-3 text-white dark:bg-sun dark:text-ink">
                     <CountUp value={item.result.value} className="font-display text-[clamp(1.6rem,1.2rem+1vw,2.2rem)] leading-none font-bold" />
