@@ -90,7 +90,7 @@ export type Study = {
   /** Credencial, repositório ou site publicado do projeto. */
   links?: StudyLink[];
   track?: "livre" | "certificacao";
-  /** Formação e cursos em andamento. "Concluído" só aparece na formação. */
+  /** Só na formação: em andamento ou concluída. */
   status?: "andamento" | "concluido";
   /** Emissor estável, para o logo. Não entra na tradução. */
   issuers?: IssuerId[];

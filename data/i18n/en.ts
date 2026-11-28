@@ -841,12 +841,6 @@ export const en: ContentText = {
       place: "brainstorm.academy",
       period: "",
       text: "An Adobe Photoshop and graphic design course for creating and editing images used in interfaces and in content.",
-    },
-    {
-      title: "Microsoft AZ-900",
-      place: "Microsoft",
-      period: "in preparation",
-      text: "I'm preparing for the Azure Fundamentals certification. The content covers cloud concepts (IaaS, PaaS, SaaS and deployment models), Azure's main compute, networking and storage services, security, identity, governance, pricing and SLAs. I haven't taken the exam yet.",
     }
   ],
 

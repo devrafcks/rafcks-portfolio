@@ -595,12 +595,6 @@ export const it: ContentText = {
       place: "brainstorm.academy",
       period: "",
       text: "Corso di Adobe Photoshop e design grafico per creare e trattare immagini usate in interfacce e nei contenuti.",
-    },
-    {
-      title: "Microsoft AZ-900",
-      place: "Microsoft",
-      period: "in preparazione",
-      text: "Mi sto preparando alla certificazione Azure Fundamentals. Il programma copre i concetti di cloud (IaaS, PaaS, SaaS e modelli di distribuzione), i principali servizi di calcolo, rete e archiviazione di Azure, sicurezza, identità, governance, prezzi e SLA. Non ho ancora sostenuto l'esame.",
     }
   ],
 

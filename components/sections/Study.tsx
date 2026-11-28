@@ -65,7 +65,6 @@ function CourseRow({ item, index }: { item: Study; index: number }) {
   const [open, setOpen] = useState(false);
   const id = useId();
   const { t } = useI18n();
-  const ongoing = item.status === "andamento";
   const meta = [item.place, item.period].filter(Boolean).join(" · ");
   return (
     <m.li
@@ -89,19 +88,9 @@ function CourseRow({ item, index }: { item: Study; index: number }) {
             <span className="block font-display text-[clamp(1rem,0.92rem+0.3vw,1.2rem)] leading-tight font-semibold tracking-[-0.02em] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">
               {item.title}
             </span>
-            {(meta || ongoing) && (
-              <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
-                {meta && (
-                  <span className="font-label text-[0.7rem] font-extrabold tracking-[0.04em] text-ink/75 uppercase italic dark:text-white/75">
-                    {meta}
-                  </span>
-                )}
-                {ongoing && (
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-sun px-2 py-0.5 font-label text-[0.58rem] font-extrabold tracking-[0.08em] text-ink uppercase not-italic">
-                    <span aria-hidden="true" className="live-dot size-1.5 rounded-full bg-ink" />
-                    {t.study.status.andamento}
-                  </span>
-                )}
+            {meta && (
+              <span className="mt-1 block font-label text-[0.7rem] font-extrabold tracking-[0.04em] text-ink/75 uppercase italic dark:text-white/75">
+                {meta}
               </span>
             )}
           </span>
