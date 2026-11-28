@@ -1,7 +1,7 @@
 import { IconBrandLinkedin } from "@tabler/icons-react";
 import Image from "next/image";
 import type { Recommendation } from "@/data/types";
-import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { TiltIn } from "@/components/motion/TiltIn";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Recommendations({ title, items }: { title: string; items: Recommendation[] }) {
@@ -10,11 +10,10 @@ export function Recommendations({ title, items }: { title: string; items: Recomm
       {/* o fundo vai de ponta a ponta; só o conteúdo segue a largura da página */}
       <div className="shell">
         <SectionHeading title={title} />
-        <RevealGroup className="mt-10 grid items-stretch gap-6 lg:grid-cols-2" stagger={0.15}>
-          {items.map((item) => (
-            <RevealItem
-              as="figure"
-              key={item.name}
+        <div className="mt-10 grid items-stretch gap-6 lg:grid-cols-2">
+          {items.map((item, index) => (
+            <TiltIn key={item.name} side={index % 2 ? "right" : "left"}>
+            <figure
               className="group flex h-full flex-col bg-paper p-6 sm:p-8 dark:bg-night"
             >
               <blockquote className="flex-1">
@@ -54,9 +53,10 @@ export function Recommendations({ title, items }: { title: string; items: Recomm
                   </a>
                 </div>
               </figcaption>
-            </RevealItem>
+            </figure>
+            </TiltIn>
           ))}
-        </RevealGroup>
+        </div>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { CountUp } from "@/components/motion/CountUp";
 import { ImageReveal } from "@/components/motion/ImageReveal";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { ScrollWords } from "@/components/motion/ScrollWords";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { Dict } from "@/lib/i18n/dictionaries/pt";
 
@@ -23,8 +24,13 @@ export function About({ t }: { t: Dict["about"] }) {
           </ImageReveal>
         </div>
       </div>
+      <div>
+      {/* a frase de abertura vira manchete e acende palavra por palavra com o scroll */}
+      <ScrollWords
+        text={t.lead}
+        className="mb-8 max-w-[34ch] text-[clamp(1.35rem,1.05rem+1vw,2rem)] leading-[1.3] font-medium tracking-[-0.02em] text-ink dark:text-white"
+      />
       <RevealGroup className="space-y-4 text-[clamp(1rem,0.95rem+0.15vw,1.125rem)] leading-relaxed text-ink/85 dark:text-white/85" stagger={0.1}>
-        <RevealItem as="p">{t.lead}</RevealItem>
         <RevealItem as="p" className="inline-flex max-w-md flex-col bg-ink px-5 py-4 text-white dark:bg-sun dark:text-ink">
           <CountUp value={t.savedValue} className="font-display text-[clamp(1.8rem,1.4rem+1vw,2.6rem)] leading-none font-bold" />
           <span className="mt-2 text-sm leading-snug">{t.savedLabel}</span>
@@ -35,6 +41,7 @@ export function About({ t }: { t: Dict["about"] }) {
           </RevealItem>
         ))}
       </RevealGroup>
+      </div>
     </section>
   );
 }

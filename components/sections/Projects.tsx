@@ -5,8 +5,8 @@ import dynamic from "next/dynamic";
 import { IconArrowUpRight } from "@tabler/icons-react";
 import type { Project, ProjectTag } from "@/data/types";
 import { m } from "motion/react";
-import { EASE } from "@/components/motion/Reveal";
 import { Tilt } from "@/components/motion/Tilt";
+import { TiltIn } from "@/components/motion/TiltIn";
 import { DeviceMockup } from "@/components/ui/DeviceMockup";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
@@ -110,8 +110,12 @@ export function Projects({ projects, filters }: { projects: Project[]; filters: 
             const large = geralLead || geralInverse || geralThirdLead || filterLead;
             const place = geralInverse ? "xl:col-start-2" : "";
             return (
-            <m.button
+            <TiltIn
               key={project.id}
+              side={cardIndex % 2 ? "right" : "left"}
+              className={large ? `sm:col-span-2 xl:col-span-2 ${place}` : ""}
+            >
+            <button
               type="button"
               aria-haspopup="dialog"
               aria-expanded={open?.id === project.id}
@@ -119,11 +123,7 @@ export function Projects({ projects, filters }: { projects: Project[]; filters: 
                 trigger.current = event.currentTarget;
                 setOpen(project);
               }}
-              initial={{ opacity: 0, y: 36 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.9, delay: (cardIndex % 3) * 0.08, ease: EASE }}
-              className={`project-card group cursor-pointer text-left ${large ? `sm:col-span-2 xl:col-span-2 ${place}` : ""}`}
+              className="project-card group block w-full cursor-pointer text-left"
             >
               <Tilt max={large ? 3 : 5}>
                 <div className="rounded-2xl transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5 group-hover:shadow-[0_28px_50px_-12px_rgba(43,30,32,0.28)]">
@@ -148,7 +148,8 @@ export function Projects({ projects, filters }: { projects: Project[]; filters: 
                 </span>
                 <IconArrowUpRight size={16} stroke={1.75} aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
-            </m.button>
+            </button>
+            </TiltIn>
             );
           })}
         </div>

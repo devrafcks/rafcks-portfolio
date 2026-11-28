@@ -55,8 +55,12 @@ export function IntroScreen() {
         </div>
       </div>
       <p className="mt-6 font-display text-xl font-bold tracking-[-0.03em]">Rafael Blanco</p>
-      <div className="mt-4 h-1 w-40 overflow-hidden rounded-full bg-ink/10 dark:bg-white/15">
-        <div className="intro-bar h-full rounded-full bg-sun" />
+      <div className="mt-4 flex items-center gap-3">
+        <div className="h-1 w-40 overflow-hidden rounded-full bg-ink/10 dark:bg-white/15">
+          <div className="intro-bar h-full rounded-full bg-sun" />
+        </div>
+        {/* contador de 0 a 100 no mesmo ritmo da barra, só com CSS (@property + counter) */}
+        <span className="intro-pct w-10 font-label text-xs font-extrabold tabular-nums italic" />
       </div>
     </div>
   );

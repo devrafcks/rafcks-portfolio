@@ -1,3 +1,4 @@
+import { BrushStroke } from "@/components/motion/BrushStroke";
 import { SplitText } from "@/components/motion/SplitText";
 import type { Project } from "@/data/types";
 import type { DeckProject } from "@/components/ui/project-deck";
@@ -31,6 +32,7 @@ export function Featured({ title, projects, ids }: { title: string; projects: Pr
         <h2 id="no-ar-titulo" className="font-display text-[clamp(2rem,1.2rem+2.4vw,3.4rem)] leading-none font-semibold tracking-[-0.04em]">
           <SplitText text={title} />
         </h2>
+        <BrushStroke className="mt-4 w-[clamp(6.5rem,4rem+6vw,10rem)] text-sun" />
       </div>
       <FeaturedDeck projects={deck} />
     </section>

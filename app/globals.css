@@ -367,6 +367,95 @@ html {
   to { width: 100%; }
 }
 
+/* número da abertura: conta de 0 a 100 no mesmo ritmo da barra */
+@property --intro-pct {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+.intro-pct {
+  counter-reset: intro-pct var(--intro-pct);
+  animation: intro-pct 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.intro-pct::after {
+  content: counter(intro-pct) "%";
+}
+
+@keyframes intro-pct {
+  to { --intro-pct: 100; }
+}
+
+/* ---------- movimentos trazidos da referência ---------- */
+
+/* seletor de idioma: a pílula escura desliza e um brilho atravessa */
+.lang-pill {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lang-glint {
+  background: linear-gradient(100deg, transparent, rgb(255 255 255 / 0.55), transparent);
+  animation: lang-glint 0.6s ease-out forwards;
+}
+
+@keyframes lang-glint {
+  from { transform: translateX(0); }
+  to { transform: translateX(400%); }
+}
+
+/* pontinho "ao vivo" dos selos Atual / Em andamento */
+.live-dot {
+  animation: live-dot 1.6s ease-in-out infinite;
+}
+
+@keyframes live-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+/* anel que pulsa em volta da bolinha do cargo atual */
+.timeline-pulse {
+  animation: timeline-pulse 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes timeline-pulse {
+  from { transform: scale(1); opacity: 0.7; }
+  to { transform: scale(2.6); opacity: 0; }
+}
+
+/* número vazado dos cartões de formação */
+.study-number {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgb(43 30 32 / 0.12);
+}
+
+.dark .study-number {
+  -webkit-text-stroke-color: rgb(255 255 255 / 0.12);
+}
+
+.group:hover .study-number {
+  -webkit-text-stroke-color: #ffbc00;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-word,
+  .tilt-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .live-dot,
+  .timeline-pulse,
+  .lang-glint {
+    animation: none !important;
+  }
+
+  .timeline-pulse {
+    display: none;
+  }
+}
+
 /* 404: o chapéu boiando no lugar do zero */
 .lost-hat {
   animation: lost-hat 3.2s ease-in-out infinite;

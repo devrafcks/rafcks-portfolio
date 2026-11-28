@@ -5,6 +5,7 @@ import { TravelingHat } from "@/components/art/TravelingHat";
 import { CursorRing } from "@/components/CursorRing";
 import { IntroScreen } from "@/components/IntroScreen";
 import { MotionProvider } from "@/components/motion/MotionProvider";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { SeeBFix } from "@/components/SeeBFix";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
@@ -94,6 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </ThemeProvider>
           <SeeBFix />
           <CursorRing />
+          <SmoothScroll />
         </div>
         <Script src="https://seeb-widget.pages.dev/widget.js" strategy="lazyOnload" />
       </body>
