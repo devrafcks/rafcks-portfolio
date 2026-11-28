@@ -669,18 +669,6 @@ export const en: ContentText = {
       text: "UniFECAF extension course on personal development and getting ready for the job market. The modules cover study habits and organization, including how to manage your time.",
     },
     {
-      title: "Microsoft AI-103 Acceleration: Workshops 1 to 4",
-      place: "DIO with Microsoft",
-      period: "Oct 2026",
-      text: "Four workshops from the DIO and Microsoft acceleration: agents in Microsoft Foundry, RAG with Azure AI Search, agents in production, and the path to the AI-103 exam.",
-    },
-    {
-      title: "Microsoft AI-103 Acceleration: Welcome",
-      place: "DIO with Microsoft",
-      period: "Oct 2026",
-      text: "The opening of the DIO and Microsoft acceleration for the AI-103 certification. It introduces the track on artificial intelligence solutions in Azure.",
-    },
-    {
       title: "Instituto PROA",
       place: "Instituto PROA",
       period: "Mar 2026",
